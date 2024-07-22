@@ -29,7 +29,7 @@ export const Navbar = () => {
         <Link className="active-link" to="/">
           <img
             className="logo"
-            src="/src/assets/ImagenesOptimizadas/CC2E1AA6-02E9-4DF2-BBD6-8BD62A378986.webp"
+            src="/assets/ImagenesOptimizadas/CC2E1AA6-02E9-4DF2-BBD6-8BD62A378986.webp"
             alt="Podo Estetica"
           />
         </Link>
