@@ -35,8 +35,8 @@ export const TurnosAdmin = () => {
           >
             <div className="accordion-body">
               {arrayTurnosAdmin &&
-              arrayTurnosAdmin.length > 0 &&
-              arrayTurnosAdmin.some((e) => e.estado === true) ? (
+                arrayTurnosAdmin.length > 0 &&
+                arrayTurnosAdmin.some((e) => e.estado === true) ? (
                 <table className="table align-middle">
                   <thead className="tabla-header">
                     <tr>
@@ -92,13 +92,13 @@ export const TurnosAdmin = () => {
                           <td className="m-auto">
                             <button
                               className="tabla-admin-btn admin-btn"
-                              // onClick={(e) => {
-                              //   eliminarTurno(e, listaTurnos.id);
-                              // }}
+                            // onClick={(e) => {
+                            //   eliminarTurno(e, listaTurnos.id);
+                            // }}
                             >
                               <img
                                 className="admin-icons"
-                                src="/src/assets/ImagenesOptimizadas/icons/calendar-cog.svg"
+                                src="/assets/icons/calendar-cog.svg"
                                 alt="Modificar Turno"
                               />
                             </button>
@@ -112,7 +112,7 @@ export const TurnosAdmin = () => {
                             >
                               <img
                                 className="admin-icons"
-                                src="/src/assets/ImagenesOptimizadas/icons/calendar-x.svg"
+                                src="/assets/icons/calendar-x.svg"
                                 alt="Eliminar Turno"
                               />
                             </button>

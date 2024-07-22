@@ -22,7 +22,7 @@ const Introduccion = () => {
         <strong>cuidar tus pies y brindarte una experiencia relajante</strong>.
       </p>
       <img
-        src="/src/assets/ImagenesOptimizadas/human-footprints.png"
+        src="/assets/ImagenesOptimizadas/human-footprints.png"
         alt="Pie Derecho"
         className="right-foot"
       />

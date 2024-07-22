@@ -98,7 +98,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
                           >
                             <img
                               className="admin-icons"
-                              src="/src/assets/ImagenesOptimizadas/icons/calendar-cog.svg"
+                              src="/src/assets/icons/calendar-cog.svg"
                               alt="Modificar servicio"
                             />
                           </a>
@@ -112,7 +112,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
                           >
                             <img
                               className="admin-icons"
-                              src="/src/assets/ImagenesOptimizadas/icons/calendar-x.svg"
+                              src="/src/assets/icons/calendar-x.svg"
                               alt="Eliminar Turno"
                             />
                           </button>
