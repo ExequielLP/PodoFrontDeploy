@@ -82,8 +82,7 @@ body {
 
 .hero-bg {
   min-height: 350px;
-  background: url("/src/assets/ImagenesOptimizadas/woman-s-feet-bowl-with-water-petal_329181-18808.jpg")
-    center center/cover no-repeat;
+  background: url("/assets/ImagenesOptimizadas/woman-s-feet-bowl-with-water-petal_329181-18808.jpg") center center/cover no-repeat;
 }
 
 @media screen and (max-width: 768px) {
@@ -91,8 +90,7 @@ body {
     flex-direction: column;
     text-align: center;
     height: 90vh;
-    background: url("/src/assets/ImagenesOptimizadas/woman-s-feet-bowl-with-water-petal_329181-18808.jpg")
-      center center/cover no-repeat;
+    background: url("/assets/ImagenesOptimizadas/woman-s-feet-bowl-with-water-petal_329181-18808.jpg") center center/cover no-repeat;
   }
 
   .hero-text-container {
@@ -131,6 +129,7 @@ body {
   .hero-title {
     text-shadow: 5px 5px 10px #050505b8;
   }
+
   .hero-text {
     font-weight: 500;
     text-shadow: 5px 5px 10px #f5d2d1;

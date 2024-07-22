@@ -4,7 +4,7 @@ const Introduccion = () => {
   return (
     <section className="welcome-section ">
       <img
-        src="/src/assets/ImagenesOptimizadas/human-footprints.png"
+        src="/assets/ImagenesOptimizadas/human-footprints.png"
         alt="Pie Izquierdo"
         className="left-foot"
       />
