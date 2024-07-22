@@ -1,0 +1,53 @@
+.calendar-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.date-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  width: 600px;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.date-text {
+  padding: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  width: 100%;
+  color: #050505;
+  letter-spacing: 0.1rem;
+  background: #ffd3e6;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px #ffc5ff;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 197, 255, 0.3);
+}
+
+.date-button {
+  margin-left: 4rem;
+  padding: 16px;
+  background-color: #8a2be2;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #ffffff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.date-button:hover {
+  font-weight: 600;
+  background-color: #c05fff;
+  box-shadow: 0px 4px 15px rgba(122, 62, 59, 0.5);
+  transform: scale(1.05);
+  color: #ffffff;
+}

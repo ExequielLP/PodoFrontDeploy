@@ -1,0 +1,14 @@
+.toast-success {
+  color: #008a2e;
+  border-color: #ecfdf3;
+}
+
+.toast-error {
+  color: #e60000;
+  border-color: #fff0f0;
+}
+
+.toast-warning {
+  color: #dc7609;
+  border-color: #c1dfe6;
+}

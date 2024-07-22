@@ -1,0 +1,146 @@
+.navbar1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffc5ff;
+  min-height: 140px;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 20;
+}
+
+.nav-links-items {
+  display: inline-flex;
+  gap: 3rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link-item {
+  color: #fefefe !important;
+  font-size: 1.4rem !important;
+  font-weight: 400 !important;
+}
+
+.nav-link-item:hover {
+  font-weight: 600 !important;
+}
+
+.logo {
+  border-radius: 50%;
+  filter: drop-shadow(0 0 0.75rem #ff9abf);
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 1rem #ff9abf);
+}
+
+.btn {
+  cursor: pointer;
+  position: relative;
+  padding: 1rem;
+  background: #ff9abf;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  transition: all 1s;
+  z-index: 0;
+}
+
+.btn::after,
+.btn::before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border: 0px solid #fefefe;
+  transition: all 1s;
+  z-index: -1;
+}
+
+.btn::after {
+  top: -1px;
+  left: -1px;
+  border-top: 5px solid #ff9abf;
+  border-left: 5px solid #ff9abf;
+}
+
+.btn::before {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 5px solid #ff9abf;
+  border-right: 5px solid #ff9abf;
+}
+
+.btn:hover {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.btn:hover::before,
+.btn:hover::after {
+  width: 100%;
+  height: 100%;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .navbar1 {
+    flex-direction: row;
+    position: relative;
+  }
+
+  .nav-links-items {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .logo {
+    height: 100px;
+    width: 100px;
+  }
+
+  .dropdown-navbar-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffc5ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .nav-links-items-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .nav-link-item {
+    font-size: 1.6rem;
+  }
+
+  .close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+}
