@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
+import { createContext, useState, navigate } from "react";
 import { get, getToken, post, postImagen, put } from "../utils/http";
 import { toast } from "sonner";
-import { matchPath } from "react-router-dom";
+import { Link, matchPath, useNavigate } from "react-router-dom";
 import { validateForm } from "../utils/validations";
 
 // http://localhost:8080/api/v1/auth/authenticate
@@ -41,7 +41,7 @@ const ContextLoginRegister = ({ children }) => {
 
   const SubmitRegistro = async (e, formRegistro) => {
     e.preventDefault();
-
+    const navigate = useNavigate();
     // Llama a la función de validación
     const errors = validateForm(formRegistro);
     if (errors.length > 0) {
@@ -57,7 +57,9 @@ const ContextLoginRegister = ({ children }) => {
     try {
       const respuesta = await post(urlCrearUsuario, formRegistro);
       if (respuesta) {
-        window.location.href = "/login";
+        /*  window.location.href = "/login"; */
+        navigate("/login");
+
       }
     } catch (error) {
       console.log(error);
