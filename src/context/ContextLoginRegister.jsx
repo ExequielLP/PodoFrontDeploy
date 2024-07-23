@@ -57,7 +57,7 @@ const ContextLoginRegister = ({ children }) => {
     try {
       const respuesta = await post(urlCrearUsuario, formRegistro);
       if (respuesta) {
-        window.location.href = "https://podogonnet.netlify.app/login";
+        window.location.href = "/login";
       }
     } catch (error) {
       console.log(error);
