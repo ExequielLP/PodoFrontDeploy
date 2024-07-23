@@ -107,14 +107,14 @@ const ContextLoginRegister = ({ children }) => {
   //VERIFICACION DE LOGIN AUTOMATICA
   const AuthTokenYUsiario = async () => {
     let token = verificarExistenciaToken();
-
+    console.log("entrnado a AuthTokenUsuario");
     const urlFinal = urlVerificarExpiracionToken + token;
     const urlValidateGetUsuarioFinal = urlValidateGetUsuario + token;
     const usuarioValido = await GetUsuarioToken(
       urlValidateGetUsuarioFinal,
       token
     );
-    console.log(usuarioLogeado.Auth);
+    console.log("paso el usuarioValido()");
     if (usuarioLogeado.Auth === false && usuarioValido) {
       const usuarioRespuesta = {
         id: usuarioValido.id,
