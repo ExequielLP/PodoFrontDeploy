@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState, navigate } from "react";
+import { createContext, useState } from "react";
 import { get, getToken, post, postImagen, put } from "../utils/http";
 import { toast } from "sonner";
 import { Link, matchPath, useNavigate } from "react-router-dom";
