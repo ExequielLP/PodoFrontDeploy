@@ -125,7 +125,7 @@ const ContextLoginRegister = ({ children }) => {
       };
       setUsuarioLogeado(usuarioRespuesta);
     } else if (verificarExistenciaToken() && !usuarioValido) {
-      const excludedPaths = ["/login", "registro", "/", "/servicio/*"]; // Agrega aquí las rutas que quieres excluir
+      const excludedPaths = ["/login", "/registro", "/", "/servicio/*"]; // Agrega aquí las rutas que quieres excluir
       const isExcluded = excludedPaths.some((path) =>
         matchPath({ path, exact: true }, location.pathname)
       );
