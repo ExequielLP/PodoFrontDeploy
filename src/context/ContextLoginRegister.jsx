@@ -32,7 +32,7 @@ const usuarioLogin = {
 const ContextoAdministrador = createContext();
 
 const ContextLoginRegister = ({ children }) => {
-  const location = useLocation()
+
   // creo el estado de usarios
   const [usuarioLogeado, setUsuarioLogeado] = useState(usuarioLogin);
   const [servicio, setServicio] = useState(null);
@@ -42,6 +42,7 @@ const ContextLoginRegister = ({ children }) => {
 
   const SubmitRegistro = async (e, formRegistro) => {
     e.preventDefault();
+    const location = useLocation()
     // Llama a la función de validación
     const errors = validateForm(formRegistro);
     if (errors.length > 0) {
