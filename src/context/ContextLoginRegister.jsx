@@ -2,7 +2,7 @@
 import { createContext, useState } from "react";
 import { get, getToken, post, postImagen, put } from "../utils/http";
 import { toast } from "sonner";
-import { Link, matchPath, Navigate, useLocation } from "react-router-dom";
+import { Link, matchPath, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { validateForm } from "../utils/validations";
 
 // http://localhost:8080/api/v1/auth/authenticate
@@ -43,6 +43,7 @@ const ContextLoginRegister = ({ children }) => {
   const SubmitRegistro = async (e, formRegistro) => {
     e.preventDefault();
     const location = useLocation()
+    const navigate = useNavigate()
     // Llama a la función de validación
     const errors = validateForm(formRegistro);
     if (errors.length > 0) {
@@ -57,7 +58,7 @@ const ContextLoginRegister = ({ children }) => {
     try {
       const respuesta = await post(urlCrearUsuario, formRegistro);
       if (respuesta) {
-        <Navigate to={"/login"} state={location} />
+        navigate(location.state.location.pathname ?? '/')
       }
     } catch (error) {
       console.log(error);
