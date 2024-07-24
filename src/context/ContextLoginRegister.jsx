@@ -2,7 +2,7 @@
 import { createContext, useState } from "react";
 import { get, getToken, post, postImagen, put } from "../utils/http";
 import { toast } from "sonner";
-import { Link, matchPath } from "react-router-dom";
+import { Link, matchPath, Navigate, useLocation } from "react-router-dom";
 import { validateForm } from "../utils/validations";
 
 // http://localhost:8080/api/v1/auth/authenticate
@@ -32,6 +32,7 @@ const usuarioLogin = {
 const ContextoAdministrador = createContext();
 
 const ContextLoginRegister = ({ children }) => {
+  const location = useLocation()
   // creo el estado de usarios
   const [usuarioLogeado, setUsuarioLogeado] = useState(usuarioLogin);
   const [servicio, setServicio] = useState(null);
@@ -52,13 +53,10 @@ const ContextLoginRegister = ({ children }) => {
       });
       return;
     }
-
     try {
       const respuesta = await post(urlCrearUsuario, formRegistro);
       if (respuesta) {
-        window.location.href = "/login"
-
-
+        <Navigate to={"/login"} state={location} />
       }
     } catch (error) {
       console.log(error);
