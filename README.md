@@ -31,4 +31,4 @@
 
 - Detalles y acentos: El rosa más claro (#ffc5ff) y el rosa empolvado (#FFD3E6) pueden usarse para detalles sutiles, como líneas divisorias, iconos o bordes. Por ejemplo, puedes aplicar estos colores a los bordes de las tarjetas de servicios o a los íconos de redes sociales.
 
-- Enlaces y botones secundarios: Considera usar el verde menta (#B2FFC8) para enlaces o botones secundarios. Esto agregará un toque fresco y agradable..
+- Enlaces y botones secundarios: Considera usar el verde menta (#B2FFC8) para enlaces o botones secundarios. Esto agregará un toque fresco y agradable....
