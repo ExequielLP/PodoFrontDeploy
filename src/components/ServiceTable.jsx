@@ -106,9 +106,9 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
                         <td className="m-auto">
                           <button
                             className="tabla-admin-btn admin-btn"
-                            onClick={(e) => {
-                              eliminarServicioAdmin(e, servicio.id);
-                            }}
+                            onClick={(e) =>
+                              (eliminarServicioAdmin(e, servicio.id))
+                            }
                           >
                             <img
                               className="admin-icons"
