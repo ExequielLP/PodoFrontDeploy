@@ -15,7 +15,7 @@ const Card = ({ listaServicios }) => {
       />
       <img
         className="service-img-bg"
-        src="assets/ImagenesOptimizadas/spa-treatment-product-female-feet-hand-spa_1150-37700.jpg.url"
+        src="/assets/ImagenesOptimizadas/spa-treatment-product-female-feet-hand-spa_1150-37700.jpg.url"
         alt="Spa de pies"
         width="300"
       />
