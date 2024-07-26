@@ -235,6 +235,7 @@ const ContextLoginRegister = ({ children }) => {
       e.preventDefault();
       let jwt = window.localStorage.getItem("auth_token");
       const urlCancelarServicio = urlBackDarDeBajaServicioAdmin + servicioId;
+      console.log("antes de hacer el famoso get")
       const respuesta = await put(urlCancelarServicio, jwt);
       if (respuesta.ok) {
         toast.success(`¡Servicio: ${servicioId} dado de baja!`, {
