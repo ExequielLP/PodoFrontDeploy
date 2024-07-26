@@ -224,7 +224,7 @@ const ContextLoginRegister = ({ children }) => {
       setlistaServicios(
         respuesta
       ); /* si lo comentas, no se ejecuta el useEffect */
-      console.log("holuuuu oasi ek serListaServicio");
+      console.log(listaServicios);
     } catch (error) {
       console.log("error al cargar la lista de servicios en el panel admin");
     }
