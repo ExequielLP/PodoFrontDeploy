@@ -91,8 +91,8 @@ export const postImagen = async (url, servicioPodo, token) => {
     if (!respuesta.ok) {
       throw new Error(
         respuesta.status +
-          " error en fetch [post hhtp]: " +
-          respuesta.statusText
+        " error en fetch [post hhtp]: " +
+        respuesta.statusText
       );
     }
 
@@ -105,6 +105,7 @@ export const postImagen = async (url, servicioPodo, token) => {
 };
 
 export const put = async (url, token) => {
+  console.log("el famosooo gett")
   const fetchConfig = {
     method: "PUT",
     headers: {
