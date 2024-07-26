@@ -230,29 +230,29 @@ const ContextLoginRegister = ({ children }) => {
     }
   };
 
-  const eliminarServicioAdmin = async (e, servicioId) => {
-    try {
-      e.preventDefault();
-      let jwt = window.localStorage.getItem("auth_token");
-      const urlCancelarServicio = urlBackDarDeBajaServicioAdmin + servicioId;
-      const respuesta = await put(urlCancelarServicio, jwt);
-      if (respuesta.ok) {
-        toast.success(`¡Servicio: ${servicioId} dado de baja!`, {
+  /*   const eliminarServicioAdmin = async (e, servicioId) => {
+      try {
+        e.preventDefault();
+        let jwt = window.localStorage.getItem("auth_token");
+        const urlCancelarServicio = urlBackDarDeBajaServicioAdmin + servicioId;
+        const respuesta = await put(urlCancelarServicio, jwt);
+        if (respuesta.ok) {
+          toast.success(`¡Servicio: ${servicioId} dado de baja!`, {
+            className: "toast-success",
+            style: { width: "fit-content" },
+          });
+        }
+        listaServiciosAdmin();
+      } catch (error) {
+        toast.error(`Error: ${servicioId} no ha sido dado de baja!`, {
           className: "toast-success",
           style: { width: "fit-content" },
         });
+        console.log(
+          "Error al eliminar un servicios de la lista de servicios en el admin dashboard "
+        );
       }
-      listaServiciosAdmin();
-    } catch (error) {
-      toast.error(`Error: ${servicioId} no ha sido dado de baja!`, {
-        className: "toast-success",
-        style: { width: "fit-content" },
-      });
-      console.log(
-        "Error al eliminar un servicios de la lista de servicios en el admin dashboard "
-      );
-    }
-  };
+    }; */
 
   const listaTurnos = async () => {
     try {
