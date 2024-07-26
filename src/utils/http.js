@@ -105,7 +105,6 @@ export const postImagen = async (url, servicioPodo, token) => {
 };
 
 export const put = async (url, token) => {
-  console.log("el famosooo gett")
   const fetchConfig = {
     method: "PUT",
     headers: {

@@ -16,9 +16,9 @@ const urlServicioGet = import.meta.env.VITE_ENDPOINT_urlServicioGet
 const urlBackListaTurno = import.meta.env.VITE_ENDPOINT_urlBackListaTurno
 const urlBackCancelarTurno = import.meta.env.VITE_ENDPOINT_urlBackCancelarTurno
 const urlBackListaTurnosAdmin = import.meta.env.VITE_ENDPOINT_urlBackListaTurnosAdmin
-const urlBackCancelarTurnoAdmin = import.meta.env.VITE_ENDPOINT_urlBackListaTurnosAdmin
-const urlBackListaServiciosAdmin = import.meta.env.VITE_ENDPOINT_urlBackCancelarTurnoAdmin
-const urlBackDarDeBajaServicioAdmin = import.meta.env.VITE_ENDPOINT_urlBackListaServiciosAdmin
+const urlBackCancelarTurnoAdmin = import.meta.env.VITE_ENDPOINT_urlBackCancelarTurnoAdmin
+const urlBackListaServiciosAdmin = import.meta.env.VITE_ENDPOINT_urlBackListaServiciosAdmin
+const urlBackDarDeBajaServicioAdmin = import.meta.env.VITE_ENDPOINT_urlBackDarDeBajaServicioAdmin
 const urlValidateGetUsuario = import.meta.env.VITE_ENDPOINT_urlValidateGetUsuario
 
 const usuarioLogin = {
@@ -235,7 +235,6 @@ const ContextLoginRegister = ({ children }) => {
       e.preventDefault();
       let jwt = window.localStorage.getItem("auth_token");
       const urlCancelarServicio = urlBackDarDeBajaServicioAdmin + servicioId;
-      console.log("antes de hacer el famoso get")
       const respuesta = await put(urlCancelarServicio, jwt);
       if (respuesta.ok) {
         toast.success(`¡Servicio: ${servicioId} dado de baja!`, {
