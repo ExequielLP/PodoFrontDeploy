@@ -1,3 +1,6 @@
+## LINKS
+🔗 https://podogonnet.netlify.app/
+
 # TAREAS PENDIENTES
 
 > [!IMPORTANT]
@@ -11,6 +14,7 @@
 ## FRONT
 
 - [ ] Manejar la carga de datos vacios en los formularios para renderizar las alertas.
+- [ ] Arreglar el responsive en `<Servicios>` & `<Dashboard/>`
 
 # COLOR PALETTE
 
