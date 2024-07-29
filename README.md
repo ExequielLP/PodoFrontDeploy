@@ -9,20 +9,20 @@
 
 ## FRONT
 
-- [ ] Añadir carga diferida de datos Lazy, Suspense.
-- [ ] Cards: agregar una altura maxima para pantalla > 1200px.
-- [ ] Cards: limitar las lineas del parrafó en las cards de inicio.
-- [ ] Corregir EndPoint de los turnos del día.
-- [ ] Corregir el boton de los accordion. No funciona!
-- [ ] Añadir paginación en las tablas de turnos.
-- [ ] Verificar que todas las alertas funcionen.
-- [ ] Limpiar el contexto. Separar lo que es Authcontext del resto.
-- [ ] Corroborar que los textos e imagenes en uso sean los correctos. De no ser así actualizarlos.
 - [ ] Agregar contenido a la página `<AboutUs/>`
+- [ ] Añadir carga diferida de datos Lazy, Suspense.
+- [ ] Añadir paginación en las tablas de turnos.
 - [ ] Arreglar el responsive en `<Servicios>` & `<Dashboard/>`
-- [ ] Corregir el `<NavBar/>` al loguearse. El usuario debe visualizar un NavLink "Mis turnos"
 - [ ] Corregir el `<NavBar/>` al loguearse. El Admin debe visualizar un NavLink "Panel Admin"
+- [ ] Corregir el `<NavBar/>` al loguearse. El usuario debe visualizar un NavLink "Mis turnos"
+- [ ] Corregir EndPoint de los turnos del día.
+- [ ] Corroborar que los textos e imagenes en uso sean los correctos. De no ser así actualizarlos.
+- [ ] Limpiar el contexto. Separar lo que es Authcontext del resto.
 - [ ] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
+- [ ] Verificar que todas las alertas funcionen.
+- [✔] Cards: agregar una altura maxima para pantalla > 1200px.
+- [✔] Cards: limitar las lineas del parrafó en las cards de inicio.
+- [✔] Corregir el boton de los accordion. No funciona!
 
 # COLOR PALETTE
 
