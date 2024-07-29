@@ -8,7 +8,7 @@ const ListaTurnos = () => {
   return (
     <div className="accordion" id="accordionExample">
       <div className="accordion-item">
-        <h2 className="accordion-header">
+        <h2 className="accordion-header" id="headingOne">
           <button
             className="accordion-button"
             type="button"
