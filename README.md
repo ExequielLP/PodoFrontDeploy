@@ -1,4 +1,5 @@
 ## LINKS
+
 🔗 https://podogonnet.netlify.app/
 
 # TAREAS PENDIENTES
@@ -6,15 +7,22 @@
 > [!IMPORTANT]
 > Modificación
 
-## BACK
-
-- [ ] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
-- [ ] Arreglar vista `<Admin-Page/>`
-
 ## FRONT
 
-- [ ] Manejar la carga de datos vacios en los formularios para renderizar las alertas.
+- [ ] Añadir carga diferida de datos Lazy, Suspense.
+- [ ] Cards: agregar una altura maxima para pantalla > 1200px.
+- [ ] Cards: limitar las lineas del parrafó en las cards de inicio.
+- [ ] Corregir EndPoint de los turnos del día.
+- [ ] Corregir el boton de los accordion. No funciona!
+- [ ] Añadir paginación en las tablas de turnos.
+- [ ] Verificar que todas las alertas funcionen.
+- [ ] Limpiar el contexto. Separar lo que es Authcontext del resto.
+- [ ] Corroborar que los textos e imagenes en uso sean los correctos. De no ser así actualizarlos.
+- [ ] Agregar contenido a la página `<AboutUs/>`
 - [ ] Arreglar el responsive en `<Servicios>` & `<Dashboard/>`
+- [ ] Corregir el `<NavBar/>` al loguearse. El usuario debe visualizar un NavLink "Mis turnos"
+- [ ] Corregir el `<NavBar/>` al loguearse. El Admin debe visualizar un NavLink "Panel Admin"
+- [ ] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
 
 # COLOR PALETTE
 
