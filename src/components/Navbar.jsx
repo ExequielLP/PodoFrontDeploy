@@ -35,9 +35,19 @@ export const Navbar = () => {
         </Link>
         <ul className="nav-links-items">
           <li className="nav-link-item btn">
-            <Link className="active-link" to="/registro">
-              Registrarse
-            </Link>
+            {usuarioLogeado.Auth === false ? (
+              <Link className="active-link" to="/registro">
+                Registrarse
+              </Link>
+            ) : usuarioLogeado.Rol === "ADMIN" ? (
+              <Link className="active-link" to="/admin/turnos">
+                Panel Admin
+              </Link>
+            ) : (
+              <Link className="active-link" to="/user/turnos">
+                Mis turnos
+              </Link>
+            )}
           </li>
           <li className="nav-link-item btn">
             {usuarioLogeado.Auth === false ? (
@@ -110,13 +120,31 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-link-item btn">
-                <Link
-                  className="active-link"
-                  to="/registro"
-                  onClick={toggleMenu}
-                >
-                  Registrarse
-                </Link>
+                {usuarioLogeado.Auth === false ? (
+                  <Link
+                    className="active-link"
+                    to="/registro"
+                    onClick={toggleMenu}
+                  >
+                    Registrarse
+                  </Link>
+                ) : usuarioLogeado.Rol === "ADMIN" ? (
+                  <Link
+                    className="active-link"
+                    to="/admin/turnos"
+                    onClick={toggleMenu}
+                  >
+                    Panel Admin
+                  </Link>
+                ) : (
+                  <Link
+                    className="active-link"
+                    to="/user/turnos"
+                    onClick={toggleMenu}
+                  >
+                    Mis turnos
+                  </Link>
+                )}
               </li>
               <li className="nav-link-item btn">
                 {usuarioLogeado.Auth === false ? (
