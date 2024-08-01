@@ -23,6 +23,7 @@
   box-shadow: 5px 5px 10px 1px #f6dbd6;
   border-radius: 16px 16px 0 0;
   transition: transform 0.3s, opacity 0.3s;
+  max-height: 500px;
 }
 
 .article-container:hover {
@@ -67,6 +68,14 @@
   line-height: 1.8rem;
   margin-bottom: 1rem;
   color: #050505;
+}
+
+.article-text {
+  margin-top: 10px;
+  line-height: 1.4;
+  max-height: 4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .article-text-price,

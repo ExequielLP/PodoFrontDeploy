@@ -5,6 +5,8 @@ import Servicios from "../pages/Servicios";
 import Dashboard from "../pages/Dashboard";
 import ContextoAdministrador from "./../context/ContextLoginRegister";
 import { useContext } from "react";
+import { About } from "./../pages/About";
+import ListaTurnos from "../components/ListaTurnos";
 
 const AuthRoutes = () => {
   const { usuarioLogeado } = useContext(ContextoAdministrador);
@@ -13,6 +15,8 @@ const AuthRoutes = () => {
     <>
       <Routes>
         <Route path="/" element={<Inicio />} />
+        <Route path="/sobre-nosotros" element={<About />} />
+        <Route path="/user/turnos" element={<ListaTurnos />} />
         <Route path="/servicio/:id" element={<Servicios />} />
         <Route path="/login" element={<Login />} />
         {usuarioLogeado.Auth === true && usuarioLogeado.Rol === "ADMIN" ? (
