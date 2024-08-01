@@ -5,6 +5,8 @@ import "react-calendar/dist/Calendar.css";
 import "./css/calendario.css";
 import "./css/calendar-time-section.css";
 import "./css/Button-styles.css";
+const urlBackTurnosDelDia = import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia
+const urlBackReservarTurno = import.meta.env.VITE_ENDPOINT_urlBackReservarTurno
 
 const Calendario = ({ servicioId }) => {
   const [date, setDate] = useState(new Date());
@@ -18,8 +20,7 @@ const Calendario = ({ servicioId }) => {
     const token = localStorage.getItem("auth_token"); // Asume que el token está almacenado en localStorage
     try {
       const response = await fetch(
-        `http://localhost:8080/Turnos/turnoDelDia/${
-          date.toISOString().split("T")[0]
+        `${urlBackTurnosDelDia}${date.toISOString().split("T")[0]
         }`,
         {
           headers: {
@@ -38,10 +39,12 @@ const Calendario = ({ servicioId }) => {
   };
 
   const bookAppointment = async (turnoId) => {
+    console.log("entrnado a reservar")
     const token = localStorage.getItem("auth_token"); // Asume que el token está almacenado en localStorage
     try {
+      console.log(turnoId)
       const response = await fetch(
-        `http://localhost:8080/Turnos/reservarTurno/${turnoId}/${servicioId}/${usuarioLogeado.id}`,
+        `${urlBackReservarTurno}${turnoId}/${servicioId}/${usuarioLogeado.id}`,
         {
           method: "POST",
           headers: {
