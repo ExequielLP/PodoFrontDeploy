@@ -20,7 +20,7 @@ const urlBackCancelarTurnoAdmin = import.meta.env.VITE_ENDPOINT_urlBackCancelarT
 const urlBackListaServiciosAdmin = import.meta.env.VITE_ENDPOINT_urlBackListaServiciosAdmin
 const urlBackDarDeBajaServicioAdmin = import.meta.env.VITE_ENDPOINT_urlBackDarDeBajaServicioAdmin
 const urlValidateGetUsuario = import.meta.env.VITE_ENDPOINT_urlValidateGetUsuario
-
+const VITE_ENDPOINT_urlBackModificaServicio = import.meta.env.VITE_ENDPOINT_urlBackModificaServicio
 const usuarioLogin = {
   id: "",
   userName: "",
@@ -332,7 +332,7 @@ const ContextLoginRegister = ({ children }) => {
     try {
       let token = localStorage.getItem("auth_token");
       const response = await fetch(
-        "http://localhost:8080/adminController/ModificarServicio",
+        `${VITE_ENDPOINT_urlBackModificaServicio}`,
         {
           method: "PUT",
           headers: {
