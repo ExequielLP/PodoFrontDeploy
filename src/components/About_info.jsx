@@ -43,17 +43,7 @@ export const About_info = () => {
           <h2 className="heading">¿Quienes somos?</h2>
           <p className="paragraph">
             {" "}
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam ipsa
-            ipsum eius delectus esse laborum, amet quasi facilis culpa voluptas
-            voluptatum rem libero maiores fugiat eum quam corrupti nostrum.
-            Commodi.
-          </p>
-          <p className="paragraph">
-            {" "}
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nam ipsa
-            ipsum eius delectus esse laborum, amet quasi facilis culpa voluptas
-            voluptatum rem libero maiores fugiat eum quam corrupti nostrum.
-            Commodi.
+            Somos un equipo de profesionales especializados en podoestética, dedicados a brindar servicios de alta calidad para el cuidado integral de tus pies. Con años de experiencia y una pasión por la salud y belleza podal, nos comprometemos a ofrecer tratamientos personalizados que combinan técnicas avanzadas y productos de primera calidad. Nos enorgullece proporcionar un ambiente cálido y acogedor, donde cada cliente recibe atención individualizada y asesoramiento experto. Nuestro objetivo es mejorar tanto la salud como la apariencia de tus pies, ayudándote a sentirte cómodo y seguro. Ya sea que busques alivio para problemas podales específicos o simplemente quieras mantener tus pies en perfectas condiciones, estamos aquí para cuidar de ti con profesionalismo y dedicación.
           </p>
         </div>
       </section>
