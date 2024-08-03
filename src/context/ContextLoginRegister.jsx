@@ -56,7 +56,7 @@ const ContextLoginRegister = ({ children }) => {
     try {
       const respuesta = await post(urlCrearUsuario, formRegistro);
       if (respuesta) {
-        return <Navigate to="/login" replace={true} />
+        window.location.href = "/login";
       }
     } catch (error) {
       console.log(error);
