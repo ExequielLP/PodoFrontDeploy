@@ -33,7 +33,7 @@ const ListaTurnos = () => {
             className="accordion-collapse collapse show"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body">
+            <div className="accordion-body table-responsive">
               {arrayTurnos &&
               arrayTurnos.length > 0 &&
               arrayTurnos.some((e) => e.estado === true) ? (

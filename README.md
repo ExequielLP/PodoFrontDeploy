@@ -9,22 +9,23 @@
 
 ## FRONT
 
+- [ ] Lanzar alerta al querer reservar un turno ya Reservado.
 - [ ] Añadir carga diferida de datos Lazy, Suspense.
 - [ ] Añadir paginación en las tablas de turnos.
 - [ ] Arreglar el responsive en `<Servicios>` & `<Dashboard/>`
 - [ ] Corregir el vh de login y registro en pantallas de >1200px.
-- [ ] Corregir EndPoint de los turnos del día.
-- [ ] Corroborar que los textos e imagenes en uso sean los correctos. De no ser así actualizarlos.
-- [ ] Limpiar el contexto. Separar lo que es Authcontext del resto.
-- [ ] Modificar los textos de la página `<AboutUs/>`
 - [ ] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
 - [ ] Verificar que todas las alertas funcionen.
+- [⚠️] Corroborar que los textos e imágenes en uso sean los correctos. De no ser así actualizarlos.
+- [⚠️] Limpiar el contexto. Separar lo que es Authcontext del resto.
 - [✔] Agregar el component `<UserTable/>` para redirigir desde el navlink a la tabla de turnos usuario.
 - [✔] Cards: agregar una altura maxima para pantalla > 1200px.
-- [✔] Cards: limitar las lineas del parrafó en las cards de inicio.
+- [✔] Cards: limitar las lineas del párrafo en las cards de inicio.
 - [✔] Corregir el `<NavBar/>` al loguearse. El Admin debe visualizar un NavLink "Panel Admin"
 - [✔] Corregir el `<NavBar/>` al loguearse. El usuario debe visualizar un NavLink "Mis turnos"
 - [✔] Corregir el boton de los accordion. No funciona!
+- [✔] Corregir EndPoint de los turnos del día.
+- [✔] Modificar los textos de la página `<AboutUs/>`
 
 # COLOR PALETTE
 

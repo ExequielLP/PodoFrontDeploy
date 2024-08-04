@@ -5,8 +5,9 @@ import "react-calendar/dist/Calendar.css";
 import "./css/calendario.css";
 import "./css/calendar-time-section.css";
 import "./css/Button-styles.css";
-const urlBackTurnosDelDia = import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia
-const urlBackReservarTurno = import.meta.env.VITE_ENDPOINT_urlBackReservarTurno
+const urlBackTurnosDelDia = import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia;
+const urlBackReservarTurno = import.meta.env.VITE_ENDPOINT_urlBackReservarTurno;
+import { toast } from "sonner";
 
 const Calendario = ({ servicioId }) => {
   const [date, setDate] = useState(new Date());
@@ -20,8 +21,7 @@ const Calendario = ({ servicioId }) => {
     const token = localStorage.getItem("auth_token"); // Asume que el token está almacenado en localStorage
     try {
       const response = await fetch(
-        `${urlBackTurnosDelDia}${date.toISOString().split("T")[0]
-        }`,
+        `${urlBackTurnosDelDia}${date.toISOString().split("T")[0]}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -39,10 +39,10 @@ const Calendario = ({ servicioId }) => {
   };
 
   const bookAppointment = async (turnoId) => {
-    console.log("entrnado a reservar")
+    console.log("entrando a reservar");
     const token = localStorage.getItem("auth_token"); // Asume que el token está almacenado en localStorage
     try {
-      console.log(turnoId)
+      console.log(turnoId);
       const response = await fetch(
         `${urlBackReservarTurno}${turnoId}/${servicioId}/${usuarioLogeado.id}`,
         {
@@ -55,7 +55,12 @@ const Calendario = ({ servicioId }) => {
       if (response.ok) {
         fetchAppointments(); // Refresh appointments
       } else {
+        toast.error(`¡Error: El turno ya fue reservado! Turno: ${turnoId}`, {
+          className: "toast-error",
+          style: { width: "fit-content" },
+        });
         console.error("Error booking appointment");
+        fetchAppointments(); //limpia los turnos q ya fueron reservados.
       }
     } catch (error) {
       console.error("Error booking appointment", error);
@@ -82,10 +87,7 @@ const Calendario = ({ servicioId }) => {
       (app) => new Date(app.startTime).toDateString() === date.toDateString()
     );
     return appointmentsForDay.map((app) => (
-      <div
-        key={app.id}
-        className="date-container animateanimated animatefadeIn animate__delay-5s"
-      >
+      <div key={app.id} className="date-container">
         <p className="date-text">
           {new Date(app.startTime).toLocaleTimeString()}hs -{" "}
           {new Date(app.endTime).toLocaleTimeString()}hs
