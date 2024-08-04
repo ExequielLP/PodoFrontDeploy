@@ -1,0 +1,98 @@
+.card-edit-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-container-editable {
+  width: 400px;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  box-shadow: 5px 5px 10px 1px #f6dbd6;
+  border-radius: 16px 16px 0 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.card-container-editable:hover {
+  transform: scale(1.1);
+  border: 1px solid beige;
+}
+
+/* Estilos para que los inputs y textareas se vean como texto plano */
+.service-text-input,
+.service-price-input {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.service-text-input:focus,
+.article-text-container:focus,
+.service-price-input:focus {
+  outline: none;
+  border: none;
+}
+
+.service-file-update {
+  display: none;
+}
+
+.custom-file-upload {
+  background-color: #ff9abf;
+  border-radius: 0 5px 0px 0;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 10px;
+  padding: 8px 10px;
+  position: relative;
+  top: -39px;
+  z-index: 2;
+}
+
+.custom-file-upload:hover {
+  background-color: #ffd3e6;
+}
+
+.article-text-container textarea {
+  margin-bottom: 0.5rem;
+}
+
+.input-with-symbol {
+  display: flex;
+  margin: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #ffc5ff;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+}
+
+.service-price-edit {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #050505;
+  width: 80px;
+  margin: 0;
+  padding: 0;
+}
+
+.input-with-symbol span {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #050505;
+  padding-inline: 6px;
+}

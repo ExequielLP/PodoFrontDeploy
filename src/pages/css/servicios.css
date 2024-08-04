@@ -1,0 +1,108 @@
+@import "bootstrap";
+.hero-service-section {
+  margin-top: 2rem;
+  height: auto;
+  min-height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-service-container {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  box-shadow: 5px 5px 10px 1px #f6dbd6;
+  border-radius: 16px 16px 0 0;
+}
+
+.hero-service-img {
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border-radius: inherit;
+}
+
+.hero-img2 {
+  position: absolute;
+  animation: fade 1s ease-in-out;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(50px);
+  z-index: -10;
+}
+
+.hero-service-text-container {
+  margin: 1rem;
+  font-family: system-ui, -apple-system;
+}
+
+.hero-service-title {
+  color: #ff9abf;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.hero-service-text {
+  color: #050505;
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+  margin: 1rem 0;
+}
+
+.service-price-section {
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #ffd3e696;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.hero-service-text-price {
+  color: #050505;
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: auto;
+  padding-left: 0.5rem;
+}
+
+.service-price {
+  font-weight: 800;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-left: 1rem;
+}
+
+.hero-service-button {
+  color: #fff;
+  background-color: #ff9abf;
+  border-radius: 10px;
+  display: block;
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.3s ease;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.hero-service-button:hover {
+  color: #ffffff;
+  background-color: #ffd3e6;
+  border: 1px solid #ff9abf;
+  box-shadow: 0px 4px 15px rgba(255, 197, 255, 0.8);
+  font-weight: 800;
+  transform: scale(1.05);
+  text-shadow: 2px 2px 5px #05050593;
+}
