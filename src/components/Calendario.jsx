@@ -87,10 +87,7 @@ const Calendario = ({ servicioId }) => {
       (app) => new Date(app.startTime).toDateString() === date.toDateString()
     );
     return appointmentsForDay.map((app) => (
-      <div
-        key={app.id}
-        className="date-container animateanimated animatefadeIn animate__delay-5s"
-      >
+      <div key={app.id} className="date-container">
         <p className="date-text">
           {new Date(app.startTime).toLocaleTimeString()}hs -{" "}
           {new Date(app.endTime).toLocaleTimeString()}hs
