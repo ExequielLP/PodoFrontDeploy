@@ -33,10 +33,10 @@ export const TurnosAdmin = () => {
             className="accordion-collapse collapse show"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body">
+            <div className="accordion-body table-responsive">
               {arrayTurnosAdmin &&
-                arrayTurnosAdmin.length > 0 &&
-                arrayTurnosAdmin.some((e) => e.estado === true) ? (
+              arrayTurnosAdmin.length > 0 &&
+              arrayTurnosAdmin.some((e) => e.estado === true) ? (
                 <table className="table align-middle">
                   <thead className="tabla-header">
                     <tr>
@@ -92,9 +92,9 @@ export const TurnosAdmin = () => {
                           <td className="m-auto">
                             <button
                               className="tabla-admin-btn admin-btn"
-                            // onClick={(e) => {
-                            //   eliminarTurno(e, listaTurnos.id);
-                            // }}
+                              // onClick={(e) => {
+                              //   eliminarTurno(e, listaTurnos.id);
+                              // }}
                             >
                               <img
                                 className="admin-icons"
