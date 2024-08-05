@@ -52,7 +52,7 @@ export const AdminCardEdit = ({ servicio }) => {
 
   return (
     <section className="card-edit-section" id="target-div">
-      <h2 className="admin-title">
+      <h2 className="admin-title edit-section-tittle">
         Editando <span className="admin-userName">{servicio.nombre}</span>
       </h2>
       <article className="card-container-editable">
