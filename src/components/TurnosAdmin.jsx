@@ -1,13 +1,12 @@
 import { useContext, useEffect } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ServicesContext from "./../context/ServiceProvider";
 import "./css/Tablas-Admin.css";
 
 export const TurnosAdmin = () => {
-  const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } = useContext(
-    ContextoAdministrador
-  );
+  const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
+    useContext(ServicesContext);
   useEffect(() => {
     listaTurnosAdmin();
   }, []);
@@ -134,7 +133,7 @@ export const TurnosAdmin = () => {
           {" "}
           Volver a inicio
         </Link>
-        <Link className="admin-btn" to={"/admin/turnos"}>
+        <Link className="admin-btn" to={"/admin/servicios"}>
           {" "}
           Ir a servicios
         </Link>

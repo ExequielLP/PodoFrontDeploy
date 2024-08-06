@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ServicesContext from "../context/ServiceProvider";
 import useTitle from "../hooks/useTitle";
 import "./css/Admin-buttons.css";
 import "./css/RegisterService.css";
 
 export const RegisterService = () => {
-  const { SubmintCrearServicio } = useContext(ContextoAdministrador);
+  const { SubmintCrearServicio } = useContext(ServicesContext);
   useTitle({ title: "Servicios Admin" });
 
   const [form, setform] = useState({

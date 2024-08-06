@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
+import ServicesContext from "../context/ServiceProvider";
 import "./css/EditCard.css";
-import ContextoAdministrador from "../context/ContextLoginRegister";
 
 export const AdminCardEdit = ({ servicio }) => {
   const { nombre, imagen, descripcion, costo } = servicio;
-  const { submitModificarServicio } = useContext(ContextoAdministrador);
+  const { submitModificarServicio } = useContext(ServicesContext);
   const [form, setForm] = useState({
     id: servicio.id,
     nombre: nombre || "",

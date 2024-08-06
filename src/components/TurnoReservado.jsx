@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { format } from "date-fns";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ServicesContext from "../context/ServiceProvider";
 
 const TurnoReservado = ({ listaTurnos }) => {
-  const { eliminarTurno } = useContext(ContextoAdministrador);
+  const { eliminarTurno } = useContext(ServicesContext);
   const formattedStartTime = format(
     new Date(listaTurnos.startTime),
     "hh:mm a dd/MM/yyyy"

@@ -7,17 +7,14 @@ import Introduccion from "../components/Introduccion";
 import ListaTurnos from "../components/ListaTurnos";
 import Seccion from "../components/Seccion";
 import "./css/inicio.css";
+import ServicesContext from "../context/ServiceProvider";
 
 const Inicio = () => {
   useTitle({ title: "Inicio" });
 
-  const {
-    usuarioLogeado,
-    listaServicios,
-    serviciosBack,
-    listaTurnos,
-    AuthTokenYUsiario,
-  } = useContext(ContextoAdministrador);
+  const { usuarioLogeado } = useContext(ContextoAdministrador);
+  const { serviciosBack, listaTurnos, listaServicios } =
+    useContext(ServicesContext);
 
   useEffect(() => {
     serviciosBack();

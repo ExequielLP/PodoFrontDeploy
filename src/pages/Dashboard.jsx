@@ -8,13 +8,13 @@ import { useParams } from "react-router-dom";
 import { Toaster } from "sonner";
 import "./css/Dashboard.css";
 import { AdminHolidayCalendar } from "../components/AdminHolidayCalendar";
+import ServicesContext from "../context/ServiceProvider";
 
 const Dashboard = () => {
   const { section } = useParams();
 
-  const { usuarioLogeado, arrayTurnosAdmin } = useContext(
-    ContextoAdministrador
-  );
+  const { usuarioLogeado } = useContext(ContextoAdministrador);
+  const { arrayTurnosAdmin } = useContext(ServicesContext);
 
   const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
 

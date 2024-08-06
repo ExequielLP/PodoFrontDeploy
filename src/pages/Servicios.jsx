@@ -4,10 +4,11 @@ import ContextoAdministrador from "../context/ContextLoginRegister";
 import useTitle from "./../hooks/useTitle";
 import { Calendario } from "../components/Calendario";
 import "./css/servicios.css";
+import ServicesContext from "../context/ServiceProvider";
 
 const Servicios = () => {
-  const { servicio, seleccionarServicio, usuarioLogeado, AuthTokenYUsiario } =
-    useContext(ContextoAdministrador);
+  const { usuarioLogeado } = useContext(ContextoAdministrador);
+  const { servicio, seleccionarServicio } = useContext(ServicesContext);
   const { id } = useParams();
 
   useEffect(() => {

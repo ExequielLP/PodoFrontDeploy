@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import ContextoAdministrador from "../context/ContextLoginRegister";
-import { matchPath, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import PublicRoutes from "./PublicRoutes";
 import AuthRoutes from "./AuthRoutes";
 

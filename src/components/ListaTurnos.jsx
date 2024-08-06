@@ -2,9 +2,11 @@ import { useContext } from "react";
 import ContextoAdministrador from "../context/ContextLoginRegister";
 import TurnoReservado from "./TurnoReservado";
 import "./css/listaTurno.css";
+import ServicesContext from "../context/ServiceProvider";
 
 const ListaTurnos = () => {
-  const { arrayTurnos, usuarioLogeado } = useContext(ContextoAdministrador);
+  const { usuarioLogeado } = useContext(ContextoAdministrador);
+  const { arrayTurnos } = useContext(ServicesContext);
   return (
     <section className="tabla-user">
       <h1 className="user-title">
