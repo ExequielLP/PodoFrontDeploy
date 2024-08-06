@@ -11,8 +11,13 @@ import "./css/inicio.css";
 const Inicio = () => {
   useTitle({ title: "Inicio" });
 
-  const { usuarioLogeado, listaServicios, serviciosBack, listaTurnos, AuthTokenYUsiario } =
-    useContext(ContextoAdministrador);
+  const {
+    usuarioLogeado,
+    listaServicios,
+    serviciosBack,
+    listaTurnos,
+    AuthTokenYUsiario,
+  } = useContext(ContextoAdministrador);
 
   useEffect(() => {
     serviciosBack();
@@ -31,6 +36,9 @@ const Inicio = () => {
             </Link>
             <Link className="admin-btn" to={"/admin/turnos"}>
               Turnos <span>&#11208;</span>
+            </Link>
+            <Link className="admin-btn" to={"/admin/calendarioAdmin"}>
+              Calendario <span>&#11208;</span>
             </Link>
           </div>
         ) : null}

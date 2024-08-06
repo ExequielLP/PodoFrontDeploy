@@ -7,6 +7,7 @@ import { AdminCardEdit } from "../components/AdminCardEdit";
 import { useParams } from "react-router-dom";
 import { Toaster } from "sonner";
 import "./css/Dashboard.css";
+import { AdminHolidayCalendar } from "../components/AdminHolidayCalendar";
 
 const Dashboard = () => {
   const { section } = useParams();
@@ -44,6 +45,7 @@ const Dashboard = () => {
               )}
             </>
           )}
+          {section === "calendarioAdmin" && <AdminHolidayCalendar />}
         </>
       ) : (
         <p>Se cerro tu sección</p>
