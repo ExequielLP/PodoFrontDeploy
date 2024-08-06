@@ -2,13 +2,12 @@ import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import ContextoAdministrador from "../context/ContextLoginRegister";
 import useTitle from "./../hooks/useTitle";
-import Calendario from "../components/Calendario";
+import { Calendario } from "../components/Calendario";
 import "./css/servicios.css";
 
 const Servicios = () => {
-  const { servicio, seleccionarServicio, usuarioLogeado, AuthTokenYUsiario } = useContext(
-    ContextoAdministrador
-  );
+  const { servicio, seleccionarServicio, usuarioLogeado, AuthTokenYUsiario } =
+    useContext(ContextoAdministrador);
   const { id } = useParams();
 
   useEffect(() => {
