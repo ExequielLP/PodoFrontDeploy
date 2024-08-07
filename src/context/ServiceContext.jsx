@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useState } from "react";
 import { get, getToken, postImagen, put } from "../utils/http";
-import ContextoAdministrador from "./ContextLoginRegister";
+import ContextoAdministrador from "./AuthContext";
 import { toast } from "sonner";
 
 const urlCrearServicio = import.meta.env.VITE_ENDPOINT_urlCrearServicio;
@@ -22,7 +23,7 @@ const VITE_ENDPOINT_urlBackModificaServicio = import.meta.env
 const ServicesContext = createContext();
 
 const ServicesProvider = ({ children }) => {
-  const { usuarioLogeado, verificarExistenciaToken } = useContext(
+  const { usuarioLogueado, VerificarExistenciaDeToken } = useContext(
     ContextoAdministrador
   );
   const [servicio, setServicio] = useState(null);
@@ -41,7 +42,7 @@ const ServicesProvider = ({ children }) => {
     }
   };
 
-  const SubmintCrearServicio = async (e, serviPodo) => {
+  const SubmitCrearServicio = async (e, serviPodo) => {
     e.preventDefault();
 
     // Validación de campos requeridos
@@ -59,7 +60,7 @@ const ServicesProvider = ({ children }) => {
         } */
 
     try {
-      const token = verificarExistenciaToken();
+      const token = VerificarExistenciaDeToken();
       const respuest = await postImagen(urlCrearServicio, serviPodo, token);
       if (respuest) {
         toast.success(`¡${serviPodo.nombre} creado exitosamente!`, {
@@ -137,7 +138,7 @@ const ServicesProvider = ({ children }) => {
 
   const listaTurnos = async () => {
     try {
-      const urlback = urlBackListaTurno + usuarioLogeado.id;
+      const urlback = urlBackListaTurno + usuarioLogueado.id;
       let jwt = window.localStorage.getItem("auth_token");
       console.log("Hola desde listaTurnos()");
       const respuesta = await getToken(urlback, jwt);
@@ -237,19 +238,19 @@ const ServicesProvider = ({ children }) => {
   };
 
   const data = {
-    servicio,
-    listaServicios,
     arrayTurnos,
     arrayTurnosAdmin,
-    serviciosBack,
-    SubmintCrearServicio,
-    seleccionarServicio,
-    listaServiciosAdmin,
+    listaServicios,
+    servicio,
     eliminarServicioAdmin,
-    listaTurnos,
     eliminarTurno,
-    listaTurnosAdmin,
     eliminarTurnoAdmin,
+    listaServiciosAdmin,
+    listaTurnos,
+    listaTurnosAdmin,
+    seleccionarServicio,
+    serviciosBack,
+    SubmitCrearServicio,
     submitModificarServicio,
   };
 

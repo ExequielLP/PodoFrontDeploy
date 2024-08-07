@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ContextoAdministrador from "../context/AuthContext";
 import { toast } from "sonner";
 
 const urlBackTurnosDelDia = import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia;
@@ -8,7 +8,7 @@ const urlBackReservarTurno = import.meta.env.VITE_ENDPOINT_urlBackReservarTurno;
 export const useAppointments = (servicioId) => {
   const [date, setDate] = useState(new Date());
   const [turno, setTurno] = useState([]);
-  const { usuarioLogeado } = useContext(ContextoAdministrador);
+  const { usuarioLogueado } = useContext(ContextoAdministrador);
 
   useEffect(() => {
     fetchAppointments();
@@ -39,7 +39,7 @@ export const useAppointments = (servicioId) => {
     const token = localStorage.getItem("auth_token");
     try {
       const response = await fetch(
-        `${urlBackReservarTurno}${turnoId}/${servicioId}/${usuarioLogeado.id}`,
+        `${urlBackReservarTurno}${turnoId}/${servicioId}/${usuarioLogueado.id}`,
         {
           method: "POST",
           headers: {

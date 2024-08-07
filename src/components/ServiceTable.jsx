@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import ServicesContext from "./../context/ServiceProvider";
+import ServicesContext from "./../context/ServiceContext";
 import "./css/Tablas-Admin.css";
 
 export const ServiceTable = ({ onSeleccionarServicio }) => {

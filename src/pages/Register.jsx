@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ContextoAdministrador from "../context/AuthContext";
 import useTitle from "./../hooks/useTitle";
 import "./css/registro.css";
 

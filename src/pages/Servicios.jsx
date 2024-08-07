@@ -1,13 +1,13 @@
 import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ContextoAdministrador from "../context/AuthContext";
 import useTitle from "./../hooks/useTitle";
 import { Calendario } from "../components/Calendario";
 import "./css/servicios.css";
-import ServicesContext from "../context/ServiceProvider";
+import ServicesContext from "../context/ServiceContext";
 
 const Servicios = () => {
-  const { usuarioLogeado } = useContext(ContextoAdministrador);
+  const { usuarioLogueado } = useContext(ContextoAdministrador);
   const { servicio, seleccionarServicio } = useContext(ServicesContext);
   const { id } = useParams();
 
@@ -48,7 +48,7 @@ const Servicios = () => {
         </div>
       </section>
 
-      {usuarioLogeado.Auth === false ? (
+      {usuarioLogueado.Auth === false ? (
         <Link className="hero-service-button" to={"/login"}>
           Contratar
         </Link>

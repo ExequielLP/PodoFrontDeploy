@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import ServicesContext from "../context/ServiceProvider";
+import ServicesContext from "../context/ServiceContext";
 import useTitle from "../hooks/useTitle";
 import "./css/Admin-buttons.css";
 import "./css/RegisterService.css";
 
 export const RegisterService = () => {
-  const { SubmintCrearServicio } = useContext(ServicesContext);
+  const { SubmitCrearServicio } = useContext(ServicesContext);
   useTitle({ title: "Servicios Admin" });
 
   const [form, setform] = useState({
@@ -88,7 +88,7 @@ export const RegisterService = () => {
           <button
             className="admin-btn servicio-btn"
             onClick={(e) => {
-              SubmintCrearServicio(e, form);
+              SubmitCrearServicio(e, form);
             }}
           >
             Crear Servicio

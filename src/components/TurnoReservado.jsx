@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { format } from "date-fns";
-import ServicesContext from "../context/ServiceProvider";
+import ServicesContext from "../context/ServiceContext";
 
 const TurnoReservado = ({ listaTurnos }) => {
   const { eliminarTurno } = useContext(ServicesContext);

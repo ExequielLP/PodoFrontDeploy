@@ -1,18 +1,18 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ContextoAdministrador from "../context/AuthContext";
 import useTitle from "./../hooks/useTitle";
 import Cards from "../components/Cards";
 import Introduccion from "../components/Introduccion";
 import ListaTurnos from "../components/ListaTurnos";
 import Seccion from "../components/Seccion";
 import "./css/inicio.css";
-import ServicesContext from "../context/ServiceProvider";
+import ServicesContext from "../context/ServiceContext";
 
 const Inicio = () => {
   useTitle({ title: "Inicio" });
 
-  const { usuarioLogeado } = useContext(ContextoAdministrador);
+  const { usuarioLogueado } = useContext(ContextoAdministrador);
   const { serviciosBack, listaTurnos, listaServicios } =
     useContext(ServicesContext);
 
@@ -26,7 +26,7 @@ const Inicio = () => {
       <Seccion />
       <Introduccion />
       <section className="d-flex justify-content-center my-5 align-items-center">
-        {usuarioLogeado.Auth === true && usuarioLogeado.Rol === "ADMIN" ? (
+        {usuarioLogueado.Auth === true && usuarioLogueado.Rol === "ADMIN" ? (
           <div className="admin-section-buttons">
             <Link className="admin-btn" to={"/admin/servicios"}>
               Servicios <span>&#11208;</span>
@@ -39,7 +39,7 @@ const Inicio = () => {
             </Link>
           </div>
         ) : null}
-        {usuarioLogeado.Auth === true && usuarioLogeado.Rol === "USER" ? (
+        {usuarioLogueado.Auth === true && usuarioLogueado.Rol === "USER" ? (
           <ListaTurnos />
         ) : null}
       </section>

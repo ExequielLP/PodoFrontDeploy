@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
-import ServicesContext from "../context/ServiceProvider";
+import ServicesContext from "../context/ServiceContext";
 import "./css/EditCard.css";
 
 export const AdminCardEdit = ({ servicio }) => {
