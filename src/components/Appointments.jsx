@@ -3,7 +3,7 @@
 export const Appointments = ({ turno, date, bookAppointment }) => {
 
   const dayName = date.toLocaleDateString('es-ES', { weekday: 'long' });
-
+  //aaa
   return (
     <div>
       {dayName !== 'domingo' && dayName !== 'sábado' ? (
