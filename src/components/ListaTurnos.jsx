@@ -1,15 +1,17 @@
 import { useContext } from "react";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ContextoAdministrador from "../context/AuthContext";
 import TurnoReservado from "./TurnoReservado";
 import "./css/listaTurno.css";
+import ServicesContext from "../context/ServiceContext";
 
 const ListaTurnos = () => {
-  const { arrayTurnos, usuarioLogeado } = useContext(ContextoAdministrador);
+  const { usuarioLogueado } = useContext(ContextoAdministrador);
+  const { arrayTurnos } = useContext(ServicesContext);
   return (
     <section className="tabla-user">
       <h1 className="user-title">
         ¡Bienvenido{" "}
-        <span className="user-userName">{usuarioLogeado.userName}</span>!
+        <span className="user-userName">{usuarioLogueado.userName}</span>!
       </h1>
       <h3 className="user-subtitle">
         Consulta o modifica tus turnos reservados aquí 👇
@@ -33,7 +35,7 @@ const ListaTurnos = () => {
             className="accordion-collapse collapse show"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body">
+            <div className="accordion-body table-responsive">
               {arrayTurnos &&
               arrayTurnos.length > 0 &&
               arrayTurnos.some((e) => e.estado === true) ? (

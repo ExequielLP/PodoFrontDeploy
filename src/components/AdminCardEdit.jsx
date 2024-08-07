@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
+import ServicesContext from "../context/ServiceContext";
 import "./css/EditCard.css";
-import ContextoAdministrador from "../context/ContextLoginRegister";
 
 export const AdminCardEdit = ({ servicio }) => {
   const { nombre, imagen, descripcion, costo } = servicio;
-  const { submitModificarServicio } = useContext(ContextoAdministrador);
+  const { submitModificarServicio } = useContext(ServicesContext);
   const [form, setForm] = useState({
     id: servicio.id,
     nombre: nombre || "",
@@ -52,7 +52,7 @@ export const AdminCardEdit = ({ servicio }) => {
 
   return (
     <section className="card-edit-section" id="target-div">
-      <h2 className="admin-title">
+      <h2 className="admin-title edit-section-tittle">
         Editando <span className="admin-userName">{servicio.nombre}</span>
       </h2>
       <article className="card-container-editable">

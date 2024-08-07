@@ -8,9 +8,10 @@
 }
 
 .admin-section-buttons {
-  display: inline-flex;
-  margin: auto;
+  display: flex;
   gap: 1.5rem;
+  margin: auto;
+  margin-top: 20px;
 }
 
 .admin-btn {
@@ -47,4 +48,10 @@
 .admin-btn:hover span,
 .admin-btn:active span {
   margin-left: 1rem;
+}
+
+@media (max-width: 480px) {
+  .admin-section-buttons {
+    flex-direction: column;
+  }
 }

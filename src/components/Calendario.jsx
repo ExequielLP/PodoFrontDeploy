@@ -1,67 +1,13 @@
-import { useState, useEffect, useContext } from "react";
 import Calendar from "react-calendar";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import { useAppointments } from "./../utils/calendarData";
+import { Appointments } from "./Appointments";
 import "react-calendar/dist/Calendar.css";
 import "./css/calendario.css";
 import "./css/calendar-time-section.css";
 import "./css/Button-styles.css";
-const urlBackTurnosDelDia = import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia
-const urlBackReservarTurno = import.meta.env.VITE_ENDPOINT_urlBackReservarTurno
 
-const Calendario = ({ servicioId }) => {
-  const [date, setDate] = useState(new Date());
-  const [turno, setturno] = useState([]);
-  const { usuarioLogeado } = useContext(ContextoAdministrador);
-  useEffect(() => {
-    fetchAppointments();
-  }, [date]);
-
-  const fetchAppointments = async () => {
-    const token = localStorage.getItem("auth_token"); // Asume que el token está almacenado en localStorage
-    try {
-      const response = await fetch(
-        `${urlBackTurnosDelDia}${date.toISOString().split("T")[0]
-        }`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      console.log(data)
-      setturno(data);
-    } catch (error) {
-      console.error("Error fetching appointments", error);
-    }
-  };
-
-  const bookAppointment = async (turnoId) => {
-    console.log("entrnado a reservar")
-    const token = localStorage.getItem("auth_token"); // Asume que el token está almacenado en localStorage
-    try {
-      console.log(turnoId)
-      const response = await fetch(
-        `${urlBackReservarTurno}${turnoId}/${servicioId}/${usuarioLogeado.id}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      if (response.ok) {
-        fetchAppointments(); // Refresh appointments
-      } else {
-        console.error("Error booking appointment");
-      }
-    } catch (error) {
-      console.error("Error booking appointment", error);
-    }
-  };
+export const Calendario = ({ servicioId }) => {
+  const { date, setDate, turno, bookAppointment } = useAppointments(servicioId);
 
   const tileClassName = ({ date, view }) => {
     if (view === "month") {
@@ -78,37 +24,14 @@ const Calendario = ({ servicioId }) => {
     return null;
   };
 
-  const renderAppointments = () => {
-    const appointmentsForDay = turno.filter(
-      (app) => new Date(app.startTime).toDateString() === date.toDateString()
-    );
-    return appointmentsForDay.map((app) => (
-      <div
-        key={app.id}
-        className="date-container animateanimated animatefadeIn animate__delay-5s"
-      >
-        <p className="date-text">
-          {new Date(app.startTime).toLocaleTimeString()}hs -{" "}
-          {new Date(app.endTime).toLocaleTimeString()}hs
-          <button
-            className="button-generic-styles"
-            onClick={() => bookAppointment(app.id)}
-            disabled={app.estado}
-          >
-            {" "}
-            {app.estado ? "Reservado" : "Reservar"}
-          </button>
-        </p>
-      </div>
-    ));
-  };
-
   return (
     <main className="calendar-section calendar">
       <Calendar onChange={setDate} value={date} tileClassName={tileClassName} />
-      <div>{renderAppointments()}</div>
+      <Appointments
+        turno={turno}
+        date={date}
+        bookAppointment={bookAppointment}
+      />
     </main>
   );
 };
-
-export default Calendario;

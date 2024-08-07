@@ -1,13 +1,12 @@
 import { useContext, useEffect } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ServicesContext from "./../context/ServiceContext";
 import "./css/Tablas-Admin.css";
 
 export const TurnosAdmin = () => {
-  const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } = useContext(
-    ContextoAdministrador
-  );
+  const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
+    useContext(ServicesContext);
   useEffect(() => {
     listaTurnosAdmin();
   }, []);
@@ -33,10 +32,10 @@ export const TurnosAdmin = () => {
             className="accordion-collapse collapse show"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body">
+            <div className="accordion-body table-responsive">
               {arrayTurnosAdmin &&
-                arrayTurnosAdmin.length > 0 &&
-                arrayTurnosAdmin.some((e) => e.estado === true) ? (
+              arrayTurnosAdmin.length > 0 &&
+              arrayTurnosAdmin.some((e) => e.estado === true) ? (
                 <table className="table align-middle">
                   <thead className="tabla-header">
                     <tr>
@@ -92,9 +91,9 @@ export const TurnosAdmin = () => {
                           <td className="m-auto">
                             <button
                               className="tabla-admin-btn admin-btn"
-                            // onClick={(e) => {
-                            //   eliminarTurno(e, listaTurnos.id);
-                            // }}
+                              // onClick={(e) => {
+                              //   eliminarTurno(e, listaTurnos.id);
+                              // }}
                             >
                               <img
                                 className="admin-icons"
@@ -134,7 +133,7 @@ export const TurnosAdmin = () => {
           {" "}
           Volver a inicio
         </Link>
-        <Link className="admin-btn" to={"/admin/turnos"}>
+        <Link className="admin-btn" to={"/admin/servicios"}>
           {" "}
           Ir a servicios
         </Link>

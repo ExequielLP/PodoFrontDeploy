@@ -56,7 +56,6 @@
   cursor: pointer;
   display: inline-block;
   padding: 8px 10px;
-  padding: 8px 10px;
   position: relative;
   top: -39px;
   z-index: 2;
@@ -73,7 +72,6 @@
 .input-with-symbol {
   display: flex;
   margin: auto;
-  width: -moz-fit-content;
   width: fit-content;
   background-color: #ffc5ff;
   border-radius: 8px;
@@ -95,4 +93,56 @@
   font-weight: 600;
   color: #050505;
   padding-inline: 6px;
+}
+
+.service-text-input {
+  padding-block: 20px;
+}
+
+.input-with-symbol {
+  margin-block: 20px;
+}
+
+@media (max-width: 768px) {
+  .card-container-editable {
+    width: 300px;
+    margin: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .edit-section-tittle {
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+
+  .service-price-edit,
+  .input-with-symbol span {
+    font-size: 1.2rem;
+  }
+
+  .custom-file-upload {
+    top: -30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container-editable {
+    width: 100%;
+    margin: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .edit-section-tittle {
+    text-align: left;
+  }
+
+  .service-price-edit,
+  .input-with-symbol span {
+    font-size: 1rem;
+  }
+
+  .custom-file-upload {
+    padding: 6px 8px;
+    top: -25px;
+  }
 }
