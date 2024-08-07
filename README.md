@@ -12,7 +12,7 @@
 - [ ] Lanzar alerta al querer reservar un turno ya Reservado.
 - [ ] Añadir carga diferida de datos Lazy, Suspense.
 - [ ] Añadir paginación en las tablas de turnos.
-- [ ] Arreglar el responsive en `<Servicios>` & `<Dashboard/>`
+- [✔] Arreglar el responsive en `<Servicios>` & `<Dashboard/>`
 - [ ] Corregir el vh de login y registro en pantallas de >1200px.
 - [ ] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
 - [ ] Verificar que todas las alertas funcionen.
