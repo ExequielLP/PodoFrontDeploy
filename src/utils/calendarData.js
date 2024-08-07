@@ -10,9 +10,7 @@ export const useAppointments = (servicioId) => {
   const [turno, setTurno] = useState([]);
   const { usuarioLogueado } = useContext(ContextoAdministrador);
 
-  useEffect(() => {
-    fetchAppointments();
-  }, [date]);
+
 
   const fetchAppointments = async () => {
     const token = localStorage.getItem("auth_token");
@@ -29,7 +27,8 @@ export const useAppointments = (servicioId) => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      setTurno(data);
+      console.log(data)
+      setTurno(data.turnos);
     } catch (error) {
       console.error("Error fetching appointments", error);
     }
