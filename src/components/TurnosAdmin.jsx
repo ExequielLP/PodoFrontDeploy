@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import ServicesContext from "./../context/ServiceContext";
 import "./css/Tablas-Admin.css";
+import Pagination from "./Pagination";
 
 export const TurnosAdmin = () => {
   const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
@@ -10,6 +11,8 @@ export const TurnosAdmin = () => {
   useEffect(() => {
     listaTurnosAdmin();
   }, []);
+
+  console.log(arrayTurnosAdmin);
 
   return (
     <section className="tabla-admin">
@@ -64,60 +67,63 @@ export const TurnosAdmin = () => {
                   </thead>
                   {arrayTurnosAdmin.map((turno) =>
                     turno.estado === true ? (
-                      <tbody key={turno.id}>
-                        <tr>
-                          <td className="m-auto p-4 user-name">
-                            {turno.usuario.nombre}
-                          </td>
-                          <td className="m-auto p-4 service-name">
-                            {turno.servicioPodo.nombre}
-                          </td>
-                          <td className="m-auto p-4 service-time">
-                            {format(
-                              new Date(turno.startTime),
-                              "hh:mm a dd/MM/yyyy"
-                            )}
-                          </td>
-                          <td className="m-auto p-4 service-price">
-                            ${turno.servicioPodo.costo}
-                          </td>
-                          <td className="m-auto p-4">
-                            {turno.estado === true ? (
-                              <span className="habilitado">Confirmado</span>
-                            ) : (
-                              <span className="deshabilitado">Cancelado</span>
-                            )}
-                          </td>
-                          <td className="m-auto">
-                            <button
-                              className="tabla-admin-btn admin-btn"
-                              // onClick={(e) => {
-                              //   eliminarTurno(e, listaTurnos.id);
-                              // }}
-                            >
-                              <img
-                                className="admin-icons"
-                                src="/assets/icons/calendar-cog.svg"
-                                alt="Modificar Turno"
-                              />
-                            </button>
-                          </td>
-                          <td className="m-auto">
-                            <button
-                              className="tabla-admin-btn admin-btn"
-                              onClick={(e) => {
-                                eliminarTurnoAdmin(e, turno.id);
-                              }}
-                            >
-                              <img
-                                className="admin-icons"
-                                src="/assets/icons/calendar-x.svg"
-                                alt="Eliminar Turno"
-                              />
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
+                      <>
+                        <tbody key={turno.id}>
+                          <tr>
+                            <td className="m-auto p-4 user-name">
+                              {turno.usuario?.nombre}
+                            </td>
+                            <td className="m-auto p-4 service-name">
+                              {turno.servicioPodo?.nombre}
+                            </td>
+                            <td className="m-auto p-4 service-time">
+                              {format(
+                                new Date(turno.startTime),
+                                "hh:mm a dd/MM/yyyy"
+                              )}
+                            </td>
+                            <td className="m-auto p-4 service-price">
+                              ${turno.servicioPodo?.costo}
+                            </td>
+                            <td className="m-auto p-4">
+                              {turno.estado === true ? (
+                                <span className="habilitado">Confirmado</span>
+                              ) : (
+                                <span className="deshabilitado">Cancelado</span>
+                              )}
+                            </td>
+                            <td className="m-auto">
+                              <button
+                                className="tabla-admin-btn admin-btn"
+                                // onClick={(e) => {
+                                //   eliminarTurno(e, listaTurnos.id);
+                                // }}
+                              >
+                                <img
+                                  className="admin-icons"
+                                  src="/assets/icons/calendar-cog.svg"
+                                  alt="Modificar Turno"
+                                />
+                              </button>
+                            </td>
+                            <td className="m-auto">
+                              <button
+                                className="tabla-admin-btn admin-btn"
+                                onClick={(e) => {
+                                  eliminarTurnoAdmin(e, turno.id);
+                                }}
+                              >
+                                <img
+                                  className="admin-icons"
+                                  src="/assets/icons/calendar-x.svg"
+                                  alt="Eliminar Turno"
+                                />
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <Pagination />
+                      </>
                     ) : null
                   )}
                 </table>

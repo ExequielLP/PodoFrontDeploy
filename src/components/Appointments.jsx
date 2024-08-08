@@ -1,12 +1,8 @@
-
-
 export const Appointments = ({ turno, date, bookAppointment }) => {
-
-  const dayName = date.toLocaleDateString('es-ES', { weekday: 'long' });
-  //aaa
+  const dayName = date.toLocaleDateString("es-ES", { weekday: "long" });
   return (
     <div>
-      {dayName !== 'domingo' && dayName !== 'sábado' ? (
+      {dayName !== "domingo" && dayName !== "sábado" ? (
         turno
           .filter((app) => !app.estado) // Filtrar los turnos donde estado es false
           .map((app) => (
