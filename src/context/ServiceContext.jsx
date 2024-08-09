@@ -169,9 +169,9 @@ const ServicesProvider = ({ children }) => {
 
   const listaTurnosAdmin = async (pageNumber) => {
     try {
-      const pageSize = 10;
-      console.log(`LISTA ADMIN pageNumber: ${pageNumber}`);
-      const urlback = `${urlBackListaTurnosAdmin}?page=${pageNumber}&size=${pageSize}`;
+      console.log(`LISTA ADMIN TURNO: ${pageNumber}`);
+      const urlback = `${urlBackListaTurnosAdmin}?page=${pageNumber ?? 0
+        }&size=10`;
       let jwt = window.localStorage.getItem("auth_token");
       const respuesta = await getToken(urlback, jwt);
       setArrayTurnosAdmin(respuesta);
@@ -180,9 +180,8 @@ const ServicesProvider = ({ children }) => {
     }
   };
 
-  const eliminarTurnoAdmin = async (e, turnoId, pageNumber, pageSize, sizeElementos) => {
+  const eliminarTurnoAdmin = async (e, turnoId, pageNumber) => {
     try {
-      console.log(pageSize);
       e.preventDefault();
       let jwt = window.localStorage.getItem("auth_token");
       const urlCancelarTurno = urlBackCancelarTurnoAdmin + turnoId;
@@ -194,7 +193,8 @@ const ServicesProvider = ({ children }) => {
         });
       }
       // Verifica si hay resultados en la página actual
-      if (sizeElementos === 0) {
+      const turnosRestantes = arrayTurnosAdmin.content.length - 1;
+      if (turnosRestantes === 0 && pageNumber > 0) {
         listaTurnosAdmin(pageNumber - 1); // Si hay más de un turno en la página, mantente en la misma página
       } else {
         listaTurnosAdmin(pageNumber); // En caso de estar en la primera página, actualiza la misma página
