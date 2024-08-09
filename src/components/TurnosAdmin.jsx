@@ -23,11 +23,6 @@ export const TurnosAdmin = () => {
     setPageNumber(newPageNumber - 1); // Asegúrate de restar 1 para convertir a base 0
   };
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> d4b616b9bcb1bf4050ddedc3011077fe966993b6
   return (
     <section className="tabla-admin">
       <div className="accordion" id="accordionExample">
@@ -80,129 +75,72 @@ export const TurnosAdmin = () => {
                         </th>
                       </tr>
                     </thead>
-<<<<<<< HEAD
-                    {arrayTurnosAdmin.content.map((turno) =>
-                      turno.estado === true ? (
-                        <tbody key={turno.id}>
-                          <tr>
-                            <td className="m-auto p-4 user-name">
-                              {turno.nombreUsuario}
-                            </td>
-                            <td className="m-auto p-4 service-name">
-                              {turno.nombreServicio}
-                            </td>
-                            <td className="m-auto p-4 service-time">
-                              {format(
-                                new Date(turno.startTime),
-                                "hh:mm a dd/MM/yyyy"
-                              )}
-                            </td>
-                            <td className="m-auto p-4 service-price">
-                              ${turno.costo}
-                            </td>
-                            <td className="m-auto p-4">
-                              {turno.estado === true ? (
-                                <span className="habilitado">Confirmado</span>
-                              ) : (
-                                <span className="deshabilitado">Cancelado</span>
-                              )}
-                            </td>
-                            <td className="m-auto">
-                              <button
-                                className="tabla-admin-btn admin-btn"
-                              // onClick={(e) => {
-                              //   eliminarTurno(e, listaTurnos.id);
-                              // }}
-                              >
-                                <img
-                                  className="admin-icons"
-                                  src="/assets/icons/calendar-cog.svg"
-                                  alt="Modificar Turno"
-                                />
-                              </button>
-                            </td>
-                            <td className="m-auto">
-                              <button
-                                className="tabla-admin-btn admin-btn"
-                                onClick={(e) => {
-                                  eliminarTurnoAdmin(
-                                    e,
-                                    turno.id,
-                                    pageNumber,
-                                    pageSize, arrayTurnosAdmin.numberOfElements
-                                  );
-                                }}
-                              >
-                                <img
-                                  className="admin-icons"
-                                  src="/assets/icons/calendar-x.svg"
-                                  alt="Eliminar Turno"
-                                />
-                              </button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      ) : null
-                    )}
-=======
-                    {arrayTurnosAdmin.content.map((turno) => (
-                      <tbody key={turno.id}>
-                        <tr>
-                          <td className="m-auto p-4 user-name">
-                            {turno.nombreUsuario}
-                          </td>
-                          <td className="m-auto p-4 service-name">
-                            {turno.nombreServicio}
-                          </td>
-                          <td className="m-auto p-4 service-time">
-                            {format(
-                              new Date(turno.startTime),
-                              "hh:mm a dd/MM/yyyy"
-                            )}
-                          </td>
-                          <td className="m-auto p-4 service-price">
-                            ${turno.costo}
-                          </td>
-                          <td className="m-auto p-4">
-                            {turno.estado === true ? (
-                              <span className="habilitado">Confirmado</span>
-                            ) : (
-                              <span className="deshabilitado">Cancelado</span>
-                            )}
-                          </td>
-                          <td className="m-auto">
-                            <button
-                              className="tabla-admin-btn admin-btn"
-                              // onClick={(e) => {
-                              //   eliminarTurno(e, listaTurnos.id);
-                              // }}
-                            >
-                              <img
-                                className="admin-icons"
-                                src="/assets/icons/calendar-cog.svg"
-                                alt="Modificar Turno"
-                              />
-                            </button>
-                          </td>
-                          <td className="m-auto">
-                            <button
-                              className="tabla-admin-btn admin-btn"
-                              onClick={(e) => {
-                                eliminarTurnoAdmin(e, turno.id, pageNumber);
-                              }}
-                            >
-                              <img
-                                className="admin-icons"
-                                src="/assets/icons/calendar-x.svg"
-                                alt="Eliminar Turno"
-                              />
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    ))}
->>>>>>> d4b616b9bcb1bf4050ddedc3011077fe966993b6
-                  </table>
+                    {
+                      arrayTurnosAdmin.content.map((turno) =>
+                        turno.estado === true ? (
+                          <tbody key={turno.id}>
+                            <tr>
+                              <td className="m-auto p-4 user-name">
+                                {turno.nombreUsuario}
+                              </td>
+                              <td className="m-auto p-4 service-name">
+                                {turno.nombreServicio}
+                              </td>
+                              <td className="m-auto p-4 service-time">
+                                {format(
+                                  new Date(turno.startTime),
+                                  "hh:mm a dd/MM/yyyy"
+                                )}
+                              </td>
+                              <td className="m-auto p-4 service-price">
+                                ${turno.costo}
+                              </td>
+                              <td className="m-auto p-4">
+                                {turno.estado === true ? (
+                                  <span className="habilitado">Confirmado</span>
+                                ) : (
+                                  <span className="deshabilitado">Cancelado</span>
+                                )}
+                              </td>
+                              <td className="m-auto">
+                                <button
+                                  className="tabla-admin-btn admin-btn"
+                                // onClick={(e) => {
+                                //   eliminarTurno(e, listaTurnos.id);
+                                // }}
+                                >
+                                  <img
+                                    className="admin-icons"
+                                    src="/assets/icons/calendar-cog.svg"
+                                    alt="Modificar Turno"
+                                  />
+                                </button>
+                              </td>
+                              <td className="m-auto">
+                                <button
+                                  className="tabla-admin-btn admin-btn"
+                                  onClick={(e) => {
+                                    eliminarTurnoAdmin(
+                                      e,
+                                      turno.id,
+                                      pageNumber,
+                                      pageSize, arrayTurnosAdmin.numberOfElements
+                                    );
+                                  }}
+                                >
+                                  <img
+                                    className="admin-icons"
+                                    src="/assets/icons/calendar-x.svg"
+                                    alt="Eliminar Turno"
+                                  />
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        ) : null
+                      )
+                    }
+                  </table >
                   <Pagination
                     page={pageNumber}
                     totalPages={arrayTurnosAdmin.totalPages}
@@ -212,10 +150,10 @@ export const TurnosAdmin = () => {
               ) : (
                 <p>No tienes turnos reservados</p>
               )}
-            </div>
-          </div>
-        </div>
-      </div>
+            </div >
+          </div >
+        </div >
+      </div >
       <div className="admin-section-buttons">
         <Link className="admin-btn" to={"/"}>
           {" "}
@@ -226,6 +164,6 @@ export const TurnosAdmin = () => {
           Ir a servicios
         </Link>
       </div>
-    </section>
+    </section >
   );
 };
