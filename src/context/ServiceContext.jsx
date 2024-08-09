@@ -167,11 +167,10 @@ const ServicesProvider = ({ children }) => {
     }
   };
 
-  const listaTurnosAdmin = async () => {
+  const listaTurnosAdmin = async ({ pageNumber = 0, pageSize = 10 }) => {
     try {
-      const urlback = urlBackListaTurnosAdmin;
+      const urlback = `${urlBackListaTurnosAdmin}?page=${pageNumber}&size=${pageSize}`;
       let jwt = window.localStorage.getItem("auth_token");
-      console.log("Hola desde listaTurnosAdmin()");
       const respuesta = await getToken(urlback, jwt);
       setArrayTurnosAdmin(respuesta);
     } catch (error) {
