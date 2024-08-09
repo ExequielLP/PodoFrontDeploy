@@ -1,5 +1,6 @@
 export const Appointments = ({ turno, date, bookAppointment }) => {
   const dayName = date.toLocaleDateString("es-ES", { weekday: "long" });
+  console.log(turno);
   return (
     <div>
       {dayName !== "domingo" && dayName !== "sábado" ? (
