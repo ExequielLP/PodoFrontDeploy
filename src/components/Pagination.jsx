@@ -5,10 +5,6 @@ import "react-responsive-pagination/themes/classic.css";
 export default function Pagination({ page, totalPages, onPageChange }) {
   const [currentPage, setCurrentPage] = useState(page);
 
-  useEffect(() => {
-
-  }, [page]);
-
   function handlePageChange(page) {
     console.log(page);
     setCurrentPage(page);

@@ -10,10 +10,9 @@ export const TurnosAdmin = () => {
     useContext(ServicesContext);
 
   const [pageNumber, setPageNumber] = useState(0);
-  const pageSize = 10;
 
   useEffect(() => {
-    listaTurnosAdmin(pageNumber, pageSize);
+    listaTurnosAdmin(pageNumber);
   }, [pageNumber]);
 
   const handlePageChange = (newPageNumber) => {
@@ -21,7 +20,7 @@ export const TurnosAdmin = () => {
     setPageNumber(newPageNumber - 1); // Asegúrate de restar 1 para convertir a base 0
   };
 
-  console.log(arrayTurnosAdmin);
+  const pageSize = 10;
 
   return (
     <section className="tabla-admin">
@@ -46,8 +45,8 @@ export const TurnosAdmin = () => {
           >
             <div className="accordion-body table-responsive">
               {arrayTurnosAdmin.content &&
-                arrayTurnosAdmin.content.length > 0 &&
-                arrayTurnosAdmin.content.some((e) => e.estado === true) ? (
+              arrayTurnosAdmin.content.length > 0 &&
+              arrayTurnosAdmin.content.some((e) => e.estado === true) ? (
                 <>
                   <table className="table align-middle">
                     <thead className="tabla-header">
@@ -104,9 +103,9 @@ export const TurnosAdmin = () => {
                             <td className="m-auto">
                               <button
                                 className="tabla-admin-btn admin-btn"
-                              // onClick={(e) => {
-                              //   eliminarTurno(e, listaTurnos.id);
-                              // }}
+                                // onClick={(e) => {
+                                //   eliminarTurno(e, listaTurnos.id);
+                                // }}
                               >
                                 <img
                                   className="admin-icons"
@@ -119,7 +118,12 @@ export const TurnosAdmin = () => {
                               <button
                                 className="tabla-admin-btn admin-btn"
                                 onClick={(e) => {
-                                  eliminarTurnoAdmin(e, turno.id);
+                                  eliminarTurnoAdmin(
+                                    e,
+                                    turno.id,
+                                    pageNumber,
+                                    pageSize
+                                  );
                                 }}
                               >
                                 <img
