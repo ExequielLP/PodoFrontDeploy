@@ -6,7 +6,7 @@ export default function Pagination({ page, totalPages, onPageChange }) {
   const [currentPage, setCurrentPage] = useState(page);
 
   useEffect(() => {
-    setCurrentPage(page);
+
   }, [page]);
 
   function handlePageChange(page) {

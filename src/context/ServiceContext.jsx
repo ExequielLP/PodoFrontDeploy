@@ -167,7 +167,7 @@ const ServicesProvider = ({ children }) => {
     }
   };
 
-  const listaTurnosAdmin = async ({ pageNumber = 0, pageSize = 10 }) => {
+  const listaTurnosAdmin = async (pageNumber, pageSize = 10) => {
     try {
       const urlback = `${urlBackListaTurnosAdmin}?page=${pageNumber}&size=${pageSize}`;
       let jwt = window.localStorage.getItem("auth_token");
