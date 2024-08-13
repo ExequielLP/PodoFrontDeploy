@@ -11,21 +11,15 @@
 
 - [ ] Añadir carga diferida de datos Lazy, Suspense.
 - [ ] Añadir paginación en las tablas de turnos.
+- [ ] Arreglar el fetch de los turnos de usuario en inicio.
 - [ ] Corregir el vh de login y registro en pantallas de >1200px.
-- [ ] Lanzar alerta al querer reservar un turno ya Reservado.
+- [ ] Corregir los fetching de turnos de `<ListaTurnos/>` (Inicio) y `<AdminListaTurnos/>`(Admin)
+- [ ] Ordernar los turnos por StartTime.
 - [ ] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
 - [ ] Verificar que todas las alertas funcionen.
-- [⚠️] Corroborar que los textos e imágenes en uso sean los correctos. De no ser así actualizarlos.
-- [⚠️] Limpiar el contexto. Separar lo que es Authcontext del resto.
-- [✔] Agregar el component `<UserTable/>` para redirigir desde el navlink a la tabla de turnos usuario.
-- [✔] Arreglar el responsive en `<Servicios>` & `<Dashboard/>`
-- [✔] Cards: agregar una altura maxima para pantalla > 1200px.
-- [✔] Cards: limitar las lineas del párrafo en las cards de inicio.
-- [✔] Corregir el `<NavBar/>` al loguearse. El Admin debe visualizar un NavLink "Panel Admin"
-- [✔] Corregir el `<NavBar/>` al loguearse. El usuario debe visualizar un NavLink "Mis turnos"
-- [✔] Corregir el boton de los accordion. No funciona!
-- [✔] Corregir EndPoint de los turnos del día.
-- [✔] Modificar los textos de la página `<AboutUs/>`
+- [ ] Añadir react-paginator para iterar la tabla de turnos por paginación
+- [⚠️]
+- [✔]
 
 # COLOR PALETTE
 
@@ -47,3 +41,12 @@
 - Detalles y acentos: El rosa más claro (#ffc5ff) y el rosa empolvado (#FFD3E6) pueden usarse para detalles sutiles, como líneas divisorias, iconos o bordes. Por ejemplo, puedes aplicar estos colores a los bordes de las tarjetas de servicios o a los íconos de redes sociales.
 
 - Enlaces y botones secundarios: Considera usar el verde menta (#B2FFC8) para enlaces o botones secundarios. Esto agregará un toque fresco y agradable.......
+
+## SERVICIOS
+
+- Servicio General: Ofrecemos un servicio integral de cuidado podal para mantener tus pies en perfectas condiciones. Incluye la limpieza y desinfección, corte y limado de uñas, tratamiento de callosidades y durezas, así como la aplicación de cremas hidratantes y nutritivas. Ideal para quienes buscan un mantenimiento regular y profesional de sus pies, asegurando tanto su salud como su apariencia estética.
+- Onicomicosis:Tratamos la onicomicosis de manera efectiva con técnicas avanzadas, eliminando hongos en las uñas de forma segura. Nuestro enfoque combina tratamientos tópicos y láser de alta frecuencia para restaurar la salud y apariencia de tus uñas. Recupera la confianza con unas uñas libres de infecciones, saludables y estéticamente agradables. Ideal para quienes buscan una solución profesional y duradera.
+- Reflexología: La reflexología es un masaje terapéutico que estimula puntos específicos en los pies para mejorar la salud general. Ayuda a aliviar el estrés, mejorar la circulación y equilibrar el cuerpo. Disfruta de una experiencia relajante y revitalizante que no solo beneficia tus pies, sino que también promueve el bienestar integral. Ideal para quienes buscan un enfoque natural para la salud.
+- Láser de alta frecuencia: Nuestro tratamiento con láser de alta frecuencia es ideal para problemas podales como verrugas, hongos y más. Este método no invasivo y sin dolor ofrece resultados rápidos y eficaces, promoviendo la regeneración de la piel y la eliminación de imperfecciones. Perfecto para quienes buscan una solución moderna y profesional para mantener sus pies sanos y libres de problemas.
+- Máquina de masajes de pies: La máquina de masajes de pies ofrece una experiencia relajante y revitalizante, ideal para aliviar el estrés y la fatiga. Con distintas modalidades de masaje y niveles de intensidad, este servicio proporciona un alivio profundo, mejora la circulación y reduce tensiones. Es perfecto para quienes desean un tratamiento de spa en casa, manteniendo sus pies descansados y rejuvenecidos.
+- Spa de pies: Disfruta de un spa de pies rejuvenecedor que incluye baños de burbujas, exfoliación, y masajes relajantes. Este tratamiento alivia el estrés, mejora la circulación y deja tus pies suaves e hidratados. Perfecto para un momento de relajación total, nuestro spa de pies es la opción ideal para renovar la salud y belleza de tus pies, brindándote un cuidado integral.

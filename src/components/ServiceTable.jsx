@@ -1,14 +1,13 @@
 import { useContext, useEffect } from "react";
-import ContextoAdministrador from "./../context/ContextLoginRegister";
+import ServicesContext from "./../context/ServiceContext";
 import "./css/Tablas-Admin.css";
 
 export const ServiceTable = ({ onSeleccionarServicio }) => {
   const { eliminarServicioAdmin, listaServicios, listaServiciosAdmin } =
-    useContext(ContextoAdministrador);
+    useContext(ServicesContext);
 
   useEffect(() => {
     listaServiciosAdmin();
-
   }, []);
 
   return (
@@ -107,7 +106,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
                           <button
                             className="tabla-admin-btn admin-btn"
                             onClick={(e) =>
-                              (eliminarServicioAdmin(e, servicio.id))
+                              eliminarServicioAdmin(e, servicio.id)
                             }
                           >
                             <img

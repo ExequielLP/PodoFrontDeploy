@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ContextoAdministrador from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 import useTitle from "../hooks/useTitle";
 import "./css/login.css";
@@ -11,12 +11,12 @@ const formInciallogin = {
 
 const Login = () => {
   useTitle({ title: "Login" });
-  const { SubmitLogin, usuarioLogeado } = useContext(ContextoAdministrador);
+  const { SubmitLogin, usuarioLogueado } = useContext(ContextoAdministrador);
 
   //form y use State para form
   const [formlogin, setformlogin] = useState(formInciallogin);
 
-  if (usuarioLogeado.Auth === true) {
+  if (usuarioLogueado.Auth === true) {
     return <Navigate to="/" />;
   }
 
