@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { format } from "date-fns";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ServicesContext from "../context/ServiceContext";
 
 const TurnoReservado = ({ listaTurnos }) => {
-  const { eliminarTurno } = useContext(ContextoAdministrador);
+  const { eliminarTurno } = useContext(ServicesContext);
   const formattedStartTime = format(
     new Date(listaTurnos.startTime),
     "hh:mm a dd/MM/yyyy"
@@ -12,9 +12,9 @@ const TurnoReservado = ({ listaTurnos }) => {
   return (
     <tbody>
       <tr>
-        <td>{listaTurnos.servicioPodo.nombre}</td>
+        <td>{listaTurnos.nombreServicio}</td>
         <td>{formattedStartTime}</td>
-        <td>{listaTurnos.servicioPodo.costo}</td>
+        <td>{listaTurnos.costo}</td>
         <td>
           <button
             className="tabla-turno-btn"

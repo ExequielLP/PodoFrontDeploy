@@ -53,6 +53,10 @@
   color: #ffffff;
 }
 
+.admin-calendar-text {
+  margin-top: 50px;
+}
+
 /* Estilos para tablet */
 @media (max-width: 768px) {
   .date-container {

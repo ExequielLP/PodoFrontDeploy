@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import ContextoAdministrador from "../context/ContextLoginRegister";
+import ContextoAdministrador from "../context/AuthContext";
 import "./css/nav.css";
 
 export const Navbar = () => {
-  const { usuarioLogeado, logOut } = useContext(ContextoAdministrador);
+  const { usuarioLogueado, logOut } = useContext(ContextoAdministrador);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -35,11 +35,11 @@ export const Navbar = () => {
         </Link>
         <ul className="nav-links-items">
           <li className="nav-link-item btn">
-            {usuarioLogeado.Auth === false ? (
+            {usuarioLogueado.Auth === false ? (
               <Link className="active-link" to="/registro">
                 Registrarse
               </Link>
-            ) : usuarioLogeado.Rol === "ADMIN" ? (
+            ) : usuarioLogueado.Rol === "ADMIN" ? (
               <Link className="active-link" to="/admin/turnos">
                 Panel Admin
               </Link>
@@ -50,7 +50,7 @@ export const Navbar = () => {
             )}
           </li>
           <li className="nav-link-item btn">
-            {usuarioLogeado.Auth === false ? (
+            {usuarioLogueado.Auth === false ? (
               <Link className="active-link" to="/login">
                 Login
               </Link>
@@ -120,7 +120,7 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-link-item btn">
-                {usuarioLogeado.Auth === false ? (
+                {usuarioLogueado.Auth === false ? (
                   <Link
                     className="active-link"
                     to="/registro"
@@ -128,7 +128,7 @@ export const Navbar = () => {
                   >
                     Registrarse
                   </Link>
-                ) : usuarioLogeado.Rol === "ADMIN" ? (
+                ) : usuarioLogueado.Rol === "ADMIN" ? (
                   <Link
                     className="active-link"
                     to="/admin/turnos"
@@ -147,7 +147,7 @@ export const Navbar = () => {
                 )}
               </li>
               <li className="nav-link-item btn">
-                {usuarioLogeado.Auth === false ? (
+                {usuarioLogueado.Auth === false ? (
                   <Link
                     className="active-link"
                     to="/login"

@@ -114,6 +114,10 @@
 }
 
 @media (max-width: 480px) {
+  .react-calendar {
+    width: 350px;
+  }
+
   .react-calendar__navigation > button {
     font-size: 1.2rem;
   }
