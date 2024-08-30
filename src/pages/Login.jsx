@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import ContextoAdministrador from "../context/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import useTitle from "../hooks/useTitle";
 import "./css/login.css";
 import { SignInWithGoogle } from "../components/SignInWithGoogle";
@@ -61,6 +61,9 @@ const Login = () => {
           </div>
         </div>
       </form>
+      <Link to={"/registro"} className="go-to-login">
+        No tienes cuenta? Regístrate aquí!
+      </Link>
       <SignInWithGoogle />
     </main>
   );
