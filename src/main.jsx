@@ -6,7 +6,7 @@ import { Footer } from "./components/Footer";
 import { ServicesProvider } from "./context/ServiceContext";
 import AppRouters from "./routers/AppRouters";
 import { Toaster } from "sonner";
-import "../src/styles.css";
+import "./styles.css";
 import "./pages/css/Toast.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
