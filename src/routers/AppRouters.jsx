@@ -1,8 +1,10 @@
-import { useContext, useEffect } from "react";
+import { lazy, Suspense, useContext, useEffect } from "react";
 import ContextoAdministrador from "../context/AuthContext";
 import { Route, Routes } from "react-router-dom";
-import PublicRoutes from "./PublicRoutes";
-import AuthRoutes from "./AuthRoutes";
+import Loader from "../components/Loader";
+
+const AuthRoutesLazy = lazy(() => import("./AuthRoutes"));
+const PublicRoutesLazy = lazy(() => import("./PublicRoutes"));
 
 const AppRouters = () => {
   const { usuarioLogueado, AuthTokenYUsuario } = useContext(
@@ -24,9 +26,23 @@ const AppRouters = () => {
   return (
     <Routes>
       {usuarioLogueado.Auth === false ? (
-        <Route path="/*" element={<PublicRoutes />} />
+        <Route
+          path="/*"
+          element={
+            <Suspense fallback={<Loader />}>
+              <PublicRoutesLazy />
+            </Suspense>
+          }
+        />
       ) : (
-        <Route path="/*" element={<AuthRoutes />} />
+        <Route
+          path="/*"
+          element={
+            <Suspense fallback={<Loader />}>
+              <AuthRoutesLazy />
+            </Suspense>
+          }
+        />
       )}
     </Routes>
   );
