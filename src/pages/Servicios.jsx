@@ -5,6 +5,7 @@ import useTitle from "./../hooks/useTitle";
 import { Calendario } from "../components/Calendario";
 import "./css/servicios.css";
 import ServicesContext from "../context/ServiceContext";
+import Loader from "./../components/Loader";
 
 const Servicios = () => {
   const { usuarioLogueado } = useContext(ContextoAdministrador);
@@ -20,7 +21,7 @@ const Servicios = () => {
   useTitle({ title: servicio ? servicio.nombre : "Cargando..." });
 
   if (!servicio) {
-    return <div>Cargando...Servicio</div>;
+    return <Loader />;
   }
 
   const imagenBase64 = servicio.imagen.content;

@@ -1,5 +1,11 @@
-import { About_info } from "../components/About_info";
+import { lazy, Suspense } from "react";
+import Loader from "../components/Loader";
+const About_info = lazy(() => import("../components/About_info"));
 
 export const About = () => {
-  return <About_info />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <About_info />
+    </Suspense>
+  );
 };
