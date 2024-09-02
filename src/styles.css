@@ -35,6 +35,9 @@ li {
   text-decoration: none !important;
 }
 
+ul {
+  list-style-type: none !important;
+}
 @media (prefers-reduced-motion) {
   *,
   *::before,

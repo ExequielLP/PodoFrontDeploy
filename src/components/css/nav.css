@@ -50,7 +50,7 @@
   cursor: pointer;
   position: relative;
   padding: 1rem;
-  background: #ff9abf;
+  /* background: #ff9abf; */
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   transition: all 1s;
