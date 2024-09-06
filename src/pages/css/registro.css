@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 .register-container {
   display: flex;
   flex-direction: column;
@@ -114,6 +116,7 @@
   color: rgb(79, 125, 252);
   transition: color 0.15s ease-in-out;
 }
+
 .go-to-login:hover {
   color: rgb(0, 0, 255);
   transform: scale(1);
