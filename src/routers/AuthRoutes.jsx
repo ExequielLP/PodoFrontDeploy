@@ -1,12 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import Inicio from "../pages/Inicio";
-import Login from "../pages/Login";
-import Servicios from "../pages/Servicios";
-import Dashboard from "../pages/Dashboard";
+import { lazy, Suspense, useContext } from "react";
 import ContextoAdministrador from "./../context/AuthContext";
-import { useContext } from "react";
-import { About } from "./../pages/About";
-import ListaTurnos from "../components/ListaTurnos";
+import Loader from "../components/Loader";
+
+const About = lazy(() => import("../pages/About"));
+const Inicio = lazy(() => import("../pages/Inicio"));
+const Login = lazy(() => import("../pages/Login"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Servicios = lazy(() => import("../pages/Servicios"));
+const ListaTurnos = lazy(() => import("../components/ListaTurnos"));
 
 const AuthRoutes = () => {
   const { usuarioLogueado } = useContext(ContextoAdministrador);
@@ -14,15 +16,64 @@ const AuthRoutes = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/sobre-nosotros" element={<About />} />
-        <Route path="/user/turnos" element={<ListaTurnos />} />
-        <Route path="/servicio/:id" element={<Servicios />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Inicio />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/sobre-nosotros"
+          element={
+            <Suspense fallback={<Loader />}>
+              <About />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/user/turnos"
+          element={
+            <Suspense fallback={<Loader />}>
+              <ListaTurnos />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/servicio/:id"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Servicios />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Login />
+            </Suspense>
+          }
+        />
         {usuarioLogueado.Auth === true && usuarioLogueado.Rol === "ADMIN" ? (
-          <Route path="/admin/:section" element={<Dashboard />} />
+          <Route
+            path="/admin/:section"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Dashboard />
+              </Suspense>
+            }
+          />
         ) : (
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={
+              <Suspense fallback={<Loader />}>
+                <Login />
+              </Suspense>
+            }
+          />
         )}
       </Routes>
     </>
