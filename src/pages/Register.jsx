@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ContextoAdministrador from "../context/AuthContext";
 import useTitle from "./../hooks/useTitle";
 import "./css/registro.css";
+import { SignInWithGoogle } from "../components/SignInWithGoogle";
 
 const Register = () => {
   useTitle({ title: "Registro" });
@@ -89,6 +90,11 @@ const Register = () => {
           </div>
         </div>
       </form>
+
+      <Link to={"/login"} className="go-to-login">
+        Ya tienes cuenta? Inicia sesión!
+      </Link>
+      <SignInWithGoogle />
     </main>
   );
 };

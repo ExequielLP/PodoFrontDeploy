@@ -1,3 +1,5 @@
+@import "bootstrap";
+
 .section-content {
   width: 100%;
   max-width: 1400px;
@@ -39,7 +41,7 @@
 }
 
 @media (max-width: 768px) {
-  .text-content > h2 {
+  .text-content>h2 {
     font-size: 2rem;
     line-height: 2.5rem;
   }
@@ -72,45 +74,56 @@
   animation: cover-animation linear both;
   animation-timeline: view();
 }
+
 #ong-text h1,
 #ong-text p,
 #community {
   animation: entry-animation linear both;
   animation-timeline: view();
 }
+
 #ong {
   animation-range: entry 10% cover 40%;
 }
+
 #ong-text h1 {
   animation-range: entry 10% cover 30%;
 }
+
 #ong-text p {
   animation-range: entry 10% cover 20%;
 }
+
 #community {
   animation-range: entry 30% cover 50%;
 }
+
 #community-text h1 {
   animation-range: entry 30% cover 40%;
 }
+
 #community-text p {
   animation-range: entry 20% cover 30%;
 }
+
 @keyframes entry-animation {
   0% {
     opacity: 0;
     translate: var(--entry-animation) 0;
   }
+
   100% {
     opacity: 1;
     translate: 0 0;
   }
 }
+
 @keyframes cover-animation {
   0% {
     opacity: 0;
     translate: var(--cover-animation) 0;
   }
+
   100% {
     opacity: 1;
     translate: 0 0;

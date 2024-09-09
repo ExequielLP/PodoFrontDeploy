@@ -56,6 +56,7 @@ export const Navbar = () => {
               </Link>
             ) : (
               <Link
+                className="active-link"
                 onClick={() => {
                   logOut();
                 }}
@@ -157,6 +158,7 @@ export const Navbar = () => {
                   </Link>
                 ) : (
                   <Link
+                    className="active-link"
                     onClick={() => {
                       logOut();
                       toggleMenu();
