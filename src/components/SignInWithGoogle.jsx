@@ -20,7 +20,7 @@ export const SignInWithGoogle = () => {
         // Guardar el JWT en el almacenamiento local o en el estado
         console.log(data)
         localStorage.setItem("auth_token", data.jwt);
-        window.location.href = "/login";
+        window.location.href = "/";
       })
       .catch(error => console.error('Error:', error));
   };
