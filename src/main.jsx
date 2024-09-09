@@ -11,11 +11,14 @@ import "./pages/css/Toast.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
+const CLIENT_ID = import.meta.env.VITE_ENDPOINT_Cliente_id;
+
 ReactDOM.createRoot(document.getElementById("root")).render(
+
   <AuthProvider>
     <ServicesProvider>
       <BrowserRouter>
-        <GoogleOAuthProvider clientId="683178027103-uepqin3teou8mup3gjv9qhrp983nsp53.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={CLIENT_ID}>
           <Navbar />
           <Toaster className="toast-success toast-error toast-warning" />
           <AppRouters />

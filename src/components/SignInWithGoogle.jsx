@@ -1,11 +1,14 @@
 import "./css/SignInWithGoogle.css";
 import { GoogleLogin } from '@react-oauth/google';
+const urlGoogle = import.meta.env.VITE_ENDPOINT_urlGoogle
+
+
 export const SignInWithGoogle = () => {
   const handleLoginSuccess = (response) => {
     const accessToken = response.credential;
     // Enviar el access token al backend
     console.log(accessToken)
-    fetch('http://localhost:8080/api/v1/auth/google', {
+    fetch(urlGoogle, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
