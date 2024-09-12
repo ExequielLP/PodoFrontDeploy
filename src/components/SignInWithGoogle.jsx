@@ -8,6 +8,7 @@ export const SignInWithGoogle = () => {
     const accessToken = response.credential;
     // Enviar el access token al backend
     console.log(accessToken)
+    console.log(urlGoogle)
     fetch(urlGoogle, {
       method: 'POST',
       headers: {
