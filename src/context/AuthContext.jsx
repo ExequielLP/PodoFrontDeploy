@@ -7,11 +7,9 @@ import { validateForm } from "../utils/validations";
 
 //URL login --> http://localhost:8080/api/v1/auth/authenticate
 const urlPostLogin = import.meta.env.VITE_ENDPOINT_urlPostLogin;
-const urlVerificarExpiracionToken = import.meta.env
-  .VITE_ENDPOINT_urlVerificarExpiracionToken;
+const urlVerificarExpiracionToken = import.meta.env.VITE_ENDPOINT_urlVerificarExpiracionToken;
 const urlCrearUsuario = import.meta.env.VITE_ENDPOINT_urlCrearUsuario;
-const urlValidateGetUsuario = import.meta.env
-  .VITE_ENDPOINT_urlValidateGetUsuario;
+const urlValidateGetUsuario = import.meta.env.VITE_ENDPOINT_urlValidateGetUsuario;
 
 const usuarioLogin = {
   id: "",
