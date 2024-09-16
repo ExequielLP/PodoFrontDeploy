@@ -81,14 +81,18 @@ const AuthProvider = ({ children }) => {
   //VERIFICACION DE LOGIN AUTOMATICA
   const AuthTokenYUsuario = async () => {
     let token = VerificarExistenciaDeToken();
+    //↑↑ Método que devuelve el string JWT ↑↑
     console.log("entrnado a AuthTokenUsuario");
+    //Esto se deberia limpiar si no se usa
     const urlFinal = urlVerificarExpiracionToken + token;
+    //↑↑ No deberia pasarse al método que devuelve el booleano si el JWT es valido? ↑↑
     const urlValidateGetUsuarioFinal = urlValidateGetUsuario + token;
     const usuarioValido = await GetUsuarioToken(
       urlValidateGetUsuarioFinal,
       token
     );
     console.log("paso el usuarioValido()");
+    console.log(usuarioValido);
     if (usuarioLogueado.Auth === false && usuarioValido) {
       const usuarioRespuesta = {
         id: usuarioValido.id,
@@ -125,11 +129,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const VerificarExistenciaDeToken = () => {
+    console.log("document.cookie");
+    console.log(document.cookie);
     let jwt = window.localStorage.getItem("auth_token");
     if (!jwt) return false;
     return jwt;
   };
 
+  //Este método no esta en uso
   const VerificarExperiracionToken = async (urlVerificarExpiracionToken) => {
     const respuesta = await get(urlVerificarExpiracionToken);
     return respuesta;
@@ -138,47 +145,8 @@ const AuthProvider = ({ children }) => {
   const logOut = () => {
     window.localStorage.removeItem("auth_token");
     window.location.href = "/login";
+    //Aca hay q hacer un fetch a cookie.clear!!
   };
-
-  // const submitModificarServicio = async (e, form) => {
-  //   e.preventDefault();
-
-  //   console.log("****Hola desde el modificarServicio****");
-  //   const formData = new FormData();
-  //   formData.append("id", form.id);
-  //   formData.append("nombre", form.nombre);
-  //   formData.append("descripcion", form.descripcion);
-  //   formData.append("costo", form.costo);
-  //   formData.append("file", form.file);
-  //   try {
-  //     let token = localStorage.getItem("auth_token");
-  //     const response = await fetch(`${VITE_ENDPOINT_urlBackModificaServicio}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: formData,
-  //     });
-  //     listaServiciosAdmin();
-
-  //     if (response.ok) {
-  //       toast.success(`¡Servicio: ${form.nombre} actualizado!`, {
-  //         className: "toast-success",
-  //         style: { width: "fit-content" },
-  //       });
-
-  //       window.location.hash = "#TablaServicios";
-  //     } else {
-  //       toast.error(`¡Error al actualizar ${form.nombre}!`, {
-  //         className: "toast-error",
-  //         style: { width: "fit-content" },
-  //       });
-  //       console.error("Error al modificar el servicio");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error en la solicitud:", error);
-  //   }
-  // };
 
   const data = {
     AuthTokenYUsuario,

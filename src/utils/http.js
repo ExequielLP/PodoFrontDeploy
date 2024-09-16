@@ -26,6 +26,7 @@ export const getToken = async (url, token) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      credentials: "include",
     };
     const respuesta = await fetch(url, fetchConfig);
 
@@ -48,6 +49,7 @@ export const post = async (url, data) => {
   const fechConfig = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify(data),
   };
   // creo que lo que falta, es poner en el post, el headers:header insertando el token digamos ,pero en la parte de la autorizacion del la peticion post
@@ -91,8 +93,8 @@ export const postImagen = async (url, servicioPodo, token) => {
     if (!respuesta.ok) {
       throw new Error(
         respuesta.status +
-        " error en fetch [post hhtp]: " +
-        respuesta.statusText
+          " error en fetch [post hhtp]: " +
+          respuesta.statusText
       );
     }
 
