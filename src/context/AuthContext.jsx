@@ -12,7 +12,7 @@ const urlVerificarExpiracionToken = import.meta.env
 const urlCrearUsuario = import.meta.env.VITE_ENDPOINT_urlCrearUsuario;
 const urlValidateGetUsuario = import.meta.env
   .VITE_ENDPOINT_urlValidateGetUsuario;
-
+const removeCookieFromUser = import.meta.env.VITE_ENDPOINT_removeCookie;
 const usuarioLogin = {
   id: "",
   userName: "",
@@ -142,10 +142,18 @@ const AuthProvider = ({ children }) => {
     return respuesta;
   };
 
-  const logOut = () => {
-    window.localStorage.removeItem("auth_token");
-    window.location.href = "/login";
-    //Aca hay q hacer un fetch a cookie.clear!!
+  const logOut = async () => {
+    try {
+      const removeCookie = await post(removeCookieFromUser);
+      if (removeCookie.ok) {
+        console.log("Logout exitoso");
+        window.location.href = "/login";
+      } else {
+        console.log("Error en el logout");
+      }
+    } catch (error) {
+      console.log(`Error catch Logout ${error}`);
+    }
   };
 
   const data = {
