@@ -139,9 +139,9 @@ const ServicesProvider = ({ children }) => {
   const listaTurnos = async () => {
     try {
       const urlback = urlBackListaTurno + usuarioLogueado.id;
-      let jwt = window.localStorage.getItem("auth_token");
+
       console.log("Hola desde listaTurnos()");
-      const respuesta = await getToken(urlback, jwt);
+      const respuesta = await getToken(urlback);
       setarrayTurnos(respuesta);
     } catch (error) {
       console.log("Error al listar los turnos");

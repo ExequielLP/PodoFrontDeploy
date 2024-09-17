@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
-import { get, getToken, post } from "../utils/http";
+import { get, getToken, post, postLogout } from "../utils/http";
 import { toast } from "sonner";
 import { matchPath } from "react-router-dom";
 import { validateForm } from "../utils/register-validations";
 
 //URL login --> http://localhost:8080/api/v1/auth/authenticate
 const urlPostLogin = import.meta.env.VITE_ENDPOINT_urlPostLogin;
-const urlVerificarExpiracionToken = import.meta.env
-  .VITE_ENDPOINT_urlVerificarExpiracionToken;
+const urlVerificarExpiracionToken = import.meta.env.VITE_ENDPOINT_urlVerificarExpiracionToken;
 const urlCrearUsuario = import.meta.env.VITE_ENDPOINT_urlCrearUsuario;
-const urlValidateGetUsuario = import.meta.env
-  .VITE_ENDPOINT_urlValidateGetUsuario;
+const urlValidateGetUsuario = import.meta.env.VITE_ENDPOINT_urlValidateGetUsuario;
 const removeCookieFromUser = import.meta.env.VITE_ENDPOINT_removeCookie;
 const usuarioLogin = {
   id: "",
@@ -58,7 +56,6 @@ const AuthProvider = ({ children }) => {
     e.preventDefault();
     try {
       const respuesta = await post(urlPostLogin, formlogin);
-
       const usuarioRespuesta = {
         id: respuesta.id,
         userName: respuesta.userName,
@@ -66,9 +63,7 @@ const AuthProvider = ({ children }) => {
         Rol: respuesta.rol,
         Auth: true,
       };
-
       setUsuarioLogeado(usuarioRespuesta);
-      window.localStorage.setItem("auth_token", respuesta.jwt);
     } catch (error) {
       console.log("Error al ingresar los datos de usuario");
       toast.error(`¡Error al ingresar datos del usuario!`, {
@@ -80,19 +75,14 @@ const AuthProvider = ({ children }) => {
 
   //VERIFICACION DE LOGIN AUTOMATICA
   const AuthTokenYUsuario = async () => {
-    let token = VerificarExistenciaDeToken();
-    //↑↑ Método que devuelve el string JWT ↑↑
-    console.log("entrnado a AuthTokenUsuario");
-    //Esto se deberia limpiar si no se usa
-    const urlFinal = urlVerificarExpiracionToken + token;
-    //↑↑ No deberia pasarse al método que devuelve el booleano si el JWT es valido? ↑↑
-    const urlValidateGetUsuarioFinal = urlValidateGetUsuario + token;
-    const usuarioValido = await GetUsuarioToken(
-      urlValidateGetUsuarioFinal,
-      token
-    );
-    console.log("paso el usuarioValido()");
-    console.log(usuarioValido);
+    let cookieTokenExist = await VerificarExperiracionToken(urlVerificarExpiracionToken);
+    console.log(cookieTokenExist)
+
+
+    const urlValidateGetUsuarioFinal = urlValidateGetUsuario;
+    const usuarioValido = await GetUsuarioToken(urlValidateGetUsuarioFinal);
+
+
     if (usuarioLogueado.Auth === false && usuarioValido) {
       const usuarioRespuesta = {
         id: usuarioValido.id,
@@ -102,8 +92,8 @@ const AuthProvider = ({ children }) => {
         Auth: true,
       };
       setUsuarioLogeado(usuarioRespuesta);
-    } else if (VerificarExistenciaDeToken() && !usuarioValido) {
-      const excludedPaths = ["/login", "/", "/registro", "/servicio/*"]; // Agrega aquí las rutas que quieres excluir
+    } else if (cookieTokenExist && !usuarioValido) {
+      const excludedPaths = ["/login", "/", "/registro", "/servicio/*"];
       const isExcluded = excludedPaths.some((path) =>
         matchPath({ path, exact: true }, location.pathname)
       );
@@ -128,13 +118,7 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const VerificarExistenciaDeToken = () => {
-    console.log("document.cookie");
-    console.log(document.cookie);
-    let jwt = window.localStorage.getItem("auth_token");
-    if (!jwt) return false;
-    return jwt;
-  };
+
 
   //Este método no esta en uso
   const VerificarExperiracionToken = async (urlVerificarExpiracionToken) => {
@@ -144,7 +128,9 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     try {
-      const removeCookie = await post(removeCookieFromUser);
+      const removeCookie = await postLogout(removeCookieFromUser);
+      console.log("reemovecokiee");
+      console.log(removeCookie)
       if (removeCookie.ok) {
         console.log("Logout exitoso");
         window.location.href = "/login";
@@ -161,7 +147,6 @@ const AuthProvider = ({ children }) => {
     logOut,
     SubmitLogin,
     SubmitRegistro,
-    VerificarExistenciaDeToken,
     VerificarExperiracionToken,
     usuarioLogueado,
   };

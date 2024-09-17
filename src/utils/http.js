@@ -1,6 +1,6 @@
 export const get = async (url) => {
   try {
-    const respuesta = await fetch(url);
+    const respuesta = await fetch(url, { credentials: "include" });
 
     if (!respuesta.ok) {
       throw new Error(
@@ -18,13 +18,12 @@ export const get = async (url) => {
 };
 
 // get con token
-export const getToken = async (url, token) => {
+export const getToken = async (url) => {
   try {
     const fetchConfig = {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
       },
       credentials: "include",
     };
@@ -70,6 +69,15 @@ export const post = async (url, data) => {
   }
 };
 
+
+export const postLogout = async (url) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: "include"
+  });
+  return response;
+};
+
 export const postImagen = async (url, servicioPodo, token) => {
   const formData = new FormData();
   formData.append("nombre", servicioPodo.nombre); // Convertir objeto a JSON y agregar como parte
@@ -93,8 +101,8 @@ export const postImagen = async (url, servicioPodo, token) => {
     if (!respuesta.ok) {
       throw new Error(
         respuesta.status +
-          " error en fetch [post hhtp]: " +
-          respuesta.statusText
+        " error en fetch [post hhtp]: " +
+        respuesta.statusText
       );
     }
 

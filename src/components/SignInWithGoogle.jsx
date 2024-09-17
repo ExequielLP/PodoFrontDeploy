@@ -14,6 +14,7 @@ export const SignInWithGoogle = () => {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: "include",
       body: JSON.stringify({ token: accessToken }),
     })
       .then(response => response.json())
