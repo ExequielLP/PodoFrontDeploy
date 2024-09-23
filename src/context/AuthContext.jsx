@@ -64,6 +64,7 @@ const AuthProvider = ({ children }) => {
         Auth: true,
       };
       setUsuarioLogeado(usuarioRespuesta);
+      window.location.href = "/";
     } catch (error) {
       console.log("Error al ingresar los datos de usuario");
       toast.error(`¡Error al ingresar datos del usuario!`, {
@@ -79,9 +80,8 @@ const AuthProvider = ({ children }) => {
     console.log(cookieTokenExist)
 
 
-    const urlValidateGetUsuarioFinal = urlValidateGetUsuario;
-    const usuarioValido = await GetUsuarioToken(urlValidateGetUsuarioFinal);
-
+    const usuarioValido = await GetUsuarioToken(urlValidateGetUsuario);
+    console.log(usuarioLogin)
 
     if (usuarioLogueado.Auth === false && usuarioValido) {
       const usuarioRespuesta = {

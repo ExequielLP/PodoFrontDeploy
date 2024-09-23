@@ -78,7 +78,7 @@ export const postLogout = async (url) => {
   return response;
 };
 
-export const postImagen = async (url, servicioPodo, token) => {
+export const postImagen = async (url, servicioPodo) => {
   const formData = new FormData();
   formData.append("nombre", servicioPodo.nombre); // Convertir objeto a JSON y agregar como parte
   formData.append("descripcion", servicioPodo.descripcion); // Convertir objeto a JSON y agregar como parte
@@ -89,9 +89,7 @@ export const postImagen = async (url, servicioPodo, token) => {
 
   const fetchConfig = {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    credentials: "include",
     body: formData,
   };
 
@@ -114,13 +112,12 @@ export const postImagen = async (url, servicioPodo, token) => {
   }
 };
 
-export const put = async (url, token) => {
+export const put = async (url) => {
   const fetchConfig = {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
+    }, credentials: "include"
   };
 
   try {

@@ -60,8 +60,7 @@ const ServicesProvider = ({ children }) => {
         } */
 
     try {
-      const token = VerificarExistenciaDeToken();
-      const respuest = await postImagen(urlCrearServicio, serviPodo, token);
+      const respuest = await postImagen(urlCrearServicio, serviPodo);
       if (respuest) {
         toast.success(`¡${serviPodo.nombre} creado exitosamente!`, {
           className: "toast-success",
@@ -183,9 +182,8 @@ const ServicesProvider = ({ children }) => {
   const eliminarTurnoAdmin = async (e, turnoId, pageNumber) => {
     try {
       e.preventDefault();
-      let jwt = window.localStorage.getItem("auth_token");
       const urlCancelarTurno = urlBackCancelarTurnoAdmin + turnoId;
-      const respuesta = await put(urlCancelarTurno, jwt);
+      const respuesta = await put(urlCancelarTurno);
       if (respuesta.ok) {
         toast.success(`Turno: ${turnoId} eliminado con exíto!`, {
           className: "toast-success",
@@ -215,12 +213,10 @@ const ServicesProvider = ({ children }) => {
     formData.append("costo", form.costo);
     formData.append("file", form.file);
     try {
-      let token = localStorage.getItem("auth_token");
+
       const response = await fetch(`${VITE_ENDPOINT_urlBackModificaServicio}`, {
         method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        credentials: "include",
         body: formData,
       });
       listaServiciosAdmin();
