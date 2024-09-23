@@ -109,9 +109,9 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const GetUsuarioToken = async (urlValidateGetUsuarioFinal, token) => {
+  const GetUsuarioToken = async (urlValidateGetUsuarioFinal) => {
     try {
-      const respuesta = await getToken(urlValidateGetUsuarioFinal, token);
+      const respuesta = await getToken(urlValidateGetUsuarioFinal);
       return respuesta;
     } catch (error) {
       return false;
