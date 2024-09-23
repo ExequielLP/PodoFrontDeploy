@@ -11,14 +11,11 @@ export const useAppointments = (servicioId) => {
   const { usuarioLogueado } = useContext(ContextoAdministrador);
 
   const fetchAppointments = async () => {
-    const token = localStorage.getItem("auth_token");
     try {
       const response = await fetch(
         `${urlBackTurnosDelDia}${date.toISOString().split("T")[0]}`,
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          credentials: "include"
         }
       );
       if (!response.ok) {
@@ -32,15 +29,13 @@ export const useAppointments = (servicioId) => {
   };
 
   const bookAppointment = async (turnoId) => {
-    const token = localStorage.getItem("auth_token");
+
     try {
       const response = await fetch(
         `${urlBackReservarTurno}${turnoId}/${servicioId}/${usuarioLogueado.id}`,
         {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          credentials: "include"
         }
       );
       if (response.ok) {

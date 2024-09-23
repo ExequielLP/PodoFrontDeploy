@@ -1,6 +1,6 @@
 export const get = async (url) => {
   try {
-    const respuesta = await fetch(url);
+    const respuesta = await fetch(url, { credentials: "include" });
 
     if (!respuesta.ok) {
       throw new Error(
@@ -18,14 +18,14 @@ export const get = async (url) => {
 };
 
 // get con token
-export const getToken = async (url, token) => {
+export const getToken = async (url) => {
   try {
     const fetchConfig = {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json"
       },
+      credentials: "include",
     };
     const respuesta = await fetch(url, fetchConfig);
 
@@ -48,6 +48,7 @@ export const post = async (url, data) => {
   const fechConfig = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify(data),
   };
   // creo que lo que falta, es poner en el post, el headers:header insertando el token digamos ,pero en la parte de la autorizacion del la peticion post
@@ -68,7 +69,16 @@ export const post = async (url, data) => {
   }
 };
 
-export const postImagen = async (url, servicioPodo, token) => {
+
+export const postLogout = async (url) => {
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: "include"
+  });
+  return response;
+};
+
+export const postImagen = async (url, servicioPodo) => {
   const formData = new FormData();
   formData.append("nombre", servicioPodo.nombre); // Convertir objeto a JSON y agregar como parte
   formData.append("descripcion", servicioPodo.descripcion); // Convertir objeto a JSON y agregar como parte
@@ -79,9 +89,7 @@ export const postImagen = async (url, servicioPodo, token) => {
 
   const fetchConfig = {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+    credentials: "include",
     body: formData,
   };
 
@@ -104,13 +112,12 @@ export const postImagen = async (url, servicioPodo, token) => {
   }
 };
 
-export const put = async (url, token) => {
+export const put = async (url) => {
   const fetchConfig = {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
+    }, credentials: "include"
   };
 
   try {

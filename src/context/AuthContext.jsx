@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
-import { get, getToken, post } from "../utils/http";
+import { get, getToken, post, postLogout } from "../utils/http";
 import { toast } from "sonner";
 import { matchPath } from "react-router-dom";
-import { validateForm } from "../utils/validations";
+import { validateForm } from "../utils/register-validations";
 
 //URL login --> http://localhost:8080/api/v1/auth/authenticate
 const urlPostLogin = import.meta.env.VITE_ENDPOINT_urlPostLogin;
 const urlVerificarExpiracionToken = import.meta.env.VITE_ENDPOINT_urlVerificarExpiracionToken;
 const urlCrearUsuario = import.meta.env.VITE_ENDPOINT_urlCrearUsuario;
 const urlValidateGetUsuario = import.meta.env.VITE_ENDPOINT_urlValidateGetUsuario;
-
+const removeCookieFromUser = import.meta.env.VITE_ENDPOINT_removeCookie;
 const usuarioLogin = {
   id: "",
   userName: "",
@@ -56,7 +56,6 @@ const AuthProvider = ({ children }) => {
     e.preventDefault();
     try {
       const respuesta = await post(urlPostLogin, formlogin);
-
       const usuarioRespuesta = {
         id: respuesta.id,
         userName: respuesta.userName,
@@ -64,9 +63,8 @@ const AuthProvider = ({ children }) => {
         Rol: respuesta.rol,
         Auth: true,
       };
-
       setUsuarioLogeado(usuarioRespuesta);
-      window.localStorage.setItem("auth_token", respuesta.jwt);
+      window.location.href = "/";
     } catch (error) {
       console.log("Error al ingresar los datos de usuario");
       toast.error(`¡Error al ingresar datos del usuario!`, {
@@ -78,15 +76,13 @@ const AuthProvider = ({ children }) => {
 
   //VERIFICACION DE LOGIN AUTOMATICA
   const AuthTokenYUsuario = async () => {
-    let token = VerificarExistenciaDeToken();
-    console.log("entrnado a AuthTokenUsuario");
-    const urlFinal = urlVerificarExpiracionToken + token;
-    const urlValidateGetUsuarioFinal = urlValidateGetUsuario + token;
-    const usuarioValido = await GetUsuarioToken(
-      urlValidateGetUsuarioFinal,
-      token
-    );
-    console.log("paso el usuarioValido()");
+    let cookieTokenExist = await VerificarExperiracionToken(urlVerificarExpiracionToken);
+    console.log(cookieTokenExist)
+
+
+    const usuarioValido = await GetUsuarioToken(urlValidateGetUsuario);
+    console.log(usuarioLogin)
+
     if (usuarioLogueado.Auth === false && usuarioValido) {
       const usuarioRespuesta = {
         id: usuarioValido.id,
@@ -96,8 +92,8 @@ const AuthProvider = ({ children }) => {
         Auth: true,
       };
       setUsuarioLogeado(usuarioRespuesta);
-    } else if (VerificarExistenciaDeToken() && !usuarioValido) {
-      const excludedPaths = ["/login", "/", "/registro", "/servicio/*"]; // Agrega aquí las rutas que quieres excluir
+    } else if (cookieTokenExist && !usuarioValido) {
+      const excludedPaths = ["/login", "/", "/registro", "/servicio/*"];
       const isExcluded = excludedPaths.some((path) =>
         matchPath({ path, exact: true }, location.pathname)
       );
@@ -122,68 +118,35 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const VerificarExistenciaDeToken = () => {
-    let jwt = window.localStorage.getItem("auth_token");
-    if (!jwt) return false;
-    return jwt;
-  };
 
+
+  //Este método no esta en uso
   const VerificarExperiracionToken = async (urlVerificarExpiracionToken) => {
     const respuesta = await get(urlVerificarExpiracionToken);
     return respuesta;
   };
 
-  const logOut = () => {
-    window.localStorage.removeItem("auth_token");
-    window.location.href = "/login";
+  const logOut = async () => {
+    try {
+      const removeCookie = await postLogout(removeCookieFromUser);
+      console.log("reemovecokiee");
+      console.log(removeCookie)
+      if (removeCookie.ok) {
+        console.log("Logout exitoso");
+        window.location.href = "/login";
+      } else {
+        console.log("Error en el logout");
+      }
+    } catch (error) {
+      console.log(`Error catch Logout ${error}`);
+    }
   };
-
-  // const submitModificarServicio = async (e, form) => {
-  //   e.preventDefault();
-
-  //   console.log("****Hola desde el modificarServicio****");
-  //   const formData = new FormData();
-  //   formData.append("id", form.id);
-  //   formData.append("nombre", form.nombre);
-  //   formData.append("descripcion", form.descripcion);
-  //   formData.append("costo", form.costo);
-  //   formData.append("file", form.file);
-  //   try {
-  //     let token = localStorage.getItem("auth_token");
-  //     const response = await fetch(`${VITE_ENDPOINT_urlBackModificaServicio}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: formData,
-  //     });
-  //     listaServiciosAdmin();
-
-  //     if (response.ok) {
-  //       toast.success(`¡Servicio: ${form.nombre} actualizado!`, {
-  //         className: "toast-success",
-  //         style: { width: "fit-content" },
-  //       });
-
-  //       window.location.hash = "#TablaServicios";
-  //     } else {
-  //       toast.error(`¡Error al actualizar ${form.nombre}!`, {
-  //         className: "toast-error",
-  //         style: { width: "fit-content" },
-  //       });
-  //       console.error("Error al modificar el servicio");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error en la solicitud:", error);
-  //   }
-  // };
 
   const data = {
     AuthTokenYUsuario,
     logOut,
     SubmitLogin,
     SubmitRegistro,
-    VerificarExistenciaDeToken,
     VerificarExperiracionToken,
     usuarioLogueado,
   };
