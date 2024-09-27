@@ -8,16 +8,28 @@
 > Modificación
 
 ## FRONT
+To do:
+- [ ] Agregar campo de búsqueda para las tablas del admin.
+- [ ] agregar import de bootstrap a los stylos de las paginas.
+- [ ] Añadir `<ErrorPage/>`
+- [ ] Crar componente de recuperar contraseña.
+- [ ] Crar Vista de recuperar contraseña.
+- [ ] Crear método de fetch al back para recuperar la contraseña.
+- [ ] Limpiar TODOS LOS console.log.
+- [ ] Mejorar textos de `<About/>`
+- [ ] Ordenar las tablas por fechad de turno.
+- [ ] Querys para filtrar turnos por busqueda (nombre/apellido - servicio)
 
+To check:
 - [ ] Añadir carga diferida de datos Lazy, Suspense.
 - [ ] Añadir paginación en las tablas de turnos.
+- [ ] Añadir react-paginator para iterar la tabla de turnos por paginación
 - [ ] Arreglar el fetch de los turnos de usuario en inicio.
 - [ ] Corregir el vh de login y registro en pantallas de >1200px.
 - [ ] Corregir los fetching de turnos de `<ListaTurnos/>` (Inicio) y `<AdminListaTurnos/>`(Admin)
 - [ ] Ordernar los turnos por StartTime.
 - [ ] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
 - [ ] Verificar que todas las alertas funcionen.
-- [ ] Añadir react-paginator para iterar la tabla de turnos por paginación
 - [⚠️]
 - [✔]
 
