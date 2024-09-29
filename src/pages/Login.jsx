@@ -59,6 +59,9 @@ const Login = () => {
               Login
             </button>
           </div>
+        <Link to={"/password-recovery"} className="password-loss">
+          Olvide mi contraseña!
+        </Link>
         </div>
       </form>
       <Link to={"/registro"} className="go-to-login">

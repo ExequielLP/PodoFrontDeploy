@@ -113,12 +113,14 @@
 }
 
 .go-to-login {
-  color: rgb(79, 125, 252);
+  color: #ec4899;
+  text-decoration: none;
   transition: color 0.15s ease-in-out;
 }
 
 .go-to-login:hover {
-  color: rgb(0, 0, 255);
+  color: #ec4899;
+  text-decoration: underline;
   transform: scale(1);
 }
 
