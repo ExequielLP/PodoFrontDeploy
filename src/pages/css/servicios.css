@@ -81,6 +81,7 @@
 }
 
 .hero-service-button {
+  text-decoration: none;
   color: #fff;
   background-color: #ff9abf;
   border-radius: 10px;

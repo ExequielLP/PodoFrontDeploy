@@ -93,6 +93,7 @@
 }
 
 .article-button {
+  text-decoration: none;
   margin: 1rem 0;
   padding: 16px;
   background-color: #ff9abf;
