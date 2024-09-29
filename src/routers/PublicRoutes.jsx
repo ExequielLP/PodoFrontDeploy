@@ -1,12 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import Loader from "../components/Loader";
-
+import PageNotFound from "../pages/PageNotFound";
 const About = lazy(() => import("../pages/About"));
 const Inicio = lazy(() => import("../pages/Inicio"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
 const Servicios = lazy(() => import("../pages/Servicios"));
+const PasswordRecovery = lazy(() => import("../pages/Password-recovery"));
 
 const PublicRoutes = () => {
   return (
@@ -52,6 +53,15 @@ const PublicRoutes = () => {
             </Suspense>
           }
         />
+        <Route
+          path="/password-recovery"
+          element={
+            <Suspense fallback={<Loader />}>
+              <PasswordRecovery />
+            </Suspense>
+          }
+        />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );

@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense, useContext } from "react";
 import ContextoAdministrador from "./../context/AuthContext";
 import Loader from "../components/Loader";
-
+import PageNotFound from "../pages/PageNotFound";
 const About = lazy(() => import("../pages/About"));
 const Inicio = lazy(() => import("../pages/Inicio"));
 const Login = lazy(() => import("../pages/Login"));
@@ -75,6 +75,7 @@ const AuthRoutes = () => {
             }
           />
         )}
+         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );
