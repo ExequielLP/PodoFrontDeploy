@@ -41,7 +41,7 @@
   width: 50%;
 }
 
-.image {
+.about-image {
   object-fit: cover;
   border-radius: 0.5rem;
   aspect-ratio: 812/556;
@@ -55,15 +55,22 @@
 }
 
 @media (max-width: 768px) {
-  .text-content>h2 {
+  .about-heading {
     font-size: 2rem;
-    line-height: 2.5rem;
   }
-}
 
-@media (min-width: 768px) {
-  .image-container {
-    margin-top: 0;
+  .about-text-content, 
+  .about-text-content-second {
+  width: 80%;
+  }
+
+  .about-image-container{
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .about-image{
+    aspect-ratio: 0.5;
   }
 }
 

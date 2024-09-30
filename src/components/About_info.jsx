@@ -16,7 +16,7 @@ const About_info = () => {
         </div>
         <div id="pdg" className="about-image-container">
           <img
-            className="image"
+            className="about-image"
             height="500"
             src="/assets/tipos-de-infecciones.webp"
             width="500"
@@ -27,7 +27,7 @@ const About_info = () => {
       <section className="section-content">
         <div id="community" className="about-image-container">
           <img
-            className="image"
+            className="about-image"
             height="500"
             src="/assets/pedicurialp.webp"
             width="500"
