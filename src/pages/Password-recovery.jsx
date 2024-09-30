@@ -26,9 +26,11 @@ export default function PasswordRecovery() {
   return (
     <main className="main-container">
     <div className="form-container">
+    <div className="border-inset">
       <h1 className="form-title">Recuperar Contraseña</h1>
       {!isSubmitted ? (
         <form onSubmit={handleSubmit} className="form">
+          
           <div>
             <label htmlFor="email" className="label">
               Correo Electrónico
@@ -62,6 +64,7 @@ export default function PasswordRecovery() {
         <Link to="/login" className="link">
           Volver al inicio de sesión
         </Link>
+      </div>
       </div>
     </div>
   </main>
