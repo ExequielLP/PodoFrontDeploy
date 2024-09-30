@@ -1,8 +1,7 @@
-.accordion {
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-  max-width: 80dvw;
-  max-width: 80vw;
+.admin-table-main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .tabla-admin {
@@ -12,6 +11,11 @@
   align-items: center;
   margin: 2rem;
   row-gap: 40px;
+}
+
+.accordion{
+  width: 80dvw;
+  width: 80vw;
 }
 
 .tabla-admin-body {

@@ -1,10 +1,3 @@
-@import "bootstrap";
-
-.accordion {
-  width: -moz-fit-content !important;
-  width: fit-content !important;
-}
-
 .tabla-user {
   display: flex;
   flex-direction: column;
