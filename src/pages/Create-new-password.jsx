@@ -28,7 +28,7 @@ const createNewPassword = () => {
     <main className="main-container">
     <div className="form-container">
     <div className="border-inset">
-      <h1 className="form-title">Recuperar Contraseña</h1>
+      <h1 className="form-title">Crear nueva contraseña</h1>
       {!isSubmitted ? (
         <form onSubmit={handleSubmit} className="form">
           
