@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <GoogleOAuthProvider clientId={CLIENT_ID}>
           <Navbar />
           <Toaster className="toast-success toast-error toast-warning" />
-          <AppRouters className="routes-container"/>
+          <AppRouters/>
           <Footer />
         </GoogleOAuthProvider>
       </BrowserRouter>

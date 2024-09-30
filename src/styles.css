@@ -50,8 +50,3 @@ ul {
     scroll-behavior: auto !important;
   }
 }
-
-.routes-container{
-  min-height: 80dvh;
-  min-height: 80vh;
-}
