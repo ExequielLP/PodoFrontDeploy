@@ -11,10 +11,10 @@
 To do:
 - [ ] Agregar campo de búsqueda para las tablas del admin.
 - [ ] agregar import de bootstrap a los stylos de las paginas.
-- [ ] Añadir `<ErrorPage/>`
-- [ ] Crar componente de recuperar contraseña.
-- [ ] Crar Vista de recuperar contraseña.
-- [ ] Crear método de fetch al back para recuperar la contraseña.
+- [✔] Añadir `<ErrorPage/>`
+- [✔] Crar componente de recuperar contraseña.
+- [✔] Crar Vista de recuperar contraseña.
+- [✔] Crear método de fetch al back para recuperar la contraseña.
 - [ ] Limpiar TODOS LOS console.log.
 - [ ] Mejorar textos de `<About/>`
 - [ ] Ordenar las tablas por fechad de turno.
