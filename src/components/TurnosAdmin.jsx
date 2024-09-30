@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import ServicesContext from "./../context/ServiceContext";
-import "./css/Tablas-Admin.css";
 import Pagination from "./Pagination";
+import SearchComponent from "./SearchComponent";
+import "./css/Tablas-Admin.css";
 
 export const TurnosAdmin = () => {
   const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
@@ -11,6 +12,17 @@ export const TurnosAdmin = () => {
 
   const [pageNumber, setPageNumber] = useState(0);
   const [pageSize, setpageSize] = useState(10)
+
+  const [searchType, setSearchType] = useState('cliente'); // Tipo de búsqueda
+  const [searchResult, setSearchResult] = useState(''); // Resultado de la búsqueda
+
+  const handleSearch = (searchValue) => {
+    // Maneja el valor de búsqueda emitido por el componente hijo
+    console.log(`Buscando ${searchType}: ${searchValue}`);
+    setSearchResult(searchValue);
+  };
+
+
   useEffect(() => {
     listaTurnosAdmin(pageNumber);
 
@@ -25,6 +37,8 @@ export const TurnosAdmin = () => {
 
 
   return (
+    <main className="admin-table-main-container">
+      <SearchComponent searchType={searchType} onSearch={handleSearch} />
     <section className="tabla-admin">
       <div className="accordion" id="accordionExample">
         <div className="accordion-item text-center">
@@ -164,5 +178,6 @@ export const TurnosAdmin = () => {
         </Link>
       </div>
     </section >
+    </main>
   );
 };
