@@ -145,11 +145,12 @@
 
   .login-text-vertical {
     font-size: 0.9rem;
-    padding-inline: 28px;
+    padding-inline: 42px;
   }
 
   .login-border-inset {
     height: auto;
+    width: calc(340px - 10px);
   }
 
   .login-input {
