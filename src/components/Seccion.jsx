@@ -8,7 +8,7 @@ const Seccion = () => {
             Pedicura a domicilio Gonnet • City bell
           </span>
           <h1 className="hero-title">
-            <span className="span">Podo Estética La Plata</span>
+            <span className="span">Pedicuría La Plata</span>
           </h1>
           <a href="#" className="hero-btn">
             Conoce Nuestros Servicios &#9660;

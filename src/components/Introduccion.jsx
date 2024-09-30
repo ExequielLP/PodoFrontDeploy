@@ -9,9 +9,9 @@ const Introduccion = () => {
         className="left-foot"
       />
 
-      <h2 className="welcome-title">Bienvenidos a Podo Estética La Plata</h2>
+      <h2 className="welcome-title">Bienvenidos a Pedicuría La Plata</h2>
       <p className="welcome-text">
-        En Podo Estética, nos dedicamos a mejorar y{" "}
+        En Pedicuría La Plata, nos dedicamos a mejorar y{" "}
         <strong>mantener la belleza de tus pies y uñas</strong>. Combinando
         productos de alta calidad con un compromiso absoluto hacia tu bienestar.
       </p>

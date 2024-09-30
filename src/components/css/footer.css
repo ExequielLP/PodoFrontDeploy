@@ -32,11 +32,11 @@
 
 .website-name {
   margin-inline: 6px;
+  font-weight: 700;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .website-name:hover {
-  font-weight: 700;
   color: #ff9abf;
 }
 
