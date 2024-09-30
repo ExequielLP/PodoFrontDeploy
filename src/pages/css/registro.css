@@ -17,21 +17,22 @@
   height: auto;
   position: relative;
   padding: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.6em;
-  background: #f6f4f1;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  /* background: #f6f4f1; */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .form-border-inset {
   height: auto;
-  border: 4px solid rgba(255, 0, 0, 0.2);
+  border: 4px solid #ff9abf;
   border-radius: 0.5em;
 }
 
 .form-vertical-advice {
-  color: #aa6b40;
-  border-right: 4px solid rgba(255, 0, 0, 0.2);
+  color: #ff9abf;
+  border-right: 4px solid #ff9abf;
+  font-weight: 600;
   font-size: 0.8rem;
   text-align: center;
   text-orientation: upright;
@@ -82,9 +83,9 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5),
     inset 0 20px 20px rgba(255, 255, 255, 0.1);
   cursor: pointer;
-  background: rgba(250, 0, 0, 0.2);
+  background: #ff9abf;
   font-weight: bold;
-  color: #aa6b40;
+  color: #fff;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
   font-family: verdana;
   text-align: center;
