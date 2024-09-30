@@ -1,17 +1,27 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './css/PasswordRecovery.css'
+import { post } from '../utils/http'
+
+const sendEmailRecovery = import.meta.env.VITE_ENDPOINT_SEND_EMAIL;
 
 export default function PasswordRecovery() {
   const [email, setEmail] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Here you would typically call an API to handle the password recovery process
     console.log('Password recovery requested for:', email)
-    setIsSubmitted(true)
+    try {
+      await post(sendEmailRecovery, { email })
+      setIsSubmitted(true)
+    } catch (err) {
+      setError('Ocurrió un error al enviar el correo. Intenta nuevamente.')
+      console.error('Error:', err)
+    }
   }
+
 
   return (
     <main className="main-container">
@@ -34,7 +44,7 @@ export default function PasswordRecovery() {
               placeholder="tu@email.com"
             />
           </div>
-          <button type="submit" className="button">
+          <button type="submit" className="hero-btn">
             Enviar Instrucciones
           </button>
         </form>
@@ -43,13 +53,13 @@ export default function PasswordRecovery() {
           <p className="success-message">
             Se han enviado las instrucciones de recuperación a tu correo electrónico.
           </p>
-          <Link href="/login" className="link">
+          <Link to="/login" className="hero-btn">
             Volver al inicio de sesión
           </Link>
         </div>
       )}
       <div className="link-container">
-        <Link href="/login" className="link">
+        <Link to="/login" className="link">
           Volver al inicio de sesión
         </Link>
       </div>
