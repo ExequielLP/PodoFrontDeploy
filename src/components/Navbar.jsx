@@ -13,7 +13,7 @@ export const Navbar = () => {
 
   return (
     <header>
-      <nav className="navbar1">
+      <nav className="navbar-styles">
         <ul className="nav-links-items">
           <li className="nav-link-item btn">
             <Link className="active-link" to="/">
@@ -31,6 +31,8 @@ export const Navbar = () => {
             className="logo"
             src="/assets/ImagenesOptimizadas/CC2E1AA6-02E9-4DF2-BBD6-8BD62A378986.webp"
             alt="Podo Estetica"
+            width={100}
+            height={100}
           />
         </Link>
         <ul className="nav-links-items">

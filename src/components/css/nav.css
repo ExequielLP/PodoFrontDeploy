@@ -2,12 +2,12 @@
   text-decoration: none;
   color: inherit;
 }
-.navbar1 {
+.navbar-styles {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #ffc5ff;
-  min-height: 140px;
+  min-height: 120px;
   text-align: center;
   padding: 0 2rem;
   position: relative;
@@ -34,8 +34,8 @@
 .logo {
   border-radius: 50%;
   filter: drop-shadow(0 0 0.75rem #ff9abf);
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
   object-fit: cover;
   object-position: center;
   transition: transform 0.3s ease, filter 0.3s ease;
@@ -99,7 +99,7 @@
 }
 
 @media (max-width: 992px) {
-  .navbar1 {
+  .navbar-styles {
     flex-direction: row;
     position: relative;
   }
