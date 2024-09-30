@@ -37,3 +37,7 @@
     box-shadow: 0 0 0 2px #ff9abf;
   }
 
+  .search-selector:active {
+    background-color: #ff9abf;
+    color: #fff;
+  }

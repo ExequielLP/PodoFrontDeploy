@@ -2,13 +2,14 @@ import { useState } from "react";
 import './css/search-component.css'
 
 const services = [
-  { value: "ONICOMICOSIS", label: "ONICOMICOSIS" },
-  { value: "SERVICIO GENERAL", label: "SERVICIO GENERAL" },
-  { value: "REFLEXOLOGÍA", label: "REFLEXOLOGÍA" },
   { value: "LÁSER DE ALTA FRECUENCIA", label: "LÁSER DE ALTA FRECUENCIA" },
-  { value: "SPA DE PIES", label: "SPA DE PIES" },
   { value: "MÁQUINA DE MASAJES DE PIES", label: "MÁQUINA DE MASAJES DE PIES" },
+  { value: "ONICOMICOSIS", label: "ONICOMICOSIS" },
+  { value: "REFLEXOLOGÍA", label: "REFLEXOLOGÍA" },
+  { value: "SERVICIO GENERAL", label: "SERVICIO GENERAL" },
+  { value: "SPA DE PIES", label: "SPA DE PIES" },
 ]
+const servicesOrderASC= services.sort((a, b) => (a.value > b.value ? 1 : -1));
 
 const SearchComponent = ({searchType, onSearch}) => {
     const [searchValue, setSearchValue] = useState('')
@@ -41,11 +42,11 @@ const SearchComponent = ({searchType, onSearch}) => {
         onChange={handleServiceChange}
         className="search-filter"
         >
-          <option value="" disabled>
+          <option value="" disabled placeholder="Filtrar por servicio">
             Filtrar por servicio
           </option>
           {services.map((service) => (
-            <option className="search-selector" key={service.value} value={service.value}>
+            <option className="search-selector" key={servicesOrderASC.value} value={servicesOrderASC.value}>
               {service.label}
             </option>
           ))}

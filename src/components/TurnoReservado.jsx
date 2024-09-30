@@ -14,7 +14,7 @@ const TurnoReservado = ({ listaTurnos }) => {
       <tr>
         <td>{listaTurnos.nombreServicio}</td>
         <td>{formattedStartTime}</td>
-        <td>{listaTurnos.costo}</td>
+        <td>${listaTurnos.costo}</td>
         <td>
           <button
             className="tabla-turno-btn"
