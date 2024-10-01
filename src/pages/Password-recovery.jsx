@@ -14,7 +14,7 @@ export default function PasswordRecovery() {
     e.preventDefault()
     console.log('Password recovery requested for:', email)
     try {
-      await post(sendEmailRecovery, { email })
+      await post(sendEmailRecovery + email)
       setIsSubmitted(true)
     } catch (err) {
       setError('Ocurrió un error al enviar el correo. Intenta nuevamente.')
@@ -25,48 +25,48 @@ export default function PasswordRecovery() {
 
   return (
     <main className="main-container">
-    <div className="form-container">
-    <div className="border-inset">
-      <h1 className="form-title">Recuperar Contraseña</h1>
-      {!isSubmitted ? (
-        <form onSubmit={handleSubmit} className="form">
-          
-          <div>
-            <label htmlFor="email" className="label">
-              Correo Electrónico
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="input"
-              placeholder="tu@email.com"
-            />
+      <div className="form-container">
+        <div className="border-inset">
+          <h1 className="form-title">Recuperar Contraseña</h1>
+          {!isSubmitted ? (
+            <form onSubmit={handleSubmit} className="form">
+
+              <div>
+                <label htmlFor="email" className="label">
+                  Correo Electrónico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="input"
+                  placeholder="tu@email.com"
+                />
+              </div>
+              <button type="submit" className="hero-btn">
+                Enviar Instrucciones
+              </button>
+            </form>
+          ) : (
+            <div className="text-center">
+              <p className="success-message">
+                Se han enviado las instrucciones de recuperación a tu correo electrónico.
+              </p>
+              <Link to="/login" className="hero-btn">
+                Volver al inicio de sesión
+              </Link>
+            </div>
+          )}
+          <div className="link-container">
+            <Link to="/login" className="link">
+              Volver al inicio de sesión
+            </Link>
           </div>
-          <button type="submit" className="hero-btn">
-            Enviar Instrucciones
-          </button>
-        </form>
-      ) : (
-        <div className="text-center">
-          <p className="success-message">
-            Se han enviado las instrucciones de recuperación a tu correo electrónico.
-          </p>
-          <Link to="/login" className="hero-btn">
-            Volver al inicio de sesión
-          </Link>
         </div>
-      )}
-      <div className="link-container">
-        <Link to="/login" className="link">
-          Volver al inicio de sesión
-        </Link>
       </div>
-      </div>
-    </div>
-  </main>
+    </main>
   )
 }
