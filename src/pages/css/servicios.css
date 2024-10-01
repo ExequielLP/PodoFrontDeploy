@@ -1,6 +1,6 @@
 @import "bootstrap";
 .hero-service-section {
-  margin-top: 2rem;
+  margin: 2rem 0;
   height: auto;
   min-height: 800px;
   display: flex;
@@ -15,7 +15,8 @@
   justify-content: center;
   align-items: center;
   text-align: left;
-  box-shadow: 5px 5px 10px 1px #f6dbd6;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 16px 16px 0 0;
 }
 
@@ -23,21 +24,24 @@
   object-fit: cover;
   object-position: center;
   aspect-ratio: 16 / 9;
+  height: auto;
   width: 100%;
   border-radius: inherit;
 }
 
-.hero-img2 {
+/* .hero-img2 {
   position: absolute;
   animation: fade 1s ease-in-out;
   object-fit: cover;
   object-position: center;
   filter: blur(50px);
   z-index: -10;
-}
+} */
 
 .hero-service-text-container {
-  margin: 1rem;
+  width: 100%;
+  border: 4px solid #ff9abf;
+  padding: 1rem 2rem;
   font-family: system-ui, -apple-system;
 }
 
@@ -47,14 +51,16 @@
   font-weight: 800;
   letter-spacing: 0.2rem;
   text-transform: uppercase;
+  margin: 1rem;
 }
 
 .hero-service-text {
-  color: #050505;
+  color: #3d3d3d;
   font-weight: 300;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.8rem;
-  margin: 1rem 0;
+  margin: 1rem;
+  text-wrap: balance;
 }
 
 .service-price-section {

@@ -31,11 +31,11 @@ const Servicios = () => {
       <section className="hero-service-section">
         <div className="hero-service-container">
           <img className="hero-service-img" src={imagenURL} alt="Spa de pies" />
-          <img
+          {/* <img
             className="hero-img2"
             src="/assets/ImagenesOptimizadas/spa-treatment-product-female-feet-hand-spa_1150-37700.jpg.url"
             alt="Spa de pies"
-          />
+          /> */}
           <div className="hero-service-text-container">
             <h5 className="hero-service-title">{servicio.nombre}</h5>
             <p className="hero-service-text">{servicio.descripcion}</p>

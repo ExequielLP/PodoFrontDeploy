@@ -20,7 +20,8 @@
   justify-content: space-between;
   align-items: center;
   text-align: left;
-  box-shadow: 5px 5px 10px 1px #f6dbd6;
+  box-shadow: 5px 5px 10px 1px #F3CAAC; 
+  /* #F3CAAC #E4AE92 */
   border-radius: 16px 16px 0 0;
   transition: transform 0.3s, opacity 0.3s;
   max-height: 500px;
@@ -37,15 +38,6 @@
   aspect-ratio: 16 / 9;
   width: 100%;
   border-radius: inherit !important;
-}
-
-.service-img-bg {
-  position: absolute;
-  animation: fade 1s ease-in-out;
-  object-fit: cover;
-  object-position: center;
-  filter: blur(50px);
-  z-index: -10;
 }
 
 .article-text-container {
@@ -67,7 +59,7 @@
   font-size: 1.2rem;
   line-height: 1.8rem;
   margin-bottom: 1rem;
-  color: #050505;
+  color: #3d3d3d;
 }
 
 .article-text {
@@ -76,6 +68,7 @@
   max-height: 4em;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #3d3d3d;
 }
 
 .article-text-price,
