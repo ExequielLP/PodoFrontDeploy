@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ClockIcon, MailIcon, MapPinIcon, PhoneIcon, SendIcon } from "../icons/index";
+import { ClockIcon, LoaderIcon, MailIcon, MapPinIcon, PhoneIcon, SendIcon } from "../icons/index";
 import './css/contact-info.css'
 
 const ContactInfo = () => {
@@ -159,7 +159,7 @@ const ContactInfo = () => {
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="loader-icon" />
+                    <LoaderIcon className="loader-icon" />
                     Enviando...
                   </>
                 ) : isSubmitted ? (
