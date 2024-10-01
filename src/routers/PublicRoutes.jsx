@@ -8,6 +8,7 @@ const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
 const Servicios = lazy(() => import("../pages/Servicios"));
 const PasswordRecovery = lazy(() => import("../pages/Password-recovery"));
+const CreateNewPassword = lazy(() => import("../pages/Create-new-password"));
 
 const PublicRoutes = () => {
   return (
@@ -58,6 +59,14 @@ const PublicRoutes = () => {
           element={
             <Suspense fallback={<Loader />}>
               <PasswordRecovery />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/create-new-password/:jwt"
+          element={
+            <Suspense fallback={<Loader />}>
+              <CreateNewPassword />
             </Suspense>
           }
         />

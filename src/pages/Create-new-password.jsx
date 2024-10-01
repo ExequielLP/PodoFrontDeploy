@@ -1,17 +1,65 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import './css/PasswordRecovery.css'
+import { useEffect, useState } from "react";
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { put } from '../utils/http'
+import './css/PasswordRecovery.css'
 
 const sendNewPassword = import.meta.env.VITE_ENDPOINT_SEND_NEW_PASSWORD;
+const isTokenValid = import.meta.env.VITE_ENDPOINT_IS_PASSWORD_TOKEN_VALID;
 
 const createNewPassword = () => {
 
     const [password, setPassword] = useState('')
     const [newPassword, setNewPassword] = useState('')
     const [isSubmitted, setIsSubmitted] = useState(false)
-    const [error, setError] = useState('')
+    const [formError, setFormError] = useState('')
+    const { jwt } = useParams();
+    const navigate = useNavigate();
+
+    const getCookieForPassword = async (url) => {
+      try {
+        const respuesta = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include" // Asegúrate de incluir las credenciales
+        });
+    
+        if (!respuesta.ok) {
+          throw new Error(`${respuesta.status} error en fetch: ${respuesta.statusText}`);
+        }
+    
+        const data = await respuesta.json();
+        return data;
+      } catch (err) {
+        console.error("Error al obtener el cookie:", err);
+        throw err;
+      }
+    };    
+      
+    useEffect(() => {
+      const jwtIsValid = async () => {
+        try {
+          const respuesta = await getCookieForPassword(`${isTokenValid}?jwt=${jwt}`);
+          console.log('la respuesta');
+          console.log(respuesta);
+          // if (respuesta.ok) {
+          //   sacar el id del usuario para enviar al backend con las contraseñas
+          // }
+          return respuesta;
+        } catch (error) {
+          console.error("Error al validar el JWT:", error);
+          navigate('*');
+        }
+      };
   
+      if (!jwt) {
+        navigate('*');
+      } else {
+        jwtIsValid();
+      }
+    }, [jwt, navigate]);
+
     const handleSubmit = async (e) => {
       e.preventDefault()
       console.log('Password recovery requested for:', password)
@@ -19,7 +67,7 @@ const createNewPassword = () => {
         await put(sendNewPassword, { password })
         setIsSubmitted(true)
       } catch (err) {
-        setError('Ocurrió un error al enviar el correo. Intenta nuevamente.')
+        setFormError('Ocurrió un error al enviar el correo. Intenta nuevamente.')
         console.error('Error:', err)
       }
     }
