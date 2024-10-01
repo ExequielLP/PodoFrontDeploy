@@ -9,6 +9,7 @@ import ListaTurnos from "../components/ListaTurnos";
 import "./css/inicio.css";
 import ServicesContext from "../context/ServiceContext";
 import Loader from "../components/Loader";
+import ContactInfo from "../components/ContactInfo";
 
 const Intro = lazy(() => import("../components/Introduccion"));
 const Section = lazy(() => import("../components/Seccion"));
@@ -49,6 +50,7 @@ const Inicio = () => {
           ) : null}
         </section>
         <Cards listaServicios={listaServicios} />
+        <ContactInfo/>
       </Suspense>
     </>
   );
