@@ -1,13 +1,18 @@
+import { getDayInitials, formatTime } from "../utils/dateFormatter";
 import { ClockIcon } from "../icons";
 import "./css/day-work-hours.css";
 
 export const Appointments = ({ turno, date, bookAppointment }) => {
   const dayName = date.toLocaleDateString("es-ES", { weekday: "long" });
-  console.log(turno);
+
+  const sortedTurnos = turno.sort(
+    (a, b) => new Date(a.startTime) - new Date(b.startTime)
+  );
+
   return (
     <div className="day-wrapper">
       {dayName !== "domingo" && dayName !== "sábado" ? (
-        turno.map((app) => (
+        sortedTurnos.map((app) => (
           <div
             key={app.id}
             className={`slot-container ${
@@ -15,10 +20,10 @@ export const Appointments = ({ turno, date, bookAppointment }) => {
             }`}
           >
             <div className="time-icon-container">
-              <ClockIcon className="time-icon" />
-              <span>
-                {new Date(app.startTime).toLocaleTimeString()}hs -{" "}
-                {new Date(app.endTime).toLocaleTimeString()}hs
+              <ClockIcon color="#ec4899" />
+              <span className="time-text">
+                {getDayInitials(app.startTime)} {formatTime(app.startTime)} -{" "}
+                {formatTime(app.endTime)}
               </span>
             </div>
             <button
@@ -30,7 +35,7 @@ export const Appointments = ({ turno, date, bookAppointment }) => {
               onClick={() => bookAppointment(app.id)}
               disabled={app.estado}
             >
-              {!app.estado ? "Reservar" : "No disponible"}
+              {!app.estado ? "Reservar" : "Reservado"}
             </button>
           </div>
         ))
