@@ -1,0 +1,54 @@
+.day-wrapper {
+    margin: 1rem 0;
+  }  
+
+/* Contenedor de slot */
+.slot-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem; /* p-3 */
+  border-radius: 0.5rem; /* rounded-lg */
+  transition: opacity 0.3s; /* opacity-50 */
+}
+.slot-container-bg{
+    background-color: #fee2e2; /* bg-pink-100 */
+}
+
+.slot-container-unavailable {
+  opacity: 0.5; /* opacity-50 */
+}
+
+/* Contenedor de tiempo e ícono */
+.time-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.time-icon {
+  height: 1.25rem; /* h-5 */
+  width: 1.25rem; /* w-5 */
+  color: #ec4899; /* text-pink-500 */
+  margin-right: 0.5rem; /* mr-2 */
+}
+
+/* Botón de reserva */
+.reserve-button {
+  padding: 0.25rem 0.75rem; /* py-1 px-3 */
+  border-radius: 0.25rem; /* rounded */
+  color: white;
+  transition: background-color 0.3s; /* transition duration-300 */
+}
+
+.reserve-button-available {
+  background-color: #ec4899; /* bg-pink-500 */
+}
+
+.reserve-button-available:hover {
+  background-color: #db2777; /* hover:bg-pink-600 */
+}
+
+.reserve-button-unavailable {
+  background-color: #9ca3af; /* bg-gray-400 */
+  cursor: not-allowed; /* cursor-not-allowed */
+}
