@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { ChevronRightIcon } from '../icons/index';
 import './css/breadcrumb.css';
 
-const Breadcrumb = ({ serviceData}) => {
-    const serviceTitle = serviceData || 'Hola mundo'
+const Breadcrumb = ({ title}) => {
+    const serviceTitle = title || 'Hola mundo'
   return (
     <nav className="breadcrumb-nav" aria-label="Breadcrumb">
       <ol className="breadcrumb-list">
@@ -16,16 +16,16 @@ const Breadcrumb = ({ serviceData}) => {
           </Link>
           <ChevronRightIcon className="breadcrumb-icon" />
         </li>
-        <li className="breadcrumb-item">
+        {/* <li className="breadcrumb-item">
           <Link
-            to="/servicios"
+            to="/"
             className={`breadcrumb-link`}
           >
             Servicios
           </Link>
           <ChevronRightIcon className="breadcrumb-icon" />
-        </li>
-        <li>{serviceTitle}</li>
+        </li> */}
+        <li className='current-link'>{serviceTitle}</li>
       </ol>
     </nav>
   );
