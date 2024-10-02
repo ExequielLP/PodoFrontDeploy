@@ -1,11 +1,10 @@
 @import "bootstrap";
-.hero-service-section {
-  margin: 2rem 0;
-  height: auto;
-  min-height: 800px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.service-container {
+  max-width: 1200px; /* Aproximadamente el tamaño de mx-auto en Tailwind */
+  margin-left: auto; /* mx-auto */
+  margin-right: auto; /* mx-auto */
+  margin-top: 2rem; /* mt-8 */
+  padding: 1rem; /* p-4 */
 }
 
 .hero-service-container {

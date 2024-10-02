@@ -1,3 +1,4 @@
+export { CalendarDownIcon} from './CalendarDownIcon'
 export { ClockIcon} from './ClockIcon'
 export { ChevronRightIcon } from './ChevronRightIcon'
 export { LoaderIcon} from './LoaderIcon'
