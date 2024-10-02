@@ -1,14 +1,15 @@
 import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import ContextoAdministrador from "../context/AuthContext";
-import useTitle from "./../hooks/useTitle";
-import { priceFormatter } from "../utils/priceFormatter";
-import { Calendario } from "../components/Calendario";
-import "./css/servicios.css";
 import ServicesContext from "../context/ServiceContext";
-import Loader from "./../components/Loader";
+import useTitle from "./../hooks/useTitle";
+import { Calendario } from "../components/Calendario";
 import Breadcrumb from "../components/Breadcrumb";
+import Loader from "./../components/Loader";
+import { priceFormatter } from "../utils/priceFormatter";
 import ServiceCard from "../components/ServiceCard";
+import "./css/servicios.css";
+import { Metrics } from "../components/Metrics";
 
 const Servicios = () => {
   const { usuarioLogueado } = useContext(ContextoAdministrador);
@@ -40,6 +41,7 @@ const Servicios = () => {
         {usuarioLogueado.Auth === true &&
           <Calendario servicioId={servicio.id} />
         }
+        <Metrics/>
       </main>
     </>
   );

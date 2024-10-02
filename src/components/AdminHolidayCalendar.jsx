@@ -1,7 +1,6 @@
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./css/calendario.css";
-import "./css/calendar-time-section.css";
 
 export const AdminHolidayCalendar = ({
   date,
@@ -9,9 +8,10 @@ export const AdminHolidayCalendar = ({
   holidayList,
 }) => {
   return (
-    <main className="calendar-section">
+    <section className="calendar-section">
+      <h2 className="calendar-section-title">Agregar Feriados</h2>
       <Calendar />
-      <section className="admin-holiday-calendar">
+      <div className="calendar-section-container">
         {holidayList ? (
           holidayList.map((holiday) => (
             <div key={holiday.id} className="date-container">
@@ -32,7 +32,7 @@ export const AdminHolidayCalendar = ({
             Aún no cargaste tus feriados
           </p>
         )}
-      </section>
-    </main>
+      </div>
+    </section>
   );
 };

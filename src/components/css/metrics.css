@@ -1,0 +1,52 @@
+.metrics-container {
+  margin-top: 3rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.metrics-container {
+  background-color: #ffffff;
+}
+
+.metrics-title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.metrics-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.metrics-feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.metrics-icon {
+  margin-bottom: 0.5rem;
+}
+
+.metrics-feature-title {
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.75rem; /* 28px */
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.metrics-feature-description {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
