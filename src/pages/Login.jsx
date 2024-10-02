@@ -6,7 +6,7 @@ import "./css/login.css";
 import { SignInWithGoogle } from "../components/SignInWithGoogle";
 
 const formInciallogin = {
-  userName: "",
+  email: "",
   password: "",
 };
 
@@ -36,10 +36,10 @@ const Login = () => {
           <div className="login-input">
             <input
               className="userName-input"
-              type="text"
+              type="email"
               placeholder="Nombre de usuario"
               id="loginUserName"
-              name="userName"
+              name="email"
               onChange={handleChangelogin}
             />
             <input

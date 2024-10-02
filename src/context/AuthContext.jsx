@@ -12,11 +12,12 @@ const urlCrearUsuario = import.meta.env.VITE_ENDPOINT_urlCrearUsuario;
 const urlValidateGetUsuario = import.meta.env.VITE_ENDPOINT_urlValidateGetUsuario;
 const removeCookieFromUser = import.meta.env.VITE_ENDPOINT_removeCookie;
 const usuarioLogin = {
+  Auth: false,
+  email: "",
   id: "",
-  userName: "",
   jwt: "",
   Rol: "",
-  Auth: false,
+  userName: "",
 };
 
 const ContextoAdministrador = createContext();
@@ -57,11 +58,12 @@ const AuthProvider = ({ children }) => {
     try {
       const respuesta = await post(urlPostLogin, formlogin);
       const usuarioRespuesta = {
+        Auth: true,
+        email: respuesta.email,
         id: respuesta.id,
-        userName: respuesta.userName,
         jwt: respuesta.jwt,
         Rol: respuesta.rol,
-        Auth: true,
+        userName: respuesta.userName,
       };
       setUsuarioLogeado(usuarioRespuesta);
       window.location.href = "/";
@@ -86,7 +88,7 @@ const AuthProvider = ({ children }) => {
     if (usuarioLogueado.Auth === false && usuarioValido) {
       const usuarioRespuesta = {
         id: usuarioValido.id,
-        userName: usuarioValido.userName,
+        email: usuarioValido.email,
         jwt: usuarioValido.jwt,
         Rol: usuarioValido.rol,
         Auth: true,
