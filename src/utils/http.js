@@ -133,3 +133,25 @@ export const put = async (url) => {
     console.log(`Error catch de put [PUT HTTPS]: ${error}`);
   }
 };
+
+export const putWithPassword = async (url, data) => {
+  const fetchConfig = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify(data),
+  };
+
+  try {
+    const response = await fetch(url, fetchConfig);
+
+    if (!response.ok) {
+      throw new Error(
+        `${response.status} error en fetch [PUT HTTP]: ${response.statusText}`
+      );
+    }
+    return response;
+  } catch (error) {
+    console.log(`Error catch de put [PUT HTTPS]: ${error}`);
+  }
+};
