@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { priceFormatter } from '../utils/priceFormatter'
 import ServicesContext from "./../context/ServiceContext";
 import "./css/Tablas-Admin.css";
 
@@ -78,7 +79,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
                           {servicio.descripcion}
                         </td>
                         <td className="m-auto p-4 service-price">
-                          ${servicio.costo}
+                          {priceFormatter(servicio.costo)}
                         </td>
                         <td className="m-auto p-4">
                           {servicio.estado === true ? (

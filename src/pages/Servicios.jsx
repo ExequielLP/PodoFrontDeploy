@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import ContextoAdministrador from "../context/AuthContext";
 import useTitle from "./../hooks/useTitle";
+import { priceFormatter } from '../utils/priceFormatter';
 import { Calendario } from "../components/Calendario";
 import "./css/servicios.css";
 import ServicesContext from "../context/ServiceContext";
@@ -42,7 +43,7 @@ const Servicios = () => {
             <div className="service-price-section">
               <p className="hero-service-text-price">
                 Valor del servicio:
-                <small className="service-price">${servicio.costo}</small>
+                <small className="service-price">{priceFormatter(servicio.costo)}</small>
               </p>
             </div>
           </div>

@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import { format } from "date-fns";
+import {priceFormatter} from '../utils/priceFormatter';
 import ServicesContext from "../context/ServiceContext";
 
 const TurnoReservado = ({ listaTurnos }) => {
@@ -14,7 +15,7 @@ const TurnoReservado = ({ listaTurnos }) => {
       <tr>
         <td>{listaTurnos.nombreServicio}</td>
         <td>{formattedStartTime}</td>
-        <td>${listaTurnos.costo}</td>
+        <td>{priceFormatter(listaTurnos.costo)}</td>
         <td>
           <button
             className="tabla-turno-btn"

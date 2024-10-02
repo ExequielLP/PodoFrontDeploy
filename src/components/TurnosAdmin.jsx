@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
+import { priceFormatter } from '../utils/priceFormatter'
 import ServicesContext from "./../context/ServiceContext";
 import Pagination from "./Pagination";
 import SearchComponent from "./SearchComponent";
@@ -107,7 +108,7 @@ export const TurnosAdmin = () => {
                               )}
                             </td>
                             <td className="m-auto p-4 service-price">
-                              ${turno.costo}
+                              {priceFormatter(turno.costo)}
                             </td>
                             <td className="m-auto p-4">
                               {turno.estado === true ? (
