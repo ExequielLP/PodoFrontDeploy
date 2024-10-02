@@ -1,4 +1,5 @@
 export { ClockIcon} from './ClockIcon'
+export { ChevronRightIcon } from './ChevronRightIcon'
 export { LoaderIcon} from './LoaderIcon'
 export { MailIcon} from './MailIcon'
 export { MapPinIcon} from './MapPinIcon'
