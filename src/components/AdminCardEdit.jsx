@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
+import { NumericFormat } from "react-number-format";
 import ServicesContext from "../context/ServiceContext";
 import "./css/EditCard.css";
 
@@ -90,13 +91,22 @@ export const AdminCardEdit = ({ servicio }) => {
             onChange={handleServiceChange}
           />
           <div className="input-with-symbol">
-            <span>$</span>
-            <input
-              type="number"
+            <NumericFormat
               name="costo"
               value={form.costo}
               className="service-price-edit service-price-input"
-              onChange={handleServiceChange}
+              thousandSeparator={true}
+              prefix={"$"}
+              decimalScale={2}
+              fixedDecimalScale={true}
+              allowNegative={false}
+              onValueChange={(values) => {
+                const { value } = values;
+                setForm((prevForm) => ({
+                  ...prevForm,
+                  costo: value,
+                }));
+              }}
             />
           </div>
         </div>

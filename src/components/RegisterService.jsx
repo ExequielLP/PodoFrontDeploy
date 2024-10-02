@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { NumericFormat } from "react-number-format";
 import ServicesContext from "../context/ServiceContext";
 import useTitle from "../hooks/useTitle";
 import "./css/Admin-buttons.css";
@@ -17,10 +18,13 @@ export const RegisterService = () => {
   });
 
   const handleChange = (e) => {
+    console.log(e.target)
     setform({
       ...form,
       [e.target.name]: e.target.value,
     });
+    console.log(form)
+    console.log(e)
   };
 
   const handleImageChange = (e) => {
@@ -64,14 +68,26 @@ export const RegisterService = () => {
             <label htmlFor="costo" className="form-label">
               Costo
             </label>
-            <input
+            <NumericFormat
               className="form-service-input"
               id="costo"
-              type="number"
               name="costo"
               placeholder="$ ARS"
-              aria-label="Costo  del servicio de podología"
-              onChange={handleChange}
+              aria-label="Costo del servicio de podología"
+              thousandSeparator={true}
+              prefix={"$ "}
+              decimalScale={2}
+              fixedDecimalScale={true}
+              allowNegative={false}
+              onValueChange={(values) => {
+                const { value } = values;
+                handleChange({
+                  target: {
+                    name: "costo",
+                    value: value,
+                  },
+                });
+              }}
             />
             <label htmlFor="imagen" className="form-label">
               Imagen del sevicio
