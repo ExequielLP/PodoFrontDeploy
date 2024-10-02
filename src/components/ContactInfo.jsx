@@ -48,7 +48,7 @@ const ContactInfo = () => {
       <div className="contact-container">
         <h2 className="contact-title">Contáctanos</h2>
         <div className="contact-grid">
-          <div className="contact-info-card">
+          <div className="contact-info-container">
             <h3 className="contact-info-title">Información de Contacto</h3>
             <ul className="contact-info-list">
               <li className="contact-info-item">
@@ -79,9 +79,9 @@ const ContactInfo = () => {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="form-container"
+            className="contact-form-container"
           >
-            <h3 className="form-title">Envíanos un Mensaje</h3>
+            <h3 className="contact-form-title">Envíanos un Mensaje</h3>
             <div className="form-fields">
               <div className="form-field">
                 <label htmlFor="name" className="form-label">

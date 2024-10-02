@@ -1,5 +1,5 @@
 .contact-section {
-  background-color: #F6F5F2;
+  background-color: #ffdcfa;
   border-radius: 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -16,8 +16,9 @@
 
 .contact-title {
   color: #ff9abf;
+  font-family: "Onest";
   font-size: 2.2rem;
-  font-weight: 700;
+  font-weight: 800;
   font-weight: bold;
   line-height: 1.2;
   margin-bottom: 2rem;
@@ -36,26 +37,27 @@
   }
 }
 
-.contact-info-card,
-.contact-form {
-  background-color: #ffffff;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.contact-info-container,
+.contact-form-container {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .contact-info-title,
 .contact-form-title {
-  font-size: 1.25rem;
+  font-family: "Onest";
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #d63384;
-  margin-bottom: 1rem;
+  color: #ff9abf;
+  margin-bottom: 1.5rem;
 }
 
 .contact-info-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
   list-style: none;
   margin-top: 2rem;
   padding: 0;
@@ -69,10 +71,10 @@
 }
 
 .contact-icon-wrapper {
-  background-color: #fee2e2; /* bg-pink-100 */
-  padding: 0.75rem; /* p-3 */
-  border-radius: 9999px; /* rounded-full */
-  margin-right: 1rem; /* mr-4 */
+  background-color: #fee2e2;
+  padding: 0.75rem;
+  border-radius: 9999px;
+  margin-right: 1rem;
 }
 
 .contact-icon {
@@ -88,20 +90,6 @@
 
 .hover-link:hover {
   color: #ec4899;
-}
-
-.form-container {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-}
-
-.form-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #ec4899;
-  margin-bottom: 1.5rem;
 }
 
 .form-fields {
@@ -154,13 +142,13 @@
   transition: background-color 0.3s;
   gap: 10px;
 }
-/*
-.submit-button:hover {
-  background-color: #db2777;
-} */
 
 .submit-button:disabled {
   opacity: 0.5;
+}
+
+.send-icon {
+  margin-left: 0.5rem;
 }
 
 .loader-icon {
@@ -177,6 +165,3 @@
   }
 }
 
-.send-icon {
-  margin-left: 0.5rem;
-}
