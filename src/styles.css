@@ -1,4 +1,19 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Dancing+Script&display=swap');
+
+:root {
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Lato', sans-serif;
+  --font-accent: 'Dancing Script', cursive;
+  
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-primary: #FF69B4;
+  --color-nav-links: #fefefe;
+  
+  --base-font-size: 16px;
+  --scale-ratio: 1.25;
+}
 
 * {
   padding: 0;
@@ -6,47 +21,221 @@
   box-sizing: border-box;
 }
 
+/* Base styles */
+html {
+  font-size: var(--base-font-size);
+}
+
 body {
-  margin: auto;
-  line-height: 1.5;
-  box-sizing: border-box;
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-text);
+  /* box-sizing: border-box;
+  margin: auto; */
 }
 
 img {
   max-width: 100%;
 }
 
-p {
-  max-width: 65ch;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
   text-wrap: balance;
 }
 
+h1 {
+  font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+  letter-spacing: -0.5px;
+}
+
+h2 {
+  font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+}
+
+h3 {
+  font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio));
+}
+
+h4 {
+  font-size: calc(var(--base-font-size) * var(--scale-ratio));
+}
+
+h5 {
+  font-size: var(--base-font-size);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h6 {
+  font-size: calc(var(--base-font-size) / var(--scale-ratio));
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+p {
+  max-width: 65ch;
+  margin-bottom: 1rem;
+}
+
 a {
+  color: var(--color-primary);
   text-decoration: none;
-  color: inherit;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: darken(var(--color-primary), 15%);
+  text-decoration: none;
+}
+
+/* a:focus{
+  color: darken(var(--color-primary), 15%);
+  text-decoration: underline;
+} */
+
+/* Lists */
+ul, ol {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  list-style-type: none !important;
 }
 
 li {
   text-decoration: none !important;
+  margin-bottom: 0.5rem;
 }
 
-ul {
-  list-style-type: none !important;
+/* Blockquotes */
+blockquote {
+  font-family: var(--font-accent);
+  font-size: calc(var(--base-font-size) * var(--scale-ratio));
+  font-style: italic;
+  border-left: 4px solid var(--color-primary);
+  padding-left: 1rem;
+  margin: 1rem 0;
 }
+
+/* Buttons */
+button, .button {
+  font-family: var(--font-body);
+  font-size: var(--base-font-size);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, .button:hover {
+  background-color: darken(var(--color-primary), 10%);
+}
+
+/* Form elements */
+input, textarea, select {
+  font-family: var(--font-body);
+  font-size: var(--base-font-size);
+  line-height: 1.5;
+  padding: 0.5rem;
+}
+
+label {
+  font-weight: 700;
+}
+
+/* Utility classes */
+.text-center {
+  text-align: center;
+}
+
+.text-accent {
+  font-family: var(--font-accent);
+  font-size: calc(var(--base-font-size) * var(--scale-ratio));
+}
+
+.text-small {
+  font-size: calc(var(--base-font-size) / var(--scale-ratio));
+}
+
+.text-large {
+  font-size: calc(var(--base-font-size) * var(--scale-ratio));
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.color-text {
+  color: var(--color-text);
+}
+
+.color-text-light {
+  color: var(--color-text-light);
+}
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  :root {
+    --base-font-size: 14px;
+  }
+
+  h1 {
+    font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio)); /* ~27.34px */
+  }
+
+  h2 {
+    font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio)); /* ~21.88px */
+  }
+
+  h3 {
+    font-size: calc(var(--base-font-size) * var(--scale-ratio)); /* ~17.5px */
+  }
+}
+
 @media (prefers-reduced-motion) {
   *,
   *::before,
   *::after {
     animation-duration: 0s !important;
-    /* additional recommendation */
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* High contrast and focus styles for accessibility */
+@media (prefers-contrast: high) {
+  body {
+    --color-text: #000000;
+    --color-text-light: #333333;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
+
+*:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
