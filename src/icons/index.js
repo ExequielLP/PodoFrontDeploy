@@ -1,13 +1,15 @@
-export { AwardIcon} from './AwardIcon'
-export { CalendarDownIcon} from './CalendarDownIcon'
-export { ClockIcon} from './ClockIcon'
-export { ChevronRightIcon } from './ChevronRightIcon'
-export { LoaderIcon} from './LoaderIcon'
-export { MailIcon} from './MailIcon'
-export { MapPinIcon} from './MapPinIcon'
-export { PasswordIconHide } from './PasswordIconHide'
-export { PasswordIconShow } from './PasswordIconShow'
-export { PhoneIcon } from './PhoneIcon'
-export { SendIcon } from './SendIcon'
-export { StarIcon } from './StarIcon'
-export { UserIcon } from './UserIcon'
+export { AwardIcon } from "./AwardIcon";
+export { CalendarDownIcon } from "./CalendarDownIcon";
+export { ClockIcon } from "./ClockIcon";
+export { CloseIcon } from "./CloseIcon";
+export { ChevronRightIcon } from "./ChevronRightIcon";
+export { LoaderIcon } from "./LoaderIcon";
+export { MailIcon } from "./MailIcon";
+export { MapPinIcon } from "./MapPinIcon";
+export { MenuIcon } from "./MenuIcon";
+export { PasswordIconHide } from "./PasswordIconHide";
+export { PasswordIconShow } from "./PasswordIconShow";
+export { PhoneIcon } from "./PhoneIcon";
+export { SendIcon } from "./SendIcon";
+export { StarIcon } from "./StarIcon";
+export { UserIcon } from "./UserIcon";
