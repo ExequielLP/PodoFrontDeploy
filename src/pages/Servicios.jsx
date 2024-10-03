@@ -10,6 +10,7 @@ import { priceFormatter } from "../utils/priceFormatter";
 import ServiceCard from "../components/ServiceCard";
 import "./css/servicios.css";
 import { Metrics } from "../components/Metrics";
+import { RelatedServices } from "../components/RelatedServices";
 
 const Servicios = () => {
   const { usuarioLogueado } = useContext(ContextoAdministrador);
@@ -41,6 +42,7 @@ const Servicios = () => {
         {usuarioLogueado.Auth === true &&
           <Calendario servicioId={servicio.id} />
         }
+        <RelatedServices/>
         <Metrics/>
       </main>
     </>
