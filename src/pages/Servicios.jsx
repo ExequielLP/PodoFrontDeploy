@@ -11,6 +11,7 @@ import ServiceCard from "../components/ServiceCard";
 import "./css/servicios.css";
 import { Metrics } from "../components/Metrics";
 import { RelatedServices } from "../components/RelatedServices";
+import { FaqSection } from "../components/FaqSection";
 
 const Servicios = () => {
   const { usuarioLogueado } = useContext(ContextoAdministrador);
@@ -43,6 +44,7 @@ const Servicios = () => {
           <Calendario servicioId={servicio.id} />
         }
         <RelatedServices/>
+        <FaqSection/>
         <Metrics/>
       </main>
     </>
