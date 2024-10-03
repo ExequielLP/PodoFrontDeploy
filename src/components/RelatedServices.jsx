@@ -9,6 +9,8 @@ export const RelatedServices = () => {
     useContext(ServicesContext);
   const { id } = useParams();
 
+  const serviciosFiltrados = listaServicios.filter(service => service.estado === true);
+
   useEffect(() => {
     serviciosBack();
   }, []);
@@ -23,7 +25,7 @@ export const RelatedServices = () => {
     <div className="related-services-container">
       <h2 className="related-services-title">Servicios Relacionados</h2>
       <div className="related-services-grid">
-        {listaServicios.map((service) => (
+        {serviciosFiltrados.map((service) => (
           <div key={service.id} className="related-service-card">
             <h3 className="related-service-title">{service.nombre}</h3>
             <p className="related-service-price">
