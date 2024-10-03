@@ -34,10 +34,12 @@
 }
 
 .related-service-card {
-  background-color: #fed7e2;
+  background-color: #fbcfe8;
 }
 
 .related-service-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -50,10 +52,12 @@
 
 .related-service-link {
   display: inline-block;
-  color: #ffffff;
   padding: 0.25rem 0.75rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
+  border-radius: 0.3rem;
+  color: white;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
   text-decoration: none;
   transition: background-color 0.3s;
   background-color: #ed64a6;

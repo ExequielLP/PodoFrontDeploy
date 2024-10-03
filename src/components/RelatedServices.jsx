@@ -1,15 +1,22 @@
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { priceFormatter } from '../utils/priceFormatter'
+import { Link, useParams } from "react-router-dom";
+import { priceFormatter } from "../utils/priceFormatter";
 import ServicesContext from "../context/ServiceContext";
 import "./css/related-services.css";
 
 export const RelatedServices = () => {
-  const { serviciosBack, listaServicios } = useContext(ServicesContext);
+  const { serviciosBack, listaServicios, seleccionarServicio } =
+    useContext(ServicesContext);
+  const { id } = useParams();
 
   useEffect(() => {
     serviciosBack();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    seleccionarServicio(id);
+  }, [id]);
 
   console.log(listaServicios);
   return (
@@ -19,9 +26,11 @@ export const RelatedServices = () => {
         {listaServicios.map((service) => (
           <div key={service.id} className="related-service-card">
             <h3 className="related-service-title">{service.nombre}</h3>
-            <p className="related-service-price">{priceFormatter(service.costo)}</p>
+            <p className="related-service-price">
+              {priceFormatter(service.costo)}
+            </p>
             <Link
-              to={`/servicios/${service.id}`}
+              to={`/servicio/${service.id}`}
               className="related-service-link"
             >
               Ver detalles

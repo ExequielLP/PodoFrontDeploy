@@ -5,18 +5,17 @@
   margin: 2rem 0;
 }
 
-/* Contenedor de slot */
 .slot-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0.8rem; /* p-3 */
-  border-radius: 0.5rem; /* rounded-lg */
-  transition: opacity 0.3s; /* opacity-50 */
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  transition: opacity 0.3s;
 }
 .slot-container-bg {
-  background-color: #fee2e2; /* bg-pink-100 */
+  background-color: #fee2e2;
 }
 
 .slot-container-unavailable {
@@ -28,34 +27,37 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Contenedor de tiempo e ícono */
 .time-icon-container {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.time-text{
-font-weight: 600;
+.time-text {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
-/* Botón de reserva */
 .reserve-button {
-  padding: 0.25rem 0.75rem; /* py-1 px-3 */
-  border-radius: 0.25rem; /* rounded */
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.5rem;
   color: white;
-  transition: background-color 0.3s; /* transition duration-300 */
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  transition: background-color 0.3s;
 }
 
 .reserve-button-available {
-  background-color: #ec4899; /* bg-pink-500 */
+  background-color: #eb4598;
 }
 
 .reserve-button-available:hover {
-  background-color: #db2777; /* hover:bg-pink-600 */
+  background-color: #db2777;
 }
 
 .reserve-button-unavailable {
-  background-color: #9ca3af; /* bg-gray-400 */
-  cursor: not-allowed; /* cursor-not-allowed */
+  background-color: #9ca3af;
+  cursor: not-allowed;
 }

@@ -1,12 +1,11 @@
 import { useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ContextoAdministrador from "../context/AuthContext";
 import ServicesContext from "../context/ServiceContext";
 import useTitle from "./../hooks/useTitle";
 import { Calendario } from "../components/Calendario";
 import Breadcrumb from "../components/Breadcrumb";
 import Loader from "./../components/Loader";
-import { priceFormatter } from "../utils/priceFormatter";
 import ServiceCard from "../components/ServiceCard";
 import "./css/servicios.css";
 import { Metrics } from "../components/Metrics";
@@ -35,17 +34,17 @@ const Servicios = () => {
   return (
     <>
       <main className="service-container">
-        <Breadcrumb title={servicio.nombre}/>
+        <Breadcrumb title={servicio.nombre} />
         <ServiceCard
           servicio={servicio}
           isAuthenticated={usuarioLogueado.Auth}
         />
-        {usuarioLogueado.Auth === true &&
+        {usuarioLogueado.Auth === true && (
           <Calendario servicioId={servicio.id} />
-        }
-        <RelatedServices/>
-        <FaqSection/>
-        <Metrics/>
+        )}
+        <RelatedServices />
+        <FaqSection />
+        <Metrics />
       </main>
     </>
   );
