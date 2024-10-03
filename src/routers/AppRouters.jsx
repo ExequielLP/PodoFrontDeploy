@@ -1,7 +1,7 @@
 import { lazy, Suspense, useContext, useEffect } from "react";
 import ContextoAdministrador from "../context/AuthContext";
 import { Route, Routes } from "react-router-dom";
-import Loader from "../components/Loader";
+import Loader from "../shared/components/Loader";
 const AuthRoutesLazy = lazy(() => import("./AuthRoutes"));
 const PublicRoutesLazy = lazy(() => import("./PublicRoutes"));
 

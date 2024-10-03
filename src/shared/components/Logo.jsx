@@ -1,4 +1,4 @@
-import "./css/logo.css"
+import "../css/logo.css"
 
 export const Logo = ({ height = 80, width = 80 }) => {
   return (

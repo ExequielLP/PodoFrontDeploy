@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./css/nav-links.css";
+import "../css/nav-links.css";
 
 export const NavItem = ({ link = "", to = "/" }) => {
   return (

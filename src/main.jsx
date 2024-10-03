@@ -1,8 +1,8 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
+import { Navbar } from "./shared/components/Navbar";
+import { Footer } from "./shared/components/Footer";
 import { ServicesProvider } from "./context/ServiceContext";
 import AppRouters from "./routers/AppRouters";
 import { Toaster } from "sonner";

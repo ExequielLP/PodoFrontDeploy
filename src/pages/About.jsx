@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import Loader from "../components/Loader";
+import Loader from "../shared/components/Loader";
 const About_info = lazy(() => import("../components/About_info"));
 
 const About = () => {

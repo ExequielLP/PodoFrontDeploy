@@ -1,4 +1,4 @@
-import "./css/podogonnet-loader.css";
+import "../css/podogonnet-loader.css";
 
 export default function Loader() {
   return (

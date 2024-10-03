@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { Link } from "react-router-dom";
 import { priceFormatter } from '../utils/priceFormatter'
 import ServicesContext from "./../context/ServiceContext";
-import Pagination from "./Pagination";
+import Pagination from "../shared/components/Pagination";
 import SearchComponent from "./SearchComponent";
 import "./css/Tablas-Admin.css";
 

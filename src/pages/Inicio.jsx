@@ -5,7 +5,7 @@ import useTitle from "./../hooks/useTitle";
 import Cards from "../components/Cards";
 import ListaTurnos from "../components/ListaTurnos";
 import ServicesContext from "../context/ServiceContext";
-import Loader from "../components/Loader";
+import Loader from "../shared/components/Loader";
 import ContactInfo from "../components/ContactInfo";
 import "./css/inicio.css";
 

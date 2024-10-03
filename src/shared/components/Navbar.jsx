@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import ContextoAdministrador from "../context/AuthContext";
-import { MenuIcon, CloseIcon } from "../icons/index";
+import ContextoAdministrador from "../../context/AuthContext";
+import { MenuIcon, CloseIcon } from "../../icons/index";
 import { Logo } from "./Logo";
 import { NavItem } from "./NavItem";
-import "./css/nav.css";
+import "../css/nav.css";
 
 export const Navbar = () => {
   const { usuarioLogueado, logOut } = useContext(ContextoAdministrador);
