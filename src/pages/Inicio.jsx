@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 import ContextoAdministrador from "../context/AuthContext";
 import useTitle from "./../hooks/useTitle";
 import Cards from "../components/Cards";
-//import Introduccion from "../components/Introduccion";
 import ListaTurnos from "../components/ListaTurnos";
-//import Seccion from "../components/Seccion";
-import "./css/inicio.css";
 import ServicesContext from "../context/ServiceContext";
 import Loader from "../components/Loader";
 import ContactInfo from "../components/ContactInfo";
+import "./css/inicio.css";
 
 const Intro = lazy(() => import("../components/Introduccion"));
 const Section = lazy(() => import("../components/Seccion"));
