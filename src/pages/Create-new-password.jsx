@@ -7,7 +7,7 @@ const sendNewPassword = import.meta.env.VITE_ENDPOINT_SEND_NEW_PASSWORD;
 const isTokenValid = import.meta.env.VITE_ENDPOINT_IS_PASSWORD_TOKEN_VALID;
 const initialRecoveryForm = {
   email: "",
-  newPassword: "",
+  password: "",
   repeatPassword: "",
 };
 
@@ -81,7 +81,7 @@ const CreateNewPassword = () => {
     console.log("ACA EL FORM");
     console.log(recoveryPasswordForm);
     if (
-      recoveryPasswordForm.newPassword !== recoveryPasswordForm.repeatPassword
+      recoveryPasswordForm.password !== recoveryPasswordForm.repeatPassword
     ) {
       console.log("Las contraseñas no coinciden.");
       return;
@@ -108,8 +108,8 @@ const CreateNewPassword = () => {
                 </label>
                 <input
                   type="password"
-                  id="newPassword"
-                  name="newPassword"
+                  id="password"
+                  name="password"
                   onChange={onPasswordChange}
                   required
                   className="input"
