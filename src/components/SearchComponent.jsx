@@ -45,8 +45,8 @@ const SearchComponent = ({searchType, onSearch}) => {
           <option value="" disabled placeholder="Filtrar por servicio">
             Filtrar por servicio
           </option>
-          {services.map((service) => (
-            <option className="search-selector" key={servicesOrderASC.value} value={servicesOrderASC.value}>
+          {servicesOrderASC.map((service) => (
+            <option className="search-selector" key={service.value} value={service.value}>
               {service.label}
             </option>
           ))}

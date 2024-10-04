@@ -1,5 +1,8 @@
 export { AwardIcon } from "./AwardIcon";
+export { CalendarCancelIcon } from "./CalendarCancelIcon";
+export { CalendarCrossIcon } from "./CalendarCrossIcon";
 export { CalendarDownIcon } from "./CalendarDownIcon";
+export { CalendarSettingsIcon } from "./CalendarSettingsIcon";
 export { ClockIcon } from "./ClockIcon";
 export { CloseIcon } from "./CloseIcon";
 export { ChevronRightIcon } from "./ChevronRightIcon";

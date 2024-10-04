@@ -1,12 +1,45 @@
 import { useContext } from "react";
 import ContextoAdministrador from "../context/AuthContext";
-import TurnoReservado from "./TurnoReservado";
-import "./css/listaTurno.css";
 import ServicesContext from "../context/ServiceContext";
+import { format } from "date-fns";
+import { priceFormatter } from "../utils/priceFormatter";
+import Table from "../shared/components/Table";
+import { CalendarCrossIcon } from "../icons/index";
+import "./css/listaTurno.css";
 
 const ListaTurnos = () => {
   const { usuarioLogueado } = useContext(ContextoAdministrador);
-  const { arrayTurnos } = useContext(ServicesContext);
+  const { arrayTurnos, eliminarTurno } = useContext(ServicesContext);
+
+  // Filtrando y ordenando los turnos que están confirmados por fecha
+  const turnosReservados = arrayTurnos
+    .filter((e) => e.estado === true)
+    .sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+
+  const columns = [
+    { header: "Nombre del servicio", key: "nombreServicio" },
+    {
+      header: "Hora del turno",
+      key: "startTime",
+      render: (startTime) => format(new Date(startTime), "hh:mm a dd/MM/yyyy"),
+    },
+    {
+      header: "Costo",
+      key: "costo",
+      render: (costo) => priceFormatter(costo),
+    },
+  ];
+
+  const actions = [
+    {
+      label: "Cancelar Turno",
+      icon: (
+        <CalendarCrossIcon size={24} color="#050505" alt="Cancelar Turno" />
+      ),
+      onClick: (turno) => eliminarTurno(turno.id),
+    },
+  ];
+
   return (
     <section className="tabla-user">
       <h1 className="user-title">
@@ -36,25 +69,12 @@ const ListaTurnos = () => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body table-responsive">
-              {arrayTurnos &&
-              arrayTurnos.length > 0 &&
-              arrayTurnos.some((e) => e.estado === true) ? (
-                <table className="table align-middle">
-                  <thead className="tabla-header">
-                    <tr>
-                      <th scope="col">Nombre del servicio</th>
-                      <th scope="col">Hora del turno</th>
-
-                      <th scope="col">Costo</th>
-                      <th scope="col">Modificar</th>
-                    </tr>
-                  </thead>
-                  {arrayTurnos.map((e) =>
-                    e.estado === true ? (
-                      <TurnoReservado listaTurnos={e} key={e.id} />
-                    ) : null
-                  )}
-                </table>
+              {turnosReservados.length > 0 ? (
+                <Table
+                  columns={columns}
+                  data={turnosReservados}
+                  actions={actions}
+                />
               ) : (
                 <p>No tienes turnos reservados</p>
               )}

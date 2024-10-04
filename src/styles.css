@@ -18,7 +18,8 @@
   --color-button-bg-hover-alternative: #db2777;
   --color-disable: #9ca3af;
   --color-disable-hover: #888d97;
-
+  --color--border-inset: #ff9abf;
+  --color-table-light: #fefefe;
   --base-font-size: 16px;
   --scale-ratio: 1.25;
 }

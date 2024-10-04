@@ -1,7 +1,10 @@
 import { useContext, useEffect } from "react";
-import { priceFormatter } from '../utils/priceFormatter'
 import ServicesContext from "./../context/ServiceContext";
-import "./css/Tablas-Admin.css";
+import { priceFormatter } from "../utils/priceFormatter";
+import { CalendarCrossIcon, CalendarSettingsIcon } from "../icons/index";
+import Table from "../shared/components/Table";
+import { TableImage } from "../shared/components/TableImage";
+import "../shared/css/Tablas-Admin.css";
 
 export const ServiceTable = ({ onSeleccionarServicio }) => {
   const { eliminarServicioAdmin, listaServicios, listaServiciosAdmin } =
@@ -11,8 +14,58 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
     listaServiciosAdmin();
   }, []);
 
+  // Ordenar los servicios alfabéticamente por nombre
+  const sortedServices = [...listaServicios].sort((a, b) =>
+    a.nombre > b.nombre ? 1 : -1
+  );
+
+  const columns = [
+    {
+      key: "imagen",
+      header: "Imagen",
+      render: (image) => <TableImage image={image} />,
+    },
+    { key: "nombre", header: "Nombre del servicio" },
+    { key: "descripcion", header: "Descripción del servicio" },
+    {
+      key: "costo",
+      header: "Costo",
+      render: (costo) => priceFormatter(costo),
+    },
+    {
+      key: "estado",
+      header: "Estado del servicio",
+      render: (estado) => (
+        <span className={estado ? "habilitado" : "deshabilitado"}>
+          {estado ? "Habilitado" : "Deshabilitado"}
+        </span>
+      ),
+    },
+  ];
+
+  const actions = [
+    {
+      label: "Modificar",
+      icon: (
+        <CalendarSettingsIcon
+          size={24}
+          color="#050505"
+          alt="Modificar servicio"
+        />
+      ),
+      onClick: (servicio) => onSeleccionarServicio(servicio),
+    },
+    {
+      label: "Cancelar",
+      icon: (
+        <CalendarCrossIcon size={24} color="#050505" alt="Quitar servicio" />
+      ),
+      onClick: (servicio) => eliminarServicioAdmin(servicio.id),
+    },
+  ];
+
   return (
-    <section className="tabla-admin my-5" id="TablaServicios">
+    <section className="tabla-admin" id="TablaServicios">
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header">
@@ -33,94 +86,12 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body tabla-admin-body table-responsive">
-              {listaServicios && listaServicios.length > 0 ? (
-                <table className="table align-middle table-borderless ">
-                  <thead className="tabla-header">
-                    <tr>
-                      <th scope="col" className="m-auto text-center">
-                        Imagen
-                      </th>
-                      <th scope="col" className="m-auto text-center">
-                        Nombre del servicio
-                      </th>
-                      <th scope="col" className="m-auto text-center">
-                        Descripción del servicio
-                      </th>
-                      <th scope="col" className="m-auto text-center">
-                        Costo
-                      </th>
-                      <th scope="col" className="m-auto text-center">
-                        Estado del servicio
-                      </th>
-                      <th scope="col" className="m-auto text-center">
-                        Modificar
-                      </th>
-                      <th scope="col" className="m-auto text-center">
-                        Cancelar
-                      </th>
-                    </tr>
-                  </thead>
-                  {listaServicios.map((servicio) => (
-                    <tbody key={servicio.id} className="table-group-divider">
-                      <tr>
-                        <td className="m-auto">
-                          <img
-                            className="table-img"
-                            width={60}
-                            height={60}
-                            src={`data:${servicio.imagen.mime};base64,${servicio.imagen.content}`}
-                            alt={servicio.nombre}
-                          />
-                        </td>
-                        <td className="m-auto p-4 service-name">
-                          {servicio.nombre}
-                        </td>
-                        <td className="m-auto p-4 service-description">
-                          {servicio.descripcion}
-                        </td>
-                        <td className="m-auto p-4 service-price">
-                          {priceFormatter(servicio.costo)}
-                        </td>
-                        <td className="m-auto p-4">
-                          {servicio.estado === true ? (
-                            <span className="habilitado">Habilitado</span>
-                          ) : (
-                            <span className="deshabilitado">Deshabilitado</span>
-                          )}
-                        </td>
-                        <td className="m-auto">
-                          <a
-                            href="#target-div"
-                            className="tabla-admin-btn admin-btn"
-                            onClick={() => {
-                              onSeleccionarServicio(servicio);
-                            }}
-                          >
-                            <img
-                              className="admin-icons"
-                              src="/assets/icons/calendar-cog.svg"
-                              alt="Modificar servicio"
-                            />
-                          </a>
-                        </td>
-                        <td className="m-auto">
-                          <button
-                            className="tabla-admin-btn admin-btn"
-                            onClick={(e) =>
-                              eliminarServicioAdmin(e, servicio.id)
-                            }
-                          >
-                            <img
-                              className="admin-icons"
-                              src="/assets/icons/calendar-x.svg"
-                              alt="Eliminar Turno"
-                            />
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
-                </table>
+              {sortedServices && sortedServices.length > 0 ? (
+                <Table
+                  columns={columns}
+                  data={sortedServices}
+                  actions={actions}
+                />
               ) : (
                 <p>No tienes turnos reservados</p>
               )}

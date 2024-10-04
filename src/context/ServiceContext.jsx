@@ -111,9 +111,8 @@ const ServicesProvider = ({ children }) => {
     }
   };
 
-  const eliminarServicioAdmin = async (e, servicioId) => {
+  const eliminarServicioAdmin = async (servicioId) => {
     try {
-      e.preventDefault();
       let jwt = window.localStorage.getItem("auth_token");
       const urlCancelarServicio = urlBackDarDeBajaServicioAdmin + servicioId;
       const respuesta = await put(urlCancelarServicio, jwt);
@@ -147,9 +146,8 @@ const ServicesProvider = ({ children }) => {
     }
   };
 
-  const eliminarTurno = async (e, turnoId) => {
+  const eliminarTurno = async (turnoId) => {
     try {
-      e.preventDefault();
       let jwt = window.localStorage.getItem("auth_token");
       const urlCancelarTurno = urlBackCancelarTurno + turnoId;
       console.log("Hola desde eliminarTurno()");
@@ -168,9 +166,9 @@ const ServicesProvider = ({ children }) => {
 
   const listaTurnosAdmin = async (pageNumber) => {
     try {
-      console.log(`LISTA ADMIN TURNO: ${pageNumber}`);
-      const urlback = `${urlBackListaTurnosAdmin}?page=${pageNumber ?? 0
-        }&size=10`;
+      const urlback = `${urlBackListaTurnosAdmin}?page=${
+        pageNumber ?? 0
+      }&size=10`;
       let jwt = window.localStorage.getItem("auth_token");
       const respuesta = await getToken(urlback, jwt);
       setArrayTurnosAdmin(respuesta);
@@ -179,9 +177,8 @@ const ServicesProvider = ({ children }) => {
     }
   };
 
-  const eliminarTurnoAdmin = async (e, turnoId, pageNumber) => {
+  const eliminarTurnoAdmin = async (turnoId, pageNumber) => {
     try {
-      e.preventDefault();
       const urlCancelarTurno = urlBackCancelarTurnoAdmin + turnoId;
       const respuesta = await put(urlCancelarTurno);
       if (respuesta.ok) {
@@ -213,7 +210,6 @@ const ServicesProvider = ({ children }) => {
     formData.append("costo", form.costo);
     formData.append("file", form.file);
     try {
-
       const response = await fetch(`${VITE_ENDPOINT_urlBackModificaServicio}`, {
         method: "PUT",
         credentials: "include",
