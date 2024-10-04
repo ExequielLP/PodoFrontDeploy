@@ -40,7 +40,10 @@ margin: 0.3rem;
   }
 
   .menu-icon {
-    display: inline-block;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .dropdown-logo-link{
