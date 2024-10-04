@@ -10,7 +10,7 @@ import ContactInfo from "../components/ContactInfo";
 import "./css/inicio.css";
 
 const Intro = lazy(() => import("../components/Introduction"));
-const Section = lazy(() => import("../components/Seccion"));
+const Section = lazy(() => import("../components/HeroContainer"));
 
 const Inicio = () => {
   useTitle({ title: "Inicio" });
