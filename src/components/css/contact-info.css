@@ -16,11 +16,6 @@
 
 .contact-title {
   color: #ff9abf;
-  font-family: "Onest";
-  font-size: 2.2rem;
-  font-weight: 800;
-  font-weight: bold;
-  line-height: 1.2;
   margin-bottom: 2rem;
   text-align: center;
 }
@@ -29,6 +24,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
@@ -47,9 +43,6 @@
 
 .contact-info-title,
 .contact-form-title {
-  font-family: "Onest";
-  font-size: 1.5rem;
-  font-weight: 600;
   color: #ff9abf;
   margin-bottom: 1.5rem;
 }
@@ -105,8 +98,8 @@
 
 .form-label {
   display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
+  /* font-size: 0.875rem;
+  font-weight: 500; */
   color: #4b5563;
   margin-bottom: 0.25rem;
 }
@@ -131,7 +124,6 @@
 
 .error-message {
   margin-top: 0.25rem;
-  font-size: 0.75rem;
   color: #f87171;
 }
 

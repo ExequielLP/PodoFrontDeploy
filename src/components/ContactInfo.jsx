@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
-import { ClockIcon, LoaderIcon, MailIcon, MapPinIcon, PhoneIcon, SendIcon } from "../icons/index";
-import './css/contact-info.css'
+import {
+  ClockIcon,
+  LoaderIcon,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
+  SendIcon,
+} from "../icons/index";
+import "./css/contact-info.css";
 
 const ContactInfo = () => {
   const [name, setName] = useState("");
@@ -53,34 +60,38 @@ const ContactInfo = () => {
             <ul className="contact-info-list">
               <li className="contact-info-item">
                 <div className="contact-icon-wrapper">
-                <MapPinIcon className="contact-icon" color="#d63384"/>
+                  <MapPinIcon className="contact-icon" color="#d63384" />
                 </div>
                 <span>Calle 123, La Plata, Buenos Aires</span>
               </li>
               <li className="contact-info-item">
                 <div className="contact-icon-wrapper">
-                <PhoneIcon className="contact-icon" color="#d63384"/>
+                  <PhoneIcon className="contact-icon" color="#d63384" />
                 </div>
-                <a href="tel:+541234567890" className="hover-link">+54 123 456 7890</a>
+                <a href="tel:+541234567890" className="hover-link">
+                  +54 123 456 7890
+                </a>
               </li>
               <li className="contact-info-item">
                 <div className="contact-icon-wrapper">
-                <MailIcon className="contact-icon" color="#d63384"/>
+                  <MailIcon className="contact-icon" color="#d63384" />
                 </div>
-                <a href="mailto:info@pedicurialaplata.com" className="hover-link">info@pedicurialaplata.com</a>
+                <a
+                  href="mailto:info@pedicurialaplata.com"
+                  className="hover-link"
+                >
+                  info@pedicurialaplata.com
+                </a>
               </li>
               <li className="contact-info-item">
                 <div className="contact-icon-wrapper">
-                <ClockIcon className="contact-icon" color="#d63384"/>
+                  <ClockIcon className="contact-icon" color="#d63384" />
                 </div>
                 <span>Lunes a Viernes: 9:00 - 20:00</span>
               </li>
             </ul>
           </div>
-          <form
-            onSubmit={handleSubmit}
-            className="contact-form-container"
-          >
+          <form onSubmit={handleSubmit} className="contact-form-container">
             <h3 className="contact-form-title">Envíanos un Mensaje</h3>
             <div className="form-fields">
               <div className="form-field">
