@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import ContextoAdministrador from "../context/AuthContext";
 import { Navigate, Link } from "react-router-dom";
+import { SignInWithGoogle } from "../components/SignInWithGoogle";
+import ContextoAdministrador from "../context/AuthContext";
 import useTitle from "../hooks/useTitle";
 import "./css/login.css";
-import { SignInWithGoogle } from "../components/SignInWithGoogle";
 
 const formInciallogin = {
   email: "",
@@ -59,9 +59,9 @@ const Login = () => {
               Login
             </button>
           </div>
-        <Link to={"/password-recovery"} className="password-loss">
-          Olvide mi contraseña!
-        </Link>
+          <Link to={"/password-recovery"} className="password-loss">
+            Olvide mi contraseña!
+          </Link>
         </div>
       </form>
       <Link to={"/registro"} className="go-to-login">

@@ -5,7 +5,7 @@ export default function useTitle({ title }) {
 
   useEffect(() => {
     const previusTitle = prevTitle.current;
-    document.title = `${title} | Pedicuría La Plata`;
+    document.title = `Pedicuría La Plata | ${title}`;
 
     return () => (document.title = previusTitle);
   }, [title]);

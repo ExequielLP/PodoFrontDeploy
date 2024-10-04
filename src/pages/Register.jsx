@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { SignInWithGoogle } from "../components/SignInWithGoogle";
 import ContextoAdministrador from "../context/AuthContext";
 import useTitle from "./../hooks/useTitle";
 import "./css/registro.css";
-import { SignInWithGoogle } from "../components/SignInWithGoogle";
 
 const Register = () => {
   useTitle({ title: "Registro" });

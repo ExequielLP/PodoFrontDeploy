@@ -3,27 +3,26 @@ import { useParams } from "react-router-dom";
 import ContextoAdministrador from "../context/AuthContext";
 import ServicesContext from "../context/ServiceContext";
 import useTitle from "./../hooks/useTitle";
-import { Calendario } from "../components/Calendario";
-import Breadcrumb from "../components/Breadcrumb";
 import Loader from "../shared/components/Loader";
-import ServiceCard from "../components/ServiceCard";
-import "./css/servicios.css";
+import Breadcrumb from "../components/Breadcrumb";
+import { Calendario } from "../components/Calendario";
+import { FaqSection } from "../components/FaqSection";
 import { Metrics } from "../components/Metrics";
 import { RelatedServices } from "../components/RelatedServices";
-import { FaqSection } from "../components/FaqSection";
+import ServiceCard from "../components/ServiceCard";
+import "./css/servicios.css";
 
 const Servicios = () => {
   const { usuarioLogueado } = useContext(ContextoAdministrador);
   const { servicio, seleccionarServicio } = useContext(ServicesContext);
   const { id } = useParams();
+  useTitle({ title: servicio ? servicio.nombre : "Cargando..." });
 
   useEffect(() => {
     if (!servicio || servicio.id !== id) {
       seleccionarServicio(id);
     }
   }, [id]);
-
-  useTitle({ title: servicio ? servicio.nombre : "Cargando..." });
 
   if (!servicio) {
     return <Loader />;

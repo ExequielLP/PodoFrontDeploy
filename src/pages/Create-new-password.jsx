@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { putWithPassword } from "../utils/http";
+import useTitle from "./../hooks/useTitle";
 import "./css/PasswordRecovery.css";
 
 const sendNewPassword = import.meta.env.VITE_ENDPOINT_SEND_NEW_PASSWORD;
@@ -12,6 +13,7 @@ const initialRecoveryForm = {
 };
 
 const CreateNewPassword = () => {
+  useTitle({ title: "Crear nueva contraseña" });
   const [recoveryPasswordForm, setRecoveryPasswordForm] =
     useState(initialRecoveryForm);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -80,9 +82,7 @@ const CreateNewPassword = () => {
     e.preventDefault();
     console.log("ACA EL FORM");
     console.log(recoveryPasswordForm);
-    if (
-      recoveryPasswordForm.password !== recoveryPasswordForm.repeatPassword
-    ) {
+    if (recoveryPasswordForm.password !== recoveryPasswordForm.repeatPassword) {
       console.log("Las contraseñas no coinciden.");
       return;
     }

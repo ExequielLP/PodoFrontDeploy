@@ -1,12 +1,12 @@
 import { lazy, Suspense, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ContextoAdministrador from "../context/AuthContext";
-import useTitle from "./../hooks/useTitle";
-import Cards from "../components/Cards";
-import ListaTurnos from "../components/ListaTurnos";
 import ServicesContext from "../context/ServiceContext";
+import useTitle from "./../hooks/useTitle";
 import Loader from "../shared/components/Loader";
+import Cards from "../components/Cards";
 import ContactInfo from "../components/ContactInfo";
+import ListaTurnos from "../components/ListaTurnos";
 import "./css/inicio.css";
 
 const Intro = lazy(() => import("../components/Introduction"));
@@ -48,7 +48,7 @@ const Inicio = () => {
           ) : null}
         </section>
         <Cards listaServicios={listaServicios} />
-        <ContactInfo/>
+        <ContactInfo />
       </Suspense>
     </>
   );
