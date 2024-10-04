@@ -10,7 +10,7 @@ const HeroContainer = () => {
           <h1 className="hero-title font-bold">
             <span className="span">Pedicuría La Plata</span>
           </h1>
-          <a href="#" className="hero-btn">
+          <a href="#servicios" className="hero-btn">
             Conoce Nuestros Servicios &#9660;
           </a>
         </div>

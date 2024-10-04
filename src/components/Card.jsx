@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
 const Card = ({ listaServicios }) => {
@@ -14,7 +13,7 @@ const Card = ({ listaServicios }) => {
         alt={name}
       />
       <div className="article-text-container">
-        <h5 className="article-title">{nombre}</h5>
+        <h3 className="article-title">{nombre}</h3>
         <p className="article-text">{descripcion}</p>
       </div>
       <Link to={`/servicio/${id}`} className="article-button">
