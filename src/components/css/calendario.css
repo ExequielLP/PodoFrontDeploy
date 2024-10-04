@@ -9,37 +9,35 @@
 }
 
 .calendar-section-title {
-  font-size: 1.8rem;
-  font-weight: 700;
   margin-bottom: 1rem;
 }
 
 .calendar-section-container {
-  margin-top: 2rem;
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  margin-top: 2rem;
   padding: 1.5rem;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .react-calendar {
-  width: 800px;
   background-color: #fdfdfd;
-  color: #292929;
-  border: 1px solid rgba(209, 213, 219, 0.3);
-  padding: 1rem;
-  box-shadow: 5px 5px 10px 1px #ffe0fa;
   border-radius: 0.4rem;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+  box-shadow: 5px 5px 10px 1px #ffe0fa;
+  color: #292929;
+  padding: 1rem;
   transition: transform 0.3s, opacity 0.3s;
-  font-family: "Onest", "Poppins", system-ui;
+  width: 800px;
 }
 
 .react-calendar__navigation {
   background: #ff9abf;
   border-radius: 0.3rem;
   margin-bottom: 0.5rem;
+  height: auto;
 }
 
 .react-calendar__navigation > button {
@@ -55,9 +53,9 @@
 }
 
 .react-calendar__navigation > button:enabled:hover {
-  color: #252525;
   background: transparent;
   border-radius: 16px;
+  color: #252525;
   transform: scale(1);
 }
 
@@ -66,10 +64,10 @@
 }
 
 .react-calendar__navigation > button:enabled:focus {
-  color: #3b3b3b;
-  border: 1px solid black;
   background: #fefefe;
   border-radius: 0.3rem;
+  border: 1px solid black;
+  color: #3b3b3b;
 }
 
 .react-calendar__year-view__months {
@@ -79,9 +77,9 @@
 .react-calendar__month-view__weekdays {
   font-size: 1.125rem;
   line-height: 1.75rem;
-  text-align: center;
-  padding: 0.2rem;
   margin: 0.2rem 0;
+  padding: 0.2rem;
+  text-align: center;
 }
 
 .react-calendar__tile--hasActive {
@@ -95,19 +93,19 @@
 }
 
 .react-calendar__month-view__days {
-  background: rgba(253, 216, 253, 0.329);
-  border-radius: 0.3rem;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
+  background: rgba(253, 216, 253, 0.329);
+  border-radius: 0.3rem;
   border: 1px solid rgba(250, 183, 250, 0.4);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 /*BOTONES DE N° DIAS Y MESES*/
 .react-calendar__tile {
+  border: 1px solid #0000001a !important;
   font-size: 1rem;
   line-height: 1.5rem;
-  border: 1px solid #0000001a !important;
   text-transform: uppercase;
 }
 
@@ -141,10 +139,6 @@ abbr[title] {
 @media (max-width: 480px) {
   .react-calendar {
     width: 350px;
-  }
-
-  .react-calendar__navigation {
-    height: auto;
   }
 
   .react-calendar__navigation > button {

@@ -1,16 +1,24 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Dancing+Script&display=swap');
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Dancing+Script&display=swap");
 
 :root {
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Lato', sans-serif;
-  --font-accent: 'Dancing Script', cursive;
-  
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Lato", sans-serif;
+  --font-accent: "Dancing Script", cursive;
+
   --color-text: #333333;
   --color-text-light: #666666;
-  --color-primary: #FF69B4;
+  --color-primary: #ff69b4;
   --color-nav-links: #fefefe;
-  
+  --color-button-text: #ffffff;
+  --color-button-text-hover: #000000;
+  --color-button-bg: #ff69b4;
+  --color-button-bg-alternative: #eb4598;
+  --color-button-bg-hover: #ffd3e6;
+  --color-button-bg-hover-alternative: #db2777;
+  --color-disable: #9ca3af;
+  --color-disable-hover: #888d97;
+
   --base-font-size: 16px;
   --scale-ratio: 1.25;
 }
@@ -39,7 +47,12 @@ img {
   max-width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
@@ -49,16 +62,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+  font-size: calc(
+    var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) *
+      var(--scale-ratio) * var(--scale-ratio)
+  );
   letter-spacing: -0.5px;
 }
 
 h2 {
-  font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio));
+  font-size: calc(
+    var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) *
+      var(--scale-ratio)
+  );
 }
 
 h3 {
-  font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio));
+  font-size: calc(
+    var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio)
+  );
 }
 
 h4 {
@@ -78,8 +99,8 @@ h6 {
 }
 
 p {
-  max-width: 65ch;
   margin-bottom: 1rem;
+  text-wrap: pretty;
 }
 
 a {
@@ -99,7 +120,8 @@ a:hover {
 } */
 
 /* Lists */
-ul, ol {
+ul,
+ol {
   margin-bottom: 1rem;
   padding-left: 2rem;
   list-style-type: none !important;
@@ -121,7 +143,8 @@ blockquote {
 }
 
 /* Buttons */
-button, .button {
+button,
+.button {
   font-family: var(--font-body);
   font-size: var(--base-font-size);
   font-weight: 700;
@@ -131,17 +154,20 @@ button, .button {
   border: none;
   border-radius: 4px;
   background-color: var(--color-primary);
-  color: white;
+  /* color: white; */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover, .button:hover {
+button:hover,
+.button:hover {
   background-color: darken(var(--color-primary), 10%);
 }
 
 /* Form elements */
-input, textarea, select {
+input,
+textarea,
+select {
   font-family: var(--font-body);
   font-size: var(--base-font-size);
   line-height: 1.5;
@@ -150,6 +176,11 @@ input, textarea, select {
 
 label {
   font-weight: 700;
+}
+
+summary {
+  font-size: calc(var(--base-font-size) * var(--scale-ratio));
+  font-weight: 500;
 }
 
 /* Utility classes */
@@ -177,6 +208,9 @@ label {
 .font-normal {
   font-weight: 400;
 }
+.font-semibold {
+  font-weight: 500;
+}
 
 .font-bold {
   font-weight: 700;
@@ -201,11 +235,16 @@ label {
   }
 
   h1 {
-    font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) * var(--scale-ratio)); /* ~27.34px */
+    font-size: calc(
+      var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio) *
+        var(--scale-ratio)
+    ); /* ~27.34px */
   }
 
   h2 {
-    font-size: calc(var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio)); /* ~21.88px */
+    font-size: calc(
+      var(--base-font-size) * var(--scale-ratio) * var(--scale-ratio)
+    ); /* ~21.88px */
   }
 
   h3 {

@@ -6,58 +6,58 @@
 }
 
 .slot-container {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0.8rem;
   border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
   transition: opacity 0.3s;
+  width: 100%;
 }
 .slot-container-bg {
   background-color: #fee2fc;
 }
 
 .slot-container-unavailable {
-  opacity: 0.5;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  opacity: 0.5;
 }
 
 .time-icon-container {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 15px;
 }
 
 .time-text {
   font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 
 .reserve-button {
   padding: 0.3rem 0.75rem;
   border-radius: 0.5rem;
-  color: white;
-  font-weight: 500;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  color: var(--color-button-text);
   transition: background-color 0.3s;
 }
 
 .reserve-button-available {
-  background-color: #eb4598;
+  background-color: var(--color-button-bg);
 }
 
 .reserve-button-available:hover {
-  background-color: #db2777;
+  background-color: var(--color-button-bg-hover-alternative);
+  color: var(--color-button-text-hover);
 }
 
 .reserve-button-unavailable {
-  background-color: #9ca3af;
+  background-color: var(--color-disable);
+  cursor: not-allowed;
+}
+.reserve-button-unavailable:hover {
+  background-color: var(--color-disable-hover);
   cursor: not-allowed;
 }

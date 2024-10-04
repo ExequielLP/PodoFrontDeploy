@@ -11,9 +11,6 @@
 }
 
 .metrics-title {
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 700;
   margin-bottom: 1rem;
 }
 
@@ -40,9 +37,6 @@
 }
 
 .metrics-feature-title {
-  font-size: 1.25rem; /* 20px */
-  line-height: 1.75rem; /* 28px */
-  font-weight: 600;
   margin-bottom: 0.25rem;
 }
 

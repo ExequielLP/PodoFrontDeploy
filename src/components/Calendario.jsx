@@ -15,7 +15,7 @@ export const Calendario = ({ servicioId }) => {
   return (
     <section className="calendar-section">
       <div className="calendar-section-container">
-        <h2 className="calendar-section-title">Agendar Turno</h2>
+        <h2 className="calendar-section-title font-bold">Agendar Turno</h2>
         <Calendar onChange={setDate} value={date} />
         <Appointments
           turno={turno}

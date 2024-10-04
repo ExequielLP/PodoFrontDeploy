@@ -23,11 +23,11 @@ export const RelatedServices = () => {
   console.log(listaServicios);
   return (
     <div className="related-services-container">
-      <h2 className="related-services-title">Servicios Relacionados</h2>
+      <h2 className="related-services-title font-bold">Servicios Relacionados</h2>
       <div className="related-services-grid">
         {serviciosFiltrados.map((service) => (
           <div key={service.id} className="related-service-card">
-            <h3 className="related-service-title">{service.nombre}</h3>
+            <h4 className="related-service-title">{service.nombre}</h4>
             <p className="related-service-price">
               {priceFormatter(service.costo)}
             </p>

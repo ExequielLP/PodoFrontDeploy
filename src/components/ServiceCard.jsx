@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "./css/service-card.css";
 import { priceFormatter } from "../utils/priceFormatter";
 import { CalendarDownIcon } from "../icons";
+import "./css/service-card.css";
 
 const ServiceCard = ({ servicio, isAuthenticated = false }) => {
   const imagenBase64 = servicio.imagen.content;
@@ -21,12 +21,12 @@ const ServiceCard = ({ servicio, isAuthenticated = false }) => {
           </div>
         </aside>
         <article className="service-content-padding">
-          <header className="flex justify-between items-center">
-            <h3 className="service-card-title">{servicio.nombre}</h3>
+          <header className="">
+            <h2 className="service-card-title font-bold">{servicio.nombre}</h2>
           </header>
           <p className="service-description">{servicio.descripcion}</p>
           <div className="service-price-container">
-            <span className="service-price">{priceFormatter(servicio.costo)}</span>
+            <span className="service-price font-bold">{priceFormatter(servicio.costo)}</span>
           </div>
           <footer className="service-button">
             {isAuthenticated === false ? (
