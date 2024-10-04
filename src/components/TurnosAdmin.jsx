@@ -108,9 +108,7 @@ export const TurnosAdmin = () => {
                   <>
                     <Table
                       columns={columns}
-                      data={arrayTurnosAdmin.content.filter(
-                        (turno) => turno.estado === true
-                      )}
+                      data={turnosReservados}
                       actions={actions}
                     />
                     <Pagination
