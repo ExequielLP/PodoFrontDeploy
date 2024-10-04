@@ -1,6 +1,6 @@
-import "./css/Introduccion.css";
+import "./css/introduction.css";
 
-const Introduccion = () => {
+const Introduction = () => {
   return (
     <section className="welcome-section ">
       <img
@@ -30,4 +30,4 @@ const Introduccion = () => {
   );
 };
 
-export default Introduccion;
+export default Introduction;

@@ -11,11 +11,6 @@
 }
 
 .welcome-title {
-  color: #050505;
-  font-family: proxima-nova, Helvetica, Arial, sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: 2.2px;
   text-wrap: balance;
   width: -moz-fit-content;
   width: fit-content;
@@ -24,9 +19,6 @@
 }
 
 .welcome-text {
-  color: #050505cb;
-  font-size: 1.2rem;
-  line-height: 1.6;
   text-align: left;
   text-wrap: pretty;
   max-width: 70dvw;
@@ -58,15 +50,6 @@
 @media (min-width: 992px) {
   .welcome-section {
     padding: 100px 0;
-  }
-
-  .welcome-title {
-    font-size: 3rem;
-  }
-
-  .welcome-text {
-    font-size: 1.4rem;
-    line-height: 1.5;
   }
 
   .left-foot,
