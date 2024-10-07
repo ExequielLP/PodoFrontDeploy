@@ -9,22 +9,21 @@ import { Toaster } from "sonner";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./pages/css/Toast.css";
 import "./styles.css";
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const CLIENT_ID = import.meta.env.VITE_ENDPOINT_Cliente_id;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-
-  <AuthProvider>
-    <ServicesProvider>
-      <BrowserRouter>
+  <BrowserRouter>
+    <AuthProvider>
+      <ServicesProvider>
         <GoogleOAuthProvider clientId={CLIENT_ID}>
           <Navbar />
           <Toaster className="toast-success toast-error toast-warning" />
-          <AppRouters/>
+          <AppRouters />
           <Footer />
         </GoogleOAuthProvider>
-      </BrowserRouter>
-    </ServicesProvider>
-  </AuthProvider>
+      </ServicesProvider>
+    </AuthProvider>
+  </BrowserRouter>
 );

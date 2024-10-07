@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ContextoAdministrador from "../context/AuthContext";
+import AuthenticationContext from "../context/AuthContext";
 import ServicesContext from "../context/ServiceContext";
 import { format } from "date-fns";
 import { priceFormatter } from "../utils/priceFormatter";
@@ -7,12 +7,11 @@ import Table from "../shared/components/Table";
 import { CalendarCrossIcon } from "../icons/index";
 import "./css/listaTurno.css";
 
-const ListaTurnos = () => {
-  const { usuarioLogueado } = useContext(ContextoAdministrador);
-  const { arrayTurnos, eliminarTurno } = useContext(ServicesContext);
+const ListaTurnos = ({ turnos,onEliminarTurno }) => {
+  const { usuarioLogueado } = useContext(AuthenticationContext);
 
   // Filtrando y ordenando los turnos que están confirmados por fecha
-  const turnosReservados = arrayTurnos
+  const turnosReservados = (turnos || [])
     .filter((e) => e.estado === true)
     .sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
 
@@ -36,7 +35,7 @@ const ListaTurnos = () => {
       icon: (
         <CalendarCrossIcon size={24} color="#050505" alt="Cancelar Turno" />
       ),
-      onClick: (turno) => eliminarTurno(turno.id),
+      onClick: (turno) => onEliminarTurno(turno.id),
     },
   ];
 
@@ -85,5 +84,4 @@ const ListaTurnos = () => {
     </section>
   );
 };
-
 export default ListaTurnos;

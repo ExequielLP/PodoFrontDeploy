@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { format } from "date-fns";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { priceFormatter } from "../utils/priceFormatter";
+import { format } from "date-fns";
 import ServicesContext from "./../context/ServiceContext";
+import useContextValue from "../hooks/useContextValue";
+import { priceFormatter } from "../utils/priceFormatter";
 import Pagination from "../shared/components/Pagination";
 import Table from "../shared/components/Table";
 import SearchComponent from "./SearchComponent";
@@ -11,10 +12,11 @@ import "../shared/css/Tablas-Admin.css";
 
 export const TurnosAdmin = () => {
   const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
-    useContext(ServicesContext);
+    useContextValue(ServicesContext);
 
   const [pageNumber, setPageNumber] = useState(0);
   const [pageSize, setpageSize] = useState(10);
+  const [shouldReload, setShouldReload] = useState(false); // Estado para controlar la recarga
 
   const [searchType, setSearchType] = useState("cliente");
   const [searchResult, setSearchResult] = useState("");
@@ -32,7 +34,20 @@ export const TurnosAdmin = () => {
 
   useEffect(() => {
     listaTurnosAdmin(pageNumber);
-  }, [pageNumber]);
+  }, [pageNumber, shouldReload]);
+
+  const handleEliminarTurno = async (turnoId) => {
+    const remainingTurnos = await eliminarTurnoAdmin(turnoId);
+    if (remainingTurnos >= 0) {
+      if (remainingTurnos === 0 && pageNumber > 0) {
+        setPageNumber((prev) => prev - 1); // Cambia a la página anterior si es posible
+      }
+      setShouldReload((prev) => !prev); // Cambia el estado para forzar la recarga
+    } else {
+      // Manejar el error (puedes mostrar un mensaje al usuario)
+      console.error("Error al eliminar el turno");
+    }
+  };
 
   const handlePageChange = (newPageNumber) => {
     console.log(newPageNumber);
@@ -76,7 +91,7 @@ export const TurnosAdmin = () => {
     {
       label: "Cancelar",
       icon: <CalendarCrossIcon size={24} color="#050505" alt="Quitar turno" />,
-      onClick: (turno) => eliminarTurnoAdmin(turno.id, pageNumber, pageSize),
+      onClick: (turno) => handleEliminarTurno(turno.id), // Usar la función manejadora
     },
   ];
 

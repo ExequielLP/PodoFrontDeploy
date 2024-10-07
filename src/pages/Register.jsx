@@ -1,14 +1,14 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { SignInWithGoogle } from "../components/SignInWithGoogle";
-import ContextoAdministrador from "../context/AuthContext";
+import AuthenticationContext from "../context/AuthContext";
 import useTitle from "./../hooks/useTitle";
 import "./css/registro.css";
 
 const Register = () => {
   useTitle({ title: "Registro" });
 
-  const { SubmitRegistro } = useContext(ContextoAdministrador);
+  const { SubmitRegistro } = useContext(AuthenticationContext);
 
   const [form, setform] = useState({
     userName: "",

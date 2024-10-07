@@ -1,55 +1,53 @@
-import { useState, useEffect, useContext } from "react";
-import ContextoAdministrador from "../context/AuthContext";
-import { toast } from "sonner";
+import { useState } from "react";
+import AuthenticationContext from "../context/AuthContext";
+import useContextValue from "../hooks/useContextValue";
+import showToast from "./toastUtils";
 
-const urlBackTurnosDelDia = import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia;
-const urlBackReservarTurno = import.meta.env.VITE_ENDPOINT_urlBackReservarTurno;
+const API_URLS = {
+  turnosDelDia: import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia,
+  reservarTurno: import.meta.env.VITE_ENDPOINT_urlBackReservarTurno,
+};
 
 export const useAppointments = (servicioId) => {
   const [date, setDate] = useState(new Date());
   const [turno, setTurno] = useState([]);
-  const { usuarioLogueado } = useContext(ContextoAdministrador);
+  const { usuarioLogueado } = useContextValue(AuthenticationContext);
 
   const fetchAppointments = async () => {
     try {
       const response = await fetch(
-        `${urlBackTurnosDelDia}${date.toISOString().split("T")[0]}`,
-        {
-          credentials: "include"
+        `${API_URLS.turnosDelDia}${date.toISOString().split("T")[0]}`,
+        { method: "GET",
+          credentials: "include",
         }
       );
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("Error en la respuesta de la red");
       }
       const data = await response.json();
       setTurno(data);
     } catch (error) {
-      console.error("Error fetching appointments", error);
+      console.error("Error al obtener las citas", error);
     }
   };
 
   const bookAppointment = async (turnoId) => {
-
     try {
       const response = await fetch(
-        `${urlBackReservarTurno}${turnoId}/${servicioId}/${usuarioLogueado.id}`,
+        `${API_URLS.reservarTurno}${turnoId}/${servicioId}/${usuarioLogueado.id}`,
         {
           method: "POST",
-          credentials: "include"
+          credentials: "include",
         }
       );
       if (response.ok) {
-        fetchAppointments();
+        showToast(`Turno reservado exitosamente!`, "success");
       } else {
-        toast.error(`¡Error: El turno ya fue reservado! Turno: ${turnoId}`, {
-          className: "toast-error",
-          style: { width: "fit-content" },
-        });
-        console.error("Error booking appointment");
-        fetchAppointments();
+        showToast(`El turno (${turnoId}) ya fue reservado! `, "error");
       }
+      fetchAppointments();
     } catch (error) {
-      console.error("Error booking appointment", error);
+      console.error("Error al reservar el turno", error);
     }
   };
 

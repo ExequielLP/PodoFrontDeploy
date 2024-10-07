@@ -1,242 +1,207 @@
-/* eslint-disable react/prop-types */
-import { createContext, useContext, useState } from "react";
-import { get, getToken, postImagen, put } from "../utils/http";
-import ContextoAdministrador from "./AuthContext";
-import { toast } from "sonner";
+import { createContext, useCallback, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import AuthenticationContext from "./AuthContext";
+import useContextValue from "../hooks/useContextValue";
+import { get, getWithAuth, postImagen, put } from "../utils/http";
+import showToast from "../utils/toastUtils";
 
-const urlCrearServicio = import.meta.env.VITE_ENDPOINT_urlCrearServicio;
-const urlListaServicios = import.meta.env.VITE_ENDPOINT_urlListaServicios;
-const urlServicioGet = import.meta.env.VITE_ENDPOINT_urlServicioGet;
-const urlBackListaTurno = import.meta.env.VITE_ENDPOINT_urlBackListaTurno;
-const urlBackCancelarTurno = import.meta.env.VITE_ENDPOINT_urlBackCancelarTurno;
-const urlBackListaTurnosAdmin = import.meta.env
-  .VITE_ENDPOINT_urlBackListaTurnosAdmin;
-const urlBackCancelarTurnoAdmin = import.meta.env
-  .VITE_ENDPOINT_urlBackCancelarTurnoAdmin;
-const urlBackListaServiciosAdmin = import.meta.env
-  .VITE_ENDPOINT_urlBackListaServiciosAdmin;
-const urlBackDarDeBajaServicioAdmin = import.meta.env
-  .VITE_ENDPOINT_urlBackDarDeBajaServicioAdmin;
-const VITE_ENDPOINT_urlBackModificaServicio = import.meta.env
-  .VITE_ENDPOINT_urlBackModificaServicio;
+const API_URLS = {
+  crearServicio: import.meta.env.VITE_ENDPOINT_urlCrearServicio,
+  listaServicios: import.meta.env.VITE_ENDPOINT_urlListaServicios,
+  servicioGet: import.meta.env.VITE_ENDPOINT_urlServicioGet,
+  backListaTurno: import.meta.env.VITE_ENDPOINT_urlBackListaTurno,
+  backCancelarTurno: import.meta.env.VITE_ENDPOINT_urlBackCancelarTurno,
+  backListaTurnosAdmin: import.meta.env.VITE_ENDPOINT_urlBackListaTurnosAdmin,
+  backCancelarTurnoAdmin: import.meta.env
+    .VITE_ENDPOINT_urlBackCancelarTurnoAdmin,
+  backListaServiciosAdmin: import.meta.env
+    .VITE_ENDPOINT_urlBackListaServiciosAdmin,
+  darDeBajaServicioAdmin: import.meta.env
+    .VITE_ENDPOINT_urlBackDarDeBajaServicioAdmin,
+  modificarServicio: import.meta.env.VITE_ENDPOINT_urlBackModificaServicio,
+};
 
 const ServicesContext = createContext();
 
 const ServicesProvider = ({ children }) => {
-  const { usuarioLogueado, VerificarExistenciaDeToken } = useContext(
-    ContextoAdministrador
-  );
+  const { usuarioLogueado } = useContextValue(AuthenticationContext);
   const [servicio, setServicio] = useState(null);
-  const [listaServicios, setlistaServicios] = useState([]);
-  const [arrayTurnos, setarrayTurnos] = useState([]);
+  const [listaServicios, setListaServicios] = useState([]);
+  const [arrayTurnos, setArrayTurnos] = useState([]);
   const [arrayTurnosAdmin, setArrayTurnosAdmin] = useState([]);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const authToken = window.localStorage.getItem("auth_token");
 
-  /// Lista de SERVICIOS  para mostrarlos en inicio
-  const serviciosBack = async () => {
+  const serviciosBack = useCallback(async () => {
     try {
-      const respuesta = await get(urlListaServicios);
-      setlistaServicios(respuesta);
+      const response = await get(API_URLS.listaServicios);
+      setListaServicios(response);
     } catch (error) {
-      console.log(error);
-      console.log("Error al cargar los servicios");
+      console.log("Error al cargar los servicios", error);
+      showToast("Error al cargar los servicios", "error");
     }
-  };
+  }, []);
 
-  const SubmitCrearServicio = async (e, serviPodo) => {
+  const submitCrearServicio = async (e, serviPodo) => {
     e.preventDefault();
-
-    // Validación de campos requeridos
-    /*     if (
-          !serviPodo.nombre ||
-          !serviPodo.descripcion ||
-          !serviPodo.costo ||
-          !serviPodo.imagen
-        ) {
-          toast.warning("Por favor, completa todos los campos requeridos.", {
-            className: "toast-warning",
-            style: { width: "fit-content" },
-          });
-          return;
-        } */
-
     try {
-      const respuest = await postImagen(urlCrearServicio, serviPodo);
-      if (respuest) {
-        toast.success(`¡${serviPodo.nombre} creado exitosamente!`, {
-          className: "toast-success",
-          style: { width: "fit-content" },
-        });
-        window.location.href = "/login";
+      const response = await postImagen(API_URLS.crearServicio, serviPodo);
+      if (response) {
+        showToast(`¡${serviPodo.nombre} creado exitosamente!`, "success");
+        navigate("/login");
       } else {
-        toast.error(`¡Error al crear el servicio!`, {
-          className: "toast-error",
-          style: { width: "fit-content" },
-        });
+        showToast("¡Error al crear el servicio!", "error");
       }
-      return console.log(respuest);
     } catch (error) {
-      console.log("Error al cargar el servicio!");
-      toast.error(
+      console.error("Error al cargar el servicio:", error);
+      showToast(
         "Ocurrió un error al crear el servicio. Inténtalo de nuevo.",
-        {
-          className: "toast-error",
-          style: { width: "fit-content" },
-        }
+        "error"
       );
     }
   };
 
   const seleccionarServicio = async (idServicio) => {
     try {
-      const urlServicioId = urlServicioGet + idServicio;
-      const respuest = await get(urlServicioId);
-      setServicio(respuest);
+      const response = await get(`${API_URLS.servicioGet}${idServicio}`);
+      setServicio(response);
     } catch (error) {
-      console.log(error);
-      console.log(`Error al seleccionar servicio: ${idServicio}`);
+      console.error(`Error al seleccionar servicio: ${idServicio}`, error);
     }
   };
 
   const listaServiciosAdmin = async () => {
     try {
-      const urlback = urlBackListaServiciosAdmin;
-      let jwt = window.localStorage.getItem("auth_token");
-      const respuesta = await getToken(urlback, jwt);
-      setlistaServicios(
-        respuesta
-      ); /* si lo comentas, no se ejecuta el useEffect */
-      console.log(listaServicios);
+      const response = await getWithAuth(
+        API_URLS.backListaServiciosAdmin,
+        authToken
+      );
+      setListaServicios(response);
     } catch (error) {
-      console.log("error al cargar la lista de servicios en el panel admin");
+      console.error(
+        "Error al cargar la lista de servicios en el panel admin:",
+        error
+      );
     }
   };
 
   const eliminarServicioAdmin = async (servicioId) => {
     try {
-      let jwt = window.localStorage.getItem("auth_token");
-      const urlCancelarServicio = urlBackDarDeBajaServicioAdmin + servicioId;
-      const respuesta = await put(urlCancelarServicio, jwt);
-      if (respuesta.ok) {
-        toast.success(`¡Servicio: ${servicioId} dado de baja!`, {
-          className: "toast-success",
-          style: { width: "fit-content" },
-        });
-      }
-      listaServiciosAdmin();
-    } catch (error) {
-      toast.error(`Error: ${servicioId} no ha sido dado de baja!`, {
-        className: "toast-success",
-        style: { width: "fit-content" },
-      });
-      console.log(
-        "Error al eliminar un servicios de la lista de servicios en el admin dashboard "
+      const response = await put(
+        `${API_URLS.darDeBajaServicioAdmin}${servicioId}`,
+        authToken
       );
-    }
-  };
-
-  const listaTurnos = async () => {
-    try {
-      const urlback = urlBackListaTurno + usuarioLogueado.id;
-
-      console.log("Hola desde listaTurnos()");
-      const respuesta = await getToken(urlback);
-      setarrayTurnos(respuesta);
+      if (response.ok) {
+        showToast(`¡Servicio: ${servicioId} dado de baja!`, "success");
+        listaServiciosAdmin();
+      }
     } catch (error) {
-      console.log("Error al listar los turnos");
+      console.error(`Error al eliminar el servicio ${servicioId}:`, error);
+      showToast(`Error: ${servicioId} no ha sido dado de baja!`, "error");
     }
   };
+
+  const listaTurnos = useCallback(async () => {
+    if (!usuarioLogueado || !usuarioLogueado.id) {
+      console.error("Usuario no logueado o ID no disponible");
+      return;
+    }
+    try {
+      const response = await getWithAuth(
+        `${API_URLS.backListaTurno}${usuarioLogueado.id}`
+      );
+      if (Array.isArray(response)) {
+        setArrayTurnos(response);
+      } else {
+        console.error("La respuesta no es un array:", response);
+        setArrayTurnos([]);
+      }
+    } catch (error) {
+      console.error("Error al listar los turnos:", error);
+    }
+  }, [usuarioLogueado]);
 
   const eliminarTurno = async (turnoId) => {
     try {
-      let jwt = window.localStorage.getItem("auth_token");
-      const urlCancelarTurno = urlBackCancelarTurno + turnoId;
-      console.log("Hola desde eliminarTurno()");
-      const respuesta = await getToken(urlCancelarTurno, jwt);
-      if (respuesta.ok) {
-        toast.success(`Turno: ${turnoId} eliminado con exíto!`, {
-          className: "toast-success",
-          style: { width: "fit-content" },
-        });
+      const response = await getWithAuth(
+        `${API_URLS.backCancelarTurno}${turnoId}`,
+        authToken
+      );
+      if (response) {
+        showToast(`Turno: ${turnoId} eliminado con éxito!`, "success");
+        return true; // Indica éxito
       }
-      listaTurnos();
     } catch (error) {
-      console.log("error ");
+      console.error("Error al eliminar el turno:", error);
+      return false; // Indica fallo
     }
   };
 
-  const listaTurnosAdmin = async (pageNumber) => {
+  const listaTurnosAdmin = async (pageNumber = 0) => {
     try {
-      const urlback = `${urlBackListaTurnosAdmin}?page=${
-        pageNumber ?? 0
-      }&size=10`;
-      let jwt = window.localStorage.getItem("auth_token");
-      const respuesta = await getToken(urlback, jwt);
-      setArrayTurnosAdmin(respuesta);
+      const response = await getWithAuth(
+        `${API_URLS.backListaTurnosAdmin}?page=${pageNumber}&size=10`,
+        authToken
+      );
+      setArrayTurnosAdmin(response);
     } catch (error) {
-      console.log("Error al traer los turnos del Administrador");
+      console.error("Error al traer los turnos del Administrador:", error);
     }
   };
 
-  const eliminarTurnoAdmin = async (turnoId, pageNumber) => {
+  const eliminarTurnoAdmin = async (turnoId) => {
     try {
-      const urlCancelarTurno = urlBackCancelarTurnoAdmin + turnoId;
-      const respuesta = await put(urlCancelarTurno);
-      if (respuesta.ok) {
-        toast.success(`Turno: ${turnoId} eliminado con exíto!`, {
-          className: "toast-success",
-          style: { width: "fit-content" },
-        });
+      const response = await put(
+        `${API_URLS.backCancelarTurnoAdmin}${turnoId}`
+      );
+      if (response.ok) {
+        showToast(`Turno: ${turnoId} eliminado con éxito!`, "success");
+        // Devuelve la cantidad de turnos restantes
+        return arrayTurnosAdmin.content.length - 1; // Decrementa en 1
       }
-      // Verifica si hay resultados en la página actual
-      const turnosRestantes = arrayTurnosAdmin.content.length - 1;
-      if (turnosRestantes === 0 && pageNumber > 0) {
-        listaTurnosAdmin(pageNumber - 1); // Si hay más de un turno en la página, mantente en la misma página
-      } else {
-        listaTurnosAdmin(pageNumber); // En caso de estar en la primera página, actualiza la misma página
-      }
+      // const turnosRestantes = arrayTurnosAdmin.content.length - 1;
+      // listaTurnosAdmin(
+      //   turnosRestantes === 0 && pageNumber > 0 ? pageNumber - 1 : pageNumber
+      // );
     } catch (error) {
-      console.log("error ");
+      console.error("Error al eliminar el turno admin:", error);
+      return -1; // Indica error
     }
   };
 
   const submitModificarServicio = async (e, form) => {
     e.preventDefault();
-
-    console.log("****Hola desde el modificarServicio****");
     const formData = new FormData();
+    // Object.entries(form).forEach(([key, value]) => formData.append(key, value));
     formData.append("id", form.id);
     formData.append("nombre", form.nombre);
     formData.append("descripcion", form.descripcion);
     formData.append("costo", form.costo);
     formData.append("file", form.file);
     try {
-      const response = await fetch(`${VITE_ENDPOINT_urlBackModificaServicio}`, {
+      const response = await fetch(API_URLS.modificarServicio, {
         method: "PUT",
         credentials: "include",
         body: formData,
       });
-      listaServiciosAdmin();
-
       if (response.ok) {
-        toast.success(`¡Servicio: ${form.nombre} actualizado!`, {
-          className: "toast-success",
-          style: { width: "fit-content" },
-        });
-
+        showToast(`¡Servicio: ${form.nombre} actualizado!`, "success");
+        listaServiciosAdmin();
         window.location.hash = "#TablaServicios";
       } else {
-        toast.error(`¡Error al actualizar ${form.nombre}!`, {
-          className: "toast-error",
-          style: { width: "fit-content" },
-        });
-        console.error("Error al modificar el servicio");
+        showToast(`¡Error al actualizar ${form.nombre}!`, "error");
       }
     } catch (error) {
-      console.error("Error en la solicitud:", error);
+      console.error(
+        "Error en la solicitud de modificación del servicio:",
+        error
+      );
+      showToast("Ocurrió un error al modificar el servicio.", "error");
     }
   };
 
-  const data = {
+  const servicesValues = {
     arrayTurnos,
     arrayTurnosAdmin,
     listaServicios,
@@ -249,12 +214,14 @@ const ServicesProvider = ({ children }) => {
     listaTurnosAdmin,
     seleccionarServicio,
     serviciosBack,
-    SubmitCrearServicio,
+    submitCrearServicio,
     submitModificarServicio,
   };
 
   return (
-    <ServicesContext.Provider value={data}>{children}</ServicesContext.Provider>
+    <ServicesContext.Provider value={servicesValues}>
+      {children}
+    </ServicesContext.Provider>
   );
 };
 

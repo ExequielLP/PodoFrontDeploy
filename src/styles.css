@@ -275,6 +275,20 @@ summary {
   }
 }
 
+/* Forced colors mode for accessibility */
+@media (forced-colors: active) {
+  body {
+    --color-text: WindowText;
+    --color-text-light: GrayText;
+    forced-color-adjust: none;
+  }
+
+  a {
+    text-decoration: underline;
+    color: LinkText;
+  }
+}
+
 *:focus {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;

@@ -1,8 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Toaster } from "sonner";
-import ContextoAdministrador from "./../context/AuthContext";
+import AuthenticationContext from "./../context/AuthContext";
 import ServicesContext from "../context/ServiceContext";
+import useContextValue from "../hooks/useContextValue";
 import useTitle from "./../hooks/useTitle";
 import { AdminCardEdit } from "../components/AdminCardEdit";
 import { AdminHolidayCalendar } from "../components/AdminHolidayCalendar";
@@ -15,9 +16,8 @@ const Dashboard = () => {
   const { section } = useParams();
   useTitle({ title: "Panel Administrador" });
 
-  const { usuarioLogueado } = useContext(ContextoAdministrador);
-  const { arrayTurnosAdmin } = useContext(ServicesContext);
-
+  const { usuarioLogueado } = useContextValue(AuthenticationContext);
+  const { arrayTurnosAdmin } = useContextValue(ServicesContext);
   const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
 
   const handleSeleccionarServicio = (servicio) => {
@@ -26,34 +26,41 @@ const Dashboard = () => {
 
   useEffect(() => {}, [arrayTurnosAdmin]);
 
+  const renderSectionContent = () => {
+    switch (section) {
+      case "turnos":
+        return <TurnosAdmin />;
+      case "servicios":
+        return (
+          <>
+            <RegisterService />
+            <ServiceTable onSeleccionarServicio={handleSeleccionarServicio} />
+            {servicioSeleccionado && (
+              <>
+                <AdminCardEdit servicio={servicioSeleccionado} />
+                <Toaster className="toast-success toast-error toast-warning" />
+              </>
+            )}
+          </>
+        );
+      case "calendarioAdmin":
+        return <AdminHolidayCalendar />;
+      default:
+        return <p>Se cerró tu sección</p>;
+    }
+  };
+
   return (
     <main className="dashboard-section">
       <h1 className="admin-title">
         ¡Bienvenido <span className="admin-userName">Admin</span>!
       </h1>
-      {usuarioLogueado.Auth === true && usuarioLogueado.Rol === "ADMIN" ? (
-        <>
-          {section === "turnos" && <TurnosAdmin />}
-          {section === "servicios" && (
-            <>
-              {" "}
-              <RegisterService />
-              <ServiceTable onSeleccionarServicio={handleSeleccionarServicio} />
-              {servicioSeleccionado && (
-                <>
-                  <AdminCardEdit servicio={servicioSeleccionado} />
-                  <Toaster className="toast-success toast-error toast-warning" />
-                </>
-              )}
-            </>
-          )}
-          {section === "calendarioAdmin" && <AdminHolidayCalendar />}
-        </>
+      {usuarioLogueado.auth && usuarioLogueado.rol === "ADMIN" ? (
+        renderSectionContent()
       ) : (
-        <p>Se cerro tu sección</p>
+        <p>Acceso denegado</p>
       )}
     </main>
   );
 };
-
 export default Dashboard;

@@ -1,7 +1,8 @@
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ContextoAdministrador from "../context/AuthContext";
+import AuthenticationContext from "../context/AuthContext";
 import ServicesContext from "../context/ServiceContext";
+import useContextValue from "../hooks/useContextValue";
 import useTitle from "./../hooks/useTitle";
 import Loader from "../shared/components/Loader";
 import Breadcrumb from "../components/Breadcrumb";
@@ -13,8 +14,8 @@ import ServiceCard from "../components/ServiceCard";
 import "./css/servicios.css";
 
 const Servicios = () => {
-  const { usuarioLogueado } = useContext(ContextoAdministrador);
-  const { servicio, seleccionarServicio } = useContext(ServicesContext);
+  const { usuarioLogueado } = useContextValue(AuthenticationContext);
+  const { servicio, seleccionarServicio } = useContextValue(ServicesContext);
   const { id } = useParams();
   useTitle({ title: servicio ? servicio.nombre : "Cargando..." });
 
@@ -28,24 +29,17 @@ const Servicios = () => {
     return <Loader />;
   }
 
-  const imagenBase64 = servicio.imagen.content;
-  const imagenURL = `data:${servicio.imagen.mime};base64,${imagenBase64}`;
+  const imagenURL = `data:${servicio.imagen.mime};base64,${servicio.imagen.content}`;
+
   return (
-    <>
-      <main className="service-container">
-        <Breadcrumb title={servicio.nombre} />
-        <ServiceCard
-          servicio={servicio}
-          isAuthenticated={usuarioLogueado.Auth}
-        />
-        {usuarioLogueado.Auth === true && (
-          <Calendario servicioId={servicio.id} />
-        )}
-        <RelatedServices />
-        <FaqSection />
-        <Metrics />
-      </main>
-    </>
+    <main className="service-container">
+      <Breadcrumb title={servicio.nombre} />
+      <ServiceCard servicio={servicio} isAuthenticated={usuarioLogueado.auth} />
+      {usuarioLogueado.auth && <Calendario servicioId={servicio.id} />}
+      <RelatedServices />
+      <FaqSection />
+      <Metrics />
+    </main>
   );
 };
 

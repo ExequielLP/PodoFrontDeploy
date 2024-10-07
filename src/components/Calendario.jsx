@@ -1,10 +1,10 @@
+import { useEffect } from "react";
 import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 import { useAppointments } from "./../utils/calendarData";
 import { Appointments } from "./Appointments";
-import "react-calendar/dist/Calendar.css";
 import "./css/calendario.css";
 import "./css/Button-styles.css";
-import { useEffect } from "react";
 
 export const Calendario = ({ servicioId }) => {
   const { date, setDate, turno, bookAppointment, fetchAppointments } =

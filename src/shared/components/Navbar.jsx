@@ -1,16 +1,17 @@
-import { useContext, useState } from "react";
-import ContextoAdministrador from "../../context/AuthContext";
+import { useState } from "react";
+import useContextValue from "../../hooks/useContextValue";
+import AuthenticationContext from "../../context/AuthContext";
 import { MenuIcon, CloseIcon } from "../../icons/index";
 import { Logo } from "./Logo";
 import { NavItem } from "./NavItem";
 import "../css/nav.css";
 
 export const Navbar = () => {
-  const { usuarioLogueado, logOut } = useContext(ContextoAdministrador);
+  const { usuarioLogueado, logOut } = useContextValue(AuthenticationContext);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
 
   const handleLogOut = () => {
@@ -27,14 +28,14 @@ export const Navbar = () => {
           <NavItem to="/">
             <Logo height={80} width={80} />
           </NavItem>
-          {usuarioLogueado.Auth === false ? (
+          {usuarioLogueado.auth === false ? (
             <NavItem link="Registrarse" to="/registro" />
-          ) : usuarioLogueado.Rol === "ADMIN" ? (
+          ) : usuarioLogueado.rol === "ADMIN" ? (
             <NavItem link="Panel Admin" to="/admin/turnos" />
           ) : (
             <NavItem link="Mis turnos" to="/user/turnos" />
           )}
-          {usuarioLogueado.Auth === false ? (
+          {usuarioLogueado.auth === false ? (
             <NavItem link="Iniciar Sesión" to="/login" />
           ) : (
             <NavItem link="Cerrar Sesión" onClick={handleLogOut} />
@@ -58,13 +59,13 @@ export const Navbar = () => {
                 to="/sobre-nosotros"
                 onClick={toggleMenu}
               />
-              {usuarioLogueado.Auth === false ? (
+              {usuarioLogueado.auth === false ? (
                 <NavItem
                   link="Registrarse"
                   to="/registro"
                   onClick={toggleMenu}
                 />
-              ) : usuarioLogueado.Rol === "ADMIN" ? (
+              ) : usuarioLogueado.rol === "ADMIN" ? (
                 <NavItem
                   link="Panel Admin"
                   to="/admin/turnos"
@@ -77,7 +78,7 @@ export const Navbar = () => {
                   onClick={toggleMenu}
                 />
               )}
-              {usuarioLogueado.Auth === false ? (
+              {usuarioLogueado.auth === false ? (
                 <NavItem
                   link="Iniciar Sesión"
                   to="/login"

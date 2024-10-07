@@ -7,7 +7,7 @@ import "./css/Admin-buttons.css";
 import "./css/RegisterService.css";
 
 export const RegisterService = () => {
-  const { SubmitCrearServicio } = useContext(ServicesContext);
+  const { submitCrearServicio } = useContext(ServicesContext);
   useTitle({ title: "Servicios Admin" });
 
   const [form, setform] = useState({
@@ -104,7 +104,7 @@ export const RegisterService = () => {
           <button
             className="admin-btn servicio-btn"
             onClick={(e) => {
-              SubmitCrearServicio(e, form);
+              submitCrearServicio(e, form);
             }}
           >
             Crear Servicio

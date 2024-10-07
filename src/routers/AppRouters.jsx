@@ -1,40 +1,25 @@
-import { lazy, Suspense, useContext, useEffect } from "react";
-import ContextoAdministrador from "../context/AuthContext";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import useContextValue  from "../hooks/useContextValue";
+import AuthenticationContext from "../context/AuthContext";
 import Loader from "../shared/components/Loader";
-const AuthRoutesLazy = lazy(() => import("./AuthRoutes"));
-const PublicRoutesLazy = lazy(() => import("./PublicRoutes"));
+const AuthRouterLazy = lazy(() => import("./AuthRouter"));
+const PublicRouterLazy = lazy(() => import("./PublicRouter"));
 
 const AppRouters = () => {
-  const { usuarioLogueado, AuthTokenYUsuario } = useContext(
-    ContextoAdministrador
-  );
-  useEffect(() => {
-    AuthTokenYUsuario();
-  }, [AuthTokenYUsuario]);
+  const { usuarioLogueado } = useContextValue(AuthenticationContext);
 
   return (
-    <Routes>     
-      {usuarioLogueado.Auth === false ? (
+    <Suspense fallback={<Loader />}>
+      <Routes>
         <Route
           path="/*"
           element={
-            <Suspense fallback={<Loader />}>
-              <PublicRoutesLazy />
-            </Suspense>
+            usuarioLogueado.auth ? <AuthRouterLazy /> : <PublicRouterLazy />
           }
         />
-      ) : (
-        <Route
-          path="/*"
-          element={
-            <Suspense fallback={<Loader />}>
-              <AuthRoutesLazy />
-            </Suspense>
-          }
-        />
-      )}
-    </Routes>
+      </Routes>
+    </Suspense>
   );
 };
 

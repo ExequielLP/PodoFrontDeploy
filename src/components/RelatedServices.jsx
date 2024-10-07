@@ -19,8 +19,6 @@ export const RelatedServices = () => {
     window.scrollTo(0, 0);
     seleccionarServicio(id);
   }, [id]);
-
-  console.log(listaServicios);
   return (
     <div className="related-services-container">
       <h2 className="related-services-title font-bold">Servicios Relacionados</h2>
