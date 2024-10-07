@@ -24,7 +24,7 @@ const API_URLS = {
 const ServicesContext = createContext();
 
 const ServicesProvider = ({ children }) => {
-  const { usuarioLogueado } = useContextValue(AuthenticationContext);
+  const { usuarioLogueado, setUsuarioLogueado } = useContextValue(AuthenticationContext);
   const [servicio, setServicio] = useState(null);
   const [listaServicios, setListaServicios] = useState([]);
   const [arrayTurnos, setArrayTurnos] = useState([]);
@@ -190,6 +190,18 @@ const ServicesProvider = ({ children }) => {
         listaServiciosAdmin();
         window.location.hash = "#TablaServicios";
       } else {
+        console.log("hola serviv¿ici context")
+        console.log(usuarioLogueado)
+        const usuarioNoAuth = {
+          auth: false,
+          email: "",
+          id: "",
+          jwt: "",
+          rol: "",
+          userName: "",
+        };
+        setUsuarioLogueado(usuarioNoAuth);
+        console.log("holis")
         showToast(`¡Error al actualizar ${form.nombre}!`, "error");
       }
     } catch (error) {
