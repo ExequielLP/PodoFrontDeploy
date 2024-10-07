@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
 
       if (!usuarioLogueado.auth && isUserValid) {
         updateUser(isUserValid);
-      } else if (cookieTokenExist && !isUserValid) {
+      } else if (!cookieTokenExist && !isUserValid) {
         handleSessionExpiration();
       }
     };
@@ -163,6 +163,7 @@ const AuthProvider = ({ children }) => {
     submitLogin,
     submitRegistro,
     usuarioLogueado,
+    setUsuarioLogueado,
     isAuthenticated, // Añadido para el interceptor
     handleUnauthorized, // Añadido para el interceptor
   };
