@@ -15,15 +15,14 @@ const fetchWithInterceptor = async (url, options = {}) => {
     //     throw new Error("No autorizado");
     //   }
     // }
-
-    if (!response.ok) {
-      const errorData = await response.json(); // Captura el mensaje de error
-      throw new Error(`Error: ${response.status} - ${errorData.message || response.statusText}`);
-    }
     return response;
   } catch (error) {
     console.error("Error en la solicitud:", error);
-    throw error; // Lanza el error para que pueda ser manejado en el llamador
+      throw new Error(
+        `Error: ${response.status} - ${
+          errorData.message || response.statusText
+        }`
+      );
   }
 };
 
