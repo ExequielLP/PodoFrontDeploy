@@ -1,8 +1,8 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
 import { useLocation, useNavigate, matchPath } from "react-router-dom";
-import { get, getWithAuth, post, postLogout } from "../utils/http";
 import { validateForm } from "../utils/register-validations";
 import showToast from "../utils/toastUtils";
+import { useHttp } from "../utils/http";
 
 const {
   VITE_ENDPOINT_urlPostLogin: urlPostLogin,
@@ -29,20 +29,42 @@ const AuthProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const verifyAuthentication = async () => {
-      const cookieTokenExist = await verifyTokenExpiration();
-      const isUserValid = await getUserFromToken();
-
-      if (!usuarioLogueado.auth && isUserValid) {
-        updateUser(isUserValid);
-      } else if (!cookieTokenExist && !isUserValid) {
-        handleSessionExpiration();
+  
+  const verifyAuthentication = useCallback(async () => {
+          //DEVUELVE BOOLEAN TOKEN
+          const cookieTokenExist = await verifyTokenExpiration();
+          //DEVUELVE USUARIO LOGUEADO --> USUARIO LOGUEADO O NULL
+          const isUserValid = await getUserFromToken();
+    try {
+      //!isUserValid->TRUE - cookieTokenExist-> FASLE - isAuthenticated() -> FASLE
+      console.log("isUserValid", isUserValid, "cookieTokenExist", cookieTokenExist, "isAUTHENTICATED",isAuthenticated());
+      if (isUserValid && cookieTokenExist && isAuthenticated()) {
+        handleSessionExpiration()
       }
-    };
 
+    } catch (error) {
+      console.error("CATCH",error)
+    }
+  }, [usuarioLogueado]);
+
+  useEffect(() => {
     verifyAuthentication();
-  }, [usuarioLogueado.auth, location.pathname]); //para que se ejecute en cada cambio de ruta
+  }, [usuarioLogueado]);
+
+  const { get, getWithAuth, post, postLogout } = useHttp(
+    verifyAuthentication()
+  );
+
+  const getUserFromToken = async () => {
+    try {
+      return await getWithAuth(urlValidateGetUsuario);
+    } catch {
+      showToast("Error al obtener usuario desde el token.", "error");
+      return false;
+    }
+  };
+
+
 
   const updateUser = (usuario) => {
     setUsuarioLogueado({
@@ -67,27 +89,8 @@ const AuthProvider = ({ children }) => {
     navigate("/login");
   };
 
-  const getUserFromToken = async () => {
-    try {
-      return await getWithAuth(urlValidateGetUsuario);
-    } catch {
-      showToast("Error al obtener usuario desde el token.", "error");
-      return false;
-    }
-  };
-
-  const verifyTokenExpiration = async () => {
-    try {
-      return await get(urlVerificarExpiracionToken);
-    } catch (error) {
-      showToast("Error en la verificación de expiración del token.", "error");
-      console.error("Error en la verificación de expiración del token:", error);
-      return false;
-    }
-  };
-
-  const handleSessionExpiration = () => {
-    const excludedPaths = ["/login", "/", "/registro", "/servicio/*"];
+  const handleSessionExpiration = useCallback(() => {
+    const excludedPaths = ["/login", "/","/registro", "/servicio/*"];
     const isExcluded = excludedPaths.some((path) =>
       matchPath({ path, exact: true }, location.pathname)
     );
@@ -97,16 +100,19 @@ const AuthProvider = ({ children }) => {
         "Su sesión ha expirado. Será redirigido a la página de inicio de sesión.",
         "warning"
       );
+      setUsuarioLogueado(initialUserState);
       setTimeout(() => navigate("/login"), 2000);
     }
-  };
+  }, [setUsuarioLogueado, navigate]);
+
+
 
   const submitRegistro = async (e, formRegistro) => {
     e.preventDefault();
     const errors = validateForm(formRegistro);
     if (errors.length > 0) {
       errors.forEach((error) => {
-        toast.warning(error, {
+        showToast(error, "warning", {
           className: "toast-warning",
           style: { width: "fit-content" },
         });

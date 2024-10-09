@@ -2,7 +2,7 @@ import { createContext, useCallback, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AuthenticationContext from "./AuthContext";
 import useContextValue from "../hooks/useContextValue";
-import { get, getWithAuth, postImagen, put } from "../utils/http";
+import {useHttp} from "../utils/http";
 import showToast from "../utils/toastUtils";
 
 const API_URLS = {
@@ -25,6 +25,7 @@ const ServicesContext = createContext();
 
 const ServicesProvider = ({ children }) => {
   const { usuarioLogueado, setUsuarioLogueado } = useContextValue(AuthenticationContext);
+  const { get, getWithAuth, postImagen, put } = useHttp(setUsuarioLogueado)
   const [servicio, setServicio] = useState(null);
   const [listaServicios, setListaServicios] = useState([]);
   const [arrayTurnos, setArrayTurnos] = useState([]);
