@@ -34,6 +34,8 @@ const ServicesProvider = ({ children }) => {
   //const location = useLocation();
   //const authToken = window.localStorage.getItem("auth_token"); 
 
+
+  
   const serviciosBack = useCallback(async () => {
     try {
       const {data: servicesList, error: servicesListError} = await fetchData(API_URLS.listaServicios, {method: "GET"});

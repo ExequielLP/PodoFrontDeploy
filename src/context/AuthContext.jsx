@@ -32,15 +32,15 @@ const AuthProvider = ({ children }) => {
   // Maneja la acción cuando la autorización falla
   const handleUnauthorized = () => {
     showToast("No estás autenticado. Por favor, inicia sesión.", "warning");
-    if (window.location.pathname !== "/") {
+    // if (window.location.pathname !== "/") {
       console.log("Sesión expirada, cerrando sesión.");
       setUsuarioLogueado(initialUserState);
       navigate("/login");
-    }else if ( window.location.pathname === "/" && usuarioLogueado.rol === "USER"){
-      console.log("REDIRIGE?")
-      setUsuarioLogueado(initialUserState);
-      navigate("/login");
-    }
+    // }else if ( window.location.pathname === "/" && usuarioLogueado.rol === "USER"){
+    //   console.log("REDIRIGE?")
+    //   setUsuarioLogueado(initialUserState);
+    //   navigate("/login");
+    // }
   };
   //INICIALIZA EL HOOK POSTERIOR A LA FUNCIÓN
   const { fetchData } = useFetch(handleUnauthorized);
