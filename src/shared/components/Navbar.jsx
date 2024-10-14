@@ -16,7 +16,7 @@ export const Navbar = () => {
 
   const handleLogOut = () => {
     logOut();
-    toggleMenu();
+    setMenuOpen(false); // Asegura que el menú se cierre
   };
 
   return (

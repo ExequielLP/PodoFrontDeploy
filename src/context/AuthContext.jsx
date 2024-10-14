@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, useCallback } from "react";
 import { useLocation, useNavigate, matchPath } from "react-router-dom";
 import { validateForm } from "../utils/register-validations";
 import showToast from "../utils/toastUtils";
-import { useHttp } from "../utils/http";
+import useFetch from "../hooks/useFetch";
 
 const {
   VITE_ENDPOINT_urlPostLogin: urlPostLogin,
@@ -29,42 +29,44 @@ const AuthProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  
-  const verifyAuthentication = useCallback(async () => {
-          //DEVUELVE BOOLEAN TOKEN
-          const cookieTokenExist = await verifyTokenExpiration();
-          //DEVUELVE USUARIO LOGUEADO --> USUARIO LOGUEADO O NULL
-          const isUserValid = await getUserFromToken();
-    try {
-      //!isUserValid->TRUE - cookieTokenExist-> FASLE - isAuthenticated() -> FASLE
-      console.log("isUserValid", isUserValid, "cookieTokenExist", cookieTokenExist, "isAUTHENTICATED",isAuthenticated());
-      if (isUserValid && cookieTokenExist && isAuthenticated()) {
-        handleSessionExpiration()
-      }
-
-    } catch (error) {
-      console.error("CATCH",error)
+  // Maneja la acción cuando la autorización falla
+  const handleUnauthorized = () => {
+    showToast("No estás autenticado. Por favor, inicia sesión.", "warning");
+    if (window.location.pathname !== "/") {
+      console.log("Sesión expirada, cerrando sesión.");
+      setUsuarioLogueado(initialUserState);
+      navigate("/login");
+    }else if ( window.location.pathname === "/" && usuarioLogueado.rol === "USER"){
+      console.log("REDIRIGE?")
+      setUsuarioLogueado(initialUserState);
+      navigate("/login");
     }
-  }, [usuarioLogueado]);
+  };
+  //INICIALIZA EL HOOK POSTERIOR A LA FUNCIÓN
+  const { fetchData } = useFetch(handleUnauthorized);
+
+  const verifyAuthentication = async () => {
+    const { data: tokenData, error: tokenError } = await fetchData(
+      urlVerificarExpiracionToken,
+      { method: "GET" },
+      handleUnauthorized
+    );
+    const { data: userData, error: userError } = await fetchData(
+      urlValidateGetUsuario,
+      { method: "GET" },
+      handleUnauthorized
+    );
+    console.log(tokenData, "tokenError", tokenError);
+    if (tokenData && usuarioLogueado.auth === false) {
+      updateUser(userData);
+    } else if (userError) {
+      showToast("Error al obtener usuario desde el token.", "error");
+    }
+  };
 
   useEffect(() => {
     verifyAuthentication();
   }, [usuarioLogueado]);
-
-  const { get, getWithAuth, post, postLogout } = useHttp(
-    verifyAuthentication()
-  );
-
-  const getUserFromToken = async () => {
-    try {
-      return await getWithAuth(urlValidateGetUsuario);
-    } catch {
-      showToast("Error al obtener usuario desde el token.", "error");
-      return false;
-    }
-  };
-
-
 
   const updateUser = (usuario) => {
     setUsuarioLogueado({
@@ -82,15 +84,8 @@ const AuthProvider = ({ children }) => {
     return usuarioLogueado.auth;
   };
 
-  // Maneja la acción cuando la autorización falla
-  const handleUnauthorized = () => {
-    showToast("No estás autenticado. Por favor, inicia sesión.", "warning");
-    setUsuarioLogueado(initialUserState);
-    navigate("/login");
-  };
-
   const handleSessionExpiration = useCallback(() => {
-    const excludedPaths = ["/login", "/","/registro", "/servicio/*"];
+    const excludedPaths = ["/login", "/", "/registro", "/servicio/*"];
     const isExcluded = excludedPaths.some((path) =>
       matchPath({ path, exact: true }, location.pathname)
     );
@@ -105,23 +100,21 @@ const AuthProvider = ({ children }) => {
     }
   }, [setUsuarioLogueado, navigate]);
 
-
-
   const submitRegistro = async (e, formRegistro) => {
     e.preventDefault();
     const errors = validateForm(formRegistro);
     if (errors.length > 0) {
       errors.forEach((error) => {
-        showToast(error, "warning", {
-          className: "toast-warning",
-          style: { width: "fit-content" },
-        });
+        showToast(`Error al cargar ${error} en el registro`, "error");
       });
       return;
     }
     try {
-      const respuesta = await post(urlCrearUsuario, formRegistro);
-      if (respuesta) {
+      const { data: registerUser, error: registerError } = await fetchData(
+        urlCrearUsuario,
+        { method: "POST", body: JSON.stringify(formRegistro) }
+      );
+      if (registerUser) {
         navigate("/login");
       }
     } catch (error) {
@@ -133,16 +126,15 @@ const AuthProvider = ({ children }) => {
   const submitLogin = async (e, formlogin) => {
     e.preventDefault();
     try {
-      const respuesta = await post(urlPostLogin, formlogin);
-      const usuarioRespuesta = {
-        auth: true,
-        email: respuesta.email,
-        id: respuesta.id,
-        jwt: respuesta.jwt,
-        rol: respuesta.rol,
-        userName: respuesta.userName,
-      };
-      setUsuarioLogueado(usuarioRespuesta);
+      const { data: loginData, error: loginError } = await fetchData(
+        urlPostLogin,
+        { method: "POST", body: JSON.stringify(formlogin) }
+      );
+      if (loginError) {
+        showToast("¡Error al ingresar datos del usuario!", "error");
+      } else {
+        updateUser(loginData);
+      }
       navigate("/");
     } catch (error) {
       showToast("¡Error al ingresar datos del usuario!", "error");
@@ -152,12 +144,16 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     try {
-      const response = await postLogout(removeCookieFromUser);
-      if (response.ok) {
+      const { data: cookieData, error: cookieError } = await fetchData(
+        removeCookieFromUser,
+        { method: "POST" }
+      );
+      if (cookieData) {
         setUsuarioLogueado(initialUserState);
         navigate("/login");
       } else {
         showToast("No estás autenticado. Por favor, inicia sesión.", "warning");
+        console.log(cookieError);
       }
     } catch (error) {
       console.log(`Error en el Logout: ${error}`);
@@ -171,7 +167,7 @@ const AuthProvider = ({ children }) => {
     usuarioLogueado,
     setUsuarioLogueado,
     isAuthenticated, // Añadido para el interceptor
-    handleUnauthorized, // Añadido para el interceptor
+    handleUnauthorized,
   };
   return (
     <AuthenticationContext.Provider value={authContextValue}>

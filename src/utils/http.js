@@ -1,21 +1,6 @@
 import { handleResponse } from "./responseHandler";
 
-export const useHttp = (verifyAuthentication) => {
-  const fetchWithInterceptor = async (url, options = {}) => {
-    try {
-      const response = await fetch(url, { ...options, credentials: "include" }); // Incluir cookies
-
-      if (response.status === 403) {
-        verifyAuthentication();
-        throw new Error("No autorizado");
-      }
-
-      return response;
-    } catch (error) {
-      console.error("Error en la solicitud:", error);
-      throw error;
-    }
-  };
+export const useHttp = () => {
 
   const get = async (url) => {
     try {
@@ -32,11 +17,12 @@ export const useHttp = (verifyAuthentication) => {
 
   const getWithAuth = async (url) => {
     try {
-      const response = await fetchWithInterceptor(url, {
+      const response = await fetch(url, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
       });
       return handleResponse(response);
     } catch (error) {
