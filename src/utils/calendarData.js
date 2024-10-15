@@ -39,7 +39,7 @@ export const useAppointments = (servicioId) => {
 
         }, handleUnauthorized
       );
-      if (bookAppointment.ok) {
+      if (bookAppointment) {
         showToast(`Turno reservado exitosamente!`, "success");
       } else {
         showToast(`El turno (${turnoId}) ya fue reservado! `, "error");
