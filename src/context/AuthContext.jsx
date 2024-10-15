@@ -31,17 +31,38 @@ const AuthProvider = ({ children }) => {
 
   // Maneja la acción cuando la autorización falla
   const handleUnauthorized = () => {
-    showToast("No estás autenticado. Por favor, inicia sesión.", "warning");
-    // if (window.location.pathname !== "/") {
-      console.log("Sesión expirada, cerrando sesión.");
-      setUsuarioLogueado(initialUserState);
-      navigate("/login");
-    // }else if ( window.location.pathname === "/" && usuarioLogueado.rol === "USER"){
+    console.log("handleUnauthorized")
+    console.log(usuarioLogueado)
+    console.log(window.location.pathname)
+
+    // if (window.location.pathname === "/" && usuarioLogueado.rol === "USER") {
     //   console.log("REDIRIGE?")
     //   setUsuarioLogueado(initialUserState);
     //   navigate("/login");
+    //   return
+    // } else if (window.location.pathname === "/servicio/*" && usuarioLogueado.rol === "USER") {
+    //   console.log("REDIRIGE?")
+    //   setUsuarioLogueado(initialUserState);
+    //   navigate("/login");
+    //   return
     // }
-  };
+
+
+    const excludedPaths = ["/login", "/", "/registro", "/servicio/*"];
+    const isExcluded = excludedPaths.some((path) =>
+      matchPath({ path, exact: true }, location.pathname)
+    );
+
+    if (!isExcluded) {
+      setUsuarioLogueado(initialUserState);
+      setTimeout(() => navigate("/login"), 2000);
+      return
+    } else if (isExcluded && usuarioLogueado.auth === true)
+      setUsuarioLogueado(initialUserState);
+    setTimeout(() => navigate("/login"), 2000);
+    return
+  }
+
   //INICIALIZA EL HOOK POSTERIOR A LA FUNCIÓN
   const { fetchData } = useFetch(handleUnauthorized);
 
@@ -56,7 +77,7 @@ const AuthProvider = ({ children }) => {
       { method: "GET" },
       handleUnauthorized
     );
-    console.log(tokenData, "tokenError", tokenError);
+
     if (tokenData && usuarioLogueado.auth === false) {
       updateUser(userData);
     } else if (userError) {
@@ -169,12 +190,13 @@ const AuthProvider = ({ children }) => {
     isAuthenticated, // Añadido para el interceptor
     handleUnauthorized,
   };
+
   return (
     <AuthenticationContext.Provider value={authContextValue}>
       {children}
     </AuthenticationContext.Provider>
   );
-};
+}
 
 export { AuthProvider };
 export default AuthenticationContext;

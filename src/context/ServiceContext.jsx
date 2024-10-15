@@ -30,15 +30,15 @@ const ServicesProvider = ({ children }) => {
   const [arrayTurnos, setArrayTurnos] = useState([]);
   const [arrayTurnosAdmin, setArrayTurnosAdmin] = useState([]);
   const navigate = useNavigate();
-  const {fetchData} = useFetch(handleUnauthorized);
+  const { fetchData } = useFetch(handleUnauthorized);
   //const location = useLocation();
   //const authToken = window.localStorage.getItem("auth_token"); 
 
 
-  
+
   const serviciosBack = useCallback(async () => {
     try {
-      const {data: servicesList, error: servicesListError} = await fetchData(API_URLS.listaServicios, {method: "GET"});
+      const { data: servicesList, error: servicesListError } = await fetchData(API_URLS.listaServicios, { method: "GET" });
       setListaServicios(servicesList);
     } catch (error) {
       console.log("Error al cargar los servicios", error);
@@ -49,7 +49,7 @@ const ServicesProvider = ({ children }) => {
   const submitCrearServicio = async (e, serviPodo) => {
     e.preventDefault();
     try {
-      const {data: createService, error: createServiceError} = await fetchData(API_URLS.crearServicio, {method: "POST", body: JSON.stringify(serviPodo)});
+      const { data: createService, error: createServiceError } = await fetchData(API_URLS.crearServicio, { method: "POST", body: JSON.stringify(serviPodo) });
       if (createService) {
         showToast(`¡${serviPodo.nombre} creado exitosamente!`, "success");
         navigate("/login");
@@ -67,7 +67,7 @@ const ServicesProvider = ({ children }) => {
 
   const seleccionarServicio = async (idServicio) => {
     try {
-      const {data: serviceSelected, error: serviceSelectedError} = await fetchData(`${API_URLS.servicioGet}${idServicio}`, {method: "GET"});
+      const { data: serviceSelected, error: serviceSelectedError } = await fetchData(`${API_URLS.servicioGet}${idServicio}`, { method: "GET" });
       setServicio(serviceSelected);
     } catch (error) {
       console.error(`Error al seleccionar servicio: ${idServicio}`, error);
@@ -76,8 +76,8 @@ const ServicesProvider = ({ children }) => {
 
   const listaServiciosAdmin = async () => {
     try {
-      const {data: serviceData, error: serviceError} = await fetchData(
-        API_URLS.backListaServiciosAdmin, {method: "GET"});
+      const { data: serviceData, error: serviceError } = await fetchData(
+        API_URLS.backListaServiciosAdmin, { method: "GET" });
       setListaServicios(serviceData);
     } catch (error) {
       console.error(
@@ -89,8 +89,8 @@ const ServicesProvider = ({ children }) => {
 
   const eliminarServicioAdmin = async (servicioId) => {
     try {
-      const {data: deleteService, error: deleteServiceError} = await fetchData(
-        `${API_URLS.darDeBajaServicioAdmin}${servicioId}`, {method: "PUT"});
+      const { data: deleteService, error: deleteServiceError } = await fetchData(
+        `${API_URLS.darDeBajaServicioAdmin}${servicioId}`, { method: "PUT" });
       if (deleteService.ok) {
         showToast(`¡Servicio: ${servicioId} dado de baja!`, "success");
         listaServiciosAdmin();
@@ -107,7 +107,7 @@ const ServicesProvider = ({ children }) => {
       return;
     }
     try {
-      const {data: userList, error: userListError} = await fetchData(`${API_URLS.backListaTurno}${usuarioLogueado.id}`, {method: "GET"});
+      const { data: userList, error: userListError } = await fetchData(`${API_URLS.backListaTurno}${usuarioLogueado.id}`, { method: "GET" });
       if (Array.isArray(userList)) {
         setArrayTurnos(userList);
       } else {
@@ -121,8 +121,11 @@ const ServicesProvider = ({ children }) => {
 
   const eliminarTurno = async (turnoId) => {
     try {
-      const {data: deleteAppointment, error: deleteAppointmentError} = await fetchData(
-        `${API_URLS.backCancelarTurno}${turnoId}`, {method: "GET"},handleUnauthorized);
+
+      console.log("eliminar turno ☼☼☼")
+      console.log(usuarioLogueado)
+      const { data: deleteAppointment, error: deleteAppointmentError } = await fetchData(
+        `${API_URLS.backCancelarTurno}${turnoId}`, { method: "GET" }, handleUnauthorized);
       if (deleteAppointment) {
         showToast(`Turno: ${turnoId} eliminado con éxito!`, "success");
         return true; // Indica éxito
@@ -135,9 +138,9 @@ const ServicesProvider = ({ children }) => {
 
   const listaTurnosAdmin = async (pageNumber = 0) => {
     try {
-      const {data: adminAppointments, error:adminAppointmentsError} = await fetchData(
+      const { data: adminAppointments, error: adminAppointmentsError } = await fetchData(
         `${API_URLS.backListaTurnosAdmin}?page=${pageNumber}&size=10`,
-        {method: "GET"});
+        { method: "GET" });
       setArrayTurnosAdmin(adminAppointments);
     } catch (error) {
       console.error("Error al traer los turnos del Administrador:", error);
@@ -146,8 +149,8 @@ const ServicesProvider = ({ children }) => {
 
   const eliminarTurnoAdmin = async (turnoId) => {
     try {
-      const {data: deleteAdminAppointments, error: deleteAdminAppointmentsError} = await fetchData(
-        `${API_URLS.backCancelarTurnoAdmin}${turnoId}`, {method: "PUT"});
+      const { data: deleteAdminAppointments, error: deleteAdminAppointmentsError } = await fetchData(
+        `${API_URLS.backCancelarTurnoAdmin}${turnoId}`, { method: "PUT" });
       if (deleteAdminAppointments.ok) {
         showToast(`Turno: ${turnoId} eliminado con éxito!`, "success");
         // Devuelve la cantidad de turnos restantes

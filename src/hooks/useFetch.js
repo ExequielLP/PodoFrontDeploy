@@ -1,11 +1,11 @@
-import { useState, useCallback} from 'react';
+import { useState, useCallback } from 'react';
 
 const useFetch = (handleUnauthorized) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const fetchData = useCallback(async (url, options) => {
+  const fetchData = async (url, options) => {
     setLoading(true);
     try {
 
@@ -18,7 +18,7 @@ const useFetch = (handleUnauthorized) => {
         credentials: "include",
       });
 
-      if(response.status === 401 || response.status === 403){
+      if (response.status === 401 || response.status === 403) {
         console.log("NO SE AUTORIZO")
         handleUnauthorized();
         throw new Error('Unauthorized');
@@ -26,8 +26,8 @@ const useFetch = (handleUnauthorized) => {
 
       const contentType = response.headers.get('Content-Type');
       let result;
-      if  (contentType && contentType.includes('application/json')){
-         result = await response.json();
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
       } else {
         result = await response.text();
       }
@@ -42,7 +42,7 @@ const useFetch = (handleUnauthorized) => {
       console.log
       return { data: null, error: err.message };
     }
-  }, []);
+  };
 
   return { data, error, loading, fetchData };
 };
