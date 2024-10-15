@@ -3,7 +3,8 @@ import { toast } from "sonner";
 const showToast = (message, type = "info", options = {}) => {
   const toastOptions = {
     className: `toast-${type}`,
-    style: { width: "fit-content" },
+    style: { width: "fit-content", height: "fit-content", padding: "8px", border: "1px solid #FF9ABF"
+    },
     ...options,
   };
 
