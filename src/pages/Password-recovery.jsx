@@ -2,9 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import useTitle from "./../hooks/useTitle";
 import "./css/PasswordRecovery.css";
-import useFetch from "../hooks/useFetch";
-import useContextValue from "../hooks/useContextValue";
-import AuthenticationContext from "../context/AuthContext";
 
 const sendEmailRecovery = import.meta.env.VITE_ENDPOINT_SEND_EMAIL;
 

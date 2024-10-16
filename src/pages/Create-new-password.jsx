@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { putWithPassword } from "../utils/http";
 import useTitle from "./../hooks/useTitle";
 import "./css/PasswordRecovery.css";
 
@@ -87,7 +86,7 @@ const CreateNewPassword = () => {
       return;
     }
     try {
-      await putWithPassword(sendNewPassword, recoveryPasswordForm);
+      await fetch(sendNewPassword, {method: "PUT", credentials: "include", body: JSON.stringify(recoveryPasswordForm)});
       setIsSubmitted(true);
     } catch (err) {
       setFormError("Ocurrió un error al enviar el correo. Intenta nuevamente.");

@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
 
   // Maneja la acción cuando la autorización falla
   const handleUnauthorized = () => {
-    const excludedPaths = ["/login", "/", "/registro", "/servicio/*", "/password-recovery", "/sobre-nosotros"];
+    const excludedPaths = ["/login", "/", "/registro", "/servicio/*", "/password-recovery", "/sobre-nosotros", "/create-new-password/*"];
     const isExcluded = excludedPaths.some((path) =>
       matchPath({ path, exact: true }, location.pathname)
     );
@@ -156,7 +156,7 @@ const AuthProvider = ({ children }) => {
     submitRegistro,
     usuarioLogueado,
     setUsuarioLogueado,
-    isAuthenticated, // Añadido para el interceptor
+    isAuthenticated,
     handleUnauthorized,
   };
 
