@@ -86,7 +86,13 @@ const CreateNewPassword = () => {
       return;
     }
     try {
-      await fetch(sendNewPassword, {method: "PUT", credentials: "include", body: JSON.stringify(recoveryPasswordForm)});
+      console.log(recoveryPasswordForm);
+      await fetch(sendNewPassword, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(recoveryPasswordForm),
+      });
       setIsSubmitted(true);
     } catch (err) {
       setFormError("Ocurrió un error al enviar el correo. Intenta nuevamente.");

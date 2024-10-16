@@ -14,7 +14,13 @@ export default function PasswordRecovery() {
     e.preventDefault();
     console.log("Password recovery requested for:", email);
     try {
-      await fetch(sendEmailRecovery + email, { method: "POST", credentials: "include" });
+      await fetch(sendEmailRecovery + email, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       setIsSubmitted(true);
     } catch (err) {
       setError("Ocurrió un error al enviar el correo. Intenta nuevamente.");
