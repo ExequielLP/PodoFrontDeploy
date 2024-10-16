@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { post } from "../utils/http";
 import useTitle from "./../hooks/useTitle";
 import "./css/PasswordRecovery.css";
+import useFetch from "../hooks/useFetch";
+import useContextValue from "../hooks/useContextValue";
+import AuthenticationContext from "../context/AuthContext";
 
 const sendEmailRecovery = import.meta.env.VITE_ENDPOINT_SEND_EMAIL;
 
@@ -11,12 +13,11 @@ export default function PasswordRecovery() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Password recovery requested for:", email);
     try {
-      await post(sendEmailRecovery + email);
+      await fetch(sendEmailRecovery + email, { method: "POST", credentials: "include" });
       setIsSubmitted(true);
     } catch (err) {
       setError("Ocurrió un error al enviar el correo. Intenta nuevamente.");

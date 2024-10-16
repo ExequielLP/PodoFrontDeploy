@@ -35,32 +35,24 @@ const AuthProvider = ({ children }) => {
     console.log(usuarioLogueado)
     console.log(window.location.pathname)
 
-    // if (window.location.pathname === "/" && usuarioLogueado.rol === "USER") {
-    //   console.log("REDIRIGE?")
-    //   setUsuarioLogueado(initialUserState);
-    //   navigate("/login");
-    //   return
-    // } else if (window.location.pathname === "/servicio/*" && usuarioLogueado.rol === "USER") {
-    //   console.log("REDIRIGE?")
-    //   setUsuarioLogueado(initialUserState);
-    //   navigate("/login");
-    //   return
-    // }
-
-
-    const excludedPaths = ["/login", "/", "/registro", "/servicio/*"];
+    const excludedPaths = ["/login", "/", "/registro", "/servicio/*", "/password-recovery", "/sobre-nosotros"];
     const isExcluded = excludedPaths.some((path) =>
       matchPath({ path, exact: true }, location.pathname)
     );
 
     if (!isExcluded) {
       setUsuarioLogueado(initialUserState);
+      console.log("!isExcluded")
       setTimeout(() => navigate("/login"), 2000);
       return
-    } else if (isExcluded && usuarioLogueado.auth === true)
+    } else if (usuarioLogueado.auth === true && isExcluded) {
+      console.log("isExcluded && usuarioLogueado.auth === true")
+      console.log(usuarioLogueado)
       setUsuarioLogueado(initialUserState);
-    setTimeout(() => navigate("/login"), 2000);
-    return
+      console.log("isExcluded && usuarioLogueado.auth === true")
+      setTimeout(() => navigate("/login"), 2000);
+      return
+    }
   }
 
   //INICIALIZA EL HOOK POSTERIOR A LA FUNCIÓN
