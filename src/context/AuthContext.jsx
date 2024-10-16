@@ -73,7 +73,7 @@ const AuthProvider = ({ children }) => {
     if (tokenData && usuarioLogueado.auth === false) {
       updateUser(userData);
     } else if (userError) {
-      showToast("Error al obtener usuario desde el token.", "error");
+      console.error("Usuario no logueado:",userError)
     }
   };
 

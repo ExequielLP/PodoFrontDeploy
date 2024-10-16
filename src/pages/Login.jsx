@@ -4,6 +4,8 @@ import { SignInWithGoogle } from "../components/SignInWithGoogle";
 import AuthenticationContext from "../context/AuthContext";
 import useTitle from "../hooks/useTitle";
 import "./css/login.css";
+import { FormField } from "../shared/components/FormField";
+import { MailIcon, PasswordIconHide, PasswordIconShow } from "../icons/index";
 
 const formInciallogin = {
   email: "",
@@ -33,22 +35,26 @@ const Login = () => {
       <form className="form-login">
         <div className="login-border-inset">
           <p className="login-text-vertical">BIENVENIDO</p>
-          <div className="login-input">
-            <input
-              className="userName-input"
+          <div className="login-inputs">
+            <FormField
+              label="Correo electronico"
+              className="login-input"
               type="email"
-              placeholder="Nombre de usuario"
+              placeholder="user@example.com"
               id="loginUserName"
               name="email"
               onChange={handleChangelogin}
+              icon={MailIcon}
             />
-            <input
-              className="password-input"
+            <FormField
+              label="Contraseña"
+              className="login-input"
               type="password"
               placeholder="Contraseña"
               id="loginPassword"
               name="password"
               onChange={handleChangelogin}
+              icon={PasswordIconHide}
             />
             <button
               className="login-button"
@@ -65,7 +71,7 @@ const Login = () => {
         </div>
       </form>
       <Link to={"/registro"} className="go-to-login">
-        No tienes cuenta? Regístrate aquí!
+        <span className="login-span">No tienes cuenta?</span> Regístrate aquí!
       </Link>
       <SignInWithGoogle />
     </main>
