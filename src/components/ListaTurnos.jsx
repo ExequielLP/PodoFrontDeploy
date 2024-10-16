@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import AuthenticationContext from "../context/AuthContext";
-import ServicesContext from "../context/ServiceContext";
 import { format } from "date-fns";
 import { priceFormatter } from "../utils/priceFormatter";
 import Table from "../shared/components/Table";

@@ -8,7 +8,7 @@ const Inicio = lazy(() => import("../pages/Inicio"));
 const Login = lazy(() => import("../pages/Login"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
 const Servicios = lazy(() => import("../pages/Servicios"));
-const ListaTurnos = lazy(() => import("../components/ListaTurnos"));
+const UserAppointments = lazy(() => import("../pages/UserAppointments"));
 
 const AuthRouter = () => {
   return (
@@ -18,7 +18,7 @@ const AuthRouter = () => {
       <Route path="/sobre-nosotros" element={<About />} />
       <Route path="/login" element={<Login />} />
       <Route path="/servicio/:id" element={<Servicios />} />
-      <Route path="/user/turnos" element={<ProtectedRoute><ListaTurnos /></ProtectedRoute>} />
+      <Route path="/user/turnos" element={<ProtectedRoute><UserAppointments /></ProtectedRoute>} />
       <Route path="/admin/:section" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
