@@ -112,11 +112,11 @@
   transform: scale(1);
 }
 
-.go-to-login > span {
+.register-span {
   color: var(--color-text);
 }
 
-.go-to-login > span:hover{
+.register-span:hover{
   text-decoration: none;
 }
 

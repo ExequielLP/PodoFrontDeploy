@@ -31,10 +31,6 @@ const AuthProvider = ({ children }) => {
 
   // Maneja la acción cuando la autorización falla
   const handleUnauthorized = () => {
-    console.log("handleUnauthorized")
-    console.log(usuarioLogueado)
-    console.log(window.location.pathname)
-
     const excludedPaths = ["/login", "/", "/registro", "/servicio/*", "/password-recovery", "/sobre-nosotros"];
     const isExcluded = excludedPaths.some((path) =>
       matchPath({ path, exact: true }, location.pathname)
@@ -46,11 +42,8 @@ const AuthProvider = ({ children }) => {
       setTimeout(() => navigate("/login"), 2000);
       return
     } else if (usuarioLogueado.auth === true && isExcluded) {
-      console.log("isExcluded && usuarioLogueado.auth === true")
-      console.log(usuarioLogueado)
       setUsuarioLogueado(initialUserState);
-      console.log("isExcluded && usuarioLogueado.auth === true")
-      setTimeout(() => navigate("/login"), 2000);
+      setTimeout(() => navigate("/login"), 1000);
       return
     }
   }
@@ -96,22 +89,6 @@ const AuthProvider = ({ children }) => {
   const isAuthenticated = () => {
     return usuarioLogueado.auth;
   };
-
-  const handleSessionExpiration = useCallback(() => {
-    const excludedPaths = ["/login", "/", "/registro", "/servicio/*"];
-    const isExcluded = excludedPaths.some((path) =>
-      matchPath({ path, exact: true }, location.pathname)
-    );
-
-    if (!isExcluded) {
-      showToast(
-        "Su sesión ha expirado. Será redirigido a la página de inicio de sesión.",
-        "warning"
-      );
-      setUsuarioLogueado(initialUserState);
-      setTimeout(() => navigate("/login"), 2000);
-    }
-  }, [setUsuarioLogueado, navigate]);
 
   const submitRegistro = async (e, formRegistro) => {
     e.preventDefault();

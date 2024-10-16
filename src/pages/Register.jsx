@@ -10,7 +10,7 @@ import { FormField } from "../shared/components/FormField";
 const Register = () => {
   useTitle({ title: "Registro" });
 
-  const { SubmitRegistro } = useContext(AuthenticationContext);
+  const { submitRegistro } = useContext(AuthenticationContext);
 
   const [form, setform] = useState({
     userName: "",
@@ -88,7 +88,7 @@ const Register = () => {
                 type="submit"
                 className="registrobutton"
                 onClick={(e) => {
-                  SubmitRegistro(e, form);
+                  submitRegistro(e, form);
                 }}
               >
                 Registrarse
@@ -104,7 +104,7 @@ const Register = () => {
       </form>
 
       <Link to={"/login"} className="go-to-login">
-      <span cl>¿Ya tienes una cuenta?</span> Inicia sesión aquí!
+      <span className="register-span">¿Ya tienes una cuenta?</span> Inicia sesión aquí!
       </Link>
       <SignInWithGoogle />
     </main>
