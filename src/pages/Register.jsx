@@ -32,14 +32,14 @@ const Register = () => {
       <form className="form-register">
         <div className="form-border-inset">
           <p className="form-vertical-advice">Ingrese sus datos</p>
-          <div className="register-input">
+          <div className="register-inputs">
             <FormField
               label="Nombre de usuario"
               type="text"
               id="registerUserName"
               name="userName"
               placeholder="Nombre de usuario"
-              className="register-inputs"
+              className="register-input"
               onChange={handleChange}
               icon={UserIcon}
             />
@@ -49,7 +49,7 @@ const Register = () => {
               placeholder="Nombre"
               id="registerName"
               name="name"
-              className="register-inputs"
+              className="register-input"
               onChange={handleChange}
               icon={UserIcon}
             />
@@ -59,7 +59,7 @@ const Register = () => {
               placeholder="Email"
               id="registerEmail"
               name="email"
-              className="register-inputs"
+              className="register-input"
               onChange={handleChange}
               icon={MailIcon}
             />
@@ -69,7 +69,7 @@ const Register = () => {
               placeholder="Contraseña"
               id="registerPassword"
               name="password"
-              className="register-inputs"
+              className="register-input"
               onChange={handleChange}
               icon={PasswordIconHide}
             />
@@ -79,7 +79,7 @@ const Register = () => {
               placeholder="repetir contraseña"
               id="registerPassword"
               name="repeatePassword"
-              className="register-inputs"
+              className="register-input"
               onChange={handleChange}
               icon={PasswordIconShow}
             />
