@@ -28,7 +28,12 @@ const Inicio = () => {
 
   useEffect(() => {
     serviciosBack();
-    listaTurnos();
+
+    {
+      usuarioLogueado.rol === "USER" ?
+        listaTurnos() : null
+    }
+
   }, [serviciosBack, listaTurnos]);
 
   const handleEliminarTurno = async (turnoId) => {
