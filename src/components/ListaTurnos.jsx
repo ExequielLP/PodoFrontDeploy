@@ -1,13 +1,22 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthenticationContext from "../context/AuthContext";
 import { format } from "date-fns";
 import { priceFormatter } from "../utils/priceFormatter";
 import Table from "../shared/components/Table";
 import { CalendarCrossIcon } from "../icons/index";
 import "./css/listaTurno.css";
+import { useModalContext } from "../context/ModalContext";
+import { Modal } from "../shared/components/Modal";
 
-const ListaTurnos = ({ turnos,onEliminarTurno }) => {
+const ListaTurnos = ({ turnos, onEliminarTurno }) => {
   const { usuarioLogueado } = useContext(AuthenticationContext);
+  const { state, setState } = useModalContext();
+  const [selectedTurno, setSelectedTurno] = useState(null);
+
+  const openModal = (turno) => {
+    setSelectedTurno(turno);
+    setState(true);
+  };
 
   // Filtrando y ordenando los turnos que están confirmados por fecha
   const turnosReservados = (turnos || [])
@@ -34,7 +43,7 @@ const ListaTurnos = ({ turnos,onEliminarTurno }) => {
       icon: (
         <CalendarCrossIcon size={24} color="#050505" alt="Cancelar Turno" />
       ),
-      onClick: (turno) => onEliminarTurno(turno.id),
+      onClick: openModal,
     },
   ];
 
@@ -68,11 +77,63 @@ const ListaTurnos = ({ turnos,onEliminarTurno }) => {
           >
             <div className="accordion-body table-responsive">
               {turnosReservados.length > 0 ? (
-                <Table
-                  columns={columns}
-                  data={turnosReservados}
-                  actions={actions}
-                />
+                <>
+                  <Table
+                    columns={columns}
+                    data={turnosReservados}
+                    actions={actions}
+                  />
+                  <Modal>
+                    {selectedTurno && (
+                      <div className="modal-inset-border">
+                        <header className="modal-header-seciton">
+                          <h2 className="modal-appointment-title">
+                            Confirmar cancelación de turno
+                          </h2>
+                        </header>
+                        <section className="modal-description">
+                          <p>
+                            ¿Está seguro que desea cancelar el siguiente turno?
+                          </p>
+                          <div className="modal-appointment-details">
+                            <p>
+                              <strong>Servicio:</strong>{" "}
+                              {selectedTurno.nombreServicio}
+                            </p>
+                            <p>
+                              <strong>Hora:</strong>{" "}
+                              {format(
+                                new Date(selectedTurno.startTime),
+                                "hh:mm a dd/MM/yyyy"
+                              )}
+                            </p>
+                            <p>
+                              <strong>Costo:</strong>{" "}
+                              {priceFormatter(selectedTurno.costo)}
+                            </p>
+                          </div>
+                        </section>
+                        <footer className="modal-footer">
+                          <button
+                            className="modal-button modal-button-outline"
+                            onClick={() => setState(false)}
+                          >
+                            Volver
+                          </button>
+                          <button
+                            className="modal-button modal-button-destructive"
+                            onClick={() => {
+                              onEliminarTurno(selectedTurno.id);
+                              setState(false);
+                            }}
+                          >
+                            Cancelar
+                          </button>
+                        </footer>
+                      </div>
+                    )}
+                  </Modal>
+                </>
               ) : (
                 <p>No tienes turnos reservados</p>
               )}

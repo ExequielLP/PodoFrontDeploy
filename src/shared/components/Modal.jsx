@@ -38,12 +38,16 @@ export const Modal = ({ children }) => {
     return null;
   }
   return createPortal(
-    <div className="overlay" onClick={closeModal}>
-      <div className="modal" ref={modalRef} onClick={handleContentClick}>
-        {children}
-        <button className="close-button" onClick={closeModal}>
-          Cerrar
+    <div className="modal-overlay" onClick={closeModal}>
+      <div
+        className="modal-container"
+        ref={modalRef}
+        onClick={handleContentClick}
+      >
+        <button className="modal-close-button" onClick={closeModal}>
+          X
         </button>
+        {children}
       </div>
     </div>,
     modalRoot
