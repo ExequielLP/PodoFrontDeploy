@@ -1,10 +1,11 @@
+import "../css/Tablas-Admin.css"
 
-export const TableImage = ({image}) => {
+export const TableImage = ({image, className, width, height}) => {
   return (
     <img
-      className="table-img"
-      width={60}
-      height={60}
+      className={className}
+      width={width}
+      height={height}
       src={`data:${image.mime};base64,${image.content}`}
       alt="Servicio"
     />

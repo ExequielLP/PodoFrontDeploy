@@ -23,10 +23,11 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
     {
       key: "imagen",
       header: "Imagen",
-      render: (image) => <TableImage image={image} />,
+      className: "td-image-container",
+      render: (image) => <TableImage image={image}  className="table-img" height={60} width={60}/>,
     },
     { key: "nombre", header: "Nombre del servicio" },
-    { key: "descripcion", header: "Descripción del servicio" },
+    { key: "descripcion", header: "Descripción del servicio", className: "service-description" },
     {
       key: "costo",
       header: "Costo",

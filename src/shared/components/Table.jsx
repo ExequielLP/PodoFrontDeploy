@@ -1,4 +1,5 @@
 import "../css/Tablas-Admin.css";
+import Tooltip from "./Tooltip";
 
 const Table = ({ columns, data, actions }) => {
   return (
@@ -22,10 +23,21 @@ const Table = ({ columns, data, actions }) => {
         {data.map((item) => (
           <tr key={item.id}>
             {columns.map((column) => (
-              <td key={column.key} className="m-auto p-4">
-                {column.render
-                  ? column.render(item[column.key])
-                  : item[column.key]}
+              <td
+                key={column.key}
+                className={`m-auto p-4 ${column.className || ""}`}
+              >
+                {column.key === "descripcion" ? (
+                  <Tooltip content={item[column.key]}>
+                    {item[column.key].length > 50
+                      ? `${item[column.key].substring(0, 50)}...`
+                      : item[column.key]}
+                  </Tooltip>
+                ) : column.render ? (
+                  column.render(item[column.key])
+                ) : (
+                  item[column.key]
+                )}
               </td>
             ))}
             {actions &&
