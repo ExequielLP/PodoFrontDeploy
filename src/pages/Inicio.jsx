@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ServicesContext from "../context/ServiceContext";
 import AuthenticationContext from "../context/AuthContext";
@@ -10,13 +10,15 @@ import ContactInfo from "../components/ContactInfo";
 import ListaTurnos from "../components/ListaTurnos";
 import "./css/inicio.css";
 import showToast from "../utils/toastUtils";
+import { useModalContext } from "../context/ModalContext";
+import { Modal } from "../shared/components/Modal";
 
 const Intro = lazy(() => import("../components/Introduction"));
 const Section = lazy(() => import("../components/HeroContainer"));
 
 const Inicio = () => {
   useTitle({ title: "Inicio" });
-
+  const { setState } = useModalContext();
   const { usuarioLogueado } = useContextValue(AuthenticationContext);
   const {
     arrayTurnos,
@@ -30,6 +32,12 @@ const Inicio = () => {
     serviciosBack();
     listaTurnos();
   }, [serviciosBack, listaTurnos]);
+
+  //Abre la modal
+  const openModal = () => {
+    console.log("me abri?")
+    setState(true)
+  }
 
   const handleEliminarTurno = async (turnoId) => {
     const success = await eliminarTurno(turnoId);
@@ -54,11 +62,13 @@ const Inicio = () => {
       </Link>
     </div>
   );
+
   return (
     <Suspense fallback={<Loader />}>
       <Section />
       <Intro />
       <section className="d-flex justify-content-center my-5 align-items-center">
+        <button onClick={openModal}>Abrete sésamo</button>
         {usuarioLogueado.auth &&
           (usuarioLogueado.rol === "ADMIN" ? (
             renderAdminButtons()

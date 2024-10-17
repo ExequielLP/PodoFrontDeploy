@@ -10,20 +10,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./pages/css/Toast.css";
 import "./styles.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { ModalProvider } from "./context/ModalContext";
 
 const CLIENT_ID = import.meta.env.VITE_ENDPOINT_Cliente_id;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <AuthProvider>
-      <ServicesProvider>
-        <GoogleOAuthProvider clientId={CLIENT_ID}>
-          <Navbar />
-          <Toaster className="toast-success toast-error toast-warning" />
-          <AppRouters />
-          <Footer />
-        </GoogleOAuthProvider>
-      </ServicesProvider>
+      <ModalProvider>
+        <ServicesProvider>
+          <GoogleOAuthProvider clientId={CLIENT_ID}>
+            <Navbar />
+            <Toaster className="toast-success toast-error toast-warning" />
+            <AppRouters />
+            <Footer />
+          </GoogleOAuthProvider>
+        </ServicesProvider>
+      </ModalProvider>
     </AuthProvider>
   </BrowserRouter>
 );
