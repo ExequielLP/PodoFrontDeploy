@@ -7,23 +7,28 @@ import useFetch from "../hooks/useFetch";
 const API_URLS = {
   turnosDelDia: import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia,
   reservarTurno: import.meta.env.VITE_ENDPOINT_urlBackReservarTurno,
+  annualHolidays: import.meta.env.VITE_ENDPOINT_urlBackAddAnnualHolidays,
 };
 
 export const useAppointments = (servicioId) => {
   const [date, setDate] = useState(new Date());
   const [turno, setTurno] = useState([]);
-  const { usuarioLogueado, handleUnauthorized } = useContextValue(AuthenticationContext);
+  const [holiday, setHoliday] = useState([]);
+  const { usuarioLogueado, handleUnauthorized } = useContextValue(
+    AuthenticationContext
+  );
 
   const { fetchData } = useFetch(handleUnauthorized);
   const fetchAppointments = async () => {
     try {
-      const { data: appointment, error: appointmenttokenError } = await fetchData(
-        `${API_URLS.turnosDelDia}${date.toISOString().split("T")[0]}`,
-        {
-          method: "GET"
-
-        }, handleUnauthorized
-      );
+      const { data: appointment, error: appointmenttokenError } =
+        await fetchData(
+          `${API_URLS.turnosDelDia}${date.toISOString().split("T")[0]}`,
+          {
+            method: "GET",
+          },
+          handleUnauthorized
+        );
       setTurno(appointment);
     } catch (error) {
       console.error("Error al obtener las citas", error);
@@ -35,9 +40,9 @@ export const useAppointments = (servicioId) => {
       const { data: bookAppointment, error: tokenError } = await fetchData(
         `${API_URLS.reservarTurno}${turnoId}/${servicioId}/${usuarioLogueado.id}`,
         {
-          method: "POST"
-
-        }, handleUnauthorized
+          method: "POST",
+        },
+        handleUnauthorized
       );
       if (bookAppointment) {
         showToast(`Turno reservado exitosamente!`, "success");
@@ -50,5 +55,32 @@ export const useAppointments = (servicioId) => {
     }
   };
 
-  return { date, setDate, turno, fetchAppointments, bookAppointment };
+  //Función para cargar los feriados del ADMIN o días no laborales
+  const addAnnualHolidays = async (e, holidayForm) => {
+    e.preventDefault();
+    try {
+      const { data: holidayAppointment, error: holidayAppointmentError } =
+        await fetchData(
+          `${API_URLS.annualHolidays}${date.toISOString().split("T")[0]}`,
+          {
+            method: "POST",
+            body: JSON.stringify(holidayForm),
+          }
+        );
+      setHoliday(holidayAppointment);
+    } catch (error) {
+      console.error("Error al obtener el feriado", error);
+    }
+  };
+
+  return {
+    date,
+    addAnnualHolidays,
+    bookAppointment,
+    fetchAppointments,
+    turno,
+    setDate,
+    holiday,
+    setHoliday,
+  };
 };

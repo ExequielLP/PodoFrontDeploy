@@ -47,9 +47,16 @@ const ServicesProvider = ({ children }) => {
   }, []);
 
   const submitCrearServicio = async (e, serviPodo) => {
+    
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("nombre", serviPodo.nombre);
+    formData.append("descripcion", serviPodo.descripcion);
+    formData.append("costo", serviPodo.costo);
+    formData.append("file", serviPodo.file);
+    console.log(formData)
     try {
-      const { data: createService, error: createServiceError } = await fetchData(API_URLS.crearServicio, { method: "POST", body: JSON.stringify(serviPodo) });
+      const { data: createService, error: createServiceError } = await fetch(API_URLS.crearServicio, { method: "POST", body: formData, credentials: "include", });
       if (createService) {
         showToast(`¡${serviPodo.nombre} creado exitosamente!`, "success");
         navigate("/login");
