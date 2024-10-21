@@ -10,10 +10,10 @@ const API_URLS = {
   annualHolidays: import.meta.env.VITE_ENDPOINT_urlBackAddAnnualHolidays,
 };
 
-export const useAppointments = (servicioId) => {
+export const useAppointments = (servicioId = '') => {
   const [date, setDate] = useState(new Date());
   const [turno, setTurno] = useState([]);
-  const [holiday, setHoliday] = useState([]);
+  const [holiday, setHoliday] = useState(new Date());
   const { usuarioLogueado, handleUnauthorized } = useContextValue(
     AuthenticationContext
   );
@@ -58,13 +58,15 @@ export const useAppointments = (servicioId) => {
   //Función para cargar los feriados del ADMIN o días no laborales
   const addAnnualHolidays = async (e, holidayForm) => {
     e.preventDefault();
+    console.log(holidayForm)
     try {
       const { data: holidayAppointment, error: holidayAppointmentError } =
         await fetchData(
-          `${API_URLS.annualHolidays}${date.toISOString().split("T")[0]}`,
+          `${API_URLS.annualHolidays}`,
           {
             method: "POST",
             body: JSON.stringify(holidayForm),
+            credentials: "include",
           }
         );
       setHoliday(holidayAppointment);

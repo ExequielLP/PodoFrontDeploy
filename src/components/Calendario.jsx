@@ -6,7 +6,7 @@ import { Appointments } from "./Appointments";
 import "./css/calendario.css";
 import "./css/Button-styles.css";
 
-export const Calendario = ({ servicioId }) => {
+export const Calendario = ({ servicioId = '' }) => {
   const { date, setDate, turno, bookAppointment, fetchAppointments } =
     useAppointments(servicioId);
   useEffect(() => {
