@@ -22,15 +22,14 @@
 
 .holiday-content {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   padding: 1rem;
 }
 
 .holiday-calendar-container {
   display: flex;
-  flex-direction: column;
   gap: 20px;
-  max-width: 500px;
 }
 
 .holiday-calendar-controls {
@@ -80,6 +79,7 @@
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   padding: 20px;
+  max-width: 500px;
 }
 
 .holiday-form-container {
@@ -105,10 +105,6 @@
     border: 1px solid #ff9abf;
     box-shadow: 0 0 8px rgba(255, 154, 191, 0.8), inset 0 0 4px rgba(25, 0, 17, 0.4);
   }
-
-.holiday-list {
-  margin-top: 20px;
-}
 
 .holiday-table-container {
   max-height: 500px;
