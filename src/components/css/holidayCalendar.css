@@ -1,0 +1,150 @@
+.holiday-section {
+  color: #333;
+}
+
+.holiday-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.holiday-header {
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.holiday-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.holiday-content {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.holiday-calendar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 500px;
+}
+
+.holiday-calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.year-select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.year-select-container label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.year-select-container select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.copy-button,
+.holiday-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 16px;
+  background-color: #303030;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.copy-button:hover,
+.holiday-button:hover {
+  background-color: #1b1b1b;
+}
+
+.calendar-admin {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.holiday-form-container {
+  display: flex;
+  align-items: end;
+  gap: 5px;
+}
+
+.holiday-input {
+  display: flex;
+  gap: 15px;
+}
+
+.holiday-input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.holiday-input:focus {
+    border: 1px solid #ff9abf;
+    box-shadow: 0 0 8px rgba(255, 154, 191, 0.8), inset 0 0 4px rgba(25, 0, 17, 0.4);
+  }
+
+.holiday-list {
+  margin-top: 20px;
+}
+
+.holiday-table-container {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #f8f8f8;
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+
+td {
+  padding: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.status-button,
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
