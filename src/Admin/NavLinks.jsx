@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom";
-import { HomeIcon, UsersIcon, WorkIcon, CalendarSettingsIcon, CalendarCrossIcon } from "../icons/index";
-import styles from "./NavLinks.module.css"
+import { NavLink } from "react-router-dom";
+import {
+  HomeIcon,
+  UsersIcon,
+  WorkIcon,
+  CalendarSettingsIcon,
+  CalendarCrossIcon,
+} from "../icons/index";
+import styles from "./NavLinks.module.css";
 const links = [
   { name: "Home", href: "/dashboard", icon: HomeIcon },
   {
@@ -15,7 +21,7 @@ const links = [
   },
   {
     name: "Agregar Feriados",
-    href: "/dashboard/calendario",
+    href: "/dashboard/calendario-feriados",
     icon: CalendarSettingsIcon,
   },
   {
@@ -31,14 +37,17 @@ export default function NavLinks() {
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
-          <Link
+          <NavLink
             key={link.name}
             to={link.href}
-            className={`${styles.navLink} ${'pathname' === link.href ? styles.active : ''}`}
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.active : ""}`
+            }
+            end
           >
-            <LinkIcon/>
+            <LinkIcon />
             <span className={styles.linkText}>{link.name}</span>
-          </Link>
+          </NavLink>
         );
       })}
     </>

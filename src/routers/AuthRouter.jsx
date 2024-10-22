@@ -1,4 +1,4 @@
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "../shared/components/Loader";
 import PageNotFound from "../pages/PageNotFound";
@@ -10,6 +10,7 @@ const Servicios = lazy(() => import("../pages/Servicios"));
 const UserAppointments = lazy(() => import("../pages/UserAppointments"));
 import Dashboard from "../pages/Dashboard";
 import { AdminHolidayCalendar } from "../components/AdminHolidayCalendar";
+import { SuspendAppointments } from "../Admin/SuspendAppointments";
 import { RegisterService } from "../components/RegisterService";
 import { TurnosAdmin } from "../components/TurnosAdmin";
 import DashboardLayout from "../Admin/DashboardLayout";
@@ -21,7 +22,8 @@ const AdminRoutes = () => (
       <Route index element={<Dashboard />} />
       <Route path="servicios" element={<RegisterService />} />
       <Route path="turnos" element={<TurnosAdmin />} />
-      <Route path="calendario" element={<AdminHolidayCalendar />} />
+      <Route path="calendario-feriados" element={<AdminHolidayCalendar />} />
+      <Route path="suspender-turnos" element={<SuspendAppointments />} />
     </Route>
   </Routes>
 );
