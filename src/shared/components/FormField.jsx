@@ -3,12 +3,13 @@ import '../css/formField.css'
 export const FormField = ({
   label,
   icon: Icon,
-  className,
+  className = '',
   id,
   type,
   name,
-  placeholder,
+  placeholder = '',
   onChange,
+  value,
 }) => {
   return (
     <div className="shared-input-section">
@@ -23,6 +24,7 @@ export const FormField = ({
           name={name}
           onChange={onChange}
           aria-describedby={`${name}-error`}
+          {...(value !== undefined ? { value } : {})}
           />
       </div>
     </div>
