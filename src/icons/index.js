@@ -1,7 +1,10 @@
 export { AwardIcon } from "./AwardIcon";
 export { CalendarCancelIcon } from "./CalendarCancelIcon";
+export { CalendarCheckIcon } from "./CalendarCheckIcon";
 export { CalendarCrossIcon } from "./CalendarCrossIcon";
 export { CalendarDownIcon } from "./CalendarDownIcon";
+export { CalendarOffIcon } from "./CalendarOffIcon";
+export { CalendarPlusIcon } from "./CalendarPlusIcon";
 export { CalendarSettingsIcon } from "./CalendarSettingsIcon";
 export { ClockIcon } from "./ClockIcon";
 export { CloseIcon } from "./CloseIcon";
