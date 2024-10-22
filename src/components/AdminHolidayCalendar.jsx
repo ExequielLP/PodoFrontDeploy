@@ -177,7 +177,7 @@ export const AdminHolidayCalendar = () => {
                           <td>{holiday.date}</td>
                           <td>{holiday.name}</td>
                           <td className="actions">
-                            <button
+                            {/* <button
                               // onClick={() => handleSaveHoliday(holiday)}
                               className={`status-button ${
                                 holiday.estado ? "active" : "inactive"
@@ -193,14 +193,14 @@ export const AdminHolidayCalendar = () => {
                               ) : (
                                 <CalendarOffIcon color="red" />
                               )}
-                            </button>
-                            <button
+                            </button> */}
+                            {/* <button
                               // onClick={() => removeHoliday(holiday.id, selectedYear)}
                               className="delete-button"
                               title="Eliminar feriado"
                             >
                               <CalendarCrossIcon />
-                            </button>
+                            </button> */}
                           </td>
                         </tr>
                       ))

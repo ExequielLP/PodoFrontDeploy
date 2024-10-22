@@ -31,7 +31,7 @@ export const Navbar = () => {
           {usuarioLogueado.auth === false ? (
             <NavItem link="Registrarse" to="/registro" />
           ) : usuarioLogueado.rol === "ADMIN" ? (
-            <NavItem link="Panel Admin" to="/admin/turnos" />
+            <NavItem link="Panel Admin" to="/dashboard" />
           ) : (
             <NavItem link="Mis turnos" to="/user/turnos" />
           )}
@@ -68,7 +68,7 @@ export const Navbar = () => {
               ) : usuarioLogueado.rol === "ADMIN" ? (
                 <NavItem
                   link="Panel Admin"
-                  to="/admin/turnos"
+                  to="/dashboard"
                   onClick={toggleMenu}
                 />
               ) : (

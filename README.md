@@ -13,6 +13,10 @@ To do:
 - [ ] Limpiar TODOS LOS console.log.
 - [ ] Querys para filtrar turnos por busqueda (nombre/apellido - servicio)
 - [ ] Terminar el componente agregar feriados para el admin.
+- [ ] Cards adminDashboard ( 1- Cantidad de turnos disponibles en el día; 2-Turnos disponibles en el mes; 3-Servicios Totales; 4- A pensar)
+- [ ] Grafico dashboard
+- [ ] Tabla turnos del dia en la home dashboard.
+- [ ] Calendario Admin añadir suspensión de turno por motivos ajenos.
 
 To check:
 - [ ] Agregar campo de búsqueda para las tablas del admin.

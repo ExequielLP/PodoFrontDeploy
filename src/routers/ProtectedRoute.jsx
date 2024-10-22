@@ -1,11 +1,17 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import useContextValue from "../hooks/useContextValue";
 import AuthenticationContext from "../context/AuthContext";
 
 const ProtectedRoute = ({ children }) => {
   const { usuarioLogueado } = useContextValue(AuthenticationContext);
 
-  return usuarioLogueado.auth ? children : <Navigate to="/login" />;
+
+  if (!usuarioLogueado.auth) {
+    return <Navigate to="/login" />;
+  }
+
+  return children ? children : <Outlet />;
+
 };
 
 export default ProtectedRoute;

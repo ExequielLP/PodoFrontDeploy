@@ -11,7 +11,6 @@ import { RegisterService } from "../components/RegisterService";
 import { ServiceTable } from "./../components/ServiceTable";
 import { TurnosAdmin } from "./../components/TurnosAdmin";
 import "./css/Dashboard.css";
-import DashboardLayout from "../Admin/DashboardLayout";
 
 const Dashboard = () => {
   const { section } = useParams();
@@ -63,7 +62,6 @@ const Dashboard = () => {
         <p>Acceso denegado</p>
       )}
     </main>
-    //Descomentar esto cuando el layout este ok <DashboardLayout/>
   );
 };
 export default Dashboard;

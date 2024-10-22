@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "../shared/components/Loader";
 import PageNotFound from "../pages/PageNotFound";
@@ -6,9 +6,25 @@ import ProtectedRoute from "./ProtectedRoute";
 const About = lazy(() => import("../pages/About"));
 const Inicio = lazy(() => import("../pages/Inicio"));
 const Login = lazy(() => import("../pages/Login"));
-const Dashboard = lazy(() => import("../pages/Dashboard"));
 const Servicios = lazy(() => import("../pages/Servicios"));
 const UserAppointments = lazy(() => import("../pages/UserAppointments"));
+import Dashboard from "../pages/Dashboard";
+import { AdminHolidayCalendar } from "../components/AdminHolidayCalendar";
+import { RegisterService } from "../components/RegisterService";
+import { TurnosAdmin } from "../components/TurnosAdmin";
+import DashboardLayout from "../Admin/DashboardLayout";
+
+// AdminRoutes defined within AuthRouter for simplicity
+const AdminRoutes = () => (
+  <Routes>
+    <Route path="/" element={<DashboardLayout />}>
+      <Route index element={<Dashboard />} />
+      <Route path="servicios" element={<RegisterService />} />
+      <Route path="turnos" element={<TurnosAdmin />} />
+      <Route path="calendario" element={<AdminHolidayCalendar />} />
+    </Route>
+  </Routes>
+);
 
 const AuthRouter = () => {
   return (
@@ -19,7 +35,7 @@ const AuthRouter = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/servicio/:id" element={<Servicios />} />
       <Route path="/user/turnos" element={<ProtectedRoute><UserAppointments /></ProtectedRoute>} />
-      <Route path="/admin/:section" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/dashboard/*" element={<ProtectedRoute><AdminRoutes /></ProtectedRoute>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   </Suspense>
