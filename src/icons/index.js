@@ -1,3 +1,4 @@
+export { ArrowPathIcon } from "./ArrowPathIcon";
 export { AwardIcon } from "./AwardIcon";
 export { CalendarCancelIcon } from "./CalendarCancelIcon";
 export { CalendarCheckIcon } from "./CalendarCheckIcon";
@@ -12,6 +13,7 @@ export { EditIcon } from "./EditIcon";
 export { ChevronRightIcon } from "./ChevronRightIcon";
 export { HomeIcon } from "./HomeIcon";
 export { ImageIcon } from "./ImageIcon";
+export { InboxIcon } from "./InboxIcon";
 export { LoaderIcon } from "./LoaderIcon";
 export { LoginIcon } from "./LoginIcon";
 export { MailIcon } from "./MailIcon";
