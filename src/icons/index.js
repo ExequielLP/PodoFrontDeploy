@@ -8,6 +8,7 @@ export { CalendarPlusIcon } from "./CalendarPlusIcon";
 export { CalendarSettingsIcon } from "./CalendarSettingsIcon";
 export { ClockIcon } from "./ClockIcon";
 export { CloseIcon } from "./CloseIcon";
+export { EditIcon } from "./EditIcon";
 export { ChevronRightIcon } from "./ChevronRightIcon";
 export { HomeIcon } from "./HomeIcon";
 export { ImageIcon } from "./ImageIcon";
