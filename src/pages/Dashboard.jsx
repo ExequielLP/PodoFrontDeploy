@@ -5,7 +5,7 @@ import AuthenticationContext from "./../context/AuthContext";
 import ServicesContext from "../context/ServiceContext";
 import useContextValue from "../hooks/useContextValue";
 import useTitle from "./../hooks/useTitle";
-import { AdminCardEdit } from "../components/AdminCardEdit";
+import { EditService } from "../components/EditService";
 import { AdminHolidayCalendar } from "../components/AdminHolidayCalendar";
 import { RegisterService } from "../components/RegisterService";
 import { ServiceTable } from "./../components/ServiceTable";
@@ -38,7 +38,7 @@ const Dashboard = () => {
             <ServiceTable onSeleccionarServicio={handleSeleccionarServicio} />
             {servicioSeleccionado && (
               <>
-                <AdminCardEdit servicio={servicioSeleccionado} />
+                <EditService servicio={servicioSeleccionado} />
                 <Toaster className="toast-success toast-error toast-warning" />
               </>
             )}

@@ -34,6 +34,8 @@
 /* Base styles */
 html {
   font-size: var(--base-font-size);
+  scrollbar-color: #a8a8a8 #ffffff;
+  scrollbar-3dlight-color: #db2777;
 }
 
 body {
@@ -43,6 +45,9 @@ body {
   color: var(--color-text);
   /* box-sizing: border-box;
   margin: auto; */
+  /* #ff62ea */
+  scrollbar-color: #ffb9f6 #ffffff;
+  scrollbar-width: thin;
 }
 
 img {

@@ -10,6 +10,7 @@ export { ClockIcon } from "./ClockIcon";
 export { CloseIcon } from "./CloseIcon";
 export { ChevronRightIcon } from "./ChevronRightIcon";
 export { HomeIcon } from "./HomeIcon";
+export { ImageIcon } from "./ImageIcon";
 export { LoaderIcon } from "./LoaderIcon";
 export { LoginIcon } from "./LoginIcon";
 export { MailIcon } from "./MailIcon";

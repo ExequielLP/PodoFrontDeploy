@@ -29,10 +29,8 @@ const Inicio = () => {
     serviciosBack();
 
     {
-      usuarioLogueado.rol === "USER" ?
-        listaTurnos() : null
+      usuarioLogueado.rol === "USER" ? listaTurnos() : null;
     }
-
   }, [serviciosBack, listaTurnos]);
 
   const handleEliminarTurno = async (turnoId) => {
@@ -45,34 +43,17 @@ const Inicio = () => {
     }
   };
 
-  const renderAdminButtons = () => (
-    <div className="admin-section-buttons">
-      <Link className="admin-btn" to="/admin/servicios">
-        Servicios <span>&#11208;</span>
-      </Link>
-      <Link className="admin-btn" to="/admin/turnos">
-        Turnos <span>&#11208;</span>
-      </Link>
-      <Link className="admin-btn" to="/admin/calendarioAdmin">
-        Calendario <span>&#11208;</span>
-      </Link>
-    </div>
-  );
-
   return (
     <Suspense fallback={<Loader />}>
       <Section />
       <Intro />
       <section className="d-flex justify-content-center my-5 align-items-center">
-        {usuarioLogueado.auth &&
-          (usuarioLogueado.rol === "ADMIN" ? (
-            renderAdminButtons()
-          ) : (
-            <ListaTurnos
-              onEliminarTurno={handleEliminarTurno}
-              turnos={arrayTurnos}
-            />
-          ))}
+        {usuarioLogueado.auth && usuarioLogueado.rol === "USER" && (
+          <ListaTurnos
+            onEliminarTurno={handleEliminarTurno}
+            turnos={arrayTurnos}
+          />
+        )}
       </section>
       <Cards listaServicios={listaServicios} />
       <ContactInfo />

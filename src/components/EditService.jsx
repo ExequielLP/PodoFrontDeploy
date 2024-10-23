@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import ServicesContext from "../context/ServiceContext";
 import "./css/EditCard.css";
 
-export const AdminCardEdit = ({ servicio }) => {
+export const EditService = ({ servicio }) => {
   const { nombre, imagen, descripcion, costo } = servicio;
   const { submitModificarServicio } = useContext(ServicesContext);
   const [form, setForm] = useState({
