@@ -10,6 +10,7 @@
 ## FRONT
 To do:
 - [✔]
+- [ ] Valdiaciones en formularios.
 - [ ] Limpiar TODOS LOS console.log.
 - [ ] Querys para filtrar turnos por busqueda (nombre/apellido - servicio)
 - [ ] Terminar el componente agregar feriados para el admin.
@@ -17,6 +18,7 @@ To do:
 - [ ] Grafico dashboard
 - [ ] Tabla turnos del dia en la home dashboard.
 - [ ] Calendario Admin añadir suspensión de turno por motivos ajenos.
+- [ ] Saar accion de modificar turno en la tabla admin
 
 To check:
 - [ ] Agregar campo de búsqueda para las tablas del admin.

@@ -80,15 +80,6 @@ export const TurnosAdmin = () => {
 
   const actions = [
     {
-      label: "Modificar",
-      icon: (
-        <CalendarSettingsIcon size={24} color="#050505" alt="Modificar turno" />
-      ),
-      onClick: (turno) => {
-        // Implementar lógica de modificación aquí
-      },
-    },
-    {
       label: "Cancelar",
       icon: <CalendarCrossIcon size={24} color="#050505" alt="Quitar turno" />,
       onClick: (turno) => handleEliminarTurno(turno.id), // Usar la función manejadora
