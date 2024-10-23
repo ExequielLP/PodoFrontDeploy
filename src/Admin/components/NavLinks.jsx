@@ -1,28 +1,34 @@
 import { NavLink } from "react-router-dom";
 import {
+  EditIcon,
   HomeIcon,
   UsersIcon,
   WorkIcon,
   CalendarSettingsIcon,
   CalendarCrossIcon,
-} from "../icons/index";
-import styles from "./NavLinks.module.css";
+} from "../../icons/index";
+import styles from "./css/NavLinks.module.css";
 const links = [
   { name: "Home", href: "/dashboard", icon: HomeIcon },
-  {
-    name: "Servicios",
-    href: "/dashboard/servicios",
-    icon: WorkIcon,
-  },
-  {
-    name: "Turnos",
-    href: "/dashboard/turnos",
-    icon: UsersIcon,
-  },
   {
     name: "Agregar Feriados",
     href: "/dashboard/calendario-feriados",
     icon: CalendarSettingsIcon,
+  },
+  {
+    name: "Agregar Servicio",
+    href: "/dashboard/agregar-servicio",
+    icon: WorkIcon,
+  },
+  {
+    name: "Ver Servicios",
+    href: "/dashboard/editar-servicios",
+    icon: EditIcon,
+  },
+  {
+    name: "Ver Turnos",
+    href: "/dashboard/turnos",
+    icon: UsersIcon,
   },
   {
     name: "Suspender Turnos",
@@ -32,6 +38,11 @@ const links = [
 ];
 
 export default function NavLinks() {
+
+// const sortedLinks= links.sort((a, b) =>
+//   a.name > b.name ? 1 : -1
+// );
+
   return (
     <>
       {links.map((link) => {

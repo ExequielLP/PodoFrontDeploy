@@ -1,16 +1,16 @@
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import "./css/calendario.css";
-import { useAppointments } from "../utils/calendarData";
+import "../../components/css/calendario.css";
+import { useAppointments } from "../../utils/calendarData";
 import { useState } from "react";
-import { FormField } from "../shared/components/FormField";
+import { FormField } from "../../shared/components/FormField";
 import "./css/holidayCalendar.css";
 import {
   CalendarCheckIcon,
   CalendarPlusIcon,
   CalendarCrossIcon,
   CalendarOffIcon,
-} from "../icons/index";
+} from "../../icons/index";
 
 const initialHolidayForm = {
   fecha: new Date().toISOString().split("T")[0],

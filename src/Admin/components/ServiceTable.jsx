@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
-import ServicesContext from "./../context/ServiceContext";
-import { priceFormatter } from "../utils/priceFormatter";
-import { CalendarCrossIcon, CalendarSettingsIcon } from "../icons/index";
-import Table from "../shared/components/Table";
-import { TableImage } from "../shared/components/TableImage";
-import "../shared/css/Tablas-Admin.css";
+import ServicesContext from "../../context/ServiceContext";
+import { priceFormatter } from "../../utils/priceFormatter";
+import { CalendarCrossIcon, CalendarSettingsIcon } from "../../icons/index";
+import Table from "../../shared/components/Table";
+import { TableImage } from "../../shared/components/TableImage";
+import "../../shared/css/Tablas-Admin.css";
 
 export const ServiceTable = ({ onSeleccionarServicio }) => {
   const { eliminarServicioAdmin, listaServicios, listaServiciosAdmin } =

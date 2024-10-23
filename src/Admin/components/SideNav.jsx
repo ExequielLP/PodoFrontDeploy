@@ -1,9 +1,9 @@
 import NavLinks from "./NavLinks";
-import { PowerIcon } from "../icons";
+import { PowerIcon } from "../../icons";
 import { Link } from "react-router-dom";
-import styles from "./SideNav.module.css";
-import useContextValue from "../hooks/useContextValue";
-import AuthenticationContext from "../context/AuthContext";
+import styles from "./css/SideNav.module.css";
+import useContextValue from "../../hooks/useContextValue";
+import AuthenticationContext from "../../context/AuthContext";
 
 export default function SideNav() {
   const { logOut } = useContextValue(AuthenticationContext);

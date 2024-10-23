@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
-import ServicesContext from "../context/ServiceContext";
+import ServicesContext from "../../context/ServiceContext";
 import "./css/EditCard.css";
 
 export const EditService = ({ servicio }) => {

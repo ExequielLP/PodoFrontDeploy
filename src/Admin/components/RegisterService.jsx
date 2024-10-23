@@ -1,10 +1,10 @@
 import { useContext, useRef, useState } from "react";
 import { NumericFormat } from "react-number-format";
-import ServicesContext from "../context/ServiceContext";
-import useTitle from "../hooks/useTitle";
-import "./css/Admin-buttons.css";
+import ServicesContext from "../../context/ServiceContext";
+import useTitle from "../../hooks/useTitle";
+import "../../shared/css/generic-button.css";
 import "./css/RegisterService.css";
-import { ImageIcon } from "../icons/index";
+import { ImageIcon } from "../../icons/index";
 
 export const RegisterService = () => {
   const { submitCrearServicio } = useContext(ServicesContext);

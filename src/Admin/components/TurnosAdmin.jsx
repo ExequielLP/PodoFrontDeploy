@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
-import ServicesContext from "./../context/ServiceContext";
-import useContextValue from "../hooks/useContextValue";
-import { priceFormatter } from "../utils/priceFormatter";
-import Pagination from "../shared/components/Pagination";
-import Table from "../shared/components/Table";
-import SearchComponent from "./SearchComponent";
-import { CalendarCrossIcon, CalendarSettingsIcon } from "../icons/index";
-import "../shared/css/Tablas-Admin.css";
+import ServicesContext from "../../context/ServiceContext";
+import useContextValue from "../../hooks/useContextValue";
+import { priceFormatter } from "../../utils/priceFormatter";
+import Pagination from "../../shared/components/Pagination";
+import Table from "../../shared/components/Table";
+import SearchComponent from "../../components/SearchComponent";
+import { CalendarCrossIcon, CalendarSettingsIcon } from "../../icons/index";
+import "../../shared/css/Tablas-Admin.css";
 
 export const TurnosAdmin = () => {
   const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
