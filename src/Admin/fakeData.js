@@ -77,6 +77,6 @@ export const fakeTurno = [
     startTime: "12:30 PM",
     nombreUsuario: "Pablo",
     email: "pablo-marmol@gmail.com",
-    estado: true,
+    estado: false,
   },
 ];

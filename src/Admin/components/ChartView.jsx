@@ -1,31 +1,58 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
-import { fakeData } from "../fakeData";
 import styles from "./css/chart-styles.module.css";
 import { CalendarSettingsIcon } from "../../icons/index";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
+import { serviceColors } from "../../utils/serviciesColors";
+
+const MONTH_URL = import.meta.env.VITE_ENDPOINT_MONTH_APPOINTMENTS;
 
 export const ChartView = () => {
-  const monthNames = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
-  const currentMonth = monthNames[new Date().getMonth()];
-
   const chartRef = useRef(null); // using useRef to keep track of the chart instance
+  const [monthAppointments, setMonthAppointments] = useState([]);
+  const currentDay = new Date();
+  const currentMonth = format(new Date(), "MMMM", {
+    locale: es,
+  });
+
+  //DEPENDECY --> currentMonth - monthAppointments??
+  useEffect(() => {
+    //Filtrar por servicio la data
+    const getMonthAppointments = async () => {
+      const data = await fetch(
+        `${MONTH_URL}${currentDay.toISOString().split("T")[0]}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
+      const response = await data.json();
+      setMonthAppointments(response);
+    };
+    getMonthAppointments();
+  }, []);
+
+  //Filtramos los turnos del mes por ocupados
+  const monthAppointmentsFiltered = monthAppointments.filter(
+    (appointmentsReserved) => appointmentsReserved.estado === true
+  );
+
+  //Pasamos los turnos filtrados a un objeto nuevo para añadir el border color y el backgroundColor
+  const chartMonthData = Object.keys(serviceColors).map((service) => {
+    const countData = monthAppointmentsFiltered.filter(
+      (appointment) => appointment.nombreServicio === service
+    ).length;
+    return {
+      label: service,
+      data: [countData],
+      borderColor: serviceColors[service].borderColor,
+      backgroundColor: serviceColors[service].backgroundColor,
+    };
+  });
 
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
-
     if (chartRef.current) {
       chartRef.current.destroy();
     }
@@ -33,13 +60,15 @@ export const ChartView = () => {
     chartRef.current = new Chart(ctx, {
       type: "bar",
       data: {
-        labels: fakeData.map((service) => service.label),
+        labels: chartMonthData.map((service) => service.label),
         datasets: [
           {
             label: currentMonth,
-            data: fakeData.map((service) => service.data[0]),
-            borderColor: fakeData.map((service) => service.borderColor),
-            backgroundColor: fakeData.map((service) => service.backgroundColor),
+            data: chartMonthData.map((service) => service.data[0]),
+            borderColor: chartMonthData.map((service) => service.borderColor),
+            backgroundColor: chartMonthData.map(
+              (service) => service.backgroundColor
+            ),
             borderWidth: 1,
           },
         ],

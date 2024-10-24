@@ -7,7 +7,7 @@ const cardData = [
   { title: "Turnos disponibles 24-10-2024", value: "0/5", type: "pending" },
   { title: "Servicios Totales", value: 6, type: "services" },
   { title: "Ingresos del mes", value: "$50.400", type: "invoices" },
-  { title: "Clientes Totales", value: 30, type: "customers" },
+  { title: "Turnos disponibles mes", value: "20/100", type: "customers" },
 ];
 
 const iconMap = {
