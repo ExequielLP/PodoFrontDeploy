@@ -4,14 +4,14 @@ import { UsersIcon, WorkIcon, ClockIcon, InboxIcon } from "../../icons/index";
 
 //Cantidad de turnos disponibles en el día; Turnos disponibles en el mes; Servicios Totales; Ingresos del mes)
 const cardData = [
-  { title: "Collected", value: 6, type: "collected" },
-  { title: "Pending", value: 10, type: "pending" },
-  { title: "Total Invoices", value: 15, type: "invoices" },
-  { title: "Total Customers", value: 4, type: "customers" },
+  { title: "Turnos disponibles 24-10-2024", value: "2/5", type: "pending" },
+  { title: "Servicios Totales", value: 6, type: "services" },
+  { title: "Ingresos del mes", value: "$50.400", type: "invoices" },
+  { title: "Clientes Totales", value: 30, type: "customers" },
 ];
 
 const iconMap = {
-  collected: WorkIcon,
+  services: WorkIcon,
   customers: UsersIcon,
   pending: ClockIcon,
   invoices: InboxIcon,
@@ -47,7 +47,7 @@ export function Card({ title, value, type }) {
   return (
     <div className={styles.componentContainer}>
       <div className={styles.componentHeader}>
-        {Icon ? <Icon className={styles.componentIcon} /> : null}
+        {Icon ? <Icon size={24} color="#374151" /> : null}
         <h3 className={styles.componentTitle}>{title}</h3>
       </div>
       <p className={styles.componentValue}>{value}</p>

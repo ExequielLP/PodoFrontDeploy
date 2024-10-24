@@ -21,6 +21,7 @@ export const ChartView = () => {
   ];
   const currentMonth = monthNames[new Date().getMonth()];
 
+  //Esto deberia cambiar cuando el mes cambio o cuando la cantidad de turnos consumidos del mes aumente
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
     new Chart(ctx, {
