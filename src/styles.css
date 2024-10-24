@@ -299,3 +299,15 @@ summary {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
+
+/*ESCONDE OJO EN PASSWORD*/
+/* Para Webkit (Chrome, Safari, Edge) */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* Para Firefox */
+input[type="password"] {
+  -moz-user-select: text; /* Evitar que Firefox muestre el icono de visibilidad */
+}

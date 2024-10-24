@@ -5,7 +5,7 @@ import AuthenticationContext from "../context/AuthContext";
 import useTitle from "../hooks/useTitle";
 import "./css/login.css";
 import { FormField } from "../shared/components/FormField";
-import { MailIcon, PasswordIconHide, PasswordIconShow } from "../icons/index";
+import { MailIcon, PasswordIconHide } from "../icons";
 
 const formInciallogin = {
   email: "",
