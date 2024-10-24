@@ -5,19 +5,37 @@ import styles from "./css/chart-styles.module.css";
 import { CalendarSettingsIcon } from "../../icons/index";
 
 export const ChartView = () => {
+  const monthNames = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+  const currentMonth = monthNames[new Date().getMonth()];
+
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["Octubre"],
-        datasets: fakeData.map((service) => ({
-          label: service.label,
-          data: service.data,
-          borderColor: service.borderColor,
-          backgroundColor: service.backgroundColor,
-          borderWidth: 1,
-        })),
+        labels: fakeData.map((service) => service.label),
+        datasets: [
+          {
+            label: currentMonth,
+            data: fakeData.map((service) => service.data[0]),
+            borderColor: fakeData.map((service) => service.borderColor),
+            backgroundColor: fakeData.map((service) => service.backgroundColor),
+            borderWidth: 1,
+          },
+        ],
       },
       options: {
         aspectRatio: 1,
@@ -34,13 +52,19 @@ export const ChartView = () => {
 
   return (
     <div className={styles.recentRevenueMdColSpan4}>
-      <h2 className={`${styles.recentRevenueTitle} ${styles.recentRevenueTitleMd}`}>
-        Cantidad de turnos por servicio
+      <h2
+        className={`${styles.recentRevenueTitle} ${styles.recentRevenueTitleMd}`}
+      >
+        Servicios mas utilziados de {currentMonth}
       </h2>
       <div className={styles.recentRevenueContainer}>
         <canvas id="myChart" width="400" height="300"></canvas>
         <div className={styles.recentRevenueFooter}>
-          <CalendarSettingsIcon size={"1.25rem"} color="#6b7280" className={styles.recentRevenueFooterIcon} />
+          <CalendarSettingsIcon
+            size={"1.25rem"}
+            color="#6b7280"
+            className={styles.recentRevenueFooterIcon}
+          />
           <h3 className={styles.recentRevenueFooterText}>Último mes</h3>
         </div>
       </div>
