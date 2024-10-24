@@ -4,7 +4,7 @@ import { UsersIcon, WorkIcon, ClockIcon, InboxIcon } from "../../icons/index";
 
 //Cantidad de turnos disponibles en el día; Turnos disponibles en el mes; Servicios Totales; Ingresos del mes)
 const cardData = [
-  { title: "Turnos disponibles 24-10-2024", value: "2/5", type: "pending" },
+  { title: "Turnos disponibles 24-10-2024", value: "0/5", type: "pending" },
   { title: "Servicios Totales", value: 6, type: "services" },
   { title: "Ingresos del mes", value: "$50.400", type: "invoices" },
   { title: "Clientes Totales", value: 30, type: "customers" },

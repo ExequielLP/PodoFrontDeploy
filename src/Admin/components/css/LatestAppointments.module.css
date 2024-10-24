@@ -38,12 +38,16 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
 }
 
 .latestInvoiceItemBorder {
   border-top: 1px solid #e5e7eb;
+}
+
+.appointmentData {
+  display: flex;
+  align-items: center;
 }
 
 .latestInvoiceImage {
@@ -59,17 +63,25 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 0.875rem;
+  line-height: 1.25rem;
   font-weight: 600;
+  white-space: nowrap;
+  padding: 0;
+  margin: 0;
 }
 
 .latestInvoiceNameMd {
   font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .latestInvoiceEmail {
   display: none;
   font-size: 0.875rem;
+  line-height: 1.25rem;
   color: #6b7280;
+  padding: 0;
+  margin: 0;
 }
 
 .latestInvoiceEmailSm {
@@ -81,6 +93,8 @@
   text-overflow: ellipsis;
   font-size: 0.875rem;
   font-weight: 500;
+  padding: 0;
+  margin: 0;
 }
 
 .latestInvoiceAmountMd {

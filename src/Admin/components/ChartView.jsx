@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 import { fakeData } from "../fakeData";
 import styles from "./css/chart-styles.module.css";
@@ -21,10 +21,16 @@ export const ChartView = () => {
   ];
   const currentMonth = monthNames[new Date().getMonth()];
 
-  //Esto deberia cambiar cuando el mes cambio o cuando la cantidad de turnos consumidos del mes aumente
+  const chartRef = useRef(null); // using useRef to keep track of the chart instance
+
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
-    new Chart(ctx, {
+
+    if (chartRef.current) {
+      chartRef.current.destroy();
+    }
+
+    chartRef.current = new Chart(ctx, {
       type: "bar",
       data: {
         labels: fakeData.map((service) => service.label),
@@ -40,8 +46,7 @@ export const ChartView = () => {
       },
       options: {
         aspectRatio: 1,
-        responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true,
@@ -58,11 +63,13 @@ export const ChartView = () => {
       >
         Servicios mas utilziados de {currentMonth}
       </h2>
-      <div className={styles.recentRevenueContainer}>
-        <canvas id="myChart" width="400" height="300"></canvas>
+      <div className={styles.recentChartContainer}>
+        <div className={styles.chartCanvas}>
+          <canvas id="myChart"></canvas>
+        </div>
         <div className={styles.recentRevenueFooter}>
           <CalendarSettingsIcon
-            size={"1.25rem"}
+            size={"24"}
             color="#6b7280"
             className={styles.recentRevenueFooterIcon}
           />

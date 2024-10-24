@@ -37,3 +37,46 @@ export const fakeData = [
     backgroundColor: "#FFCE80",
   },
 ];
+
+export const fakeTurno = [
+  {
+    id: 1,
+    image: "/public/assets/ImagenesOptimizadas/reflexologia.webp",
+    startTime: "02:00 PM",
+    nombreUsuario: "Jesica",
+    email: "jesicaLee@gmail.com",
+    estado: true,
+  },
+  {
+    id: 2,
+    image: "/public/assets/ImagenesOptimizadas/IMG_2887.webp",
+    startTime: "03:30 PM",
+    nombreUsuario: "Carmen",
+    email: "Karmen54@gmail.com",
+    estado: true,
+  },
+  {
+    id: 3,
+    image: "/public/assets/ImagenesOptimizadas/FMS-350HA-LS-3-510x463.webp",
+    startTime: "05:00 PM",
+    nombreUsuario: "Mariano",
+    email: "tuGatitoSalvaje98@gmail.com",
+    estado: true,
+  },
+  {
+    id: 4,
+    image: "/public/assets/ImagenesOptimizadas/reflexologia.webp",
+    startTime: "06:30 PM",
+    nombreUsuario: "Pablo",
+    email: "pablo-marmol@gmail.com",
+    estado: true,
+  },
+  {
+    id: 5,
+    image: "/public/assets/ImagenesOptimizadas/FS-150-1000X1000-2.webp",
+    startTime: "12:30 PM",
+    nombreUsuario: "Pablo",
+    email: "pablo-marmol@gmail.com",
+    estado: true,
+  },
+];
