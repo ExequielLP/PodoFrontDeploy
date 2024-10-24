@@ -8,29 +8,32 @@
 > Modificación
 
 ## FRONT
+To do 24/10:
+- [💣] Componente de Suspender/Cancelar turnos del dia.
+- [💣] Calendario Admin añadir suspensión de turno por motivos ajenos.
+- [💣] Cards adminDashboard.
+- [💣] Tabla turnos del dia en la home dashboard.
+
 To do:
 - [✔]
-- [ ] Valdiaciones en formularios.
-- [ ] Limpiar TODOS LOS console.log.
-- [ ] Querys para filtrar turnos por busqueda (nombre/apellido - servicio)
-- [ ] Terminar el componente agregar feriados para el admin.
-- [ ] Cards adminDashboard ( 1- Cantidad de turnos disponibles en el día; 2-Turnos disponibles en el mes; 3-Servicios Totales; 4- A pensar)
-- [ ] Grafico dashboard
-- [ ] Tabla turnos del dia en la home dashboard.
-- [ ] Calendario Admin añadir suspensión de turno por motivos ajenos.
-- [ ] Saar accion de modificar turno en la tabla admin
+- [⏳] Valdiaciones en formularios.
+- [⏳] Limpiar TODOS LOS console.log.
+- [⏳] Querys para filtrar turnos por busqueda (nombre/apellido - servicio)
+- [⏳] Terminar el componente agregar feriados para el admin.
+
 
 To check:
-- [ ] Agregar campo de búsqueda para las tablas del admin.
-- [ ] agregar import de bootstrap a los stylos de las paginas.
-- [ ] Añadir carga diferida de datos Lazy, Suspense.
-- [ ] Añadir paginación en las tablas de turnos (INICIO/USER).
-- [ ] Arreglar el fetch de los turnos de usuario en inicio.
-- [ ] Corregir el vh de login y registro en pantallas de >1200px.
-- [ ] Corregir los fetching de turnos de `<ListaTurnos/>` (Inicio) y `<AdminListaTurnos/>`(Admin)
-- [ ] Ordernar los turnos por StartTime.
-- [ ] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
-- [ ] Verificar que todas las alertas funcionen.
+- [📌] Agregar campo de búsqueda para las tablas del admin.
+- [📌] agregar import de bootstrap a los stylos de las paginas.
+- [📌] Añadir carga diferida de datos Lazy, Suspense.
+- [📌] Añadir paginación en las tablas de turnos (INICIO/USER).
+- [📌] Arreglar el fetch de los turnos de usuario en inicio.
+- [📌] Corregir el vh de login y registro en pantallas de >1200px.
+- [📌] Corregir los fetching de turnos de `<ListaTurnos/>` (Inicio) y `<AdminListaTurnos/>`(Admin)
+- [📌] Grafico dashboard
+- [📌] Ordernar los turnos por StartTime.
+- [📌] Validar que al cargar servicio no se agreguen datos null `<RegisterService/>`
+- [📌] Verificar que todas las alertas funcionen.
 - [⚠️]
 - [✔]
 

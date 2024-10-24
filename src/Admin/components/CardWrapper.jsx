@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./css/cardWrapper.module.css";
 import { UsersIcon, WorkIcon, ClockIcon, InboxIcon } from "../../icons/index";
 
+//Cantidad de turnos disponibles en el día; Turnos disponibles en el mes; Servicios Totales; Ingresos del mes)
 const cardData = [
   { title: "Collected", value: 6, type: "collected" },
   { title: "Pending", value: 10, type: "pending" },
