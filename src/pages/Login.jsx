@@ -15,12 +15,14 @@ const formInciallogin = {
 const Login = () => {
   useTitle({ title: "Login" });
   const { submitLogin, usuarioLogueado } = useContext(AuthenticationContext);
-
-  //form y use State para form
   const [formlogin, setformlogin] = useState(formInciallogin);
-
-  if (usuarioLogueado.auth) {
+  //chekear si manejamos la redirección desde el componente o desde la función
+  if (usuarioLogueado.auth && usuarioLogueado.rol === "USER") {
     return <Navigate to="/" />;
+  }
+
+  if (usuarioLogueado.auth && usuarioLogueado.rol === "ADMIN") {
+    return <Navigate to="/dashboard" />;
   }
 
   const handleChangelogin = (e) => {

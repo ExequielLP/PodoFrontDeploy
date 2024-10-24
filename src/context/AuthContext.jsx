@@ -31,22 +31,30 @@ const AuthProvider = ({ children }) => {
 
   // Maneja la acción cuando la autorización falla
   const handleUnauthorized = () => {
-    const excludedPaths = ["/login", "/", "/registro", "/servicio/*", "/password-recovery", "/sobre-nosotros", "/create-new-password/*"];
+    const excludedPaths = [
+      "/login",
+      "/",
+      "/registro",
+      "/servicio/*",
+      "/password-recovery",
+      "/sobre-nosotros",
+      "/create-new-password/*",
+    ];
     const isExcluded = excludedPaths.some((path) =>
       matchPath({ path, exact: true }, location.pathname)
     );
 
     if (!isExcluded) {
       setUsuarioLogueado(initialUserState);
-      console.log("!isExcluded")
+      console.log("!isExcluded");
       setTimeout(() => navigate("/login"), 2000);
-      return
+      return;
     } else if (usuarioLogueado.auth === true && isExcluded) {
       setUsuarioLogueado(initialUserState);
       setTimeout(() => navigate("/login"), 1000);
-      return
+      return;
     }
-  }
+  };
 
   //INICIALIZA EL HOOK POSTERIOR A LA FUNCIÓN
   const { fetchData } = useFetch(handleUnauthorized);
@@ -66,7 +74,7 @@ const AuthProvider = ({ children }) => {
     if (tokenData && usuarioLogueado.auth === false) {
       updateUser(userData);
     } else if (userError) {
-      console.error("Usuario no logueado:",userError)
+      console.error("Usuario no logueado:", userError);
     }
   };
 
@@ -125,7 +133,12 @@ const AuthProvider = ({ children }) => {
       } else {
         updateUser(loginData);
       }
-      navigate("/");
+      //chekear si manejamos la redirección desde el componente o desde la función
+      // if (loginData.rol === "ADMIN") {
+      //   return navigate("/dashboard");
+      // } else {
+      //   navigate("/");
+      // }
     } catch (error) {
       showToast("¡Error al ingresar datos del usuario!", "error");
       console.error("Error al ingresar los datos de usuario", error);
@@ -165,7 +178,7 @@ const AuthProvider = ({ children }) => {
       {children}
     </AuthenticationContext.Provider>
   );
-}
+};
 
 export { AuthProvider };
 export default AuthenticationContext;
