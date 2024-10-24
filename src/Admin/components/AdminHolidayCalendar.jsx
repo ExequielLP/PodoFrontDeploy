@@ -10,6 +10,7 @@ import {
   CalendarPlusIcon,
   CalendarCrossIcon,
   CalendarOffIcon,
+  CalendarSettingsIcon,
 } from "../../icons/index";
 
 const initialHolidayForm = {
@@ -63,7 +64,7 @@ const holidaysByYear = {
   2025: [],
 };
 
-const initialDate = new Date()
+const initialDate = new Date();
 
 //ESTA PROP NO VA A HACER FALTA --> SE PUEDE INICIALIZAR FUERA DEL COMPONENTE
 export const AdminHolidayCalendar = () => {
@@ -97,27 +98,29 @@ export const AdminHolidayCalendar = () => {
         </div>
         <div className="holiday-content">
           <div className="holiday-calendar-controls">
-            <div className="year-select-container">
-              <label htmlFor="year-select">Año</label>
-              <select
-                id="year-select"
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-              >
-                {years.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
+            <div className="year-controls">
+              <div className="year-select-container">
+                <label htmlFor="year-select">Año</label>
+                <select
+                  id="year-select"
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(e.target.value)}
+                >
+                  {years.map((year) => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button className="copy-button">
+                {/* <Copy className="icon" /> */}
+                Copiar al próximo año
+              </button>
             </div>
-            <button  className="copy-button">
-              {/* <Copy className="icon" /> */}
-              Copiar al próximo año
-            </button>
             <form className="holiday-form-container">
               <FormField
-                className="holiday-input"
+                className="holiday-input holiday-input-date"
                 label="Fecha"
                 type="text"
                 id="fecha"
@@ -127,7 +130,7 @@ export const AdminHolidayCalendar = () => {
                 onChange={handleChangeHolidayDate}
               />
               <FormField
-                className="holiday-input"
+                className="holiday-input holiday-input-date-name"
                 label="Nombre del feriado"
                 type="text"
                 id="description"
@@ -158,6 +161,13 @@ export const AdminHolidayCalendar = () => {
                 }}
                 value={holiday}
               />
+              <div className="holiday-footer">
+                <CalendarSettingsIcon size={"24"} color="#6b7280" />
+                <h3 className="next-holiday">
+                  Próximo Feriado:{" "}
+                  <span className="next-holiday-day">{"19-11-2024"}</span>
+                </h3>
+              </div>
             </div>
             <div className="holiday-list">
               <div className="holiday-table-container">
@@ -172,12 +182,17 @@ export const AdminHolidayCalendar = () => {
                   <tbody>
                     {holidaysByYear[selectedYear] &&
                     holidaysByYear[selectedYear].length > 0 ? (
-                      holidaysByYear[selectedYear].map((holiday) => (
-                        <tr key={holiday.id}>
+                      holidaysByYear[selectedYear].map((holiday, i) => (
+                        <tr
+                          key={holiday.id}
+                          className={`${
+                            i !== 0 ? "holidayTableItemBorder" : ""
+                          }`}
+                        >
                           <td>{holiday.date}</td>
                           <td>{holiday.name}</td>
                           <td className="actions">
-                            <button
+                            {/* <button
                               // onClick={() => handleSaveHoliday(holiday)}
                               className={`status-button ${
                                 holiday.estado ? "active" : "inactive"
@@ -193,13 +208,13 @@ export const AdminHolidayCalendar = () => {
                               ) : (
                                 <CalendarOffIcon color="red" />
                               )}
-                            </button>
+                            </button> */}
                             <button
                               // onClick={() => removeHoliday(holiday.id, selectedYear)}
                               className="delete-button"
                               title="Eliminar feriado"
                             >
-                              <CalendarCrossIcon />
+                              <CalendarCrossIcon size={20} color="#171D2C" />
                             </button>
                           </td>
                         </tr>

@@ -30,12 +30,20 @@
 .holiday-calendar-container {
   display: flex;
   gap: 20px;
+  background-color: #fafafa;
 }
 
 .holiday-calendar-controls {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin-bottom: 1rem;
+}
+
+.year-controls{
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
 }
 
 .year-select-container {
@@ -77,15 +85,17 @@
 
 .calendar-admin {
   border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  padding: 20px;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: auto;
   max-width: 500px;
+  height: 500px;
 }
 
 .holiday-form-container {
   display: flex;
   align-items: end;
-  gap: 5px;
+  gap: 1rem;
 }
 
 .holiday-input {
@@ -101,6 +111,14 @@
   font-size: 16px;
 }
 
+.holiday-input-date{
+  width: 110px;
+}
+
+.holiday-input-date-name{
+  width: 300px;
+}
+
 .holiday-input:focus {
     border: 1px solid #ff9abf;
     box-shadow: 0 0 8px rgba(255, 154, 191, 0.8), inset 0 0 4px rgba(25, 0, 17, 0.4);
@@ -110,7 +128,9 @@
   max-height: 500px;
   overflow-y: auto;
   border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border-radius: 1rem;
+  padding: 0 1rem 1rem;
+  margin: auto;
 }
 
 table {
@@ -141,6 +161,34 @@ td {
 .status-button,
 .delete-button {
   background: none;
-  border: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
   cursor: pointer;
+  padding: 0.5rem;
+}
+
+.delete-button:hover{
+  background-color: rgb(243 244 246 / 1) /* #f3f4f6 */;
+}
+
+.holiday-footer {
+  display: flex;
+  align-items: center;
+  padding-top: 1.5rem;
+  flex: 1;
+}
+
+.next-holiday{
+  margin-left: 0.5rem;
+  font-size: 1.25rem;
+  color: #6b7280;
+  margin-bottom: 0;
+}
+
+.next-holiday-day{
+  color: #1b1b1b;
+}
+
+.holidayTableItemBorder {
+  border-top: 1px solid #e5e7eb;
 }
