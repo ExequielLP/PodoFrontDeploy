@@ -6,12 +6,13 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { serviceColors } from "../../utils/serviciesColors";
 
+// Calcular currentDay fuera del componente
+const currentDay = new Date();
 const MONTH_URL = import.meta.env.VITE_ENDPOINT_MONTH_APPOINTMENTS;
 
 export const ChartView = () => {
   const chartRef = useRef(null); // using useRef to keep track of the chart instance
   const [monthAppointments, setMonthAppointments] = useState([]);
-  const currentDay = new Date();
   const currentMonth = format(new Date(), "MMMM", {
     locale: es,
   });
@@ -51,6 +52,7 @@ export const ChartView = () => {
     };
   });
 
+  //MONTA Y DESTRUYE EL GRAFICO
   useEffect(() => {
     const ctx = document.getElementById("myChart").getContext("2d");
     if (chartRef.current) {
@@ -61,17 +63,13 @@ export const ChartView = () => {
       type: "bar",
       data: {
         labels: chartMonthData.map((service) => service.label),
-        datasets: [
-          {
-            label: currentMonth,
-            data: chartMonthData.map((service) => service.data[0]),
-            borderColor: chartMonthData.map((service) => service.borderColor),
-            backgroundColor: chartMonthData.map(
-              (service) => service.backgroundColor
-            ),
-            borderWidth: 1,
-          },
-        ],
+        datasets: chartMonthData.map((service) => ({
+          label: service.label,
+          data: service.data,
+          borderColor: service.borderColor,
+          backgroundColor: service.backgroundColor,
+          borderWidth: 1,
+        })),
       },
       options: {
         aspectRatio: 1,
@@ -83,7 +81,7 @@ export const ChartView = () => {
         },
       },
     });
-  }, []);
+  }, [currentMonth, chartMonthData]);
 
   return (
     <div className={styles.recentRevenueMdColSpan4}>
