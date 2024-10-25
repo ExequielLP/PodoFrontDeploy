@@ -1,4 +1,4 @@
-import "../css/Tablas-Admin.css";
+import "../css/tables.css";
 import Tooltip from "./Tooltip";
 
 const Table = ({ columns, data, actions }) => {

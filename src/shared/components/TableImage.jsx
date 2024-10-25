@@ -1,4 +1,4 @@
-import "../css/Tablas-Admin.css"
+import "../css/tables.css"
 
 export const TableImage = ({image, className, width, height}) => {
   return (

@@ -9,7 +9,7 @@ import {
 } from "../../icons/index";
 import Table from "../../shared/components/Table";
 import { TableImage } from "../../shared/components/TableImage";
-import "../../shared/css/Tablas-Admin.css";
+import "../../shared/css/tables.css";
 import SearchComponent from "../../components/SearchComponent";
 
 export const ServiceTable = ({ onSeleccionarServicio }) => {

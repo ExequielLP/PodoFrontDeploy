@@ -12,7 +12,7 @@ import {
   CheckIcon,
   XIcon,
 } from "../../icons/index";
-import "../../shared/css/Tablas-Admin.css";
+import "../../shared/css/tables.css";
 
 export const AdminAppointments = () => {
   const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
