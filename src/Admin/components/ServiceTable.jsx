@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import ServicesContext from "../../context/ServiceContext";
 import { priceFormatter } from "../../utils/priceFormatter";
 import {
@@ -10,10 +10,20 @@ import {
 import Table from "../../shared/components/Table";
 import { TableImage } from "../../shared/components/TableImage";
 import "../../shared/css/Tablas-Admin.css";
+import SearchComponent from "../../components/SearchComponent";
 
 export const ServiceTable = ({ onSeleccionarServicio }) => {
   const { eliminarServicioAdmin, listaServicios, listaServiciosAdmin } =
     useContext(ServicesContext);
+
+  const [searchType, setSearchType] = useState("cliente");
+  const [searchResult, setSearchResult] = useState("");
+
+  const handleSearch = (searchValue) => {
+    // Maneja el valor de búsqueda emitido por el componente hijo
+    console.log(`Buscando ${searchType}: ${searchValue}`);
+    setSearchResult(searchValue);
+  };
 
   useEffect(() => {
     listaServiciosAdmin();
@@ -38,10 +48,10 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
         />
       ),
     },
-    { key: "nombre", header: "Nombre del servicio" },
+    { key: "nombre", header: "Servicio" },
     {
       key: "descripcion",
-      header: "Descripción del servicio",
+      header: "Descripción",
       className: "service-description",
     },
     {
@@ -51,7 +61,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
     },
     {
       key: "estado",
-      header: "Estado del servicio",
+      header: "Estado",
       render: (estado) => (
         <span className={estado ? "status enable" : "status disable"}>
           {estado ? (
@@ -94,40 +104,16 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
   ];
 
   return (
-    <section className="tabla-admin" id="TablaServicios">
-      <div className="accordion" id="accordionExample">
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-            >
-              Servicios agregados
-            </button>
-          </h2>
-          <div
-            id="collapseOne"
-            className="accordion-collapse collapse show"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body table-responsive">
-              {sortedServices && sortedServices.length > 0 ? (
-                <Table
-                  columns={columns}
-                  data={sortedServices}
-                  actions={actions}
-                />
-              ) : (
-                <p>No tienes turnos reservados</p>
-              )}
-            </div>
+    <section className="appointments-content">
+      <h2 className="appointment-table-header">Lista de Servicios</h2>
+      <SearchComponent searchType={searchType} onSearch={handleSearch} />
+        {sortedServices && sortedServices.length > 0 ? (
+          <div className="appointment-table-container">
+            <Table columns={columns} data={sortedServices} actions={actions} />
           </div>
-        </div>
-      </div>
+        ) : (
+          <p>No tienes turnos reservados</p>
+        )}
     </section>
   );
 };

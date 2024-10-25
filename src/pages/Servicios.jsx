@@ -5,7 +5,7 @@ import ServicesContext from "../context/ServiceContext";
 import useContextValue from "../hooks/useContextValue";
 import useTitle from "./../hooks/useTitle";
 import Loader from "../shared/components/Loader";
-import Breadcrumb from "../components/Breadcrumb";
+import Breadcrumb from "../shared/components/Breadcrumb";
 import { Calendario } from "../components/Calendario";
 import { FaqSection } from "../components/FaqSection";
 import { Metrics } from "../components/Metrics";

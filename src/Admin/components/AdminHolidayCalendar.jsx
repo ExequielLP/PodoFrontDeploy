@@ -12,6 +12,7 @@ import {
   CalendarOffIcon,
   CalendarSettingsIcon,
 } from "../../icons/index";
+import { DashboardSectionTitle } from "./DashboardSectionTitle";
 
 const initialHolidayForm = {
   fecha: new Date().toISOString().split("T")[0],
@@ -93,9 +94,6 @@ export const AdminHolidayCalendar = () => {
   return (
     <section className="holiday-section">
       <div className="holiday-container">
-        <div className="holiday-header">
-          <h2 className="holiday-title">Gestión de Feriados</h2>
-        </div>
         <div className="holiday-content">
           <div className="holiday-calendar-controls">
             <div className="year-controls">

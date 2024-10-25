@@ -7,7 +7,7 @@ import useTitle from "./../hooks/useTitle";
 import Loader from "../shared/components/Loader";
 import Cards from "../components/Cards";
 import ContactInfo from "../components/ContactInfo";
-import ListaTurnos from "../components/ListaTurnos";
+import UserAppointments from "../components/UserAppointments";
 import "./css/inicio.css";
 import showToast from "../utils/toastUtils";
 
@@ -47,14 +47,18 @@ const Inicio = () => {
     <Suspense fallback={<Loader />}>
       <Section />
       <Intro />
-      <section className="d-flex justify-content-center my-5 align-items-center">
-        {usuarioLogueado.auth && usuarioLogueado.rol === "USER" && (
-          <ListaTurnos
+      {usuarioLogueado.auth && usuarioLogueado.rol === "USER" && (
+        <section className="tabla-user">
+          <h2 className="user-title">
+            ¡Bienvenido{" "}
+            <span className="user-userName">{usuarioLogueado.userName}</span>!
+          </h2>
+          <UserAppointments
             onEliminarTurno={handleEliminarTurno}
             turnos={arrayTurnos}
           />
-        )}
-      </section>
+        </section>
+      )}
       <Cards listaServicios={listaServicios} />
       <ContactInfo />
     </Suspense>

@@ -5,7 +5,7 @@ const Table = ({ columns, data, actions }) => {
   return (
     <table className="tableContainer tableContainerMd">
       <thead className="tableHeader">
-        <tr>
+        <tr className="tableHeaderRow">
           {columns.map((column) => (
             <th
               key={column.key}
@@ -15,16 +15,11 @@ const Table = ({ columns, data, actions }) => {
               {column.header}
             </th>
           ))}
-          {actions &&
-            actions.map((action) => (
-              <th
-                key={action.label}
-                scope="col"
-                className="tableHeaderCellRelative"
-              >
-                {action.label}
-              </th>
-            ))}
+          {actions && actions.length > 0 && (
+            <th scope="col" className="tableHeaderCellRelative">
+              {actions.length === 1 ? "Acción" : "Acciones"}
+            </th>
+          )}
         </tr>
       </thead>
       <tbody className="tableBody">
@@ -52,18 +47,22 @@ const Table = ({ columns, data, actions }) => {
                 )}
               </td>
             ))}
-            {actions &&
-              actions.map((action) => (
-                <td className="tableCell" key={action.label}>
-                  <button
-                    className="delete-button"
-                    title={action.title}
-                    onClick={() => action.onClick(item)}
-                  >
-                    {action.icon}
-                  </button>
-                </td>
-              ))}
+            {actions && actions.length > 0 && (
+              <td className="tableCell">
+                <span className="tableCellActions">
+                  {actions.map((action) => (
+                    <button
+                      key={action.label}
+                      className="delete-button"
+                      title={action.title}
+                      onClick={() => action.onClick(item)}
+                    >
+                      {action.icon}
+                    </button>
+                  ))}
+                </span>
+              </td>
+            )}
           </tr>
         ))}
       </tbody>

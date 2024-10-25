@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ServiceTable } from "../components/ServiceTable";
 import { EditService } from "../components/EditService";
 import { Toaster } from "sonner";
+import Breadcrumb from "../../shared/components/Breadcrumb";
 
 export const ServicesEditionView = () => {
   const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
@@ -11,7 +12,8 @@ export const ServicesEditionView = () => {
   };
 
   return (
-    <>
+    <section className="dashboard-section-container">
+      <Breadcrumb title="Ver Servicios - Editar Servicios" />
       <ServiceTable onSeleccionarServicio={handleSeleccionarServicio} />
       {servicioSeleccionado && (
         <>
@@ -19,6 +21,6 @@ export const ServicesEditionView = () => {
           <Toaster className="toast-success toast-error toast-warning" />
         </>
       )}
-    </>
+    </section>
   );
 };

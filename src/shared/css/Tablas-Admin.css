@@ -1,14 +1,31 @@
-@import "bootstrap";
-
-.admin-table-main-container {
+/* @import "bootstrap"; */
+.appointments-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
-/*ESTILOS NUEVOS*/
+
+.appointment-table-container {
+  width: 100%;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 1rem;
+  margin: auto;
+}
+
+.appointment-table-header {
+  padding: 0.5rem;
+  color: #1f2937;
+}
+
 .tableContainer {
   display: none;
   min-width: 100%;
+  /* max-width: 1000px; */
   color: #1f2937;
 }
 
@@ -21,6 +38,7 @@
   text-align: left;
   font-size: 0.875rem;
   font-weight: 400;
+  text-transform: uppercase;
 }
 
 .tableHeaderCell {
@@ -28,7 +46,7 @@
   padding-right: 1rem;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-  font-weight: 500;
+  background-color: #ffc9dd;
 }
 
 .tableHeaderCellSm {
@@ -40,6 +58,7 @@
   padding-top: 0.75rem;
   padding-left: 1.5rem;
   padding-right: 0.75rem;
+  background-color: #ffc9dd;
 }
 
 .tableBody {
@@ -93,11 +112,9 @@
 
 .tableCellActions {
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   gap: 0.75rem;
 }
-
-/*TERMINA ESTILOS NUEVOS*/
 
 .tabla-admin {
   align-items: center;
@@ -107,13 +124,8 @@
   margin-top: 1rem;
 }
 
-.accordion-button {
-  background-color: #ff9abf !important;
-  color: var(--color-table-light) !important;
-}
-
-.table thead {
-  --bs-table-bg: #ff9abf;
+.admin-table-header {
+  background-color: #ff9abf;
 }
 
 .td-image-container {
@@ -177,12 +189,6 @@
   text-wrap: pretty;
   max-width: 20rem;
 }
-
-/* .actionsButtons {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-} */
 
 .delete-button {
   background: none;

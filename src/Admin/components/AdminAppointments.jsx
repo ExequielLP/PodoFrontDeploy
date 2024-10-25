@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { format } from "date-fns";
 import ServicesContext from "../../context/ServiceContext";
 import useContextValue from "../../hooks/useContextValue";
@@ -7,10 +6,15 @@ import { priceFormatter } from "../../utils/priceFormatter";
 import Pagination from "../../shared/components/Pagination";
 import Table from "../../shared/components/Table";
 import SearchComponent from "../../components/SearchComponent";
-import { CalendarCrossIcon, CalendarSettingsIcon, CheckIcon, XIcon } from "../../icons/index";
+import {
+  CalendarCrossIcon,
+  CalendarSettingsIcon,
+  CheckIcon,
+  XIcon,
+} from "../../icons/index";
 import "../../shared/css/Tablas-Admin.css";
 
-export const TurnosAdmin = () => {
+export const AdminAppointments = () => {
   const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
     useContextValue(ServicesContext);
 
@@ -55,8 +59,8 @@ export const TurnosAdmin = () => {
   };
 
   const columns = [
-    { key: "nombreUsuario", header: "Nombre del Cliente" },
-    { key: "nombreServicio", header: "Nombre del servicio" },
+    { key: "nombreUsuario", header: "Cliente" },
+    { key: "nombreServicio", header: "Servicio" },
     {
       key: "startTime",
       header: "Hora del turno",
@@ -69,7 +73,7 @@ export const TurnosAdmin = () => {
     },
     {
       key: "estado",
-      header: "Estado del turno",
+      header: "Estado",
       render: (estado) => (
         <span className={estado ? "status enable" : "status disable"}>
           {estado ? (
@@ -98,50 +102,25 @@ export const TurnosAdmin = () => {
   ];
 
   return (
-    <main className="admin-table-main-container">
+    <section className="appointments-content">
       <SearchComponent searchType={searchType} onSearch={handleSearch} />
-      <section className="tabla-admin">
-        <div className="accordion" id="accordionExample">
-          <div className="accordion-item text-center">
-            <h2 className="accordion-header">
-              <button
-                className="accordion-button collapsed"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                Turnos reservados
-              </button>
-            </h2>
-            <div
-              id="collapseOne"
-              className="accordion-collapse collapse show"
-              data-bs-parent="#accordionExample"
-            >
-              <div className="accordion-body table-responsive">
-                {turnosReservados && turnosReservados.length > 0 ? (
-                  <>
-                    <Table
-                      columns={columns}
-                      data={turnosReservados}
-                      actions={actions}
-                    />
-                    <Pagination
-                      page={pageNumber}
-                      totalPages={arrayTurnosAdmin.totalPages}
-                      onPageChange={handlePageChange}
-                    />
-                  </>
-                ) : (
-                  <p>No tienes turnos reservados</p>
-                )}
-              </div>
-            </div>
+      <h2 className="appointment-table-header"> Lista de Turnos Reservados</h2>
+        {turnosReservados && turnosReservados.length > 0 ? (
+          <div className="appointment-table-container">
+            <Table
+              columns={columns}
+              data={turnosReservados}
+              actions={actions}
+            />
+            <Pagination
+              page={pageNumber}
+              totalPages={arrayTurnosAdmin.totalPages}
+              onPageChange={handlePageChange}
+            />
           </div>
-        </div>
-      </section>
-    </main>
+        ) : (
+          <p>No tienes turnos reservados</p>
+        )}
+    </section>
   );
 };

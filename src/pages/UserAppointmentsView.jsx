@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import ServicesContext from "../context/ServiceContext";
 import useContextValue from "../hooks/useContextValue";
-import useTitle from "./../hooks/useTitle";
+import useTitle from "../hooks/useTitle";
 import showToast from "../utils/toastUtils";
-import ListaTurnos from "../components/ListaTurnos";
+import UserAppointments from "../components/UserAppointments";
 
-const UserAppointments = () => {
+const UserAppointmentsView = () => {
 
     useTitle({ title: "Mis turnos" });
 
@@ -30,10 +30,10 @@ const UserAppointments = () => {
     };
 
   return (
-    <ListaTurnos
+    <UserAppointments
     onEliminarTurno={handleEliminarTurno}
     turnos={arrayTurnos}
   />
   )
 }
-export default UserAppointments;
+export default UserAppointmentsView;
