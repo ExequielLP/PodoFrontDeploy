@@ -8,7 +8,7 @@ export default function DashboardLayout() {
         <div className="dashboard-sidenav-container">
           <SideNav />
         </div>
-        <div className="dashboard-main-content"><Outlet/></div>
+        <section className="dashboard-main-content"><Outlet/></section>
       </div>
     );
   }

@@ -15,17 +15,21 @@ const Dashboard = () => {
   const { usuarioLogueado } = useContextValue(AuthenticationContext);
 
   return (
-    <main className={styles.main}>
+    <section className={`dashboard-section-container ${styles.main}`}>
       {/* ACA VAN LAS BREADCRUMBS */}
       <h1 className={`${styles.dashboardTitle} ${styles.dashboardTitleMd}`}>
         Dashboard {usuarioLogueado.userName}
       </h1>
-      <div className={`${styles.gridContainer} ${styles.gridCols2} ${styles.gridCols4}`}>
+      <div
+        className={`${styles.gridContainer} ${styles.gridCols2} ${styles.gridCols4}`}
+      >
         <Suspense fallback={<CardsSkeleton />}>
           <CardWrapper />
         </Suspense>
       </div>
-      <div className={`${styles.marginTop6} ${styles.gridContainer} ${styles.gridCols1} ${styles.gridCols4Md} ${styles.gridCols8}`}>
+      <div
+        className={`${styles.marginTop6} ${styles.gridContainer} ${styles.gridCols1} ${styles.gridCols4Md} ${styles.gridCols8}`}
+      >
         <Suspense fallback={<RevenueChartSkeleton />}>
           <ChartView />
         </Suspense>
@@ -33,7 +37,7 @@ const Dashboard = () => {
           <LatestAppointments />
         </Suspense>
       </div>
-    </main>
+    </section>
   );
 };
 export default Dashboard;
