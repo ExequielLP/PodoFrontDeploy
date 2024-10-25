@@ -10,7 +10,8 @@
 ## FRONT
 To do:
 - [✔]
-- 
+- [ ] 
+- [ ] VERIFICAR EL PRIMER RENDER DE LAS TABLAS DE SERVICIO & TURNOS ADMIN (recargar página soluciona el render...)
 - [❗❗] Eliminar turnos de las tablas que son anteriores al dia actual.
 - [⏳] Valdiaciones en formularios.
 - [⏳] Limpiar TODOS LOS console.log.
