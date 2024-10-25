@@ -3,29 +3,41 @@ import Tooltip from "./Tooltip";
 
 const Table = ({ columns, data, actions }) => {
   return (
-    <table className="table align-middle table-borderless">
-      <thead className="tabla-header">
+    <table className="tableContainer tableContainerMd">
+      <thead className="tableHeader">
         <tr>
           {columns.map((column) => (
-            <th key={column.key} scope="col" className="m-auto text-center">
+            <th
+              key={column.key}
+              scope="col"
+              className="tableHeaderCell tableHeaderCellSm"
+            >
               {column.header}
             </th>
           ))}
           {actions &&
             actions.map((action) => (
-              <th key={action.label} scope="col" className="m-auto text-center">
+              <th
+                key={action.label}
+                scope="col"
+                className="tableHeaderCellRelative"
+              >
                 {action.label}
               </th>
             ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className="tableBody">
         {data.map((item) => (
-          <tr key={item.id}>
+          <tr
+            key={item.id}
+            className="tableRow tableRowLast tableRowFirstChildTdFirstChild 
+            tableRowFirstChildTdLastChild tableRowLastChildTdFirstChild tableRowLastChildTdLastChild"
+          >
             {columns.map((column) => (
               <td
                 key={column.key}
-                className={`m-auto p-4 ${column.className || ""}`}
+                className={`tableCell ${column.className || ""}`}
               >
                 {column.key === "descripcion" ? (
                   <Tooltip content={item[column.key]}>
@@ -42,9 +54,10 @@ const Table = ({ columns, data, actions }) => {
             ))}
             {actions &&
               actions.map((action) => (
-                <td className="m-auto p-2" key={action.label}>
+                <td className="tableCell" key={action.label}>
                   <button
-                    className="tabla-admin-btn admin-btn"
+                    className="delete-button"
+                    title={action.title}
                     onClick={() => action.onClick(item)}
                   >
                     {action.icon}

@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
-import AuthenticationContext from "../context/AuthContext";
 import { format } from "date-fns";
-import { priceFormatter } from "../utils/priceFormatter";
-import Table from "../shared/components/Table";
-import { CalendarCrossIcon } from "../icons/index";
-import "./css/listaTurno.css";
+import AuthenticationContext from "../context/AuthContext";
 import { useModalContext } from "../context/ModalContext";
 import { Modal } from "../shared/components/Modal";
+import Table from "../shared/components/Table";
+import { priceFormatter } from "../utils/priceFormatter";
+import { CalendarCrossIcon } from "../icons/index";
+import "./css/listaTurno.css";
 
 const ListaTurnos = ({ turnos, onEliminarTurno }) => {
   const { usuarioLogueado } = useContext(AuthenticationContext);
@@ -39,9 +39,10 @@ const ListaTurnos = ({ turnos, onEliminarTurno }) => {
 
   const actions = [
     {
-      label: "Cancelar Turno",
+      label: "Acción",
+      title: "Cancelar Turno",
       icon: (
-        <CalendarCrossIcon size={24} color="#050505" alt="Cancelar Turno" />
+        <CalendarCrossIcon size={20} color="#171D2C" alt="Cancelar Turno" />
       ),
       onClick: openModal,
     },

@@ -7,7 +7,7 @@ import { priceFormatter } from "../../utils/priceFormatter";
 import Pagination from "../../shared/components/Pagination";
 import Table from "../../shared/components/Table";
 import SearchComponent from "../../components/SearchComponent";
-import { CalendarCrossIcon, CalendarSettingsIcon } from "../../icons/index";
+import { CalendarCrossIcon, CalendarSettingsIcon, CheckIcon, XIcon } from "../../icons/index";
 import "../../shared/css/Tablas-Admin.css";
 
 export const TurnosAdmin = () => {
@@ -71,8 +71,18 @@ export const TurnosAdmin = () => {
       key: "estado",
       header: "Estado del turno",
       render: (estado) => (
-        <span className={estado ? "habilitado" : "deshabilitado"}>
-          {estado ? "Confirmado" : "Cancelado"}
+        <span className={estado ? "status enable" : "status disable"}>
+          {estado ? (
+            <>
+              Confirmado{" "}
+              <CheckIcon color="#fff" size={18} className="check-icon" />
+            </>
+          ) : (
+            <>
+              Cancelado
+              <XIcon color="#fff" size={18} className="x-icon" />
+            </>
+          )}
         </span>
       ),
     },
@@ -81,7 +91,8 @@ export const TurnosAdmin = () => {
   const actions = [
     {
       label: "Cancelar",
-      icon: <CalendarCrossIcon size={24} color="#050505" alt="Quitar turno" />,
+      title: "Cancelar Turno",
+      icon: <CalendarCrossIcon size={20} color="#050505" alt="Quitar turno" />,
       onClick: (turno) => handleEliminarTurno(turno.id), // Usar la función manejadora
     },
   ];
@@ -129,14 +140,6 @@ export const TurnosAdmin = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="admin-section-buttons">
-          <Link className="admin-btn" to={"/"}>
-            Volver a inicio
-          </Link>
-          <Link className="admin-btn" to={"/admin/servicios"}>
-            Ir a servicios
-          </Link>
         </div>
       </section>
     </main>

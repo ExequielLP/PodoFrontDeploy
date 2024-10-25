@@ -1,7 +1,12 @@
 import { useContext, useEffect } from "react";
 import ServicesContext from "../../context/ServiceContext";
 import { priceFormatter } from "../../utils/priceFormatter";
-import { CalendarCrossIcon, CalendarSettingsIcon } from "../../icons/index";
+import {
+  CalendarCrossIcon,
+  CalendarSettingsIcon,
+  CheckIcon,
+  XIcon,
+} from "../../icons/index";
 import Table from "../../shared/components/Table";
 import { TableImage } from "../../shared/components/TableImage";
 import "../../shared/css/Tablas-Admin.css";
@@ -24,10 +29,21 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
       key: "imagen",
       header: "Imagen",
       className: "td-image-container",
-      render: (image) => <TableImage image={image}  className="table-img" height={60} width={60}/>,
+      render: (image) => (
+        <TableImage
+          image={image}
+          className="table-img"
+          height={40}
+          width={40}
+        />
+      ),
     },
     { key: "nombre", header: "Nombre del servicio" },
-    { key: "descripcion", header: "Descripción del servicio", className: "service-description" },
+    {
+      key: "descripcion",
+      header: "Descripción del servicio",
+      className: "service-description",
+    },
     {
       key: "costo",
       header: "Costo",
@@ -37,8 +53,18 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
       key: "estado",
       header: "Estado del servicio",
       render: (estado) => (
-        <span className={estado ? "habilitado" : "deshabilitado"}>
-          {estado ? "Habilitado" : "Deshabilitado"}
+        <span className={estado ? "status enable" : "status disable"}>
+          {estado ? (
+            <>
+              Habilitado{" "}
+              <CheckIcon color="#fff" size={18} className="check-icon" />
+            </>
+          ) : (
+            <>
+              Deshabilitado
+              <XIcon color="#fff" size={18} className="x-icon" />
+            </>
+          )}
         </span>
       ),
     },
@@ -47,10 +73,11 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
   const actions = [
     {
       label: "Modificar",
+      title: "Editar Servicio",
       icon: (
         <CalendarSettingsIcon
-          size={24}
-          color="#050505"
+          size={20}
+          color="#171D2C"
           alt="Modificar servicio"
         />
       ),
@@ -58,8 +85,9 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
     },
     {
       label: "Cancelar",
+      title: "Cancelar Servicio",
       icon: (
-        <CalendarCrossIcon size={24} color="#050505" alt="Quitar servicio" />
+        <CalendarCrossIcon size={20} color="#171D2C" alt="Quitar servicio" />
       ),
       onClick: (servicio) => eliminarServicioAdmin(servicio.id),
     },
@@ -86,7 +114,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
             className="accordion-collapse collapse show"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body tabla-admin-body table-responsive">
+            <div className="accordion-body table-responsive">
               {sortedServices && sortedServices.length > 0 ? (
                 <Table
                   columns={columns}

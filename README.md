@@ -12,7 +12,6 @@ To do 24/10:
 - [💣] Componente de Suspender/Cancelar turnos del dia.
 - [💣] Calendario Admin añadir suspensión de turno por motivos ajenos.
 - [💣] Cards adminDashboard.
-- [💣] Tabla turnos del dia en la home dashboard.
 
 To do:
 - [✔]
