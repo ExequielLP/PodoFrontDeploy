@@ -10,7 +10,7 @@ const API_URLS = {
   annualHolidays: import.meta.env.VITE_ENDPOINT_urlBackAddAnnualHolidays,
 };
 
-export const useAppointments = (servicioId = '') => {
+export const useAppointments = (servicioId = "") => {
   const [date, setDate] = useState(new Date());
   const [turno, setTurno] = useState([]);
   const [holiday, setHoliday] = useState(new Date());
@@ -20,10 +20,16 @@ export const useAppointments = (servicioId = '') => {
 
   const { fetchData } = useFetch(handleUnauthorized);
   const fetchAppointments = async () => {
+    //CREAMOS LA FECHA EN BASE A LA HORA LOCAL
+    //ESTO soluciona el error de date.toISOString().split("T")[0] q crea la fecha con la zona horaria GMT
+    const year = date.getFullYear();
+    const month = `0${date.getMonth() + 1}`.slice(-2); // Añade ceros a la izquierda
+    const day = `0${date.getDate()}`.slice(-2); // Añade ceros a la izquierda
+    const fechaFormateada = `${year}-${month}-${day}`;
     try {
       const { data: appointment, error: appointmenttokenError } =
         await fetchData(
-          `${API_URLS.turnosDelDia}${date.toISOString().split("T")[0]}`,
+          `${API_URLS.turnosDelDia}${fechaFormateada}`,
           {
             method: "GET",
           },
@@ -58,17 +64,14 @@ export const useAppointments = (servicioId = '') => {
   //Función para cargar los feriados del ADMIN o días no laborales
   const addAnnualHolidays = async (e, holidayForm) => {
     e.preventDefault();
-    console.log(holidayForm)
+    console.log(holidayForm);
     try {
       const { data: holidayAppointment, error: holidayAppointmentError } =
-        await fetchData(
-          `${API_URLS.annualHolidays}`,
-          {
-            method: "POST",
-            body: JSON.stringify(holidayForm),
-            credentials: "include",
-          }
-        );
+        await fetchData(`${API_URLS.annualHolidays}`, {
+          method: "POST",
+          body: JSON.stringify(holidayForm),
+          credentials: "include",
+        });
       setHoliday(holidayAppointment);
     } catch (error) {
       console.error("Error al obtener el feriado", error);
