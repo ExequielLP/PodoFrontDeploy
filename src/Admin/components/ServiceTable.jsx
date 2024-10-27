@@ -11,13 +11,22 @@ import Table from "../../shared/components/Table";
 import { TableImage } from "../../shared/components/TableImage";
 import "../../shared/css/tables.css";
 import SearchComponent from "../../components/SearchComponent";
+import { Modal } from "../../shared/components/Modal";
+import { ModalCancelService } from "../../shared/components/ModalCancelService";
+import { useModalContext } from "../../context/ModalContext";
 
 export const ServiceTable = ({ onSeleccionarServicio }) => {
   const { eliminarServicioAdmin, listaServicios, listaServiciosAdmin } =
     useContext(ServicesContext);
-
+  const { setExclusiveModal } = useModalContext();
   const [searchType, setSearchType] = useState("cliente");
   const [searchResult, setSearchResult] = useState("");
+  const [selectedService, setSelectedService] = useState(null);
+
+  const openModal = (sortedServices) => {
+    setSelectedService(sortedServices);
+    setExclusiveModal('action');
+  };
 
   const handleSearch = (searchValue) => {
     // Maneja el valor de búsqueda emitido por el componente hijo
@@ -99,7 +108,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
       icon: (
         <CalendarCrossIcon size={20} color="#171D2C" alt="Quitar servicio" />
       ),
-      onClick: (servicio) => eliminarServicioAdmin(servicio.id),
+      onClick: openModal,
     },
   ];
 
@@ -107,13 +116,21 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
     <section className="appointments-content">
       <h2 className="appointment-table-header">Lista de Servicios</h2>
       <SearchComponent searchType={searchType} onSearch={handleSearch} />
-        {sortedServices && sortedServices.length > 0 ? (
-          <div className="appointment-table-container">
-            <Table columns={columns} data={sortedServices} actions={actions} />
-          </div>
-        ) : (
-          <p>No tienes turnos reservados</p>
-        )}
+      {sortedServices && sortedServices.length > 0 ? (
+        <div className="appointment-table-container">
+          <Table columns={columns} data={sortedServices} actions={actions} />
+          <Modal modalType="action">
+            {selectedService && (
+              <ModalCancelService
+                service={selectedService}
+                onClick={eliminarServicioAdmin}
+              />
+            )}
+          </Modal>
+        </div>
+      ) : (
+        <p>No tienes turnos reservados</p>
+      )}
     </section>
   );
 };
