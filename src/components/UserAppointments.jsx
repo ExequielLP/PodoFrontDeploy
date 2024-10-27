@@ -2,20 +2,21 @@ import { useContext, useState } from "react";
 import { format } from "date-fns";
 import AuthenticationContext from "../context/AuthContext";
 import { useModalContext } from "../context/ModalContext";
-import { Modal } from "../shared/components/Modal";
-import Table from "../shared/components/Table";
 import { priceFormatter } from "../utils/priceFormatter";
 import { CalendarCrossIcon } from "../icons/index";
+import { Modal } from "../shared/components/Modal";
+import { ModalCancelAppointment } from "../shared/components/ModalCancelAppointment";
+import Table from "../shared/components/Table";
 import "./css/userAppointment.css";
 
 const UserAppointments = ({ turnos, onEliminarTurno }) => {
   const { usuarioLogueado } = useContext(AuthenticationContext);
-  const { state, setState } = useModalContext();
+  const { setExclusiveModal } = useModalContext();
   const [selectedTurno, setSelectedTurno] = useState(null);
 
   const openModal = (turno) => {
     setSelectedTurno(turno);
-    setState(true);
+    setExclusiveModal('action');
   };
 
   // Filtrando y ordenando los turnos que están confirmados por fecha
@@ -56,51 +57,12 @@ const UserAppointments = ({ turnos, onEliminarTurno }) => {
       {turnosReservados.length > 0 ? (
         <div className="appointment-table-container">
           <Table columns={columns} data={turnosReservados} actions={actions} />
-          <Modal>
+          <Modal modalType="action">
             {selectedTurno && (
-              <div className="modal-inset-border">
-                <header className="modal-header-seciton">
-                  <h2 className="modal-appointment-title">
-                    Confirmar cancelación de turno
-                  </h2>
-                </header>
-                <section className="modal-description">
-                  <p>¿Está seguro que desea cancelar el siguiente turno?</p>
-                  <div className="modal-appointment-details">
-                    <p>
-                      <strong>Servicio:</strong> {selectedTurno.nombreServicio}
-                    </p>
-                    <p>
-                      <strong>Hora:</strong>{" "}
-                      {format(
-                        new Date(selectedTurno.startTime),
-                        "hh:mm a dd/MM/yyyy"
-                      )}
-                    </p>
-                    <p>
-                      <strong>Costo:</strong>{" "}
-                      {priceFormatter(selectedTurno.costo)}
-                    </p>
-                  </div>
-                </section>
-                <footer className="modal-footer">
-                  <button
-                    className="modal-button modal-button-outline"
-                    onClick={() => setState(false)}
-                  >
-                    Volver
-                  </button>
-                  <button
-                    className="modal-button modal-button-destructive"
-                    onClick={() => {
-                      onEliminarTurno(selectedTurno.id);
-                      setState(false);
-                    }}
-                  >
-                    Cancelar
-                  </button>
-                </footer>
-              </div>
+              <ModalCancelAppointment
+                appointment={selectedTurno}
+                onClick={onEliminarTurno}
+              />
             )}
           </Modal>
         </div>
