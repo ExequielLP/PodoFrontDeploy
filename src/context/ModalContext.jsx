@@ -1,14 +1,30 @@
 import { createContext, useContext, useState } from "react";
 
 export const ModalContext = createContext({
-  state: false,
-  setState: () => null,
+  actionModal: false,
+  filterModal: false,
+  setExclusiveModal: () => null,
 });
 
 export const ModalProvider = ({ children }) => {
-  const [state, setState] = useState(false);
+  const [actionModal, setActionModal] = useState(false);
+  const [filterModal, setFilterModal] = useState(false);
+
+  const setExclusiveModal = (modalName) => {
+    setFilterModal(modalName === "filter");
+    setActionModal(modalName === "action");
+  };
+
+  //Si queremos usar la funcion del setState de la modal, se debera agregar el ternario
+  // const setExclusiveModal = (modalName) => {
+  //   setFilterModal(modalName === 'filter' ? true : false);
+  //   setActionModal(modalName === 'action' ? true : false);
+  // };
+
   return (
-    <ModalContext.Provider value={{ state, setState }}>
+    <ModalContext.Provider
+      value={{ actionModal, filterModal, setExclusiveModal }}
+    >
       {children}
     </ModalContext.Provider>
   );

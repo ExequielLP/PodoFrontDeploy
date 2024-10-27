@@ -5,13 +5,19 @@ import "../css/modal.css";
 
 const eventListener = "keydown";
 
-export const Modal = ({ children }) => {
+export const Modal = ({ children, modalType }) => {
   const modalRef = useRef(null);
-  const { state, setState } = useModalContext();
+  const { actionModal, filterModal, setExclusiveModal } = useModalContext();
 
-  const closeModal = () => {
-    setState(false);
-  };
+  //En caso de tener más tipos se va a tener q cambiar esto...
+  const isOpen = modalType === 'filter' ? filterModal : actionModal;
+  actionModal;
+  const closeModal = () => setExclusiveModal(null);
+  
+  //Si el setExclusiveModal cambia a un booleano, se usa lo siguiente
+  // const closeModal = () => {
+  //   setExclusiveModal(false);
+  // };
 
   const modalRoot = document.getElementById("modal");
 
@@ -22,19 +28,20 @@ export const Modal = ({ children }) => {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
-        setState(false);
+        closeModal();
+        // closeModal(false);
       }
     };
-    if (state) {
+    if (isOpen) {
       document.addEventListener(eventListener, handleEsc);
     }
 
     return () => {
       document.removeEventListener(eventListener, handleEsc);
     };
-  }, [setState, state]);
+  }, [isOpen]);
 
-  if (!state || !modalRoot) {
+  if (!isOpen || !modalRoot) {
     return null;
   }
   return createPortal(
