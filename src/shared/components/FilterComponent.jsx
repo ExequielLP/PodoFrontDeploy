@@ -17,7 +17,7 @@ const services = [
 const servicesOrderASC = services.sort((a, b) => (a.value > b.value ? 1 : -1));
 
 const FilterComponent = () => {
-  const { state, setState } = useModalContext();
+  const { setExclusiveModal } = useModalContext();
   const [selectedService, setSelectedService] = useState("");
 
   const handleServiceChange = (value) => {
@@ -139,7 +139,7 @@ const FilterComponent = () => {
           <button
             onClick={() => {
               // onSearchFilter();
-              setState(false);
+              setExclusiveModal(null);
             }}
             className="filter-btn filter-btn-close"
           >

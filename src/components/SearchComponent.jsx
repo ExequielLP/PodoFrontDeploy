@@ -3,16 +3,14 @@ import "./css/search-component.css";
 import { FilterIcon, SearchIcon } from "../icons";
 import { useModalContext } from "../context/ModalContext";
 import { Modal } from "../shared/components/Modal";
-import FilterComponent from "../shared/components/FilterrComponent";
-
-
+import FilterComponent from "../shared/components/FilterComponent";
 
 const SearchComponent = ({ searchType, onSearch }) => {
   const [searchValue, setSearchValue] = useState("");
-  const { state, setState } = useModalContext();
+  const { setExclusiveModal } = useModalContext();
 
   const openModal = (turno) => {
-    setState(true);
+    setExclusiveModal("filter");
   };
 
   const handleChange = (event) => {
@@ -22,7 +20,6 @@ const SearchComponent = ({ searchType, onSearch }) => {
   const handleSearch = () => {
     onSearch(searchValue);
   };
-
 
   return (
     <div className="search-container">
@@ -39,7 +36,7 @@ const SearchComponent = ({ searchType, onSearch }) => {
       <button className="actionsButton" onClick={openModal} title="Filtros">
         <FilterIcon color="#000" size={20} />
       </button>
-      <Modal>
+      <Modal modalType="filter">
         <FilterComponent />
       </Modal>
     </div>
