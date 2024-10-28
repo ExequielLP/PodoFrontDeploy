@@ -17,6 +17,9 @@ export const ModalSuspendAppointment = ({ appointment }) => {
     }
   };
 
+  //CHEKEA EL ESTADO SI CAMBIA AL TRAERLOS
+  console.log(appointment.estado)
+
   return (
     <div className="modal-inset-border">
       {appointment.estado ? (
