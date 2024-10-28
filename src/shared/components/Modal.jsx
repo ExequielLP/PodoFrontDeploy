@@ -7,17 +7,10 @@ const eventListener = "keydown";
 
 export const Modal = ({ children, modalType }) => {
   const modalRef = useRef(null);
-  const { actionModal, filterModal, setExclusiveModal } = useModalContext();
+  const { openModal, toggleModal } = useModalContext();
 
-  //En caso de tener más tipos se va a tener q cambiar esto...
-  const isOpen = modalType === 'filter' ? filterModal : actionModal;
-  actionModal;
-  const closeModal = () => setExclusiveModal(null);
-  
-  //Si el setExclusiveModal cambia a un booleano, se usa lo siguiente
-  // const closeModal = () => {
-  //   setExclusiveModal(false);
-  // };
+  const isOpen = openModal === modalType;
+  const closeModal = () => toggleModal(null);
 
   const modalRoot = document.getElementById("modal");
 
@@ -29,7 +22,6 @@ export const Modal = ({ children, modalType }) => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
         closeModal();
-        // closeModal(false);
       }
     };
     if (isOpen) {

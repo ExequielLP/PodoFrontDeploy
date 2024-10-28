@@ -18,14 +18,15 @@ import { useModalContext } from "../../context/ModalContext";
 export const ServiceTable = ({ onSeleccionarServicio }) => {
   const { eliminarServicioAdmin, listaServicios, listaServiciosAdmin } =
     useContext(ServicesContext);
-  const { setExclusiveModal } = useModalContext();
+  const { toggleModal } = useModalContext();
   const [searchType, setSearchType] = useState("cliente");
   const [searchResult, setSearchResult] = useState("");
   const [selectedService, setSelectedService] = useState(null);
 
-  const openModal = (sortedServices) => {
-    setSelectedService(sortedServices);
-    setExclusiveModal('action');
+   // Función para abrir modal de acción y establecer el servicio seleccionado
+   const openModal = (servicio) => {
+    setSelectedService(servicio);
+    toggleModal("cancelService"); // Abre modal de acción
   };
 
   const handleSearch = (searchValue) => {
@@ -119,7 +120,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
       {sortedServices && sortedServices.length > 0 ? (
         <div className="appointment-table-container">
           <Table columns={columns} data={sortedServices} actions={actions} />
-          <Modal modalType="action">
+          <Modal modalType="cancelService">
             {selectedService && (
               <ModalCancelService
                 service={selectedService}

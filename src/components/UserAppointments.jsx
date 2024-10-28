@@ -11,12 +11,12 @@ import "./css/userAppointment.css";
 
 const UserAppointments = ({ turnos, onEliminarTurno }) => {
   const { usuarioLogueado } = useContext(AuthenticationContext);
-  const { setExclusiveModal } = useModalContext();
+  const { toggleModal } = useModalContext();
   const [selectedTurno, setSelectedTurno] = useState(null);
 
   const openModal = (turno) => {
     setSelectedTurno(turno);
-    setExclusiveModal('action');
+    toggleModal('cancelAppointment');
   };
 
   // Filtrando y ordenando los turnos que están confirmados por fecha
@@ -57,7 +57,7 @@ const UserAppointments = ({ turnos, onEliminarTurno }) => {
       {turnosReservados.length > 0 ? (
         <div className="appointment-table-container">
           <Table columns={columns} data={turnosReservados} actions={actions} />
-          <Modal modalType="action">
+          <Modal modalType="cancelAppointment">
             {selectedTurno && (
               <ModalCancelAppointment
                 appointment={selectedTurno}

@@ -3,7 +3,7 @@ import { useModalContext } from "../../context/ModalContext";
 import { priceFormatter } from "../../utils/priceFormatter";
 
 export const ModalCancelAppointment = ({ appointment, onClick }) => {
-  const { setExclusiveModal } = useModalContext();
+  const { toggleModal } = useModalContext();
   return (
     <div className="modal-inset-border">
       <header className="modal-header-seciton">
@@ -29,7 +29,7 @@ export const ModalCancelAppointment = ({ appointment, onClick }) => {
       <footer className="modal-footer">
         <button
           className="modal-button modal-button-outline"
-          onClick={() => setExclusiveModal(null)}
+          onClick={() => toggleModal("cancelAppointment")}
         >
           Volver
         </button>
@@ -37,7 +37,7 @@ export const ModalCancelAppointment = ({ appointment, onClick }) => {
           className="modal-button modal-button-destructive"
           onClick={() => {
             onClick(appointment.id);
-            setExclusiveModal(null);
+            toggleModal("cancelAppointment");
           }}
         >
           Cancelar

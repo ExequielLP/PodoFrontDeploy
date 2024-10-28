@@ -2,7 +2,7 @@ import { useModalContext } from "../../context/ModalContext";
 import { priceFormatter } from "../../utils/priceFormatter";
 
 export const ModalCancelService = ({ service, onClick }) => {
-  const { setExclusiveModal } = useModalContext();
+  const { toggleModal } = useModalContext();
   return (
     <div className="modal-inset-border">
       <header className="modal-header-seciton">
@@ -24,7 +24,7 @@ export const ModalCancelService = ({ service, onClick }) => {
       <footer className="modal-footer">
         <button
           className="modal-button modal-button-outline"
-          onClick={() => setExclusiveModal(null)}
+          onClick={() => toggleModal("cancelService")}
         >
           Volver
         </button>
@@ -32,7 +32,7 @@ export const ModalCancelService = ({ service, onClick }) => {
           className="modal-button modal-button-destructive"
           onClick={() => {
             onClick(service.id);
-            setExclusiveModal(null);
+            toggleModal("cancelService");
           }}
         >
           Cancelar

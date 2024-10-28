@@ -7,10 +7,10 @@ import FilterComponent from "../shared/components/FilterComponent";
 
 const SearchComponent = ({ searchType, onSearch }) => {
   const [searchValue, setSearchValue] = useState("");
-  const { setExclusiveModal } = useModalContext();
+  const { toggleModal } = useModalContext();
 
   const openModal = (turno) => {
-    setExclusiveModal("filter");
+    toggleModal("filter");
   };
 
   const handleChange = (event) => {

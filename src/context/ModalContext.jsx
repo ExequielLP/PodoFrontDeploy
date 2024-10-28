@@ -1,29 +1,25 @@
 import { createContext, useContext, useState } from "react";
 
 export const ModalContext = createContext({
-  actionModal: false,
-  filterModal: false,
-  setExclusiveModal: () => null,
+  openModal: null,           // Almacena el nombre del modal actualmente abierto
+  toggleModal: () => null,    // Función para abrir/cerrar el modal
 });
 
 export const ModalProvider = ({ children }) => {
-  const [actionModal, setActionModal] = useState(false);
-  const [filterModal, setFilterModal] = useState(false);
+  const [openModal, setOpenModal] = useState(null);
 
-  const setExclusiveModal = (modalName) => {
-    setFilterModal(modalName === "filter");
-    setActionModal(modalName === "action");
+
+  // 3. Función para alternar el modal
+  const toggleModal = (modalName) => {
+    setOpenModal((current) => (current === modalName ? null : modalName));
+    // Explicación:
+    // - Si `current` ya es el modal solicitado (`modalName`), establece `openModal` en `null` para cerrar el modal.
+    // - Si `current` es diferente, abre el modal especificado (`modalName`).
   };
-
-  //Si queremos usar la funcion del setState de la modal, se debera agregar el ternario
-  // const setExclusiveModal = (modalName) => {
-  //   setFilterModal(modalName === 'filter' ? true : false);
-  //   setActionModal(modalName === 'action' ? true : false);
-  // };
 
   return (
     <ModalContext.Provider
-      value={{ actionModal, filterModal, setExclusiveModal }}
+      value={{ openModal, toggleModal }}
     >
       {children}
     </ModalContext.Provider>
