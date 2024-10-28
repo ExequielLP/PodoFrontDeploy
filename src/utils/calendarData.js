@@ -8,6 +8,7 @@ const API_URLS = {
   turnosDelDia: import.meta.env.VITE_ENDPOINT_urlBackTurnosDelDia,
   reservarTurno: import.meta.env.VITE_ENDPOINT_urlBackReservarTurno,
   annualHolidays: import.meta.env.VITE_ENDPOINT_urlBackAddAnnualHolidays,
+  suspendDate: import.meta.env.VITE_ENDPOINT_CANCEL_APPOINTMENTS,
 };
 
 export const useAppointments = (servicioId = "") => {
@@ -78,11 +79,28 @@ export const useAppointments = (servicioId = "") => {
     }
   };
 
+  //
+  const fetchSuspendAppointments = async (appointmentID) => {
+    try {
+      const { data: suspendAppointmentTime } = await fetchData(
+        `${API_URLS.suspendDate}${appointmentID}`,
+        {
+          method: "PUT",
+        },
+        handleUnauthorized
+      );
+      setTurno(suspendAppointmentTime);
+    } catch (error) {
+      console.error("Error al obtener las citas", error);
+    }
+  };
+
   return {
     date,
     addAnnualHolidays,
     bookAppointment,
     fetchAppointments,
+    fetchSuspendAppointments,
     turno,
     setDate,
     holiday,

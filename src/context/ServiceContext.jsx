@@ -134,7 +134,7 @@ const ServicesProvider = ({ children }) => {
       const { data: deleteAppointment, error: deleteAppointmentError } = await fetchData(
         `${API_URLS.backCancelarTurno}${turnoId}`, { method: "GET" }, handleUnauthorized);
       if (deleteAppointment) {
-        showToast(`Turno: ${turnoId} eliminado con éxito!`, "success");
+        // showToast(`Turno: ${turnoId} eliminado con éxito!`, "success");
         return true; // Indica éxito
       }
     } catch (error) {

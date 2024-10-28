@@ -6,13 +6,28 @@ import {
   ClockIcon,
 } from "../../icons";
 import styles from "./css/suspendView.module.css";
+import { useAppointments } from "../../utils/calendarData";
+import { Modal } from "../../shared/components/Modal";
+import { useState } from "react";
+import { useModalContext } from "../../context/ModalContext";
+import { ModalSuspendAppointment } from "./modals/ModalSuspendAppointment";
 
-export const SuspendTable = ({ date, turno }) => {
+export const SuspendTable = ({ date, turn }) => {
+  const { fetchSuspendAppointments } = useAppointments();
+  const [suspendDateTime, setSuspendDateTime] = useState(null);
+  const { toggleModal } = useModalContext();
   const dayName = date.toLocaleDateString("es-ES", { weekday: "long" });
 
-  const sortedTurnos = turno.sort(
+  const sortedTurnos = turn.sort(
     (a, b) => new Date(a.startTime) - new Date(b.startTime)
   );
+
+  const openModal = (appointment, actionType) => {
+    console.log(appointment, actionType)
+    setSuspendDateTime(appointment);
+    toggleModal(actionType);
+  };
+
   return (
     <div className={`${styles.suspendTableContainer}`}>
       <div className={`${styles.suspendFooter}`}>
@@ -48,7 +63,9 @@ export const SuspendTable = ({ date, turno }) => {
                 </td>
                 <td className="actions">
                   <button
-                    // onClick={() => handleSaveHoliday(holiday)}
+                    onClick={() =>
+                      openModal(appointment, "suspendAppointment")
+                    }
                     className={`status-button ${
                       appointment.estado ? "active" : "inactive"
                     }`}
@@ -74,6 +91,11 @@ export const SuspendTable = ({ date, turno }) => {
           )}
         </tbody>
       </table>
+      <Modal modalType="suspendAppointment">
+        {suspendDateTime && (
+          <ModalSuspendAppointment appointment={suspendDateTime} />
+        )}
+      </Modal>
     </div>
   );
 };
