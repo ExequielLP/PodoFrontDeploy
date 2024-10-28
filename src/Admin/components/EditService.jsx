@@ -2,12 +2,16 @@ import { useContext, useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import ServicesContext from "../../context/ServiceContext";
 import "./css/EditCard.css";
+import { useModalContext } from "../../context/ModalContext";
+import { ImageIcon, PencilIcon } from "../../icons";
 
-export const EditService = ({ servicio }) => {
-  const { nombre, imagen, descripcion, costo } = servicio;
+export const EditService = ({ service }) => {
   const { submitModificarServicio } = useContext(ServicesContext);
+  const { toggleModal } = useModalContext();
+  const { nombre, imagen, descripcion, costo } = service;
+
   const [form, setForm] = useState({
-    id: servicio.id,
+    id: service.id,
     nombre: nombre || "",
     descripcion: descripcion || "",
     costo: costo || 0,
@@ -17,14 +21,14 @@ export const EditService = ({ servicio }) => {
 
   useEffect(() => {
     setForm({
-      id: servicio.id,
-      nombre: servicio.nombre || "",
-      descripcion: servicio.descripcion || "",
-      costo: servicio.costo || 0,
+      id: service.id,
+      nombre: service.nombre || "",
+      descripcion: service.descripcion || "",
+      costo: service.costo || 0,
       file: null,
-      imagePreviewUrl: `data:${servicio.imagen.mime};base64,${servicio.imagen.content}`,
+      imagePreviewUrl: `data:${service.imagen.mime};base64,${service.imagen.content}`,
     });
-  }, [servicio]);
+  }, [service]);
 
   const handleServiceChange = (e) => {
     setForm({
@@ -51,18 +55,23 @@ export const EditService = ({ servicio }) => {
   };
 
   return (
-    <section className="card-edit-section" id="target-div">
-      <h2 className="admin-title edit-section-tittle">
-        Editando <span className="admin-userName">{servicio.nombre}</span>
-      </h2>
-      <article className="card-container-editable">
-        <div>
+    <div className="modal-inset-border">
+      <header className="modal-header-seciton">
+        <h2 className="modal-appointment-title">
+          Editando <span className="">{nombre}</span>
+        </h2>
+      </header>
+      <article className="modal-description">
+        <div className="modal-image-container">
           <img
-            className="service-img"
+            className="modal-service-image"
             src={form.imagePreviewUrl}
             alt={nombre}
+            height={200}
+            width={"auto"}
           />
-          <label className="custom-file-upload">
+          <label className="modal-change-image-btn">
+            <ImageIcon color="#a0aec0" size={20} />
             Cambiar imagen
             <input
               type="file"
@@ -72,28 +81,22 @@ export const EditService = ({ servicio }) => {
             />
           </label>
         </div>
-        <div className="article-text-container">
-          <textarea
-            type="text"
-            name="nombre"
-            value={form.nombre}
-            className="article-title service-text-input"
-            onChange={handleServiceChange}
-            rows={2}
-          />
-          <textarea
-            name="descripcion"
-            value={form.descripcion}
-            className="article-text1 service-text-input"
-            cols={2}
-            rows={5}
-            onChange={handleServiceChange}
-          />
-          <div className="input-with-symbol">
+        <div className="modal-form">
+          <div className="modal-input-group">
+            <input
+              type="text"
+              name="nombre"
+              value={form.nombre}
+              className="modal-edit-service-name"
+              onChange={handleServiceChange}
+            />
+            <PencilIcon className="modal-edit-icon" color="#a0aec0" size={20} />
+          </div>
+          <div className="modal-input-group">
             <NumericFormat
               name="costo"
               value={form.costo}
-              className="service-price-edit service-price-input"
+              className="modal-service-price-input"
               thousandSeparator={true}
               prefix={"$"}
               decimalScale={2}
@@ -107,17 +110,38 @@ export const EditService = ({ servicio }) => {
                 }));
               }}
             />
+            <PencilIcon className="modal-edit-icon" color="#a0aec0" size={20} />
+          </div>
+          <div className="modal-input-group">
+            <textarea
+              name="descripcion"
+              value={form.descripcion}
+              className="modal-service-description-input"
+              cols={2}
+              rows={5}
+              onChange={handleServiceChange}
+            />
+            <PencilIcon className="modal-edit-icon" color="#a0aec0" size={20} />
           </div>
         </div>
+      </article>
+      <footer className="modal-footer">
         <button
-          className="article-button"
+          className="modal-button modal-button-outline"
+          onClick={() => toggleModal("editService")}
+        >
+          Volver
+        </button>
+        <button
+          className="modal-button modal-button-destructive"
           onClick={(e) => {
             submitModificarServicio(e, form);
+            toggleModal("editService");
           }}
         >
-          Confirmar cambios
+          Editar
         </button>
-      </article>
-    </section>
+      </footer>
+    </div>
   );
 };

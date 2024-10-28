@@ -23,6 +23,7 @@ export { MapPinIcon } from "./MapPinIcon";
 export { MenuIcon } from "./MenuIcon";
 export { PasswordIconHide } from "./PasswordIconHide";
 export { PasswordIconShow } from "./PasswordIconShow";
+export { PencilIcon } from "./PencilIcon";
 export { PhoneIcon } from "./PhoneIcon";
 export { PowerIcon } from "./PowerIcon";
 export { SearchIcon } from "./SearchIcon";

@@ -3,8 +3,8 @@ import ServicesContext from "../../context/ServiceContext";
 import { priceFormatter } from "../../utils/priceFormatter";
 import {
   CalendarCrossIcon,
-  CalendarSettingsIcon,
   CheckIcon,
+  EditIcon,
   XIcon,
 } from "../../icons/index";
 import Table from "../../shared/components/Table";
@@ -12,8 +12,9 @@ import { TableImage } from "../../shared/components/TableImage";
 import "../../shared/css/tables.css";
 import SearchComponent from "../../components/SearchComponent";
 import { Modal } from "../../shared/components/Modal";
-import { ModalCancelService } from "../../shared/components/ModalCancelService";
+import { ModalCancelService } from "../components/modals/ModalCancelService";
 import { useModalContext } from "../../context/ModalContext";
+import { EditService } from "./EditService";
 
 export const ServiceTable = ({ onSeleccionarServicio }) => {
   const { eliminarServicioAdmin, listaServicios, listaServiciosAdmin } =
@@ -23,10 +24,10 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
   const [searchResult, setSearchResult] = useState("");
   const [selectedService, setSelectedService] = useState(null);
 
-   // Función para abrir modal de acción y establecer el servicio seleccionado
-   const openModal = (servicio) => {
-    setSelectedService(servicio);
-    toggleModal("cancelService"); // Abre modal de acción
+  // Función para abrir modal de acción y establecer el servicio seleccionado
+  const openModal = (service, actionType) => {
+    setSelectedService(service);
+    toggleModal(actionType); // Abre modal dependiendo la acción
   };
 
   const handleSearch = (searchValue) => {
@@ -95,13 +96,14 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
       label: "Modificar",
       title: "Editar Servicio",
       icon: (
-        <CalendarSettingsIcon
+        <EditIcon
           size={20}
           color="#171D2C"
           alt="Modificar servicio"
         />
       ),
-      onClick: (servicio) => onSeleccionarServicio(servicio),
+      // (servicio) => onSeleccionarServicio(servicio)
+      onClick: (service) => openModal(service, "editService"),
     },
     {
       label: "Cancelar",
@@ -109,7 +111,7 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
       icon: (
         <CalendarCrossIcon size={20} color="#171D2C" alt="Quitar servicio" />
       ),
-      onClick: openModal,
+      onClick: (service) => openModal(service, "cancelService"),
     },
   ];
 
@@ -127,6 +129,9 @@ export const ServiceTable = ({ onSeleccionarServicio }) => {
                 onClick={eliminarServicioAdmin}
               />
             )}
+          </Modal>
+          <Modal modalType="editService">
+            {selectedService && <EditService service={selectedService} />}
           </Modal>
         </div>
       ) : (

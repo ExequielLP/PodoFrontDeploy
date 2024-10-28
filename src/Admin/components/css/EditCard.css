@@ -1,148 +1,96 @@
-.card-edit-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.card-container-editable {
-  width: 400px;
-  margin: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: left;
-  box-shadow: 5px 5px 10px 1px #f6dbd6;
-  border-radius: 16px 16px 0 0;
-  transition: transform 0.3s, opacity 0.3s;
-}
-
-.card-container-editable:hover {
-  transform: scale(1.1);
-  border: 1px solid beige;
-}
-
-/* Estilos para que los inputs y textareas se vean como texto plano */
-.service-text-input,
-.service-price-input {
+.modal-image-container {
+  position: relative;
   width: 100%;
-  display: block;
-  box-sizing: border-box;
-  border: none;
-  background: transparent;
-  font-size: inherit;
-  font-family: inherit;
-  color: inherit;
-  padding: 0;
-  margin: 0;
+  height: 10rem;
+  background-color: #e2e8f0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
 
-.service-text-input:focus,
-.article-text-container:focus,
-.service-price-input:focus {
-  outline: none;
-  border: none;
+.modal-service-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
+.modal-change-image-btn {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-change-image-btn:hover {
+  background-color: #ffffff;
+}
+
+/* Form Container */
+.modal-form {
+  padding: 0.5rem;
+}
+
+.modal-input-group {
+  margin-bottom: 0.8rem;
+  position: relative;
+}
 .service-file-update {
   display: none;
 }
 
-.custom-file-upload {
-  background-color: #ff9abf;
-  border-radius: 0 5px 0px 0;
-  color: white;
-  cursor: pointer;
-  display: inline-block;
-  padding: 8px 10px;
-  position: relative;
-  top: -39px;
-  z-index: 2;
-}
-
-.custom-file-upload:hover {
-  background-color: #ffd3e6;
-}
-
-.article-text-container textarea {
-  margin-bottom: 0.5rem;
-}
-
-.input-with-symbol {
-  display: flex;
-  margin: auto;
-  width: fit-content;
-  background-color: #ffc5ff;
-  border-radius: 8px;
-  padding: 8px;
-  text-align: center;
-}
-
-.service-price-edit {
-  font-size: 1.4rem;
+.modal-edit-service-name {
+  font-size: 1.5rem;
+  line-height: 2rem;
   font-weight: 600;
-  color: #050505;
-  width: 80px;
-  margin: 0;
+}
+
+.modal-service-price-input {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+.modal-service-description-input {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.modal-input-group input,
+.modal-input-group textarea {
+  width: 100%;
+  border: none;
+  background: transparent;
   padding: 0;
+  outline: none;
+  resize: none;
 }
 
-.input-with-symbol span {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #050505;
-  padding-inline: 6px;
+.modal-input-group input:focus,
+.modal-input-group textarea:focus {
+  outline: none;
+  box-shadow: none;
 }
 
-.service-text-input {
-  padding-block: 20px;
+/* Edit Icon */
+.modal-edit-icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
 }
 
-.input-with-symbol {
-  margin-block: 20px;
-}
-
-@media (max-width: 768px) {
-  .card-container-editable {
-    width: 300px;
-    margin: 0.5rem;
-    margin-top: 2rem;
-  }
-
-  .edit-section-tittle {
-    text-align: center;
-    padding-bottom: 2rem;
-  }
-
-  .service-price-edit,
-  .input-with-symbol span {
-    font-size: 1.2rem;
-  }
-
-  .custom-file-upload {
-    top: -30px;
-  }
-}
-
-@media (max-width: 480px) {
-  .card-container-editable {
-    width: 100%;
-    margin: 0.5rem;
-    margin-top: 2rem;
-  }
-
-  .edit-section-tittle {
-    text-align: left;
-  }
-
-  .service-price-edit,
-  .input-with-symbol span {
-    font-size: 1rem;
-  }
-
-  .custom-file-upload {
-    padding: 6px 8px;
-    top: -25px;
-  }
+.modal-input-group:hover .modal-edit-icon {
+  opacity: 1;
 }

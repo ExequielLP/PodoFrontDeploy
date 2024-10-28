@@ -15,12 +15,7 @@ export const ServicesEditionView = () => {
     <section className="dashboard-section-container">
       <Breadcrumb title="Ver Servicios - Editar Servicios" />
       <ServiceTable onSeleccionarServicio={handleSeleccionarServicio} />
-      {servicioSeleccionado && (
-        <>
-          <EditService servicio={servicioSeleccionado} />
-          <Toaster className="toast-success toast-error toast-warning" />
-        </>
-      )}
+      <Toaster className="toast-success toast-error toast-warning" />
     </section>
   );
 };

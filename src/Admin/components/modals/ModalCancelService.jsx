@@ -1,5 +1,5 @@
-import { useModalContext } from "../../context/ModalContext";
-import { priceFormatter } from "../../utils/priceFormatter";
+import { useModalContext } from "../../../context/ModalContext";
+import { priceFormatter } from "../../../utils/priceFormatter";
 
 export const ModalCancelService = ({ service, onClick }) => {
   const { toggleModal } = useModalContext();
