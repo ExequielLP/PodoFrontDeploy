@@ -9,6 +9,11 @@ export const EditService = ({ service }) => {
   const { submitModificarServicio } = useContext(ServicesContext);
   const { toggleModal } = useModalContext();
   const { nombre, imagen, descripcion, costo } = service;
+  const [isEditing, setIsEditing] = useState({
+    nombre: false,
+    costo: false,
+    descripcion: false,
+  });
 
   const [form, setForm] = useState({
     id: service.id,
@@ -54,49 +59,68 @@ export const EditService = ({ service }) => {
     }
   };
 
+  const toggleEditing = (field) => {
+    setIsEditing((prev) => ({ ...prev, [field]: !prev[field] }));
+  };
+
   return (
-    <div className="modal-inset-border">
-      <header className="modal-header-seciton">
-        <h2 className="modal-appointment-title">
+    <div className="edit-service">
+      <header className="edit-service__header">
+        <h2 className="edit-service__title">
           Editando <span className="">{nombre}</span>
         </h2>
       </header>
-      <article className="modal-description">
-        <div className="modal-image-container">
+      <article className="edit-service__content">
+        <div className="edit-service__image-container">
           <img
-            className="modal-service-image"
+            className="edit-service__image"
             src={form.imagePreviewUrl}
             alt={nombre}
             height={200}
             width={"auto"}
           />
-          <label className="modal-change-image-btn">
+          <label className="edit-service__image-button">
             <ImageIcon color="#a0aec0" size={20} />
             Cambiar imagen
             <input
               type="file"
               name="file"
-              className="service-file-update"
+              className="edit-service__file-input"
               onChange={handleImageChange}
             />
           </label>
         </div>
-        <div className="modal-form">
-          <div className="modal-input-group">
-            <input
-              type="text"
-              name="nombre"
-              value={form.nombre}
-              className="modal-edit-service-name"
-              onChange={handleServiceChange}
+        <div className="edit-service__form">
+          <div className="edit-service__input-group">
+            {isEditing.nombre ? (
+              <input
+                type="text"
+                name="nombre"
+                value={form.nombre}
+                className="edit-service__input edit-service__input--name"
+                onChange={handleServiceChange}
+                onBlur={() => toggleEditing("nombre")}
+              />
+            ) : (
+              <p
+                className="edit-service__text edit-service__text--name"
+                onClick={() => toggleEditing("nombre")}
+              >
+                {form.nombre}
+              </p>
+            )}
+            <PencilIcon
+              className="edit-service__edit-icon"
+              color="#64748b"
+              size={20}
+              onClick={() => toggleEditing("nombre")}
             />
-            <PencilIcon className="modal-edit-icon" color="#a0aec0" size={20} />
           </div>
-          <div className="modal-input-group">
+          <div className="edit-service__input-group">
             <NumericFormat
               name="costo"
               value={form.costo}
-              className="modal-service-price-input"
+              className="edit-service__input edit-service__input--price"
               thousandSeparator={true}
               prefix={"$"}
               decimalScale={2}
@@ -109,31 +133,52 @@ export const EditService = ({ service }) => {
                   costo: value,
                 }));
               }}
+              onBlur={() => toggleEditing("costo")}
             />
-            <PencilIcon className="modal-edit-icon" color="#a0aec0" size={20} />
+            <PencilIcon
+              className="edit-service__edit-icon"
+              color="#64748b"
+              size={20}
+              onClick={() => toggleEditing("costo")}
+            />
           </div>
-          <div className="modal-input-group">
-            <textarea
-              name="descripcion"
-              value={form.descripcion}
-              className="modal-service-description-input"
-              cols={2}
-              rows={5}
-              onChange={handleServiceChange}
+          <div className="edit-service__input-group">
+            {isEditing.descripcion ? (
+              <textarea
+                name="descripcion"
+                value={form.descripcion}
+                className="edit-service__input edit-service__input--description"
+                cols={2}
+                rows={5}
+                onChange={handleServiceChange}
+                onBlur={() => toggleEditing("descripcion")}
+              />
+            ) : (
+              <p
+                className="edit-service__text edit-service__text--description"
+                onClick={() => toggleEditing("descripcion")}
+              >
+                {form.descripcion}
+              </p>
+            )}
+            <PencilIcon
+              className="edit-service__edit-icon"
+              color="#64748b"
+              size={20}
+              onClick={() => toggleEditing("descripcion")}
             />
-            <PencilIcon className="modal-edit-icon" color="#a0aec0" size={20} />
           </div>
         </div>
       </article>
-      <footer className="modal-footer">
+      <footer className="edit-service__footer">
         <button
-          className="modal-button modal-button-outline"
+          className="edit-service__button edit-service__button--outline"
           onClick={() => toggleModal("editService")}
         >
           Volver
         </button>
         <button
-          className="modal-button modal-button-destructive"
+          className="edit-service__button edit-service__button--primary"
           onClick={(e) => {
             submitModificarServicio(e, form);
             toggleModal("editService");
