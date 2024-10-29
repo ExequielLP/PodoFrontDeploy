@@ -10,8 +10,9 @@
 ## FRONT
 To do:
 - [✔]
-- [ ] 
-- [ ] VERIFICAR EL PRIMER RENDER DE LAS TABLAS DE SERVICIO & TURNOS ADMIN (recargar página soluciona el render...)
+- [ ] Chekear lista del admin, q no le llegan los turnos
+- [ ] Arreglar breadcrumbs para servicios y dashboard. Si sos admin servicios te lleva a dashboard.
+- [ ] Hacer logica de re renderizado para que las vistas del dashboard cambian en función de los comp. hijos
 - [❗❗] Eliminar turnos de las tablas que son anteriores al dia actual.
 - [⏳] Valdiaciones en formularios.
 - [⏳] Limpiar TODOS LOS console.log.
