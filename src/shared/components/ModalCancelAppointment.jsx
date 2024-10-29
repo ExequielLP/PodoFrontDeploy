@@ -24,6 +24,9 @@ export const ModalCancelAppointment = ({ appointment, onClick }) => {
           <p>
             <strong>Costo:</strong> {priceFormatter(appointment.costo)}
           </p>
+          <p>
+            <strong>Cliente:</strong> {appointment.nombreUsuario}
+          </p>
         </div>
       </section>
       <footer className="modal-footer">

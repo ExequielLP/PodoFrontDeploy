@@ -8,27 +8,37 @@ import Table from "../../shared/components/Table";
 import SearchComponent from "../../components/SearchComponent";
 import {
   CalendarCrossIcon,
-  CalendarSettingsIcon,
   CheckIcon,
   XIcon,
 } from "../../icons/index";
 import "../../shared/css/tables.css";
+import { Modal } from "../../shared/components/Modal";
+import { ModalCancelAppointment } from "../../shared/components/ModalCancelAppointment";
+import { useModalContext } from "../../context/ModalContext";
 
 export const AdminAppointments = () => {
   const { arrayTurnosAdmin, listaTurnosAdmin, eliminarTurnoAdmin } =
     useContextValue(ServicesContext);
 
   const [pageNumber, setPageNumber] = useState(0);
-  const [pageSize, setpageSize] = useState(10);
+  //const [pageSize, setpageSize] = useState(10);
   const [shouldReload, setShouldReload] = useState(false); // Estado para controlar la recarga
-
   const [searchType, setSearchType] = useState("cliente");
   const [searchResult, setSearchResult] = useState("");
+  const { toggleModal } = useModalContext();
+  const [selectedTurno, setSelectedTurno] = useState(null);
+
+  const openModal = (appointment) => {
+    setSelectedTurno(appointment);
+    toggleModal('cancelAppointmentAdmin');
+  };
+
 
   // Ordenar turnos reservados por fecha
   const turnosReservados = arrayTurnosAdmin.content
     ?.filter((turno) => turno.estado === true)
     .sort((a, b) => new Date(a.startTime) - new Date(b.startTime));
+
 
   const handleSearch = (searchValue) => {
     // Maneja el valor de búsqueda emitido por el componente hijo
@@ -97,7 +107,8 @@ export const AdminAppointments = () => {
       label: "Cancelar",
       title: "Cancelar Turno",
       icon: <CalendarCrossIcon size={20} color="#050505" alt="Quitar turno" />,
-      onClick: (turno) => handleEliminarTurno(turno.id), // Usar la función manejadora
+      onClick: openModal,
+      //(turno) => handleEliminarTurno(turno.id)
     },
   ];
 
@@ -105,7 +116,8 @@ export const AdminAppointments = () => {
     <section className="appointments-content">
       <SearchComponent searchType={searchType} onSearch={handleSearch} />
       <h2 className="appointment-table-header"> Lista de Turnos Reservados</h2>
-        {turnosReservados && turnosReservados.length > 0 ? (
+      {turnosReservados && turnosReservados.length > 0 ? (
+        <>
           <div className="appointment-table-container">
             <Table
               columns={columns}
@@ -118,9 +130,16 @@ export const AdminAppointments = () => {
               onPageChange={handlePageChange}
             />
           </div>
-        ) : (
-          <p>No tienes turnos reservados</p>
-        )}
+          <Modal modalType="cancelAppointmentAdmin">
+            <ModalCancelAppointment
+              appointment={selectedTurno}
+              onClick={handleEliminarTurno}
+            />
+          </Modal>
+        </>
+      ) : (
+        <p>No tienes turnos reservados</p>
+      )}
     </section>
   );
 };
