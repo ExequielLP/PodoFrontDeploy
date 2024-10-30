@@ -69,13 +69,13 @@
 }
 
 .hero-bg {
-  background: url("/assets/ImagenesOptimizadas/woman-s-feet-bowl-with-water-petal_329181-18808.jpg") center center/cover no-repeat;
+  background: url("/assets/ImagenesOptimizadas/lavadodepie.jpg") center center/cover no-repeat;
   min-height: 350px;
 }
 
 @media screen and (max-width: 768px) {
   .hero-container {
-    background: url("/assets/ImagenesOptimizadas/woman-s-feet-bowl-with-water-petal_329181-18808.jpg") center center/cover no-repeat;
+    background: url("/assets/ImagenesOptimizadas/lavadodepie.jpg") center center/cover no-repeat;
     flex-direction: column;
     height: 90vh;
     text-align: center;
