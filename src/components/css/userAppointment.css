@@ -1,0 +1,36 @@
+.tabla-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* row-gap: 40px; */
+}
+
+.table-layout {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background-color: #ffffff;
+  width: fit-content;
+}
+
+.user-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.user-subtitle {
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.user-userName {
+  color: #ffb9d7;
+  text-transform: capitalize;
+}

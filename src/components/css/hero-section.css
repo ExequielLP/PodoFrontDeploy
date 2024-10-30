@@ -1,0 +1,124 @@
+.headline {
+  left: calc(100% - 93vw);
+  position: relative;
+}
+
+.clipped {
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.hero-container {
+  align-items: center;
+  display: flex;
+  height: 83dvh;
+  height: 83vh;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hero-text-container {
+  margin-bottom: 1.5rem;
+  margin: 0 auto;
+  max-width: 33.3333%;
+  width: 100%;
+}
+
+.hero-text {
+  color: #6c757d;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  margin: 1.5rem 0;
+}
+
+.span {
+  color: #ffb9d7;
+}
+
+.hero-btn {
+  -webkit-user-select: none;
+  background-color: #ff9abf;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  color: #fff;
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 3rem;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.hero-btn:hover {
+  background-color: #ffd3e6;
+  border: 1px solid #ff9abf;
+  box-shadow: 0px 4px 15px rgba(255, 197, 255, 0.8);
+  color: #050505;
+  transform: scale(1.05);
+}
+
+.hero-clipped {
+  width: 100%;
+  max-width: 66.6667%;
+  height: 100%;
+}
+
+.hero-bg {
+  background: url("/assets/ImagenesOptimizadas/lavadodepie.jpg") center center/cover no-repeat;
+  min-height: 350px;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-container {
+    background: url("/assets/ImagenesOptimizadas/lavadodepie.jpg") center center/cover no-repeat;
+    flex-direction: column;
+    height: 90vh;
+    text-align: center;
+  }
+
+  .hero-text-container {
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: auto;
+    z-index: 10;
+  }
+
+  .hero-btn {
+    filter: drop-shadow(5px 5px 10px #f5d2d1);
+    margin: 1rem 0;
+  }
+
+  .headline {
+    left: 0;
+  }
+
+  .clipped {
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0% 100%);
+    max-height: 50dvh;
+    max-height: 50vh;
+  }
+
+  .hero-clipped {
+    height: 100%;
+    max-width: 66.6667%;
+    width: 100%;
+  }
+
+  .hero-bg {
+    display: none;
+  }
+
+  .hero-title {
+    text-shadow: 5px 5px 10px #050505b8;
+  }
+
+  .hero-text {
+    /* font-weight: 500; */
+    text-shadow: 5px 5px 10px #f5d2d1;
+  }
+}

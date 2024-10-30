@@ -1,16 +1,23 @@
-import { useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
-import ContextoAdministrador from "../context/AuthContext";
-import useTitle from "./../hooks/useTitle";
-import { Calendario } from "../components/Calendario";
-import "./css/servicios.css";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import AuthenticationContext from "../context/AuthContext";
 import ServicesContext from "../context/ServiceContext";
-import Loader from "./../components/Loader";
+import useContextValue from "../hooks/useContextValue";
+import useTitle from "./../hooks/useTitle";
+import Loader from "../shared/components/Loader";
+import Breadcrumb from "../shared/components/Breadcrumb";
+import { Calendario } from "../components/Calendario";
+import { FaqSection } from "../components/FaqSection";
+import { Metrics } from "../components/Metrics";
+import { RelatedServices } from "../components/RelatedServices";
+import ServiceCard from "../components/ServiceCard";
+import "./css/servicios.css";
 
 const Servicios = () => {
-  const { usuarioLogueado } = useContext(ContextoAdministrador);
-  const { servicio, seleccionarServicio } = useContext(ServicesContext);
+  const { usuarioLogueado } = useContextValue(AuthenticationContext);
+  const { servicio, seleccionarServicio } = useContextValue(ServicesContext);
   const { id } = useParams();
+  useTitle({ title: servicio ? servicio.nombre : "Cargando..." });
 
   useEffect(() => {
     if (!servicio || servicio.id !== id) {
@@ -18,45 +25,21 @@ const Servicios = () => {
     }
   }, [id]);
 
-  useTitle({ title: servicio ? servicio.nombre : "Cargando..." });
-
   if (!servicio) {
     return <Loader />;
   }
 
-  const imagenBase64 = servicio.imagen.content;
-  const imagenURL = `data:${servicio.imagen.mime};base64,${imagenBase64}`;
-  return (
-    <>
-      <section className="hero-service-section">
-        <div className="hero-service-container">
-          <img className="hero-service-img" src={imagenURL} alt="Spa de pies" />
-          <img
-            className="hero-img2"
-            src="/assets/ImagenesOptimizadas/spa-treatment-product-female-feet-hand-spa_1150-37700.jpg.url"
-            alt="Spa de pies"
-          />
-          <div className="hero-service-text-container">
-            <h5 className="hero-service-title">{servicio.nombre}</h5>
-            <p className="hero-service-text">{servicio.descripcion}</p>
-            <div className="service-price-section">
-              <p className="hero-service-text-price">
-                Valor del servicio:
-                <small className="service-price">${servicio.costo}</small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+  const imagenURL = `data:${servicio.imagen.mime};base64,${servicio.imagen.content}`;
 
-      {usuarioLogueado.Auth === false ? (
-        <Link className="hero-service-button" to={"/login"}>
-          Contratar
-        </Link>
-      ) : (
-        <Calendario servicioId={servicio.id} />
-      )}
-    </>
+  return (
+    <main className="service-container">
+      <Breadcrumb title={servicio.nombre} />
+      <ServiceCard servicio={servicio} isAuthenticated={usuarioLogueado.auth} />
+      {usuarioLogueado.auth && <Calendario servicioId={servicio.id} />}
+      <RelatedServices />
+      <FaqSection />
+      <Metrics />
+    </main>
   );
 };
 

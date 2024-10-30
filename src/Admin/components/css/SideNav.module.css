@@ -1,0 +1,121 @@
+/* SideNav.module.css */
+.sideNav {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .sideNav {
+        padding: 1rem;
+    }
+}
+
+.logoLink {
+    align-items: flex-end;
+    background-color: #ffc5ff; /* azul-600 */
+    border-radius: 0.375rem;
+    display: flex;
+    height: 5rem;
+    justify-content: flex-start;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+    .logoLink {
+        height: 5rem;
+    }
+}
+
+.logoContainer {
+    color: #ffffff;
+}
+
+.sideNavTitle {
+    color: #000;
+    font-size: 19.5px;
+    font-weight: 700;
+    text-shadow: 
+        -1px -1px 0 #fff,  
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        1px 1px 0 #fff;
+}
+
+@media (min-width: 768px) {
+    .logoContainer {
+        width: auto;
+    }
+}
+
+.navLinksContainer {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .navLinksContainer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+.spacer {
+    display: none;
+    height: auto;
+    width: 100%;
+    flex-grow: 1;
+    border-radius: 0.375rem;
+    background-color: #f9fafb; /* gris-50 */
+}
+
+@media (min-width: 768px) {
+    .spacer {
+        display: block;
+    }
+}
+
+.signOutButton {
+    display: flex;
+    height: 3rem;
+    width: 100%;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.375rem;
+    background-color: #fbf9fa; /* gris-50 */
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .signOutButton {
+        flex-grow: 0;
+        justify-content: flex-start;
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+.signOutButton:hover {
+    background-color: #fee0f2; /* sky-100 */
+    color: #eb25ba; /* azul-600 */
+}
+
+.signOutText {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .signOutText {
+        display: block;
+    }
+}

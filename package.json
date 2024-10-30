@@ -13,11 +13,13 @@
     "@popperjs/core": "^2.11.8",
     "@react-oauth/google": "^0.12.1",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.5",
     "date-fns": "^3.6.0",
     "react": "^18.2.0",
     "react-calendar": "^5.0.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^6.1.6",
+    "react-number-format": "^5.4.2",
     "react-responsive-pagination": "^2.7.0",
     "react-router-dom": "^6.23.0",
     "sonner": "^1.5.0"

@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
 const Card = ({ listaServicios }) => {
@@ -13,14 +12,8 @@ const Card = ({ listaServicios }) => {
         src={`data:${mime};base64,${content}`}
         alt={name}
       />
-      <img
-        className="service-img-bg"
-        src="/assets/ImagenesOptimizadas/spa-treatment-product-female-feet-hand-spa_1150-37700.jpg.url"
-        alt="Spa de pies"
-        width="300"
-      />
       <div className="article-text-container">
-        <h5 className="article-title">{nombre}</h5>
+        <h3 className="article-title">{nombre}</h3>
         <p className="article-text">{descripcion}</p>
       </div>
       <Link to={`/servicio/${id}`} className="article-button">

@@ -1,0 +1,41 @@
+.main {
+  display: block;
+}
+
+.dashboardTitle {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.dashboardTitleMd {
+  font-size: 1.5rem;
+}
+
+.gridContainer {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.gridCols2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gridCols4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.gridCols1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.gridCols4Md {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.gridCols8 {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.marginTop6 {
+  margin-top: 2rem;
+}

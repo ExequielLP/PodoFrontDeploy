@@ -15,6 +15,7 @@
 }
 
 .admin-btn {
+  text-decoration: none;
   color: #fff !important;
   background-color: #ff9abf;
   border: 1px solid transparent;

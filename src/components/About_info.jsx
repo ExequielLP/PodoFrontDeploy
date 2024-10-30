@@ -2,77 +2,48 @@ import "./css/About-info.css";
 
 const About_info = () => {
   return (
-    <main>
+    <main className="about-container">
       <section className="section-content">
-        <div id="ong-text" className="text-content">
-          <h2 className="heading">Sobre Podogología Gonnet</h2>
-          <p className="paragraph">
-            La podoestética es fundamental para el cuidado integral de los pies,
-            ofreciendo una combinación perfecta de tratamientos de salud y
-            belleza. Uno de los principales beneficios es la prevención y
-            tratamiento de problemas comunes como callosidades, durezas, uñas
-            encarnadas y hongos. Estos procedimientos no solo mejoran la
-            apariencia de los pies, sino que también alivian molestias y
-            previenen complicaciones mayores.
-          </p>
-          <p className="paragraph">
-            {" "}
-            Además de tratar condiciones específicas, la podoestética promueve
-            una excelente higiene podal. Mediante técnicas como la exfoliación,
-            limpieza profunda y aplicación de productos hidratantes, se eliminan
-            impurezas y células muertas, dejando la piel suave y saludable. Los
-            masajes incluidos en muchos de estos tratamientos también ofrecen
-            beneficios adicionales, como la mejora de la circulación sanguínea,
-            reducción de la tensión muscular y alivio del estrés.
-          </p>
-          <p className="paragraph">
-            {" "}
-            La podoestética es ideal para personas de todas las edades,
-            especialmente aquellas que buscan mantener una imagen cuidada y
-            profesional. También es una excelente opción para quienes pasan
-            mucho tiempo de pie o usan calzado inadecuado, ya que ayuda a
-            aliviar la fatiga y el dolor. En resumen, la podoestética no solo
-            embellece los pies, sino que también asegura su salud,
-            proporcionando comodidad y bienestar general.
-          </p>
+          <div id="pdg-text" className="about-text-content">
+          <h2 className="about-heading">Sobre Pedicuría La Plata</h2>
+          <div className="about-text-container">
+            <p>En Pedicuría La Plata nos dedicamos a ofrecer servicios de cuidado y salud para tus pies. Contamos con un equipo de profesionales altamente capacitados que se encargan de brindarte la mejor atención y cuidado personalizado.</p>
+            <p className="highlight">⭐️ <strong>Atención en gabinete</strong>: Ubicados en la zona de Plaza Italia, nuestro gabinete está equipado con la más avanzada tecnología para asegurar que recibas un tratamiento eficaz y seguro.</p>
+            <p className="highlight">⭐️ <strong>Atención a domicilio</strong>: Pensando en las personas con movilidad reducida, ofrecemos un servicio de atención a domicilio para que puedas recibir el cuidado que necesitas sin salir de tu hogar.</p>
+            <p>Nuestro compromiso es tu bienestar. En Pedicuría La Plata trabajamos para que cada visita sea una experiencia agradable y relajante. ¡Visítanos y descubre cómo podemos ayudarte a mantener tus pies saludables!</p>
+            <p>Para más información o para agendar una cita, no dudes en contactarnos. Estamos aquí para ayudarte.</p>
+          </div>
         </div>
-        <div id="ong" className="image-container">
+        <div id="pdg" className="about-image-container">
           <img
-            className="image"
+            className="about-image"
             height="500"
-            src="/assets/ImagenesOptimizadas/woman-s-feet-bowl-with-water-petal_329181-18808.jpg"
+            src="/assets/tipos-de-infecciones.webp"
             width="500"
             alt="Podología Gonnet"
           />
         </div>
       </section>
       <section className="section-content">
-        <div id="community" className="image-container">
+        <div id="community" className="about-image-container">
           <img
-            className="image"
-            height="556"
-            src="/assets/ImagenesOptimizadas/woman-s-feet-bowl-with-water-petal_329181-18808.jpg"
-            width="812"
+            className="about-image"
+            height="500"
+            src="/assets/pedicurialp.webp"
+            width="500"
             alt="Podología Gonnet"
           />
         </div>
-        <div id="community-text" className="text-content">
-          <h2 className="heading">¿Quienes somos?</h2>
-          <p className="paragraph">
-            {" "}
-            Somos un equipo de profesionales especializados en podoestética,
-            dedicados a brindar servicios de alta calidad para el cuidado
-            integral de tus pies. Con años de experiencia y una pasión por la
-            salud y belleza podal, nos comprometemos a ofrecer tratamientos
-            personalizados que combinan técnicas avanzadas y productos de
-            primera calidad. Nos enorgullece proporcionar un ambiente cálido y
-            acogedor, donde cada cliente recibe atención individualizada y
-            asesoramiento experto. Nuestro objetivo es mejorar tanto la salud
-            como la apariencia de tus pies, ayudándote a sentirte cómodo y
-            seguro. Ya sea que busques alivio para problemas podales específicos
-            o simplemente quieras mantener tus pies en perfectas condiciones,
-            estamos aquí para cuidar de ti con profesionalismo y dedicación.
-          </p>
+        <div id="community-text" className="about-text-content-second">
+          <h2 className="about-heading">¿Quienes somos?</h2>
+          <div className="about-text-container">
+          <p><strong>Conoce a Pedicuría La Plata</strong></p>
+          <p>En Pedicuría La Plata, somos un equipo de profesionales apasionados por el cuidado y la salud de los pies. Nuestra misión es proporcionar un servicio excepcional y personalizado que mejore la calidad de vida de nuestros pacientes.</p>
+          <p className="highlight">⭐️ <strong>Nuestra Historia</strong>: Fundada en el corazón de La Plata, nuestra pedicuría ha crecido gracias a la confianza y satisfacción de nuestros clientes. Nos enorgullecemos de ofrecer un ambiente acogedor y un servicio de alta calidad.</p>
+          <p className="highlight">⭐️ <strong>Nuestro Equipo</strong>: Contamos con un equipo de especialistas en podología, comprometidos con el bienestar y la salud de nuestros pacientes. Cada miembro de nuestro equipo está altamente capacitado y en constante formación para brindar los mejores tratamientos.</p>
+          <p>En Pedicuría La Plata, creemos en la importancia de cuidar tus pies y estamos dedicados a ofrecerte la mejor atención. ¡Te invitamos a conocernos y a descubrir cómo podemos ayudarte a mantener tus pies en las mejores condiciones!</p>
+          <p>Para más información o para agendar una cita, no dudes en contactarnos. Estamos aquí para ayudarte.</p>
+          </div>
         </div>
       </section>
     </main>

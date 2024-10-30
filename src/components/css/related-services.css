@@ -1,0 +1,60 @@
+.related-services-container {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 2rem 0;
+  padding: 1.5rem;
+  transition: background-color 0.3s;
+}
+
+.related-services-container {
+  background-color: #ffffff;
+}
+
+.related-services-title {
+  margin-bottom: 1rem;
+}
+
+.related-services-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .related-services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.related-service-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: #fbcfe8;
+}
+
+.related-service-title {
+  font-weight: 600;
+  flex-grow: 1;
+  margin-bottom: 0.5rem;
+}
+
+.related-service-price {
+  margin-bottom: 0.5rem;
+}
+
+.related-service-link {
+  align-self: flex-start;
+  background-color: #ed64a6;
+  border-radius: 0.3rem;
+  color: var(--color-button-text);
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.related-service-link:hover {
+  background-color: #d53f8c;
+}

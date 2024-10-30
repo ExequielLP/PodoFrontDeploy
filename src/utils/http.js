@@ -1,135 +1,104 @@
-export const get = async (url) => {
-  try {
-    const respuesta = await fetch(url, { credentials: "include" });
+import { handleResponse } from "./responseHandler";
 
-    if (!respuesta.ok) {
-      throw new Error(
-        respuesta.status + "error en fecth" + respuesta.statusText
-      );
+export const useHttp = () => {
+
+  const get = async (url) => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        credentials: "include", // Incluye cookies si es necesario
+      });
+      return handleResponse(response);
+    } catch (error) {
+      console.error(`Error en la solicitud GET: ${error}`);
+      throw error;
     }
-
-    console.log(respuesta);
-    const data = await respuesta.json();
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.log(`error cath de get ${error}`);
-  }
-};
-
-// get con token
-export const getToken = async (url) => {
-  try {
-    const fetchConfig = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-    };
-    const respuesta = await fetch(url, fetchConfig);
-
-    if (!respuesta.ok) {
-      console.log("---!respuesta.ok?---" + respuesta.ok);
-      throw new Error(
-        respuesta.status + " Error en fetch getToken " + respuesta.statusText
-      );
-    }
-    const data = await respuesta.json();
-    return data;
-  } catch (error) {
-    console.log(`Error catch de GET-TOKEN ${error}`);
-    console.log("---Creo q el tema esta acá---");
-    return null;
-  }
-};
-
-export const post = async (url, data) => {
-  const fechConfig = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
-    body: JSON.stringify(data),
-  };
-  // creo que lo que falta, es poner en el post, el headers:header insertando el token digamos ,pero en la parte de la autorizacion del la peticion post
-
-  try {
-    const respuesta = await fetch(url, fechConfig);
-
-    if (!respuesta.ok) {
-      throw new Error(
-        respuesta.status + "error en fecth [post hhtp]" + respuesta.statusText
-      );
-    }
-    const datos = await respuesta.json();
-
-    return datos;
-  } catch (error) {
-    console.log(`error cath de get [POST HTTPS]${error}`);
-  }
-};
-
-
-export const postLogout = async (url) => {
-  const response = await fetch(url, {
-    method: 'POST',
-    credentials: "include"
-  });
-  return response;
-};
-
-export const postImagen = async (url, servicioPodo) => {
-  const formData = new FormData();
-  formData.append("nombre", servicioPodo.nombre); // Convertir objeto a JSON y agregar como parte
-  formData.append("descripcion", servicioPodo.descripcion); // Convertir objeto a JSON y agregar como parte
-  formData.append("costo", servicioPodo.costo); // Convertir objeto a JSON y agregar como parte
-  formData.append("file", servicioPodo.file); // Convertir objeto a JSON y agregar como parte
-
-  // Agregar archivo de imagen como parte
-
-  const fetchConfig = {
-    method: "POST",
-    credentials: "include",
-    body: formData,
   };
 
-  try {
-    const respuesta = await fetch(url, fetchConfig);
-
-    if (!respuesta.ok) {
-      throw new Error(
-        respuesta.status +
-        " error en fetch [post hhtp]: " +
-        respuesta.statusText
-      );
+  const getWithAuth = async (url) => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+      return handleResponse(response);
+    } catch (error) {
+      console.error(`Error en GET-AUTH: ${error}`);
+      return null;
     }
-
-    const datos = await respuesta.json();
-
-    return datos;
-  } catch (error) {
-    console.log("error cath de get [POST HTTPS]: " + error.statusText);
-  }
-};
-
-export const put = async (url) => {
-  const fetchConfig = {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    }, credentials: "include"
   };
 
-  try {
-    const response = await fetch(url, fetchConfig);
-
-    if (!response.ok) {
-      throw new Error(
-        `${response.status} error en fetch [PUT HTTP]: ${response.statusText}`
-      );
+  const post = async (url, data) => {
+    try {
+      const response = await fetchWithInterceptor(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      return handleResponse(response);
+    } catch (error) {
+      console.error(`Error en POST: ${error}`);
+      throw error;
     }
-    return response;
-  } catch (error) {
-    console.log(`Error catch de put [PUT HTTPS]: ${error}`);
-  }
+  };
+
+  const postLogout = async (url) => {
+    try {
+      const response = await fetchWithInterceptor(url, {
+        method: "POST",
+      });
+      return handleResponse(response);
+    } catch (error) {
+      console.error(`Error en POST-LOGOUT: ${error}`);
+      throw error;
+    }
+  };
+
+  const postImagen = async (url, servicioPodo) => {
+    const formData = new FormData();
+    formData.append("nombre", servicioPodo.nombre);
+    formData.append("descripcion", servicioPodo.descripcion);
+    formData.append("costo", servicioPodo.costo);
+    formData.append("file", servicioPodo.file);
+
+    try {
+      const response = await fetchWithInterceptor(url, {
+        method: "POST",
+        body: formData,
+      });
+      return handleResponse(response);
+    } catch (error) {
+      console.error(`Error en POST-IMAGEN: ${error}`);
+      throw error;
+    }
+  };
+
+  const put = async (url, data) => {
+    try {
+      const response = await fetchWithInterceptor(url, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      return handleResponse(response);
+    } catch (error) {
+      console.error(`Error en PUT: ${error}`);
+      throw error;
+    }
+  };
+
+  const del = async (url) => {
+    try {
+      const response = await fetchWithInterceptor(url, { method: "DELETE" });
+      return handleResponse(response);
+    } catch (error) {
+      console.error(`Error en DELETE: ${error}`);
+      throw error;
+    }
+  };
+
+  return { get, getWithAuth, post, postLogout, postImagen, put, del };
 };

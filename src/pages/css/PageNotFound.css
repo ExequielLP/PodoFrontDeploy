@@ -1,0 +1,61 @@
+/* PageNotFound.css */
+.error-container {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin: 1rem;
+  }
+  
+  .error-text {
+    text-align: center;
+  }
+  
+  .error-number {
+    font-size: 4rem; /* equivalente a text-6xl */
+    font-weight: bold;
+    color: #FF9ABF; /* equivalente a text-pink-600 */
+    margin-bottom: 1rem; /* equivalente a mb-4 */
+  }
+  
+  .paragraph {
+    font-size: 1.5rem; /* equivalente a text-2xl */
+    color: #4b5563; /* equivalente a text-gray-700 */
+    margin-bottom: 2rem; /* equivalente a mb-8 */
+  }
+  
+  .image {
+    display: block;
+    margin: 0 auto 2rem auto; /* equivalente a mx-auto mb-8 */
+  }
+  
+  .admin-btn {
+    color: #fff !important;
+    background-color: #ff9abf;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    display: inline-block;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    padding: 1rem 2rem;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .admin-btn:hover {
+    color: #050505 !important;
+    background-color: #ffd3e6;
+    border: 1px solid #ff9abf;
+    box-shadow: 0px 4px 15px rgba(255, 197, 255, 0.8);
+    transform: scale(1.05);
+  }
+  .link:hover {
+    background-color: #db2777; /* equivalente a hover:bg-pink-600 */
+  }
+  
