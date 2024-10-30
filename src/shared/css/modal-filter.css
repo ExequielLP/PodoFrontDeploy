@@ -1,0 +1,86 @@
+.modal-filter-container {
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  padding: 10px;
+  z-index: 100;
+}
+
+.modal-filter-content {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 28rem;
+  width: 100%;
+}
+
+.modal-filter-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.modal-filter .filter-input-group {
+  margin-bottom: 16px;
+}
+
+.modal-filter .filter-input-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.modal-filter .filter-select,
+.modal-filter .filter-input {
+  margin-top: 4px;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.modal-filter .filter-select:focus,
+.modal-filter .filter-input:focus {
+  outline: none;
+  border-color: #dc62e7;
+  box-shadow: 0 0 0 3px rgba(255, 82, 203, 0.3);
+}
+
+.modal-filter-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.modal-filter-buttons .filter-btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.modal-filter-buttons .filter-btn-primary {
+  background-color: white;
+  color: #111827;
+  border: 1px solid #d1d5db;
+}
+
+.modal-filter-buttons .filter-btn-secondary {
+  background-color: #e5e7eb;
+  color: #1f2937;
+}
+
+.modal-filter-buttons .filter-btn-close {
+  background-color: #ef4444;
+  color: white;
+}

@@ -1,198 +1,184 @@
-/* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
-import { get, getToken, post } from "../utils/http";
-import { toast } from "sonner";
-import { matchPath } from "react-router-dom";
-import { validateForm } from "../utils/validations";
+import { createContext, useEffect, useState, useCallback } from "react";
+import { useLocation, useNavigate, matchPath } from "react-router-dom";
+import { validateForm } from "../utils/register-validations";
+import showToast from "../utils/toastUtils";
+import useFetch from "../hooks/useFetch";
 
-//URL login --> http://localhost:8080/api/v1/auth/authenticate
-const urlPostLogin = import.meta.env.VITE_ENDPOINT_urlPostLogin;
-const urlVerificarExpiracionToken = import.meta.env.VITE_ENDPOINT_urlVerificarExpiracionToken;
-const urlCrearUsuario = import.meta.env.VITE_ENDPOINT_urlCrearUsuario;
-const urlValidateGetUsuario = import.meta.env.VITE_ENDPOINT_urlValidateGetUsuario;
+const {
+  VITE_ENDPOINT_urlPostLogin: urlPostLogin,
+  VITE_ENDPOINT_urlVerificarExpiracionToken: urlVerificarExpiracionToken,
+  VITE_ENDPOINT_urlCrearUsuario: urlCrearUsuario,
+  VITE_ENDPOINT_urlValidateGetUsuario: urlValidateGetUsuario,
+  VITE_ENDPOINT_removeCookie: removeCookieFromUser,
+} = import.meta.env;
 
-const usuarioLogin = {
+const initialUserState = {
+  auth: false,
+  email: "",
   id: "",
-  userName: "",
   jwt: "",
-  Rol: "",
-  Auth: false,
+  rol: "",
+  userName: "",
 };
 
-const ContextoAdministrador = createContext();
+const AuthenticationContext = createContext();
+AuthenticationContext.displayName = "AuthenticationContext";
 
 const AuthProvider = ({ children }) => {
-  const [usuarioLogueado, setUsuarioLogeado] = useState(usuarioLogin);
+  const [usuarioLogueado, setUsuarioLogueado] = useState(initialUserState);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const SubmitRegistro = async (e, formRegistro) => {
+  // Maneja la acción cuando la autorización falla
+  const handleUnauthorized = () => {
+    const excludedPaths = [
+      "/login",
+      "/",
+      "/registro",
+      "/servicio/*",
+      "/password-recovery",
+      "/sobre-nosotros",
+      "/create-new-password/*",
+    ];
+    const isExcluded = excludedPaths.some((path) =>
+      matchPath({ path, exact: true }, location.pathname)
+    );
+
+    if (!isExcluded) {
+      setUsuarioLogueado(initialUserState);
+      console.log("!isExcluded");
+      setTimeout(() => navigate("/login"), 2000);
+      return;
+    } else if (usuarioLogueado.auth === true && isExcluded) {
+      setUsuarioLogueado(initialUserState);
+      setTimeout(() => navigate("/login"), 1000);
+      return;
+    }
+  };
+
+  //INICIALIZA EL HOOK POSTERIOR A LA FUNCIÓN
+  const { fetchData } = useFetch(handleUnauthorized);
+
+  const verifyAuthentication = async () => {
+    const { data: tokenData, error: tokenError } = await fetchData(
+      urlVerificarExpiracionToken,
+      { method: "GET" },
+      handleUnauthorized
+    );
+    const { data: userData, error: userError } = await fetchData(
+      urlValidateGetUsuario,
+      { method: "GET" },
+      handleUnauthorized
+    );
+
+    if (tokenData && usuarioLogueado.auth === false) {
+      updateUser(userData);
+    } else if (userError) {
+      console.error("Usuario no logueado:", userError);
+    }
+  };
+
+  useEffect(() => {
+    verifyAuthentication();
+  }, [usuarioLogueado]);
+
+  const updateUser = (usuario) => {
+    setUsuarioLogueado({
+      auth: true,
+      email: usuario.email,
+      id: usuario.id,
+      jwt: usuario.jwt,
+      rol: usuario.rol,
+      userName: usuario.userName,
+    });
+  };
+
+  // Verifica si el usuario está autenticado
+  const isAuthenticated = () => {
+    return usuarioLogueado.auth;
+  };
+
+  const submitRegistro = async (e, formRegistro) => {
     e.preventDefault();
-    // Llama a la función de validación
     const errors = validateForm(formRegistro);
     if (errors.length > 0) {
       errors.forEach((error) => {
-        toast.warning(error, {
-          className: "toast-warning",
-          style: { width: "fit-content" },
-        });
+        showToast(`Error al cargar ${error} en el registro`, "error");
       });
       return;
     }
     try {
-      const respuesta = await post(urlCrearUsuario, formRegistro);
-      if (respuesta) {
-        window.location.href = "/login";
+      const { data: registerUser, error: registerError } = await fetchData(
+        urlCrearUsuario,
+        { method: "POST", body: JSON.stringify(formRegistro) }
+      );
+      if (registerUser) {
+        navigate("/login");
       }
     } catch (error) {
-      console.log(error);
-      console.log("Error al ingresar los datos de usuario");
-      toast.error(`¡Error al ingresar datos del usuario: ${errors}!`, {
-        className: "toast-error",
-        style: { width: "fit-content" },
-      });
+      showToast("¡Error al ingresar datos del usuario!", "error");
+      console.log(error, "Error al ingresar los datos de usuario");
     }
   };
 
-  const SubmitLogin = async (e, formlogin) => {
+  const submitLogin = async (e, formlogin) => {
     e.preventDefault();
     try {
-      const respuesta = await post(urlPostLogin, formlogin);
-
-      const usuarioRespuesta = {
-        id: respuesta.id,
-        userName: respuesta.userName,
-        jwt: respuesta.jwt,
-        Rol: respuesta.rol,
-        Auth: true,
-      };
-
-      setUsuarioLogeado(usuarioRespuesta);
-      window.localStorage.setItem("auth_token", respuesta.jwt);
-    } catch (error) {
-      console.log("Error al ingresar los datos de usuario");
-      toast.error(`¡Error al ingresar datos del usuario!`, {
-        className: "toast-error",
-        style: { width: "fit-content" },
-      });
-    }
-  };
-
-  //VERIFICACION DE LOGIN AUTOMATICA
-  const AuthTokenYUsuario = async () => {
-    let token = VerificarExistenciaDeToken();
-    console.log("entrnado a AuthTokenUsuario");
-    const urlFinal = urlVerificarExpiracionToken + token;
-    const urlValidateGetUsuarioFinal = urlValidateGetUsuario + token;
-    const usuarioValido = await GetUsuarioToken(
-      urlValidateGetUsuarioFinal,
-      token
-    );
-    console.log("paso el usuarioValido()");
-    if (usuarioLogueado.Auth === false && usuarioValido) {
-      const usuarioRespuesta = {
-        id: usuarioValido.id,
-        userName: usuarioValido.userName,
-        jwt: usuarioValido.jwt,
-        Rol: usuarioValido.rol,
-        Auth: true,
-      };
-      setUsuarioLogeado(usuarioRespuesta);
-    } else if (VerificarExistenciaDeToken() && !usuarioValido) {
-      const excludedPaths = ["/login", "/", "/registro", "/servicio/*"]; // Agrega aquí las rutas que quieres excluir
-      const isExcluded = excludedPaths.some((path) =>
-        matchPath({ path, exact: true }, location.pathname)
+      const { data: loginData, error: loginError } = await fetchData(
+        urlPostLogin,
+        { method: "POST", body: JSON.stringify(formlogin) }
       );
-      if (!isExcluded) {
-        toast.warning("Su sesión expiro. Usted sera redirigido!", {
-          className: "toast-warning",
-          style: { width: "fit-content" },
-        });
-        setTimeout(function () {
-          window.location.href = "/login";
-        }, 2000);
+      if (loginError) {
+        showToast("¡Error al ingresar datos del usuario!", "error");
+      } else {
+        updateUser(loginData);
       }
-    }
-  };
-
-  const GetUsuarioToken = async (urlValidateGetUsuarioFinal, token) => {
-    try {
-      const respuesta = await getToken(urlValidateGetUsuarioFinal, token);
-      return respuesta;
+      //chekear si manejamos la redirección desde el componente o desde la función
+      // if (loginData.rol === "ADMIN") {
+      //   return navigate("/dashboard");
+      // } else {
+      //   navigate("/");
+      // }
     } catch (error) {
-      return false;
+      showToast("¡Error al ingresar datos del usuario!", "error");
+      console.error("Error al ingresar los datos de usuario", error);
     }
   };
 
-  const VerificarExistenciaDeToken = () => {
-    let jwt = window.localStorage.getItem("auth_token");
-    if (!jwt) return false;
-    return jwt;
+  const logOut = async () => {
+    try {
+      const { data: cookieData, error: cookieError } = await fetchData(
+        removeCookieFromUser,
+        { method: "POST" }
+      );
+      if (cookieData) {
+        setUsuarioLogueado(initialUserState);
+        navigate("/login");
+      } else {
+        showToast("No estás autenticado. Por favor, inicia sesión.", "warning");
+        console.log(cookieError);
+      }
+    } catch (error) {
+      console.log(`Error en el Logout: ${error}`);
+    }
   };
 
-  const VerificarExperiracionToken = async (urlVerificarExpiracionToken) => {
-    const respuesta = await get(urlVerificarExpiracionToken);
-    return respuesta;
-  };
-
-  const logOut = () => {
-    window.localStorage.removeItem("auth_token");
-    window.location.href = "/login";
-  };
-
-  // const submitModificarServicio = async (e, form) => {
-  //   e.preventDefault();
-
-  //   console.log("****Hola desde el modificarServicio****");
-  //   const formData = new FormData();
-  //   formData.append("id", form.id);
-  //   formData.append("nombre", form.nombre);
-  //   formData.append("descripcion", form.descripcion);
-  //   formData.append("costo", form.costo);
-  //   formData.append("file", form.file);
-  //   try {
-  //     let token = localStorage.getItem("auth_token");
-  //     const response = await fetch(`${VITE_ENDPOINT_urlBackModificaServicio}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: formData,
-  //     });
-  //     listaServiciosAdmin();
-
-  //     if (response.ok) {
-  //       toast.success(`¡Servicio: ${form.nombre} actualizado!`, {
-  //         className: "toast-success",
-  //         style: { width: "fit-content" },
-  //       });
-
-  //       window.location.hash = "#TablaServicios";
-  //     } else {
-  //       toast.error(`¡Error al actualizar ${form.nombre}!`, {
-  //         className: "toast-error",
-  //         style: { width: "fit-content" },
-  //       });
-  //       console.error("Error al modificar el servicio");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error en la solicitud:", error);
-  //   }
-  // };
-
-  const data = {
-    AuthTokenYUsuario,
+  const authContextValue = {
     logOut,
-    SubmitLogin,
-    SubmitRegistro,
-    VerificarExistenciaDeToken,
-    VerificarExperiracionToken,
+    submitLogin,
+    submitRegistro,
     usuarioLogueado,
+    setUsuarioLogueado,
+    isAuthenticated,
+    handleUnauthorized,
   };
+
   return (
-    <ContextoAdministrador.Provider value={data}>
+    <AuthenticationContext.Provider value={authContextValue}>
       {children}
-    </ContextoAdministrador.Provider>
+    </AuthenticationContext.Provider>
   );
 };
 
 export { AuthProvider };
-export default ContextoAdministrador;
+export default AuthenticationContext;

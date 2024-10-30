@@ -1,0 +1,34 @@
+.shared-input-section > * + * {
+    margin-top: 0.5rem;
+  }
+  
+  .shared-label-text {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5563;
+  }
+  
+  .shared-input-container {
+    position: relative;
+  }
+  
+  .formfield-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .formfield-input {
+    padding-right: 2.5rem;
+    width: 100%;
+  }
+
+  /* ::-webkit-input-placeholder {
+    font-family: verdana;
+    text-transform: uppercase;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 1px;
+  } */

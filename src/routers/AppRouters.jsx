@@ -1,50 +1,25 @@
-import { lazy, Suspense, useContext, useEffect } from "react";
-import ContextoAdministrador from "../context/AuthContext";
+import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Loader from "../components/Loader";
-
-const AuthRoutesLazy = lazy(() => import("./AuthRoutes"));
-const PublicRoutesLazy = lazy(() => import("./PublicRoutes"));
+import useContextValue  from "../hooks/useContextValue";
+import AuthenticationContext from "../context/AuthContext";
+import Loader from "../shared/components/Loader";
+const AuthRouterLazy = lazy(() => import("./AuthRouter"));
+const PublicRouterLazy = lazy(() => import("./PublicRouter"));
 
 const AppRouters = () => {
-  const { usuarioLogueado, AuthTokenYUsuario } = useContext(
-    ContextoAdministrador
-  );
-  useEffect(() => {
-    AuthTokenYUsuario();
-  }, [AuthTokenYUsuario]);
-
-  /* 
-  --> AuthTokenYUsuario()
-  1) BUSCAR SI HAY TOKEN EN LOCALSTRORAGE
-  2) TRAER EL LOCAL SI HAY
-  3) MANDAR A VALIDAR EL TOKEN SI EXPIRO O NO 
-  4) TRAER EL USUARIO SI EL TOKEN NO EXPIRO
-  5) RENDERIZAR COMPONENTE CORRESPONDIENTE AL USUARIO LOGUEADO
-  */
+  const { usuarioLogueado } = useContextValue(AuthenticationContext);
 
   return (
-    <Routes>
-      {usuarioLogueado.Auth === false ? (
+    <Suspense fallback={<Loader />}>
+      <Routes>
         <Route
           path="/*"
           element={
-            <Suspense fallback={<Loader />}>
-              <PublicRoutesLazy />
-            </Suspense>
+            usuarioLogueado.auth ? <AuthRouterLazy /> : <PublicRouterLazy />
           }
         />
-      ) : (
-        <Route
-          path="/*"
-          element={
-            <Suspense fallback={<Loader />}>
-              <AuthRoutesLazy />
-            </Suspense>
-          }
-        />
-      )}
-    </Routes>
+      </Routes>
+    </Suspense>
   );
 };
 

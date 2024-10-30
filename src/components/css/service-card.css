@@ -1,0 +1,73 @@
+.service-card-container {
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.service-card-content {
+  display: flex;
+}
+
+.sevice-image-wrapper {
+  flex-shrink: 0;
+}
+
+.image-container-md {
+  width: 24rem;
+}
+
+.image-container {
+  align-items: center;
+  display: flex;
+  height: 380px;
+  justify-content: center;
+  max-width: 380px;
+  min-width: 380px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.service-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.service-content-padding {
+  padding: 2rem;
+}
+
+.service-card-title {
+  color: #ec4899;
+  text-transform: uppercase;
+}
+
+.service-description {
+  color: #6b7280;
+  margin-top: 0.8rem;
+}
+
+.service-price-container {
+  align-items: center;
+  display: flex;
+  margin-top: 1rem;
+}
+
+.service-price {
+  font-size: 1.25rem;
+  margin-left: 0.25rem;
+}
+
+.service-button {
+  display: flex;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+}
+
+.calendar-icon{
+    margin-left: 0.5rem;
+}

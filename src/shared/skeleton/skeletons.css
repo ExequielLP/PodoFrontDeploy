@@ -1,0 +1,524 @@
+/* Loading animation */
+.shimmer {
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+}
+
+/*CARD*/
+.card-skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem; /* tailwind rounded-xl */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+  padding: 0.5rem; /* tailwind p-2 */
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* tailwind shadow-sm */
+}
+
+.card-skeleton-content {
+  display: flex;
+  padding: 1rem; /* tailwind p-4 */
+}
+
+.card-skeleton-icon {
+  height: 1.25rem; /* tailwind h-5 */
+  width: 1.25rem; /* tailwind w-5 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+.card-skeleton-title {
+  margin-left: 0.5rem; /* tailwind ml-2 */
+  height: 1.5rem; /* tailwind h-6 */
+  width: 4rem; /* tailwind w-16 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+  font-size: 0.875rem; /* tailwind text-sm */
+  font-weight: 500; /* tailwind font-medium */
+}
+
+.card-skeleton-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem; /* tailwind rounded-xl */
+  background-color: #ffffff; /* tailwind bg-white */
+  padding: 2rem; /* tailwind px-4 py-8 */
+  text-overflow: ellipsis; /* tailwind truncate */
+}
+
+.card-skeleton-body-content {
+  height: 1.75rem; /* tailwind h-7 */
+  width: 5rem; /* tailwind w-20 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*REVENUE SKELETON*/
+.revenue-chart-skeleton {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.revenue-chart-skeleton-md-col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.revenue-chart-skeleton-title {
+  margin-bottom: 1rem; /* tailwind mb-4 */
+  height: 2rem; /* tailwind h-8 */
+  width: 9rem; /* tailwind w-36 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.revenue-chart-skeleton-content {
+  border-radius: 1rem; /* tailwind rounded-xl */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+  padding: 1rem; /* tailwind p-4 */
+}
+
+.revenue-chart-skeleton-grid {
+  margin-top: 0; /* tailwind mt-0 */
+  display: grid;
+  height: 410px;
+  grid-template-columns: repeat(12, 1fr); /* tailwind grid-cols-12 */
+  align-items: end;
+  gap: 0.5rem; /* tailwind gap-2 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #ffffff; /* tailwind bg-white */
+  padding: 1rem; /* tailwind p-4 */
+}
+
+.revenue-chart-skeleton-sm-grid-cols-13 {
+  grid-template-columns: repeat(13, 1fr); /* tailwind sm:grid-cols-13 */
+}
+
+.revenue-chart-skeleton-md-gap-4 {
+  gap: 1rem; /* tailwind md:gap-4 */
+}
+
+.revenue-chart-skeleton-footer {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.5rem; /* tailwind pb-2 */
+  padding-top: 1.5rem; /* tailwind pt-6 */
+}
+
+.revenue-chart-skeleton-circle {
+  height: 1.25rem; /* tailwind h-5 */
+  width: 1.25rem; /* tailwind w-5 */
+  border-radius: 9999px; /* tailwind rounded-full */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+.revenue-chart-skeleton-label {
+  margin-left: 0.5rem; /* tailwind ml-2 */
+  height: 1rem; /* tailwind h-4 */
+  width: 5rem; /* tailwind w-20 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+/*INVOICE SKELETON*/
+.invoice-skeleton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f3f3f3; /* tailwind border-gray-100 */
+  padding-top: 1rem; /* tailwind py-4 */
+  padding-bottom: 1rem; /* tailwind py-4 */
+}
+
+.invoice-skeleton-content {
+  display: flex;
+  align-items: center;
+}
+
+.invoice-skeleton-avatar {
+  margin-right: 0.5rem; /* tailwind mr-2 */
+  height: 2rem; /* tailwind h-8 */
+  width: 2rem; /* tailwind w-8 */
+  border-radius: 9999px; /* tailwind rounded-full */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+.invoice-skeleton-info {
+  min-width: 0;
+}
+
+.invoice-skeleton-title {
+  height: 1.25rem; /* tailwind h-5 */
+  width: 10rem; /* tailwind w-40 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+.invoice-skeleton-subtitle {
+  margin-top: 0.5rem; /* tailwind mt-2 */
+  height: 1rem; /* tailwind h-4 */
+  width: 3rem; /* tailwind w-12 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+/*LATEST INVOICES*/
+.latest-invoices-skeleton {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.latest-invoices-skeleton-md-col-span-4 {
+  grid-column: span 4 / span 4;
+}
+
+.latest-invoices-skeleton-title {
+  margin-bottom: 1rem; /* tailwind mb-4 */
+  height: 2rem; /* tailwind h-8 */
+  width: 9rem; /* tailwind w-36 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.latest-invoices-skeleton-content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 1rem; /* tailwind rounded-xl */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+  padding: 1rem; /* tailwind p-4 */
+}
+
+.latest-invoices-skeleton-body {
+  background-color: #ffffff; /* tailwind bg-white */
+  padding-left: 1.5rem; /* tailwind px-6 */
+  padding-right: 1.5rem; /* tailwind px-6 */
+}
+
+.latest-invoices-skeleton-footer {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.5rem; /* tailwind pb-2 */
+  padding-top: 1.5rem; /* tailwind pt-6 */
+}
+
+.latest-invoices-skeleton-circle {
+  height: 1.25rem; /* tailwind h-5 */
+  width: 1.25rem; /* tailwind w-5 */
+  border-radius: 9999px; /* tailwind rounded-full */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+.latest-invoices-skeleton-label {
+  margin-left: 0.5rem; /* tailwind ml-2 */
+  height: 1rem; /* tailwind h-4 */
+  width: 5rem; /* tailwind w-20 */
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #e5e7eb; /* tailwind bg-gray-200 */
+}
+
+/*DASHBOARD*/
+.dashboard-skeleton-title {
+  position: relative;
+  margin-bottom: 1rem; /* tailwind mb-4 */
+  height: 2rem; /* tailwind h-8 */
+  width: 9rem; /* tailwind w-36 */
+  overflow: hidden;
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.dashboard-skeleton-grid {
+  display: grid;
+  gap: 1.5rem; /* tailwind gap-6 */
+}
+
+.dashboard-skeleton-sm-grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr); /* tailwind sm:grid-cols-2 */
+}
+
+.dashboard-skeleton-lg-grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr); /* tailwind lg:grid-cols-4 */
+}
+
+.dashboard-skeleton-md-grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr); /* tailwind md:grid-cols-4 */
+}
+
+.dashboard-skeleton-lg-grid-cols-8 {
+  grid-template-columns: repeat(8, 1fr); /* tailwind lg:grid-cols-8 */
+}
+
+.dashboard-skeleton-gap-6 {
+  gap: 1.5rem; /* tailwind gap-6 */
+}
+
+.dashboard-skeleton-mt-6 {
+  margin-top: 1.5rem; /* tailwind mt-6 */
+}
+
+/*TABLE SKELETON*/
+.table-row-skeleton {
+  width: 100%;
+  border-bottom: 1px solid #f3f3f3; /* tailwind border-gray-100 */
+}
+
+.table-row-skeleton-last-of-type-border-none:last-of-type {
+  border-bottom: none;
+}
+
+.table-row-skeleton-first-child-rounded-tl-lg:first-child td:first-child {
+  border-top-left-radius: 0.5rem; /* tailwind rounded-tl-lg */
+}
+
+.table-row-skeleton-first-child-rounded-tr-lg:first-child td:last-child {
+  border-top-right-radius: 0.5rem; /* tailwind rounded-tr-lg */
+}
+
+.table-row-skeleton-last-child-rounded-bl-lg:last-child td:first-child {
+  border-bottom-left-radius: 0.5rem; /* tailwind rounded-bl-lg */
+}
+
+.table-row-skeleton-last-child-rounded-br-lg:last-child td:last-child {
+  border-bottom-right-radius: 0.5rem; /* tailwind rounded-br-lg */
+}
+
+.table-row-skeleton-cell {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-top: 0.75rem; /* tailwind py-3 */
+  padding-bottom: 0.75rem; /* tailwind py-3 */
+  padding-left: 1.5rem; /* tailwind pl-6 */
+  padding-right: 0.75rem; /* tailwind pr-3 */
+}
+
+.table-row-skeleton-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* tailwind gap-3 */
+}
+
+.table-row-skeleton-avatar {
+  height: 2rem; /* tailwind h-8 */
+  width: 2rem; /* tailwind w-8 */
+  border-radius: 9999px; /* tailwind rounded-full */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.table-row-skeleton-name {
+  height: 1.5rem; /* tailwind h-6 */
+  width: 6rem; /* tailwind w-24 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.table-row-skeleton-email {
+  padding-left: 0.75rem; /* tailwind px-3 */
+  padding-right: 0.75rem; /* tailwind px-3 */
+  padding-top: 0.75rem; /* tailwind py-3 */
+  padding-bottom: 0.75rem; /* tailwind py-3 */
+  white-space: nowrap;
+}
+
+.table-row-skeleton-email-bar {
+  height: 1.5rem; /* tailwind h-6 */
+  width: 8rem; /* tailwind w-32 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.table-row-skeleton-amount-bar {
+  height: 1.5rem; /* tailwind h-6 */
+  width: 4rem; /* tailwind w-16 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.table-row-skeleton-date-bar {
+  height: 1.5rem; /* tailwind h-6 */
+  width: 4rem; /* tailwind w-16 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.table-row-skeleton-status-bar {
+  height: 1.5rem; /* tailwind h-6 */
+  width: 4rem; /* tailwind w-16 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.table-row-skeleton-actions {
+  display: flex;
+  justify-content: end;
+  gap: 0.75rem; /* tailwind gap-3 */
+}
+
+.table-row-skeleton-action {
+  height: 38px;
+  width: 38px;
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+/*INVOIES MOBILE*/
+.invoices-mobile-skeleton {
+  margin-bottom: 0.5rem; /* tailwind mb-2 */
+  width: 100%;
+  border-radius: 0.375rem; /* tailwind rounded-md */
+  background-color: #ffffff; /* tailwind bg-white */
+  padding: 1rem; /* tailwind p-4 */
+}
+
+.invoices-mobile-skeleton-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f3f3f3; /* tailwind border-gray-100 */
+  padding-bottom: 2rem; /* tailwind pb-8 */
+}
+
+.invoices-mobile-skeleton-avatar {
+  margin-right: 0.5rem; /* tailwind mr-2 */
+  height: 2rem; /* tailwind h-8 */
+  width: 2rem; /* tailwind w-8 */
+  border-radius: 9999px; /* tailwind rounded-full */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.invoices-mobile-skeleton-name {
+  height: 1.5rem; /* tailwind h-6 */
+  width: 4rem; /* tailwind w-16 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.invoices-mobile-skeleton-date {
+  height: 1.5rem; /* tailwind h-6 */
+  width: 4rem; /* tailwind w-16 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.invoices-mobile-skeleton-body {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem; /* tailwind pt-4 */
+}
+
+.invoices-mobile-skeleton-amount {
+  height: 1.5rem; /* tailwind h-6 */
+  width: 4rem; /* tailwind w-16 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.invoices-mobile-skeleton-amount-sub {
+  margin-top: 0.5rem; /* tailwind mt-2 */
+  height: 1.5rem; /* tailwind h-6 */
+  width: 6rem; /* tailwind w-24 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+.invoices-mobile-skeleton-actions {
+  display: flex;
+  justify-content: end;
+  gap: 0.5rem; /* tailwind gap-2 */
+}
+
+.invoices-mobile-skeleton-action {
+  height: 2.5rem; /* tailwind h-10 */
+  width: 2.5rem; /* tailwind w-10 */
+  border-radius: 0.375rem; /* tailwind rounded */
+  background-color: #f3f3f3; /* tailwind bg-gray-100 */
+}
+
+/*INVOIES TABLE SKELETON*/
+.invoices-table-skeleton {
+  margin-top: 1.5rem; /* tailwind mt-6 */
+  display: flow-root;
+}
+
+.invoices-table-skeleton-wrapper {
+  display: inline-block;
+  min-width: 100%;
+  vertical-align: middle;
+}
+
+.invoices-table-skeleton-container {
+  border-radius: 0.5rem; /* tailwind rounded-lg */
+  background-color: #fafafa; /* tailwind bg-gray-50 */
+  padding: 0.5rem; /* tailwind p-2 */
+  padding-top: 0; /* tailwind md:pt-0 */
+}
+
+.invoices-table-skeleton-mobile {
+  display: none;
+  min-width: 100%;
+  color: #1f2937; /* tailwind text-gray-900 */
+}
+
+.invoices-table-skeleton-md-hidden {
+  display: block;
+}
+
+.invoices-table-skeleton-table {
+  display: table;
+}
+
+.invoices-table-skeleton-thead {
+  border-radius: 0.5rem; /* tailwind rounded-lg */
+  text-align: left;
+  font-size: 0.875rem; /* tailwind text-sm */
+  font-weight: 400; /* tailwind font-normal */
+}
+
+.invoices-table-skeleton-th {
+  padding-left: 1rem; /* tailwind px-4 */
+  padding-right: 1rem; /* tailwind px-4 */
+  padding-top: 1.25rem; /* tailwind py-5 */
+  padding-bottom: 1.25rem; /* tailwind py-5 */
+  font-weight: 500; /* tailwind font-medium */
+}
+
+.invoices-table-skeleton-th-first {
+  padding-left: 1.5rem; /* tailwind sm:pl-6 */
+}
+
+.invoices-table-skeleton-th-last {
+  padding-bottom: 1rem; /* tailwind pb-4 */
+  padding-top: 0.5rem; /* tailwind pt-2 */
+  padding-left: 0.75rem; /* tailwind pl-3 */
+  padding-right: 1.5rem; /* tailwind pr-6 */
+  padding-top: 0.5rem; /* tailwind pt-2 */
+}
+
+.invoices-table-skeleton-tbody {
+  background-color: #ffffff; /* tailwind bg-white */
+}

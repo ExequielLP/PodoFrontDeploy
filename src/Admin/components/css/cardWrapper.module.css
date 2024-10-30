@@ -1,0 +1,31 @@
+.componentContainer {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  background-color: #fafafa;
+  padding: 0.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.componentHeader {
+  display: flex;
+  padding: 0.5rem;
+  flex: 1;
+  align-items: center;
+}
+
+.componentTitle {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.componentValue {
+  border-radius: 1rem;
+  background-color: #ffffff;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
