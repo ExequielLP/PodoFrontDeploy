@@ -10,13 +10,20 @@
 ## FRONT
 To do:
 - [✔]
-- [ ] Chekear lista del admin, q no le llegan los turnos
 - [ ] Arreglar breadcrumbs para servicios y dashboard. Si sos admin servicios te lleva a dashboard.
-- [ ] Hacer logica de re renderizado para que las vistas del dashboard cambian en función de los comp. hijos
+- [ ] 
+- [ ] Re-render tablas "Ver Servicios", "Turnos Admin", y chekear la "Tabla Usuario".
+- [ ] Re-render de al tabla suspender
+- [ ] Añadir lazyLoad al loguearse con google.
+- [ ] Cancelar dias previos al lanzamiento de la vX.
 - [❗❗] Eliminar turnos de las tablas que son anteriores al dia actual.
 - [⏳] Valdiaciones en formularios.
 - [⏳] Limpiar TODOS LOS console.log.
 - [⏳] Querys para filtrar turnos por busqueda (nombre/apellido - servicio)
+##TABLAS
+- [ ] Crear query para traer la cantidad de turnos disponibles en el mes (VISTA ADMIN).
+- [ ] Crear query para traer la cantidad de turnos Suspendidos en el mes por ADMINISTRADOR.
+- [ ] Crear query para traer la cantidad de turnos ocupados del día (con todos los datos del turno).
 
 To check:
 - [📌] agregar import de bootstrap a los stylos de las paginas.
@@ -46,12 +53,3 @@ To check:
 - Detalles y acentos: El rosa más claro (#ffc5ff) y el rosa empolvado (#FFD3E6) pueden usarse para detalles sutiles, como líneas divisorias, iconos o bordes. Por ejemplo, puedes aplicar estos colores a los bordes de las tarjetas de servicios o a los íconos de redes sociales.
 
 - Enlaces y botones secundarios: Considera usar el verde menta (#B2FFC8) para enlaces o botones secundarios. Esto agregará un toque fresco y agradable.......
-
-## SERVICIOS
-
-- Servicio General: Ofrecemos un servicio integral de cuidado podal para mantener tus pies en perfectas condiciones. Incluye la limpieza y desinfección, corte y limado de uñas, tratamiento de callosidades y durezas, así como la aplicación de cremas hidratantes y nutritivas. Ideal para quienes buscan un mantenimiento regular y profesional de sus pies, asegurando tanto su salud como su apariencia estética.
-- Onicomicosis:Tratamos la onicomicosis de manera efectiva con técnicas avanzadas, eliminando hongos en las uñas de forma segura. Nuestro enfoque combina tratamientos tópicos y láser de alta frecuencia para restaurar la salud y apariencia de tus uñas. Recupera la confianza con unas uñas libres de infecciones, saludables y estéticamente agradables. Ideal para quienes buscan una solución profesional y duradera.
-- Reflexología: La reflexología es un masaje terapéutico que estimula puntos específicos en los pies para mejorar la salud general. Ayuda a aliviar el estrés, mejorar la circulación y equilibrar el cuerpo. Disfruta de una experiencia relajante y revitalizante que no solo beneficia tus pies, sino que también promueve el bienestar integral. Ideal para quienes buscan un enfoque natural para la salud.
-- Láser de alta frecuencia: Nuestro tratamiento con láser de alta frecuencia es ideal para problemas podales como verrugas, hongos y más. Este método no invasivo y sin dolor ofrece resultados rápidos y eficaces, promoviendo la regeneración de la piel y la eliminación de imperfecciones. Perfecto para quienes buscan una solución moderna y profesional para mantener sus pies sanos y libres de problemas.
-- Máquina de masajes de pies: La máquina de masajes de pies ofrece una experiencia relajante y revitalizante, ideal para aliviar el estrés y la fatiga. Con distintas modalidades de masaje y niveles de intensidad, este servicio proporciona un alivio profundo, mejora la circulación y reduce tensiones. Es perfecto para quienes desean un tratamiento de spa en casa, manteniendo sus pies descansados y rejuvenecidos.
-- Spa de pies: Disfruta de un spa de pies rejuvenecedor que incluye baños de burbujas, exfoliación, y masajes relajantes. Este tratamiento alivia el estrés, mejora la circulación y deja tus pies suaves e hidratados. Perfecto para un momento de relajación total, nuestro spa de pies es la opción ideal para renovar la salud y belleza de tus pies, brindándote un cuidado integral.
