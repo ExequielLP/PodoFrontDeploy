@@ -47,7 +47,7 @@ const ServicesProvider = ({ children }) => {
   }, []);
 
   const submitCrearServicio = async (e, serviPodo) => {
-    
+
     e.preventDefault();
     const formData = new FormData();
     formData.append("nombre", serviPodo.nombre);
@@ -158,9 +158,12 @@ const ServicesProvider = ({ children }) => {
     try {
       const { data: deleteAdminAppointments, error: deleteAdminAppointmentsError } = await fetchData(
         `${API_URLS.backCancelarTurnoAdmin}${turnoId}`, { method: "PUT" });
-      if (deleteAdminAppointments.ok) {
+      console.log(deleteAdminAppointmentsError)
+      if (!deleteAdminAppointments.ok) {
+        console.log(deleteAdminAppointments)
         showToast(`Turno: ${turnoId} eliminado con éxito!`, "success");
         // Devuelve la cantidad de turnos restantes
+        console.log(arrayTurnosAdmin.content.length - 1)
         return arrayTurnosAdmin.content.length - 1; // Decrementa en 1
       }
       // const turnosRestantes = arrayTurnosAdmin.content.length - 1;
