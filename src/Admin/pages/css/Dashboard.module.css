@@ -11,31 +11,105 @@
   font-size: 1.5rem;
 }
 
+/* Grid Container */
 .gridContainer {
   display: grid;
   gap: 1.5rem;
 }
 
+/* Two columns for larger screens */
 .gridCols2 {
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* Four columns for larger screens */
 .gridCols4 {
   grid-template-columns: repeat(4, 1fr);
 }
 
+/* One column for smaller screens */
 .gridCols1 {
   grid-template-columns: repeat(1, 1fr);
 }
 
+/* Four columns for medium-sized screens and above */
 .gridCols4Md {
   grid-template-columns: repeat(4, 1fr);
 }
 
+/* Eight columns for larger screens */
 .gridCols8 {
   grid-template-columns: repeat(8, 1fr);
 }
 
 .marginTop6 {
   margin-top: 2rem;
+}
+
+/* Media Queries */
+
+/* For small devices (phones, less than 600px) */
+@media (max-width: 600px) {
+  .dashboardTitle {
+    font-size: 1rem;
+  }
+
+  .dashboardTitleMd {
+    font-size: 1.25rem;
+  }
+
+  .gridCols2,
+  .gridCols4,
+  .gridCols8 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .gridCols4Md {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* For medium devices (tablets, 600px and up) */
+@media (min-width: 600px) and (max-width: 900px) {
+  .dashboardTitle {
+    font-size: 1.125rem;
+  }
+
+  .dashboardTitleMd {
+    font-size: 1.375rem;
+  }
+
+  .gridCols2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gridCols4,
+  .gridCols8 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gridCols4Md {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* For large devices (desktops, 900px and up) */
+@media (min-width: 900px) {
+  .dashboardTitle {
+    font-size: 1.25rem;
+  }
+
+  .dashboardTitleMd {
+    font-size: 1.5rem;
+  }
+
+  .gridCols2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gridCols4,
+  .gridCols4Md,
+  .gridCols8 {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
