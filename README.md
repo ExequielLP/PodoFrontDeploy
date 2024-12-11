@@ -10,6 +10,7 @@
 ## FRONT
 To do:
 - [✔]
+- [ ] Responsive: Header turnos Usuario en la home, footer mis turnos
 - [ ] Arreglar breadcrumbs para servicios y dashboard. Si sos admin servicios te lleva a dashboard.
 - [ ] 
 - [ ] Re-render tablas "Ver Servicios", "Turnos Admin", y chekear la "Tabla Usuario".
