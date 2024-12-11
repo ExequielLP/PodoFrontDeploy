@@ -6,7 +6,7 @@ import { Appointments } from "./Appointments";
 import "./css/calendario.css";
 import "./css/Button-styles.css";
 
-export const Calendario = ({ servicioId = '' }) => {
+export const Calendario = ({ servicioId = "" }) => {
   const { date, setDate, turno, bookAppointment, fetchAppointments } =
     useAppointments(servicioId);
   useEffect(() => {
@@ -16,7 +16,7 @@ export const Calendario = ({ servicioId = '' }) => {
     <section className="calendar-section">
       <div className="calendar-section-container">
         <h2 className="calendar-section-title font-bold">Agendar Turno</h2>
-        <Calendar onChange={setDate} value={date} />
+        <Calendar onChange={setDate} value={date} minDate={new Date()} />
         <Appointments
           turno={turno}
           date={date}

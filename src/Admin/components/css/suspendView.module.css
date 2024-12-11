@@ -122,3 +122,40 @@ td {
 .holidayTableItemBorder {
   border-top: 1px solid #e5e7eb;
 }
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .suspendContent {
+    padding: 1rem;
+  }
+
+  .suspendContainer {
+    flex-direction: column; /* Stack items vertically */
+  }
+
+  .suspendCalendar, .suspendTableContainer {
+    max-width: 100%;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+
+  .status-button, .delete-button {
+    padding: 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .suspendDateSelected, .next-holiday {
+    font-size: 1rem;
+  }
+
+  th, td {
+    padding: 6px;
+  }
+
+  .status-button, .delete-button {
+    padding: 0.3rem;
+  }
+}
